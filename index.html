@@ -40,7 +40,6 @@
   --accent:#E3916D;--accent-ink:#1A130E;--lens:#3BA7FF;--ok:#5DBE8B;--warn:#E2A84B;color-scheme:dark;
 }
 *{box-sizing:border-box}
-[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body.case-open{overflow:hidden}
@@ -644,6 +643,169 @@ body.case-open .sdots,body.case-open .sprog,body.case-open .tip{opacity:0;pointe
 .tip button{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:none;border:0;cursor:pointer;color:var(--muted)}
 .tip button:hover{background:var(--surface-2)}
 @media (prefers-reduced-motion: reduce){.sec-head h2.mask,.writing-top h2.mask,.contact h2.mask{clip-path:none;transform:none}}
+
+/* ===== v4: case study system ===== */
+::view-transition-group(case-art){animation-duration:.75s;animation-timing-function:cubic-bezier(.2,.75,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s}
+.case-hero{padding-top:clamp(36px,5vw,64px)}
+.ch-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,60px);align-items:end}
+.case-hero h1{margin-top:14px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero-meta span{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding:5px 10px;border:1px solid var(--line);border-radius:99px}
+.hero-meta span:empty{display:none}
+.tldr-card{background:var(--ink);color:var(--bg);border-radius:26px;padding:24px 24px 22px;box-shadow:0 40px 70px -45px rgba(20,12,6,.7)}
+.tl-k{opacity:.55;font-size:11px;letter-spacing:.08em}
+.tldr-card dl{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin:14px 0 0}
+.tldr-card dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;opacity:.55}
+.tldr-card dd{margin:3px 0 0;font-size:14.5px;line-height:1.4}
+.tldr-card .full{grid-column:1/-1}
+.tl-result{margin-top:16px;padding-top:16px;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent)}
+.tl-result .mono{font-size:10.5px;letter-spacing:.07em;opacity:.55}
+.tl-result b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(26px,2.5vw,36px);line-height:1.08;margin-top:6px}
+.miss{opacity:.6;font-style:normal;border-bottom:1px dashed currentColor;display:inline-block}
+h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
+.ch-head .eyebrow{display:block}
+.vis.indent{padding-left:calc(clamp(64px,9vw,140px) + clamp(12px,2vw,28px))}
+@media (max-width:1020px){.vis.indent{padding-left:0}}
+.case-cover{margin-top:clamp(36px,5vw,60px)}
+.ch{padding-top:clamp(80px,10vw,130px)}
+.ch-head{display:grid;grid-template-columns:clamp(64px,9vw,140px) minmax(0,1fr);gap:clamp(12px,2vw,28px);align-items:start;margin-bottom:26px}
+.ch-num{font-family:var(--display);font-size:clamp(54px,7vw,108px);line-height:.82;color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--muted) 80%,transparent);font-variant-numeric:tabular-nums;transition:color .6s}
+.ch.seen .ch-num{color:color-mix(in srgb,var(--accent) 22%,transparent)}
+.ch h2{font-family:var(--display);font-size:clamp(34px,3.9vw,58px);line-height:1;margin:10px 0 0;max-width:20ch}
+.ch-lede{font-size:clamp(17px,1.4vw,19px);color:var(--muted);margin-top:16px;max-width:58ch;line-height:1.55}
+.ch-body{padding-left:calc(clamp(64px,9vw,140px) + clamp(12px,2vw,28px));display:grid;gap:14px}
+.ch-body p{max-width:64ch;color:color-mix(in srgb,var(--ink) 84%,var(--muted))}
+.vis{margin-top:30px}
+.vis-cap{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:46px 0 14px;padding-top:14px;border-top:1px solid var(--line)}
+.ch .scrolly-in{padding:0}
+.audit.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.explore{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,1fr);gap:16px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}
+.ex-card{scroll-snap-align:start;position:relative;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:14px 14px 18px;transition:transform .4s var(--ease)}
+.ex-card:hover{transform:translateY(-4px) rotate(-.4deg)}
+.ex-card b{display:block;font-weight:500;margin-top:14px}
+.ex-card p{font-size:14.5px;color:var(--muted);margin:2px 0 0}
+.ex-ph{aspect-ratio:16/10;border-radius:12px;border:1.5px dashed var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);background:repeating-linear-gradient(45deg,transparent 0 10px,color-mix(in srgb,var(--line) 45%,transparent) 10px 11px)}
+.stamp{position:absolute;top:24px;right:22px;z-index:3;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border:2px solid currentColor;border-radius:6px;transform:rotate(-9deg);color:#C4382B;background:color-mix(in srgb,var(--surface) 85%,transparent)}
+.stamp.chosen{color:var(--ok);transform:rotate(6deg)}
+.dec-tag{margin-left:auto;font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:99px;background:color-mix(in srgb,var(--lens) 12%,transparent);color:var(--lens);white-space:nowrap;align-self:center}
+.unsolved{margin-top:24px;display:grid;gap:8px}
+.uns{display:flex;gap:14px;align-items:baseline;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:15.5px}
+.uns .mono{color:var(--warn);font-size:11px;white-space:nowrap}
+.draft-box{margin-top:24px;border:1.5px dashed color-mix(in srgb,var(--lens) 55%,transparent);border-radius:16px;padding:14px 18px;background:color-mix(in srgb,var(--lens) 5%,transparent)}
+.draft-box .mono{color:var(--lens);font-size:11px;letter-spacing:.08em}
+.draft-box ul{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--muted);display:grid;gap:3px}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:110px}
+.pn a{display:grid;grid-template-columns:minmax(0,1fr) 44%;gap:18px;align-items:center;padding:22px;border-radius:26px;background:var(--surface);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:transform .45s var(--ease),border-color .3s}
+.pn a:hover{transform:translateY(-4px);border-color:var(--accent)}
+.pn a.next{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pn .mono{opacity:.6;font-size:11px}
+.pn b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.05;margin-top:8px}
+.pn .frame{transform:rotate(-3deg) translateY(10px);transition:transform .5s var(--ease)}
+.pn a:hover .frame{transform:rotate(0) translateY(0) scale(1.04)}
+.ch-rail{position:absolute;left:20px;top:50%;transform:translate(-12px,-50%);z-index:5;display:flex;flex-direction:column;gap:2px;opacity:0;pointer-events:none;transition:opacity .4s,transform .5s var(--ease)}
+.ch-rail.show{opacity:1;pointer-events:auto;transform:translate(0,-50%)}
+.ch-rail button{display:flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;padding:4px 0;color:var(--muted);font-family:var(--mono);font-size:10.5px;text-align:left}
+.ch-rail button i{display:block;width:12px;height:1px;background:currentColor;transition:width .35s var(--ease)}
+.ch-rail button span{opacity:0;transform:translateX(-4px);transition:.25s;white-space:nowrap;background:var(--surface);border:1px solid var(--line);padding:2px 8px;border-radius:99px;color:var(--ink)}
+.ch-rail:hover button span,.ch-rail button:focus-visible span{opacity:1;transform:none}
+.ch-rail button.on{color:var(--accent)}
+.ch-rail button.on i{width:28px}
+@media (max-width:1360px){.ch-rail{display:none}}
+@media (max-width:1020px){
+  .ch-grid{grid-template-columns:1fr}
+  .ch-head{grid-template-columns:1fr;gap:4px}
+  .ch-num{font-size:48px}
+  .ch-body{padding-left:0}
+  .pn{grid-template-columns:1fr}
+  .audit.six{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){.tldr-card dl{grid-template-columns:1fr}.pn a{grid-template-columns:1fr}}
+
+.ladder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch}
+.rungs{display:grid;gap:8px}
+.rung{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--bg);text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .3s var(--ease)}
+.rung:hover{transform:translateX(4px)}
+.rung .lv,.rung small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.rung b{font-weight:500;font-size:16px}
+.rung.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--bg))}
+.base{margin-top:6px;padding:16px 18px;border-radius:14px;background:var(--ink);color:var(--bg);display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.base .mono{opacity:.65;font-size:11px}
+.rung-detail{border-radius:16px;border:1px dashed var(--line);padding:22px;display:flex;flex-direction:column;gap:10px}
+.rung-detail h3{font-family:var(--display);font-size:32px;line-height:1.05}
+.rung-detail p{color:var(--muted);font-size:15.5px;margin:0}
+.bars{display:grid;gap:9px;margin-top:auto}
+.bars div{display:grid;grid-template-columns:100px 1fr;gap:10px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.bars i{display:block;height:8px;border-radius:4px;background:var(--surface-2);position:relative;overflow:hidden}
+.bars i::after{content:"";position:absolute;inset:0;width:var(--v);background:var(--accent);border-radius:4px;transition:width .6s var(--ease)}
+@media (max-width:1020px){.ladder{grid-template-columns:1fr}}
+.insights{display:grid;gap:14px}
+.insight{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;padding:20px 20px 22px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
+.insight .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
+.insight b{display:block;font-weight:500;font-size:17px;line-height:1.3}
+.insight p{margin:6px 0 0;font-size:15px;color:var(--muted);line-height:1.55}
+.ch .insights{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1020px){.ch .insights{grid-template-columns:1fr}}
+
+/* ===== Data Syncs case ===== */
+.sy-old{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sy-old figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.sy-old figcaption{font-size:14.5px;color:var(--muted);line-height:1.5}
+.sy-old figcaption b{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+.sy-old .mono{color:var(--accent);font-size:11px;letter-spacing:.06em}
+.real-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:10px}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.qb{position:relative;margin:0;padding:20px 22px 18px;border-radius:20px 20px 20px 6px;background:var(--surface);border:1px solid var(--line)}
+.qb:nth-child(even){border-radius:20px 20px 6px 20px;background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
+.qb p{margin:0;font-family:var(--display);font-size:clamp(19px,1.7vw,24px);line-height:1.25}
+.qb footer{margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.qb footer b{color:var(--accent);font-weight:500}
+.q-note{margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.levels{display:grid;gap:10px}
+.lv-row{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:center;padding:16px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.lv-row .mono{color:var(--muted);font-size:11px;letter-spacing:.08em}
+.lv-row q{font-family:var(--display);font-size:clamp(19px,1.6vw,23px);line-height:1.2;quotes:"\201C" "\201D"}
+.lv-row span{font-size:14.5px;color:var(--muted)}
+.lv-row.new{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--surface))}
+.lv-row.new .mono{color:var(--accent)}
+.lv-row.new .mono::after{content:" · NEW";}
+.cut{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cut div{padding:16px 18px;border-radius:16px;border:1px dashed var(--line);background:var(--bg)}
+.cut .mono{display:block;color:var(--warn);font-size:11px;letter-spacing:.06em;margin-bottom:6px}
+.cut b{display:block;font-weight:500}
+.cut p{margin:4px 0 0;font-size:14.5px;color:var(--muted)}
+.cut-why{margin-top:14px;font-size:15.5px;color:var(--muted);max-width:70ch}
+.sc-screens.wide{aspect-ratio:1440/760}
+.ba.real .ba-tag{background:rgba(15,15,20,.82)}
+.fn{--cb:#4F72B8;--ca:#A3462A;border:1px solid var(--line);border-radius:24px;background:var(--surface);padding:clamp(18px,3vw,32px)}
+[data-theme="dark"] .fn{--cb:#6E8FD0;--ca:#C9714C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fn{--cb:#6E8FD0;--ca:#C9714C}}
+.fn-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:20px}
+.fn-top h4{margin:0;font-weight:500;font-size:17px}
+.fn-legend{display:flex;gap:16px;font-size:13.5px;color:var(--muted)}
+.fn-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.fn-row{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:18px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.fn-row > div:first-child b{display:block;font-weight:500;font-size:15px}
+.fn-row > div:first-child span{font-size:13px;color:var(--muted)}
+.fn-bars{display:grid;gap:4px}
+.fn-bar{position:relative;display:flex;align-items:center;gap:10px;height:22px;cursor:default}
+.fn-bar i{display:block;height:100%;width:0;border-radius:0 4px 4px 0;transition:width 1.1s var(--ease)}
+.fn.go .fn-bar i{width:var(--w)}
+.fn-bar.b i{background:var(--cb)}.fn-bar.a i{background:var(--ca)}
+.fn-bar em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--ink);white-space:nowrap}
+.fn-bar.none i{width:0!important}
+.fn-bar.none em{color:var(--muted)}
+.fn-bar .tt{position:absolute;left:0;bottom:calc(100% + 6px);z-index:3;background:#16161D;color:#F3F3F7;font-size:12.5px;line-height:1.45;padding:8px 10px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.fn-bar:hover .tt,.fn-bar:focus .tt{opacity:1}
+.fn-axis{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:18px;font-family:var(--mono);font-size:10.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
+.fn-axis div:last-child{display:flex;justify-content:space-between}
+.fn details{margin-top:18px;font-size:14px;color:var(--muted)}
+.fn summary{cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em}
+.fn table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}
+.fn th,.fn td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+.fn-note{margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.55}
+@media (max-width:1020px){.sy-old,.quotes,.cut{grid-template-columns:1fr}.lv-row{grid-template-columns:1fr;gap:6px}.fn-row,.fn-axis{grid-template-columns:1fr;gap:8px}.fn-axis div:first-child{display:none}}
+@media (prefers-reduced-motion:reduce){.fn-bar i{transition:none}}
 </style>
 </head>
 <body>
@@ -761,16 +923,16 @@ body.case-open .sdots,body.case-open .sprog,body.case-open .tip{opacity:0;pointe
         <div class="scard-in">
           <div class="scard-copy">
             <div class="scard-top"><span class="idx">03 / 05</span><span class="badge">Shipped at Knit</span></div>
-            <span class="co">KNIT · LOGS, SYNCS &amp; ALERTS</span>
-            <h3>Making silent sync failures loud</h3>
-            <p>A failed sync stays invisible until someone's data is wrong downstream. I redesigned Logs and Data Syncs monitoring, then designed alert management and data validation on top.</p>
-            <div class="outcomes"><span><b>Fewer</b> sync support tickets</span></div>
-            <div class="tags"><span>Observability</span><span>Data-dense UI</span><span>Alerts</span></div>
+            <span class="co">KNIT · DATA SYNCS</span>
+            <h3>From the system's view to the customer's question</h3>
+            <p>I designed Knit's first Syncs screens around how engineering saw the system. A year later I redesigned them around the question customers kept asking: which record broke, and where?</p>
+            <div class="outcomes"><span><b>28.7 → 39.9%</b> job → run</span><span><b>1 in 4</b> runs → record</span></div>
+            <div class="tags"><span>Data-dense UI</span><span>Drill-down</span><span>Research to launch</span></div>
             <span class="viewcase">Open project <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#1F4B3E">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncs"></div></div></div>
-            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncsNewRun"></div></div></div>
+            <span class="art-note">Real product screens · sample data</span>
           </div>
           <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 03"></a>
         </div>
@@ -907,312 +1069,299 @@ body.case-open .sdots,body.case-open .sprog,body.case-open .tip{opacity:0;pointe
     <span class="crumb" id="caseCrumb">Case study</span>
     <button class="pill" data-open-palette><kbd class="kkey">⌘K</kbd></button>
   </div>
-  <div class="case-scroll" id="caseScroll">
-
-    <!-- CASE 01 -->
-    <article class="case" data-route="case-merger" data-crumb="01 · Knit · Three products, one spine" hidden>
-      <header class="case-hero">
-        <span class="eyebrow">Case study 01 · Knit · 2026</span>
-        <h1>Three products, one <em>spine</em></h1>
-        <p class="lede">Knit had three products built as three separate bets. Customers who needed all of them got three domains, three design systems and three ways to connect the same app. I re-architected them into one product, then redesigned onboarding in a two-week solo sprint.</p>
-        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Worked with</dt><dd>My manager, engineering</dd></div><div><dt>Timeline</dt><dd>Onboarding sprint: 2 weeks, July 2026</dd></div><div><dt>Tools</dt><dd>Figma, FigJam, Claude, Figma MCP</dd></div></dl>
-      </header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:#2E3170">
-        <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/connections/workday-acme</span></div><div class="sw" data-screen="detail"></div></div>
-        <div class="cover-float"><div class="frame bare"><div class="sw" data-screen="picker"></div></div></div>
-      </div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
-
-      <div class="cbody">
-        <section class="cs" data-lens-title="Satisficing" data-lens="Most reviewers decide within a minute. Four numbered lines give them enough to decide well without reading another word.">
-          <span class="eyebrow">The 15-second version</span>
-          <div class="tldr">
-            <div class="tl-item"><span class="mono">01 · PROBLEM</span><p>Three products shared a connector layer and almost nothing else.</p></div>
-            <div class="tl-item"><span class="mono">02 · FINDING</span><p>The same Connection object had been built four separate times.</p></div>
-            <div class="tl-item"><span class="mono">03 · REFRAME</span><p>Three rungs of one ladder on a shared Connection, with pick-your-path onboarding.</p></div>
-            <div class="tl-item"><span class="mono">04 · OUTCOME</span><p>One object model, one IA, one onboarding, handed off as flows and prototypes.</p></div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <div class="cs-grid">
-            <div><span class="eyebrow">Context &amp; problem</span><h2>Every team had solved the same problem, separately.</h2>
-              <p>The products had been built fast, by different people, for different bets. Sales struggled to position them, engineering paid for most things three times, and pricing had grown meters no buyer could hold in their head.</p>
-              <p>Before drawing anything, I inventoried every screen to find out exactly how much was duplicated. Press the button.</p>
-              <button class="btn" id="mergeBtn">Merge them →</button></div>
-            <div class="audit" id="audit" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-              <div class="aud" data-n="4"><b>4</b><span>implementations of the Connection object</span></div>
-              <div class="aud" data-n="5"><b>5</b><span>separate observability views</span></div>
-              <div class="aud" data-n="4"><b>4</b><span>billing meters</span></div>
-              <div class="aud" data-n="3"><b>3</b><span>design systems</span></div>
-              <div class="aud" data-n="3"><b>3</b><span>domains to log into</span></div>
-              <div class="aud" data-n="3"><b>3</b><span>ways to connect the same app</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <span class="eyebrow">Before / after · drag the handle</span>
-          <h2>Three sidebars became one, with a shared base and a shared roof.</h2>
-          <p>The nav is where the merge becomes visible. Your chosen path sits in the middle. Connections sit underneath it, and activity, alerts and settings sit on top, shared by every path.</p>
-          <div class="ba" id="ba1" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Dragging the handle lets you feel the difference instead of reading about it.">
-            <div class="layer-a"><div class="sw" data-screen="before3"></div></div>
-            <div class="layer-b"><div class="sw" data-screen="activity"></div></div>
-            <span class="ba-tag l">Before · three products</span><span class="ba-tag r">After · one product</span>
-            <div class="ba-handle"></div>
-          </div>
-        </section>
-      </div>
-
-      <section class="cs">
-        <div class="cbody"><span class="eyebrow">The journey · scroll to step through</span><h2>An hourglass: wide at the start, one pinch in the middle.</h2></div>
-        <div class="scrolly" style="--steps:5" data-scrolly data-lens-title="Progressive disclosure" data-lens="One step of the journey at a time. The screen changes only when you're ready for the next idea.">
-          <div class="scrolly-in">
-            <div class="steps">
-              <div class="step on"><span class="n">STEP 1</span><b>Pick a path</b><span>Call an API, use tools in your code editor, or build a workflow. The choice is explicit, and it's reversible until you go live.</span></div>
-              <div class="step"><span class="n">STEP 2</span><b>Connect once</b><span>Every path goes through one connection flow. MCP used to ask people to type a phrase into their AI chat. Now it reuses Magic Link.</span></div>
-              <div class="step"><span class="n">STEP 3</span><b>Go live</b><span>The completion screen became a detail page: the path-specific region on top, then connections, activity and the next surface to add.</span></div>
-              <div class="step"><span class="n">STEP 4</span><b>Manage many</b><span>Customers run several APIs, MCP servers and workflows at once, so live objects get an index with one consistent detail page each.</span></div>
-              <div class="step"><span class="n">STEP 5</span><b>One activity stream</b><span>Five observability views became one table with a Surface column. Identical errors collapse into one row with a count.</span></div>
-            </div>
-            <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
-              <div class="sc-screens">
-                <div class="sw on" data-screen="picker"></div>
-                <div class="sw" data-screen="connect"></div>
-                <div class="sw" data-screen="detail"></div>
-                <div class="sw" data-screen="index"></div>
-                <div class="sw" data-screen="activity"></div>
-              </div></div><div class="sc-progress"><i></i></div></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="cbody">
-        <section class="cs">
-          <span class="eyebrow">Flow · draws as you scroll</span>
-          <h2>Onboarding forks. The product doesn't.</h2>
-          <div class="flow" data-flow>
-            <svg viewBox="0 0 1000 330" role="img" aria-label="Three entry points converge on one connection, fan out to three surfaces, then converge on one activity stream">
-              <path class="path" d="M150 60 C 260 60, 300 165, 360 165"/><path class="path" d="M150 165 L 360 165"/><path class="path" d="M150 270 C 260 270, 300 165, 360 165"/>
-              <path class="path" d="M460 165 C 520 165, 540 60, 620 60"/><path class="path" d="M460 165 L 620 165"/><path class="path" d="M460 165 C 520 165, 540 270, 620 270"/>
-              <path class="path" d="M760 60 C 820 60, 830 165, 870 165"/><path class="path" d="M760 165 L 870 165"/><path class="path" d="M760 270 C 820 270, 830 165, 870 165"/>
-              <rect class="nodebox" x="20" y="38" width="130" height="44" rx="10"/><text x="85" y="65" text-anchor="middle">Call an API</text>
-              <rect class="nodebox" x="20" y="143" width="130" height="44" rx="10"/><text x="85" y="170" text-anchor="middle">Use tools</text>
-              <rect class="nodebox" x="20" y="248" width="130" height="44" rx="10"/><text x="85" y="275" text-anchor="middle">Build a workflow</text>
-              <rect class="pinch" x="360" y="135" width="100" height="60" rx="12"/><text class="pinch-t" x="410" y="170" text-anchor="middle">Connect</text>
-              <rect class="nodebox" x="620" y="38" width="140" height="44" rx="10"/><text x="690" y="65" text-anchor="middle">Unified API</text>
-              <rect class="nodebox" x="620" y="143" width="140" height="44" rx="10"/><text x="690" y="170" text-anchor="middle">MCP server</text>
-              <rect class="nodebox" x="620" y="248" width="140" height="44" rx="10"/><text x="690" y="275" text-anchor="middle">Workflow</text>
-              <rect class="pinch" x="870" y="135" width="110" height="60" rx="12"/><text class="pinch-t" x="925" y="170" text-anchor="middle">Activity</text>
-              <text class="lbl" x="85" y="20" text-anchor="middle">3 ENTRY POINTS</text><text class="lbl" x="410" y="120" text-anchor="middle">ONE CONNECTION</text><text class="lbl" x="690" y="20" text-anchor="middle">3 SURFACES</text><text class="lbl" x="925" y="120" text-anchor="middle">ONE STREAM</text>
-            </svg>
-          </div>
-        </section>
-
-        <section class="cs">
-          <span class="eyebrow">Key decisions &amp; trade-offs</span>
-          <h2>Three calls that shaped everything after.</h2>
-          <div class="decs">
-            <div class="dec rv"><div class="dec-q"><span class="mono">D1</span><b>How should onboarding route people?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>Let the agent infer intent from the first prompt and route automatically.</p></div><div><span class="mono">Chose</span><p>Explicit self-selection at login, with context carried across if people switch.</p></div></div><p class="dec-w"><b>Why:</b> my manager pushed for explicit choice, and the more I designed it the more I agreed. A visible choice sets expectations from step one. <b>Cost:</b> one extra screen before value, so that screen had to be fast.</p></div>
-            <div class="dec rv"><div class="dec-q"><span class="mono">D2</span><b>Is switching paths the same as adding one?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>One “change path” control that behaves the same before and after go-live.</p></div><div><span class="mono">Chose</span><p>Two affordances: switch while setting up, add a surface once something is live.</p></div></div><p class="dec-w"><b>Why:</b> before go-live a switch is cheap and reversible. After go-live it's an addition that must not disturb what's already running.</p></div>
-            <div class="dec rv"><div class="dec-q"><span class="mono">D3</span><b>What happens when a customer has five things live?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>A single “you're live” screen at the end of onboarding.</p></div><div><span class="mono">Chose</span><p>Index to detail. The completion screen became the detail page for every live object.</p></div></div><p class="dec-w"><b>Why:</b> a single completion screen broke at two live objects. <b>Cost:</b> API keys must become plural and scoped, a proposal engineering still has to accept.</p></div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <span class="eyebrow">Annotated · hover the pins</span>
-          <h2>The activity table, up close.</h2>
-          <div class="cs-grid">
-            <div class="hs-list" data-hs-list="hs1">
-              <div class="hs-item" data-k="0"><i>1</i><div><b>A Surface column</b><span>API, MCP and workflow events in one table. Filter by surface and you get each old product's view back for free.</span></div></div>
-              <div class="hs-item" data-k="1"><i>2</i><div><b>Identical errors, grouped</b><span>The old Issues page repeated the same Zoho Books error hundreds of times. Now it's one row with a count, an owner and a resolve action.</span></div></div>
-              <div class="hs-item" data-k="2"><i>3</i><div><b>Your path, between shared layers</b><span>Two dividers in the sidebar do the whole job: a shared base, your path, a shared roof.</span></div></div>
-            </div>
-            <div class="hot frame" id="hs1"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/activity</span></div>
-              <div class="sw" data-screen="activity"></div>
-              <button class="hs" style="--x:43%;--y:33%" data-k="0" aria-label="Pin 1">1</button>
-              <button class="hs" style="--x:62%;--y:52%" data-k="1" aria-label="Pin 2">2</button>
-              <button class="hs" style="--x:10%;--y:40%" data-k="2" aria-label="Pin 3">3</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <span class="eyebrow">Impact</span>
-          <h2>One model the whole company can point at.</h2>
-          <div class="impact">
-            <div class="imp"><b>4 → 1</b><span>Connection implementations in the target model</span></div>
-            <div class="imp"><b data-count="2" data-suffix=" weeks">2 weeks</b><span>for the full onboarding redesign, solo</span></div>
-            <div class="imp"><b data-count="1">1</b><span>reusable design prompt, so new screens start consistent</span></div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <div class="cs-grid">
-            <div><span class="eyebrow">AI workflow</span><h2>Where AI sped me up, and where it didn't.</h2>
-              <div class="human"><span class="mono">WHAT STAYED HUMAN</span>AI was fast at listing what existed. Deciding what should exist was my job, with my manager.</div></div>
-            <div class="ai">
-              <div class="ai-step"><span class="mono">INVENTORY</span><div><b>Screenshots in, audit out</b><p>I fed every screen of all three products to Claude and worked through the inventory with it. The duplication counts came out of that pass.</p></div></div>
-              <div class="ai-step"><span class="mono">WIREFRAMES</span><div><b>FigJam flows through Figma MCP</b><p>Once the IA was agreed, I generated the first round of wireframes through the Figma MCP integration, then reworked them by hand.</p></div></div>
-              <div class="ai-step"><span class="mono">SYSTEM</span><div><b>A reusable design prompt</b><p>I wrote the decisions into a design prompt so every new screen starts from the same object model and naming.</p></div></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="cs">
-          <span class="eyebrow">Reflection</span>
-          <blockquote>“If I did it again, I'd put pricing on the table on day one.”</blockquote>
-          <p style="margin-top:16px">The UI can merge three products. If the meters stay split, buyers still see three.</p>
-        </section>
-        <a class="next-case" href="#case-unified-api"><div><span class="mono">NEXT · 02</span><b>A docs folder to a live product in a month</b></div><span class="arr">→</span></a>
-      </div>
-    </article>
-
-    <!-- CASE 02 -->
-    <article class="case" data-route="case-unified-api" data-crumb="02 · Knit Unified API · Docs folder to live product" hidden>
-      <header class="case-hero">
-        <span class="eyebrow">Case study 02 · Knit Unified API · 2024 → now</span>
-        <h1>A docs folder to a live product in a <em>month</em></h1>
-        <p class="lede">Knit lets SaaS companies connect once and reach 200+ HR, recruiting, CRM and accounting apps through one normalised API. When I started on the web app, it didn't exist. There were API docs and a lot of ideas.</p>
-        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Worked with</dt><dd>CEO, CMO, tech lead, engineers</dd></div><div><dt>Timeline</dt><dd>v1 in about a month, live versions since</dd></div><div><dt>Scale</dt><dd>200+ connectors, 30+ customers</dd></div></dl>
-      </header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:#6B3B26">
-        <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div><div class="sw" data-screen="dashboard"></div></div>
-        <div class="cover-float"><div class="frame bare"><div class="sw" data-screen="connect"></div></div></div>
-      </div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
-
-      <div class="cbody">
-        <section class="cs">
-          <span class="eyebrow">The 15-second version</span>
-          <div class="tldr">
-            <div class="tl-item"><span class="mono">01 · START</span><p>April 2024: no web app. Setup leaned on docs and the team's help.</p></div>
-            <div class="tl-item"><span class="mono">02 · SCOPE</span><p>Dashboard, onboarding, organizations, accounts, syncs, logs, app management.</p></div>
-            <div class="tl-item"><span class="mono">03 · SHIPPED</span><p>v1 live in about a month, then several live versions and a white-label UI.</p></div>
-            <div class="tl-item"><span class="mono">04 · RESULT</span><p>Time to a customer's first integration: hours down to minutes.</p></div>
-          </div>
-        </section>
-        <section class="cs">
-          <div class="cs-grid">
-            <div><span class="eyebrow">Context &amp; problem</span><h2>Two audiences, and one of them never sees Knit.</h2></div>
-            <div><p>Knit's customers are developers at SaaS companies, building integrations for their own customers. So every flow has two people in it: the developer setting things up in Knit, and their end customer, who authorises a connection to their HR or CRM system without knowing Knit exists.</p>
-            <p>The developer needs a working API call fast, then confidence that syncs keep running. The end customer needs a connect flow that feels like part of a product they already trust.</p></div>
-          </div>
-        </section>
-      </div>
-
-      <section class="cs">
-        <div class="cbody"><span class="eyebrow">The product · scroll to step through</span><h2>Built around the customer's customer.</h2></div>
-        <div class="scrolly" style="--steps:4" data-scrolly>
-          <div class="scrolly-in">
-            <div class="steps">
-              <div class="step on"><span class="n">STEP 1</span><b>Quickstart</b><span>A checklist that ends in a real API call, not a tour. This is where “hours” became “minutes”.</span></div>
-              <div class="step"><span class="n">STEP 2</span><b>Your customer connects</b><span>A white-labelled flow inside the customer's own product. Their brand, their colours, no stranger's logo.</span></div>
-              <div class="step"><span class="n">STEP 3</span><b>Organizations first</b><span>Everything roots at Organization, your customer's customer, so “which customer is affected?” always has a one-click answer.</span></div>
-              <div class="step"><span class="n">STEP 4</span><b>Health at a glance</b><span>The dashboard leads with what needs attention, then volume, then everything else.</span></div>
-            </div>
-            <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
-              <div class="sc-screens">
-                <div class="sw on" data-screen="quickstart"></div>
-                <div class="sw" data-screen="connect"></div>
-                <div class="sw" data-screen="accounts"></div>
-                <div class="sw" data-screen="dashboard"></div>
-              </div></div><div class="sc-progress"><i></i></div></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="cbody">
-        <section class="cs">
-          <span class="eyebrow">Try it · white-label playground</span>
-          <h2>A connect flow that disappears into your product.</h2>
-          <p>Recolour the embedded flow the way a Knit customer would, and notice how quickly it stops looking like someone else's software.</p>
-          <div class="demo" data-lens-title="IKEA effect" data-lens="You customise it yourself, so you value and remember it more than a static screenshot. Effort creates attachment.">
-            <div class="wl">
-              <div class="wl-controls">
-                <div><span class="lbl2">Brand colour</span><div class="swatches" id="swatches">
-                  <button class="swt on" style="--c:#0E9F6E" data-c="#0E9F6E" aria-label="Green"></button>
-                  <button class="swt" style="--c:#4F46E5" data-c="#4F46E5" aria-label="Indigo"></button>
-                  <button class="swt" style="--c:#E0453A" data-c="#E0453A" aria-label="Red"></button>
-                  <button class="swt" style="--c:#111111" data-c="#111111" aria-label="Black"></button>
-                  <input type="color" id="wlColor" value="#0e9f6e" aria-label="Custom brand colour"></div></div>
-                <div><label class="lbl2" for="wlName">Product name</label><input class="field" id="wlName" value="Acme HR" maxlength="22"></div>
-                <div><span class="lbl2">Corners</span><div class="seg" id="wlRad"><button data-r="4px">Sharp</button><button class="on" data-r="16px">Soft</button><button data-r="26px">Round</button></div></div>
-                <label class="chk" for="wlPowered"><input type="checkbox" id="wlPowered"> Show “Powered by Knit”</label>
-              </div>
-              <div class="stage"><div class="embed" id="embed">
-                <div class="modal-h"><i id="embLogo">A</i><span id="embName">Acme HR</span></div>
-                <div class="modal-b"><h6>Connect your HR system</h6><p>Pick the system your company uses. It takes about a minute.</p>
-                  <div class="m-search">Search 60+ HR apps</div>
-                  <div class="m-app on"><span class="s-app"><i style="background:#73C41D">B</i></span>BambooHR</div>
-                  <div class="m-app"><span class="s-app"><i style="background:#F38B00">W</i></span>Workday</div>
-                  <div class="m-app"><span class="s-app"><i style="background:#2D6BFF">D</i></span>Darwinbox</div>
-                  <div class="m-go">Continue</div></div>
-                <div class="embed-foot" id="embFoot" hidden>Powered by Knit</div>
-              </div></div>
-            </div>
-          </div>
-        </section>
-        <section class="cs">
-          <span class="eyebrow">Key decisions &amp; trade-offs</span>
-          <h2>Two calls that set the structure.</h2>
-          <div class="decs">
-            <div class="dec rv"><div class="dec-q"><span class="mono">D1</span><b>What should the app be organised around?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>Organise by app or data category, the way the API docs were written.</p></div><div><span class="mono">Chose</span><p>Root everything at Organization, so each customer's connections, syncs and issues live together.</p></div></div><p class="dec-w"><b>Why:</b> when something breaks, the first question is always “which customer?” The structure answers it before it's asked.</p></div>
-            <div class="dec rv"><div class="dec-q"><span class="mono">D2</span><b>Whose brand does the end customer see?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>A Knit-branded connect flow: simpler to build, good for Knit's own visibility.</p></div><div><span class="mono">Chose</span><p>A white-labelled embeddable UI that takes on the customer's brand.</p></div></div><p class="dec-w"><b>Why:</b> people hand over access to their HR system more readily when the request comes from a product they already trust.</p></div>
-          </div>
-        </section>
-        <section class="cs">
-          <div class="cs-grid">
-            <div><span class="eyebrow">Discovery loop</span><h2>Designing against behaviour, not assumptions.</h2></div>
-            <div><p>After v1, discovery ran continuously through customer calls, Microsoft Clarity session recordings and Heap funnels. Calls told me what people wanted. Recordings and funnels showed where they stalled in first-time setup, and each redesign round went after those spots.</p></div>
-          </div>
-        </section>
-        <section class="cs">
-          <span class="eyebrow">Impact</span>
-          <h2>Minutes, not hours.</h2>
-          <div class="impact">
-            <div class="imp"><b>hrs → min</b><span>time to a customer's first integration</span></div>
-            <div class="imp"><b data-count="200" data-suffix="+">200+</b><span>connectors reachable through the product I designed</span></div>
-            <div class="imp"><b data-count="30" data-suffix="+">30+</b><span>customers running on it</span></div>
-          </div>
-        </section>
-        <a class="next-case" href="#case-observability"><div><span class="mono">NEXT · 03</span><b>Making silent sync failures loud</b></div><span class="arr">→</span></a>
-      </div>
-    </article>
-
-    <!-- CASE 03 -->
-    <article class="case" data-route="case-observability" data-crumb="03 · Knit · Logs, syncs & alerts" hidden>
-      <header class="case-hero"><span class="eyebrow">Project 03 · Knit · Observability</span><h1>Making silent sync failures <em>loud</em></h1>
-        <p class="lede">In an integrations product, a failed sync stays invisible until someone's data is wrong downstream. I redesigned the Logs screen and the Data Syncs monitoring system, then designed alert management and data validation flows on top of them.</p>
-        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Logs, Syncs, alerts, validation</dd></div><div><dt>Outcome</dt><dd>Fewer sync support tickets</dd></div><div><dt>Status</dt><dd>Shipped at Knit</dd></div></dl></header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:#1F4B3E"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncs"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
-      <div class="cbody">
-        <section class="cs"><div class="gallery"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>logs</span></div><div class="sw" data-screen="activity"></div></div><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>accounts</span></div><div class="sw" data-screen="accounts"></div></div><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>dashboard</span></div><div class="sw" data-screen="dashboard"></div></div></div></section>
-        <section class="cs"><div class="cs-grid"><div><span class="eyebrow">What changed</span><h2>From a wall of logs to things worth fixing.</h2></div><div><p>Sync-related support tickets dropped after the redesign, as reported by the support team. The full walkthrough, with the before and after screens and the alert rules, is one I take people through in interviews.</p></div></div></section>
-        <a class="next-case" href="#case-kfin"><div><span class="mono">NEXT · 04</span><b>Statutory reporting, made self-serve</b></div><span class="arr">→</span></a>
-      </div>
-    </article>
-
-    <!-- CASE 04 -->
-    <article class="case" data-route="case-kfin" data-crumb="04 · KFin Technologies · DIGIX" hidden>
-      <header class="case-hero"><span class="eyebrow">Project 04 · KFin Technologies</span><h1>Statutory reporting, made <em>self-serve</em></h1>
-        <p class="lede">DIGIX is the analytics and reporting platform India's asset management companies use to schedule, generate and share statutory and daily business reports. I led UX on it and turned a compliance-heavy workflow into a self-serve product on a no-code cloud pipeline.</p>
-        <dl class="case-meta"><div><dt>Role</dt><dd>Project lead, UX</dd></div><div><dt>Products</dt><dd>DIGIX, KBOSS, InstaPay, data tool</dd></div><div><dt>Also</dt><dd>Deputy manager, product</dd></div><div><dt>Measured</dt><dd>46% faster onboarding (Heap)</dd></div></dl></header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:#4A3A6B"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>digix · report scheduler</span></div><div class="sw" data-screen="digix"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
-      <div class="cbody">
-        <section class="cs"><div class="impact"><div class="imp"><b data-count="46" data-suffix="%">46%</b><span>less average project onboarding time after an automated cross-team workflow I designed</span></div><div class="imp"><b data-count="4">4</b><span>fintech products where I led UX, from research to shipped UI</span></div><div class="imp"><b>No-code</b><span>report scheduling for compliance teams, on a secure cloud pipeline</span></div></div></section>
-        <a class="next-case" href="#case-superbeings"><div><span class="mono">NEXT · 05</span><b>The hardest module in an HR platform</b></div><span class="arr">→</span></a>
-      </div>
-    </article>
-
-    <!-- CASE 05 -->
-    <article class="case" data-route="case-superbeings" data-crumb="05 · SuperBeings · Performance management" hidden>
-      <header class="case-hero"><span class="eyebrow">Project 05 · SuperBeings</span><h1>The hardest module in an <em>HR platform</em></h1>
-        <p class="lede">Design lead in a two-person team. Performance management was the platform's most complex surface, with review cycles, feedback and manager workflows in one place. I redesigned it end to end, then rebuilt Custom Pulse surveys, Goals and OKRs, and first-run onboarding.</p>
-        <dl class="case-meta"><div><dt>Role</dt><dd>Product designer, design lead</dd></div><div><dt>Team</dt><dd>2 designers</dd></div><div><dt>Modules</dt><dd>Performance, Pulse, OKRs, onboarding</dd></div><div><dt>Then</dt><dd>Team moved to Knit, Dec 2022</dd></div></dl></header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:#6B2E45"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>superbeings · review cycles</span></div><div class="sw" data-screen="review"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
-      <div class="cbody"><a class="next-case" href="#case-merger"><div><span class="mono">BACK TO · 01</span><b>Three products, one spine</b></div><span class="arr">→</span></a></div>
-    </article>
-  </div>
+  <div class="case-scroll" id="caseScroll"></div>
+  <nav class="ch-rail" id="chRail" aria-label="Chapters"></nav>
 </div>
+
+<!-- ===== Interactive blocks used inside case studies ===== -->
+
+<template id="tpl-sy-old">
+  <div class="vis">
+    <div class="vis-cap"><span>What a customer saw in v1</span><span>Real screens, sample data</span></div>
+    <div class="sy-old">
+      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs</span></div><div class="sw" data-screen="syncsOldList"></div></div><figcaption><span class="mono">LEVEL 1 · LIST</span><b>64 syncs, and no sign of health</b>Organization, app, IDs and a schedule. Nothing said whether any sync had worked, or where its data was going.</figcaption></figure>
+      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Sync Job</span></div><div class="sw" data-screen="syncsOldJob"></div></div><figcaption><span class="mono">LEVEL 2 · JOB</span><b>Runs, counted the way the system counts</b>Events triggered, events consumed, records processed. Accurate, and written in Knit's vocabulary rather than the customer's.</figcaption></figure>
+      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Sync Run</span></div><div class="sw" data-screen="syncsOldRun"></div></div><figcaption><span class="mono">LEVEL 3 · RUN</span><b>The flat table with checkboxes</b>A blank cell could mean failed, skipped or not supported. No error, no reason, and no way to tell which hop broke.</figcaption></figure>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-quotes">
+  <div class="vis">
+    <div class="vis-cap"><span>In their words</span><span>Call transcripts, Jul 2024 – Dec 2025</span></div>
+    <div class="quotes">
+      <blockquote class="qb rv"><p>“How do I know what failed and who's responsible for the failure… what is the record that I'm missing?”</p><footer><b>Prospect</b> · AI startup · Jul 2024</footer></blockquote>
+      <blockquote class="qb rv"><p>“You're giving me the webhooks… status 200, but how do I know what was inside this one?”</p><footer><b>Prospect</b> · fintech · Apr 2025</footer></blockquote>
+      <blockquote class="qb rv"><p>“Let's just suppose a job fails at some point, like maybe in the sync process or in the export process to us, to webhook.”</p><footer><b>Prospect</b> · fintech · Jun 2025</footer></blockquote>
+      <blockquote class="qb rv"><p>“The entire purpose of API integration is to have exact visibility of what is happening.”</p><footer><b>Customer</b> · AI recruiting platform · Nov 2025</footer></blockquote>
+    </div>
+    <p class="q-note">Names and companies left out. Every quote is from before the redesign.</p>
+  </div>
+</template>
+
+<template id="tpl-sy-levels">
+  <div class="vis">
+    <div class="vis-cap"><span>The reframe</span><span>One question per level</span></div>
+    <div class="levels">
+      <div class="lv-row rv"><span class="mono">LIST</span><q>Which syncs do I have, and where does the data go?</q><span>A Direction column: source app → Knit → destination.</span></div>
+      <div class="lv-row rv"><span class="mono">JOB</span><q>Did its recent runs work?</q><span>One state per run: Ongoing, All Events Processed, All Events Consumed, Failed.</span></div>
+      <div class="lv-row rv"><span class="mono">RUN</span><q>Which records failed, and why?</q><span>HTTP status, a Remarks column for the error, processed data models as chips.</span></div>
+      <div class="lv-row rv new"><span class="mono">RECORD</span><q>Which step broke?</q><span>Every executed step, with its direction and result.</span></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-cut">
+  <div class="vis">
+    <div class="vis-cap"><span>What we left out of v2</span><span>Cut or deferred</span></div>
+    <div class="cut">
+      <div><span class="mono">CUT</span><b>The per-step payload view</b><p>Knit doesn't store customer data, so it couldn't ship. See D1.</p></div>
+      <div><span class="mono">DEFERRED</span><b>Create and edit syncs</b><p>Designed separately, not yet picked up for development.</p></div>
+      <div><span class="mono">DEFERRED</span><b>Matching changes to Logs</b><p>So for now, Syncs and Logs speak slightly different languages.</p></div>
+    </div>
+    <p class="cut-why">The read-only path went first, so customers could find where a sync broke from day one. Two of these three are in my reflection.</p>
+  </div>
+</template>
+
+<template id="tpl-sy-scrolly">
+  <div class="vis">
+    <div class="vis-cap"><span>The shipped flow</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:4" data-scrolly data-lens-title="Progressive disclosure" data-lens="Each level shows just enough to choose the next click. Detail waits until someone has asked for it.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">LEVEL 1 · LIST</span><b>Where the data goes</b><span>Organization first, then Direction: source app → Knit → destination. No status column, on purpose: a sync job is a schedule.</span></div>
+          <div class="step"><span class="n">LEVEL 2 · JOB</span><b>How its runs went</b><span>Summary cards on top, then every run with one of four states. Amber means processed, green means the customer's side confirmed it.</span></div>
+          <div class="step"><span class="n">LEVEL 3 · RUN</span><b>Which records failed</b><span>Each record with an HTTP status, a Remarks column for the error and the data models it processed. Filter and search for the one that broke.</span></div>
+          <div class="step"><span class="n">LEVEL 4 · RECORD · NEW</span><b>Which step broke</b><span>Every step the record went through. GET from BambooHR: 200 OK. POST to Salesforce: 404 Not Found. That's the hop.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="syncsNewList"></div><div class="sw" data-screen="syncsNewJob"></div><div class="sw" data-screen="syncsNewRun"></div><div class="sw" data-screen="syncsNewRecord"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-ba">
+  <div class="vis">
+    <div class="vis-cap"><span>The run page, v1 against v2</span><span>Drag the handle</span></div>
+    <div class="ba real" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. The blank checkbox cells on the left are the whole problem; the Remarks column on the right is the answer.">
+      <div class="layer-a"><div class="sw" data-screen="syncsOldRun"></div></div>
+      <div class="layer-b"><div class="sw" data-screen="syncsNewRun"></div></div>
+      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · status, reason, models</span>
+      <div class="ba-handle"></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-hot">
+  <div class="vis">
+    <div class="vis-cap"><span>The new record page, up close</span><span>Hover the pins</span></div>
+    <div class="cs-grid">
+      <div class="hs-list" data-hs-list="hsSy">
+        <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>Syncs › Job › Run › Record. A full page gets its own link to share with support and a breadcrumb back up.</span></div></div>
+        <div class="hs-item" data-k="1"><i>2</i><div><b>The result, in plain terms</b><span>404 Not Found, the language developers already debug in.</span></div></div>
+        <div class="hs-item" data-k="2"><i>3</i><div><b>One row per hop</b><span>Method, direction and result for every executed step, so the failing hop stands out.</span></div></div>
+        <div class="hs-item" data-k="3"><i>4</i><div><b>Data models, not data</b><span>What was subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
+      </div>
+      <div class="hot frame" id="hsSy"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Job › Run › Record 101</span></div>
+        <div class="sw" data-screen="syncsNewRecord"></div>
+        <button class="hs" style="--x:36%;--y:11%" data-k="0" aria-label="Pin 1">1</button>
+        <button class="hs" style="--x:86%;--y:28%" data-k="1" aria-label="Pin 2">2</button>
+        <button class="hs" style="--x:30%;--y:47%" data-k="2" aria-label="Pin 3">3</button>
+        <button class="hs" style="--x:68%;--y:66%" data-k="3" aria-label="Pin 4">4</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-funnel">
+  <div class="vis">
+    <div class="vis-cap"><span>Heap · customer sessions, 10 weeks before vs 10 weeks after</span><span>Hover a bar</span></div>
+    <div class="fn" data-fn>
+      <div class="fn-top"><h4>Share of sessions that went one level deeper</h4>
+        <div class="fn-legend"><span><i style="background:var(--cb)"></i>Before · 31 Dec – 10 Mar</span><span><i style="background:var(--ca)"></i>After · 25 Mar – 2 Jun</span></div></div>
+      <div class="fn-row"><div><b>List → job</b><span>opened a sync job</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:63.5%"></i><em>63.5%</em><span class="tt">Before: 645 of 1,015 sessions</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:61.7%"></i><em>61.7%</em><span class="tt">After: 539 of 873 sessions</span></div></div></div>
+      <div class="fn-row"><div><b>Job → run</b><span>opened a sync run</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:28.7%"></i><em>28.7%</em><span class="tt">Before: 185 of 645 sessions</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:39.9%"></i><em>39.9%</em><span class="tt">After: 215 of 539 sessions</span></div></div></div>
+      <div class="fn-row"><div><b>Run → record</b><span>opened a single record</span></div><div class="fn-bars">
+        <div class="fn-bar b none" tabindex="0"><i style="--w:0%"></i><em>No record page in v1</em><span class="tt">Before: 0 sessions, the level didn't exist</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:22.8%"></i><em>22.8%</em><span class="tt">After: 49 of 215 sessions</span></div></div></div>
+      <div class="fn-axis"><div></div><div><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div>
+      <details><summary>VIEW AS TABLE</summary><table>
+        <tr><th>Step</th><th>Before (31 Dec – 10 Mar)</th><th>After (25 Mar – 2 Jun)</th></tr>
+        <tr><td>Opened the sync list</td><td>1,015 sessions</td><td>873 sessions</td></tr>
+        <tr><td>→ opened a sync job</td><td>645 (63.5%)</td><td>539 (61.7%)</td></tr>
+        <tr><td>→ opened a sync run</td><td>185 (28.7%)</td><td>215 (39.9%)</td></tr>
+        <tr><td>→ opened a record</td><td>0 (no record page)</td><td>49 (22.8%)</td></tr>
+      </table></details>
+      <p class="fn-note">Heap session funnel on the customer dashboard, Knit's own team excluded. The new flow went live on 11 March; the two weeks after launch are left out while people got used to it. Small numbers, so the counts sit next to every percentage.</p>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-sy-read">
+  <div class="ch-body vis" style="padding-left:0">
+    <p>Read together: people checked the list less often, and when they did, they got further. Support also saw a clear drop in sync-related tickets. I don't have the count yet, so I'm not putting a number on it.</p>
+    <p>One thing I wouldn't claim: median time on the run page went up, from 11 to 38 seconds. That could be people using the new filters and search, or a busier page. Heap can't tell which.</p>
+  </div>
+</template>
+<template id="tpl-ladder">
+  <div class="vis">
+    <div class="vis-cap"><span>The reframe: three rungs, one base</span><span>Pick a rung</span></div>
+    <div class="demo"><div class="ladder">
+      <div>
+        <div class="rungs" id="rungs">
+          <button class="rung" data-r="2"><span class="lv">L3</span><b>Workflows</b><small>any mapping</small></button>
+          <button class="rung" data-r="1"><span class="lv">L2</span><b>MCP tools</b><small>every endpoint</small></button>
+          <button class="rung on" data-r="0"><span class="lv">L1</span><b>Unified API</b><small>pre-built schema</small></button>
+        </div>
+        <div class="base"><span><b style="font-weight:500">Connection</b> · one authorised instance of an app</span><span class="mono">shared base</span></div>
+      </div>
+      <div class="rung-detail" id="rungDetail" aria-live="polite"></div>
+    </div></div>
+  </div>
+</template>
+<template id="tpl-audit">
+  <div class="demo vis">
+    <div class="demo-head"><span class="mono">INTERACTIVE · THE DUPLICATION AUDIT</span><button class="btn" id="mergeBtn">Merge them <span class="arr">→</span></button></div>
+    <div class="audit six" id="audit">
+      <div class="aud" data-n="4"><b>4</b><span>implementations of the Connection object</span></div>
+      <div class="aud" data-n="5"><b>5</b><span>separate observability views</span></div>
+      <div class="aud" data-n="4"><b>4</b><span>billing meters</span></div>
+      <div class="aud" data-n="3"><b>3</b><span>design systems</span></div>
+      <div class="aud" data-n="3"><b>3</b><span>domains to log into</span></div>
+      <div class="aud" data-n="3"><b>3</b><span>ways to connect the same app</span></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-ba">
+  <div class="vis">
+    <div class="vis-cap"><span>Before / after</span><span>Drag the handle</span></div>
+    <div class="ba" id="ba1" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Dragging the handle lets you feel the difference instead of reading about it.">
+      <div class="layer-a"><div class="sw" data-screen="before3"></div></div>
+      <div class="layer-b"><div class="sw" data-screen="activity"></div></div>
+      <span class="ba-tag l">Before · three products</span><span class="ba-tag r">After · one product</span>
+      <div class="ba-handle"></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-scrolly1">
+  <div class="vis">
+    <div class="vis-cap"><span>The journey</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:5" data-scrolly data-lens-title="Progressive disclosure" data-lens="One step of the journey at a time. The screen changes only when you're ready for the next idea.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">STEP 1</span><b>Pick a path</b><span>Call an API, use tools in your code editor, or build a workflow. The choice is explicit, and reversible until you go live.</span></div>
+          <div class="step"><span class="n">STEP 2</span><b>Connect once</b><span>Every path goes through one connection flow. MCP used to ask people to type a phrase into their AI chat. Now it reuses Magic Link.</span></div>
+          <div class="step"><span class="n">STEP 3</span><b>Go live</b><span>The completion screen became a detail page: the path-specific region on top, then connections, activity and the next surface to add.</span></div>
+          <div class="step"><span class="n">STEP 4</span><b>Manage many</b><span>Customers run several APIs, MCP servers and workflows at once, so live objects get an index with one consistent detail page each.</span></div>
+          <div class="step"><span class="n">STEP 5</span><b>One activity stream</b><span>Five observability views became one table with a Surface column. Identical errors collapse into one row with a count.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
+          <div class="sc-screens"><div class="sw on" data-screen="picker"></div><div class="sw" data-screen="connect"></div><div class="sw" data-screen="detail"></div><div class="sw" data-screen="index"></div><div class="sw" data-screen="activity"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-flow">
+  <div class="vis">
+    <div class="vis-cap"><span>Onboarding forks, the product doesn't</span><span>Draws as you scroll</span></div>
+    <div class="flow" data-flow>
+      <svg viewBox="0 0 1000 330" role="img" aria-label="Three entry points converge on one connection, fan out to three surfaces, then converge on one activity stream">
+        <path class="path" d="M150 60 C 260 60, 300 165, 360 165"/><path class="path" d="M150 165 L 360 165"/><path class="path" d="M150 270 C 260 270, 300 165, 360 165"/>
+        <path class="path" d="M460 165 C 520 165, 540 60, 620 60"/><path class="path" d="M460 165 L 620 165"/><path class="path" d="M460 165 C 520 165, 540 270, 620 270"/>
+        <path class="path" d="M760 60 C 820 60, 830 165, 870 165"/><path class="path" d="M760 165 L 870 165"/><path class="path" d="M760 270 C 820 270, 830 165, 870 165"/>
+        <rect class="nodebox" x="20" y="38" width="130" height="44" rx="10"/><text x="85" y="65" text-anchor="middle">Call an API</text>
+        <rect class="nodebox" x="20" y="143" width="130" height="44" rx="10"/><text x="85" y="170" text-anchor="middle">Use tools</text>
+        <rect class="nodebox" x="20" y="248" width="130" height="44" rx="10"/><text x="85" y="275" text-anchor="middle">Build a workflow</text>
+        <rect class="pinch" x="360" y="135" width="100" height="60" rx="12"/><text class="pinch-t" x="410" y="170" text-anchor="middle">Connect</text>
+        <rect class="nodebox" x="620" y="38" width="140" height="44" rx="10"/><text x="690" y="65" text-anchor="middle">Unified API</text>
+        <rect class="nodebox" x="620" y="143" width="140" height="44" rx="10"/><text x="690" y="170" text-anchor="middle">MCP server</text>
+        <rect class="nodebox" x="620" y="248" width="140" height="44" rx="10"/><text x="690" y="275" text-anchor="middle">Workflow</text>
+        <rect class="pinch" x="870" y="135" width="110" height="60" rx="12"/><text class="pinch-t" x="925" y="170" text-anchor="middle">Activity</text>
+        <text class="lbl" x="85" y="20" text-anchor="middle">3 ENTRY POINTS</text><text class="lbl" x="410" y="120" text-anchor="middle">ONE CONNECTION</text><text class="lbl" x="690" y="20" text-anchor="middle">3 SURFACES</text><text class="lbl" x="925" y="120" text-anchor="middle">ONE STREAM</text>
+      </svg>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-hot1">
+  <div class="vis">
+    <div class="vis-cap"><span>The activity table, up close</span><span>Hover the pins</span></div>
+    <div class="cs-grid">
+      <div class="hs-list" data-hs-list="hs1">
+        <div class="hs-item" data-k="0"><i>1</i><div><b>A Surface column</b><span>API, MCP and workflow events in one table. Filter by surface and you get each old product's view back for free.</span></div></div>
+        <div class="hs-item" data-k="1"><i>2</i><div><b>Identical errors, grouped</b><span>The old Issues page repeated the same Zoho Books error hundreds of times. Now it's one row with a count, an owner and a resolve action.</span></div></div>
+        <div class="hs-item" data-k="2"><i>3</i><div><b>Your path, between shared layers</b><span>Two dividers in the sidebar do the whole job: a shared base, your path, a shared roof.</span></div></div>
+      </div>
+      <div class="hot frame" id="hs1"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/activity</span></div>
+        <div class="sw" data-screen="activity"></div>
+        <button class="hs" style="--x:43%;--y:33%" data-k="0" aria-label="Pin 1">1</button>
+        <button class="hs" style="--x:62%;--y:52%" data-k="1" aria-label="Pin 2">2</button>
+        <button class="hs" style="--x:10%;--y:40%" data-k="2" aria-label="Pin 3">3</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-scrolly2">
+  <div class="vis">
+    <div class="vis-cap"><span>The product</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:4" data-scrolly>
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">STEP 1</span><b>Quickstart</b><span>A checklist that ends in a real API call, not a tour. This is where “hours” became “minutes”.</span></div>
+          <div class="step"><span class="n">STEP 2</span><b>Your customer connects</b><span>A white-labelled flow inside the customer's own product. Their brand, their colours, no stranger's logo.</span></div>
+          <div class="step"><span class="n">STEP 3</span><b>Organizations first</b><span>Everything roots at Organization, your customer's customer, so “which customer is affected?” always has a one-click answer.</span></div>
+          <div class="step"><span class="n">STEP 4</span><b>Health at a glance</b><span>The dashboard leads with what needs attention, then volume, then everything else.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
+          <div class="sc-screens"><div class="sw on" data-screen="quickstart"></div><div class="sw" data-screen="connect"></div><div class="sw" data-screen="accounts"></div><div class="sw" data-screen="dashboard"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-wl">
+  <div class="vis">
+    <div class="vis-cap"><span>White-label playground</span><span>Try it</span></div>
+    <div class="demo" data-lens-title="IKEA effect" data-lens="You customise it yourself, so you value and remember it more than a static screenshot. Effort creates attachment.">
+      <div class="wl">
+        <div class="wl-controls">
+          <p style="margin:0;color:var(--muted);font-size:15px">Recolour the embedded flow the way a Knit customer would, and notice how quickly it stops looking like someone else's software.</p>
+          <div><span class="lbl2">Brand colour</span><div class="swatches" id="swatches">
+            <button class="swt on" style="--c:#0E9F6E" data-c="#0E9F6E" aria-label="Green"></button>
+            <button class="swt" style="--c:#4F46E5" data-c="#4F46E5" aria-label="Indigo"></button>
+            <button class="swt" style="--c:#E0453A" data-c="#E0453A" aria-label="Red"></button>
+            <button class="swt" style="--c:#111111" data-c="#111111" aria-label="Black"></button>
+            <input type="color" id="wlColor" value="#0e9f6e" aria-label="Custom brand colour"></div></div>
+          <div><label class="lbl2" for="wlName">Product name</label><input class="field" id="wlName" value="Acme HR" maxlength="22"></div>
+          <div><span class="lbl2">Corners</span><div class="seg" id="wlRad"><button data-r="4px">Sharp</button><button class="on" data-r="16px">Soft</button><button data-r="26px">Round</button></div></div>
+          <label class="chk" for="wlPowered"><input type="checkbox" id="wlPowered"> Show “Powered by Knit”</label>
+        </div>
+        <div class="stage"><div class="embed" id="embed">
+          <div class="modal-h"><i id="embLogo">A</i><span id="embName">Acme HR</span></div>
+          <div class="modal-b"><h6>Connect your HR system</h6><p>Pick the system your company uses. It takes about a minute.</p>
+            <div class="m-search">Search 60+ HR apps</div>
+            <div class="m-app on"><span class="s-app"><i style="background:#73C41D">B</i></span>BambooHR</div>
+            <div class="m-app"><span class="s-app"><i style="background:#F38B00">W</i></span>Workday</div>
+            <div class="m-app"><span class="s-app"><i style="background:#2D6BFF">D</i></span>Darwinbox</div>
+            <div class="m-go">Continue</div></div>
+          <div class="embed-foot" id="embFoot" hidden>Powered by Knit</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <div class="palette" id="palette" hidden>
   <div class="pal" role="dialog" aria-modal="true" aria-label="Command menu">
@@ -1235,9 +1384,21 @@ const CONFIG = {
   resume: "",
   substack: "https://decisiondesign.substack.com",
   photo: "",
-  /* Real screens: put a file at each path below (16:10, about 1600px wide, WebP).
-     Until a file exists, the coded stand-in shows instead, so you can add screens one at a time. */
+  draft: false,  /* true: dashed boxes show what each case study still needs. Keep false on the live site. */
+  /* Real screens: export frames from Figma at 1280×800 (or any 16:10) and map them here.
+     Any screen with a file listed replaces the coded stand-in everywhere it appears. */
   shots: {
+    /* Data Syncs case study: real screens */
+    syncsOldList: "assets/syncs-old-list.webp",
+    syncsOldJob: "assets/syncs-old-job.webp",
+    syncsOldRun: "assets/syncs-old-run.webp",
+    syncsNewList: "assets/syncs-new-list.webp",
+    syncsNewJob: "assets/syncs-new-job.webp",
+    syncsNewRun: "assets/syncs-new-run.webp",
+    syncsNewRecord: "assets/syncs-new-record.webp",
+    syncsExAll: "assets/syncs-explored-all-runs.webp",
+    syncsExPanel: "assets/syncs-explored-side-panel.webp",
+    /* Other projects: placeholders until you upload a real screen with the same file name */
     dashboard: "assets/dashboard.webp",
     connect: "assets/connect.webp",
     accounts: "assets/accounts.webp",
@@ -1353,14 +1514,14 @@ curl https://api.getknit.dev/v1.0/hris/employees \\
     <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
       ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
 };
-const SCREEN_NAMES = { dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle" };
+const SCREEN_NAMES = { dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel" };
 
 const scaleQueue = new Set();
 const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
 function fit(sw) { const s = sw.firstElementChild; if (!s) return; const k = sw.clientWidth / (s.offsetWidth || 1280); s.style.transform = `scale(${k})`; if (sw.classList.contains("tall")) sw.style.height = (s.offsetHeight * k) + "px"; }
 function mountScreen(sw) {
   const name = sw.dataset.screen, src = CONFIG.shots[name];
-  if (src) { const img = new Image(); img.alt = SCREEN_NAMES[name] || name; img.onload = () => { ro.unobserve(sw); sw.innerHTML = ""; sw.append(img); sw.style.aspectRatio = "auto"; img.style.position = "static"; sw.removeAttribute("role"); sw.removeAttribute("aria-label"); }; img.src = src; }
+  if (src) { const img = new Image(); img.alt = SCREEN_NAMES[name] || name; img.src = src; img.onerror = () => { if (SCREENS[name]) { sw.innerHTML = SCREENS[name](); fit(sw); } }; sw.append(img); sw.style.aspectRatio = "auto"; img.style.position = "static"; return; }
   if (!SCREENS[name]) return;
   sw.innerHTML = SCREENS[name](); fit(sw); ro.observe(sw);
   sw.setAttribute("role", "img"); sw.setAttribute("aria-label", (SCREEN_NAMES[name] || name) + " (stand-in screen)");
@@ -1377,6 +1538,224 @@ function mountScreen(sw) {
     wall.append(col);
   });
 })();
+/* ======= CASE STUDIES: content lives here =======
+   Each case follows one structure. Full-depth cases use all chapters; lighter ones use five.
+   Any field you leave out simply disappears. "draft" lists what is still missing:
+   it shows as a dashed box while CONFIG.draft is true, and vanishes when you set it to false. */
+const CASES = [
+  {
+    id: "case-merger", n: "01", tint: "#2E3170", depth: "Full case study",
+    kicker: "Case study 01 · Knit · 2026", crumb: "01 · Knit · Three products, one spine",
+    title: "Three products, one <em>spine</em>",
+    lede: "Knit had three products built as three separate bets. Customers who needed all of them got three domains, three design systems and three ways to connect the same app. I re-architected them into one product, then redesigned onboarding in a two-week solo sprint.",
+    cover: { main: "detail", float: "picker", url: "app.getknit.dev/connections/workday-acme" },
+    tldr: { role: "Sole product designer, owning audit, IA, wireframes, prototypes and onboarding", team: "My manager, engineering", timeline: "Onboarding sprint: 2 weeks, July 2026", industry: "B2B SaaS · integrations · AI", problem: "Three products shared a connector layer and almost nothing else.", result: "One object model, one IA and one onboarding for all three products" },
+    chapters: [
+      { name: "Context & problem", head: "Every team had solved the same problem, separately.",
+        body: ["The three products had been built fast, by different people, for different bets. Sales struggled to position them. Engineering paid for most things three times. Pricing had grown meters that no buyer could hold in their head, and the customers who needed all three products suffered most.", "I owned the whole design side, with my manager setting direction. The hard constraint: the Unified API is a contract. Customers have live integrations running on it, so existing routes and endpoints had to keep working.", "Before drawing anything, I inventoried every screen to find out exactly how much was duplicated. Press the button."],
+        custom: ["tpl-audit"] },
+      { name: "Research & insight", head: "They weren't three products. They were three philosophies.",
+        insights: [
+          ["Opposite bets on the same connectors", "The Unified API normalises dozens of HR apps into one schema, so a developer never learns BambooHR's API. The MCP server exposed every raw BambooHR endpoint as a tool, so the model does. The agent built bespoke workflows with generated code. Same connector layer, three incompatible ideas of what an integration is."],
+          ["MCP had no way to connect an app", "To authorise an app, MCP users typed a phrase into their AI chat. One product over, the Unified API already had Magic Link, a proper hosted auth flow. The fix already existed inside the company."],
+          ["The root objects disagreed", "The Unified API roots everything at Organization, your customer's customer. MCP had no organization at all, so a Knit customer couldn't give MCP tools to their own end customers. That gap made MCP feel like a demo."]
+        ] },
+      { name: "Product opportunity", head: "Not three products. One ladder.",
+        lede: "Each product was a different trade between speed and flexibility. Put them on one shared Connection and they stop competing: customers climb only as far as their use case needs, and every rung inherits auth, logs and organizations for free.",
+        custom: ["tpl-ladder"] },
+      { name: "Design exploration", head: "Directions I tried before the ladder.",
+        draft: ["Two or three IA or onboarding directions you sketched and dropped. FigJam frames or rough wireframes are perfect.", "One line on why each one lost."] },
+      { name: "Decisions & trade-offs", head: "Three calls that shaped everything after.",
+        decisions: [
+          { q: "How should onboarding route people?", considered: "Let the agent infer intent from the first prompt and route automatically.", chose: "Explicit self-selection at login, with context carried across if people switch.", why: "My manager pushed for explicit choice, and the more I designed it the more I agreed. A visible choice sets expectations from step one.", cost: "One extra screen before value, so that screen had to be fast.", tag: "Direction from my manager" },
+          { q: "Is switching paths the same as adding one?", considered: "One “change path” control that behaves the same before and after go-live.", chose: "Two affordances: switch while setting up, add a surface once something is live.", why: "Before go-live a switch is cheap and reversible. After go-live it's an addition that must not disturb what's already running." },
+          { q: "What happens when a customer has five things live?", considered: "A single “you're live” screen at the end of onboarding.", chose: "Index to detail. The completion screen became the detail page for every live object.", why: "A single completion screen broke at two live objects.", cost: "API keys must become plural and scoped, a proposal engineering still has to accept." }
+        ],
+        draft: ["What engineering pushed back on, and how it was resolved.", "Anything you pushed back on, and whether you won or lost the argument."] },
+      { name: "Solution", head: "Pick a path, land in the same product.",
+        lede: "Three groups of users arrive with three mental models, so onboarding forks. The product underneath doesn't: everyone lands on the same objects, the same logs and the same Connection.",
+        custom: ["tpl-scrolly1", "tpl-ba", "tpl-flow", "tpl-hot1"] },
+      { name: "Validation & outcome", head: "One model the whole company can point at.",
+        impact: [["4 → 1", "Connection implementations in the target model"], ["2 weeks", "for the full onboarding redesign, solo", 2, " weeks"], ["1", "reusable design prompt, so new screens start consistent", 1]],
+        body: ["Reviewed with my manager as it happened, then handed to engineering as FigJam flows and interactive prototypes."],
+        draft: ["How you validated it: usability checks, engineering or sales feedback, customer reactions.", "What changed after testing."] },
+      { name: "AI workflow", head: "Where AI sped me up, and where it didn't.",
+        ai: { steps: [["INVENTORY", "Screenshots in, audit out", "I fed every screen of all three products to Claude and worked through the inventory with it. The duplication counts came out of that pass."], ["WIREFRAMES", "FigJam flows through Figma MCP", "Once the IA was agreed, I generated the first round of wireframes through the Figma MCP integration, then reworked them by hand."], ["SYSTEM", "A reusable design prompt", "I wrote the decisions into a design prompt so every new screen starts from the same object model and naming."]], human: "AI was fast at listing what existed. Deciding what should exist was my job, with my manager." } },
+      { name: "Reflection", head: "What I'd do differently.",
+        reflect: { quote: "If I did it again, I'd put pricing on the table on day one.", body: "The UI can merge three products. If the meters stay split, buyers still see three.", unsolved: ["API keys need to become plural and scoped. It's a proposal engineering still has to accept."] },
+        draft: ["Anything else that's still unsolved."] }
+    ]
+  },
+  {
+    id: "case-unified-api", n: "02", tint: "#6B3B26", depth: "Full case study",
+    kicker: "Case study 02 · Knit Unified API · 2024 → now", crumb: "02 · Knit Unified API · Docs folder to live product",
+    title: "A docs folder to a live product in a <em>month</em>",
+    lede: "Knit lets SaaS companies connect once and reach 200+ HR, recruiting, CRM and accounting apps through one normalised API. When I started on the web app, it didn't exist. There were API docs and a lot of ideas.",
+    cover: { main: "dashboard", float: "connect", url: "app.getknit.dev" },
+    tldr: { role: "Sole product designer", team: "CEO, CMO, tech lead, engineers", timeline: "v1 in about a month, from April 2024", industry: "B2B SaaS · developer tools", problem: "No web app: setting up an integration meant reading docs and asking the team.", result: "Time to first integration: hours → minutes" },
+    chapters: [
+      { name: "Context & problem", head: "Two audiences, and one of them never sees Knit.",
+        body: ["Knit's customers are developers at SaaS companies, building integrations for their own customers. So every flow has two people in it: the developer setting things up in Knit, and their end customer, who authorises a connection to their HR or CRM system without knowing Knit exists.", "I was the only designer, with about a month to v1, working directly with the CEO, CMO, tech lead and engineers. There was no design system to inherit, so I built one as I went."] },
+      { name: "Research & insight", head: "Designing against behaviour, not assumptions.",
+        body: ["After v1, discovery ran continuously through customer calls, Microsoft Clarity session recordings and Heap funnels. Calls told me what people wanted. Recordings and funnels showed where they stalled in first-time setup, and each redesign round went after those spots."],
+        draft: ["One or two specific things Clarity or Heap showed you, and what you changed because of it."] },
+      { name: "Product opportunity", head: "Make the API self-serve, for both audiences.",
+        lede: "Developers should reach a working first call without the Knit team's help, and their end customers should connect inside a product they already trust.",
+        draft: ["Anything sharper you'd say about the opportunity, for example what sales or the CEO expected the web app to unlock."] },
+      { name: "Design exploration", head: "Directions before v1.",
+        draft: ["Early structures you considered (by app, by category, by organization) with a sketch of each.", "Why Organization won."] },
+      { name: "Decisions & trade-offs", head: "Two calls that set the structure.",
+        decisions: [
+          { q: "What should the app be organised around?", considered: "Organise by app or by data category, the way the API docs were written.", chose: "Root everything at Organization, so each customer's connections, syncs and issues live together.", why: "When something breaks, the first question is always “which customer?” The structure answers it before it's asked." },
+          { q: "Whose brand does the end customer see?", considered: "A Knit-branded connect flow: simpler to build, good for Knit's own visibility.", chose: "A white-labelled embeddable UI that takes on the customer's brand.", why: "People hand over access to their HR system more readily when the request comes from a product they already trust." }
+        ],
+        draft: ["What engineering pushed back on in v1, and how it was resolved."] },
+      { name: "Solution", head: "Built around the customer's customer.", custom: ["tpl-scrolly2", "tpl-wl"] },
+      { name: "Validation & outcome", head: "Minutes, not hours.",
+        impact: [["hrs → min", "time to a customer's first integration"], ["200+", "connectors reachable through the product I designed", 200, "+"], ["30+", "customers running on it", 30, "+"]],
+        body: ["Onboarding got quicker with each round of fixes from the research loop, and first-time setup stopped being the part customers needed hand-holding for."],
+        draft: ["What changed after testing or launch.", "A customer quote, or a signal from sales or support."] },
+      { name: "AI workflow", draft: ["Where AI fit into this project, if it did. If it didn't, cut this chapter."] },
+      { name: "Reflection", draft: ["What you'd do differently with v1.", "What's still unsolved in the product today."] }
+    ]
+  },
+  {
+    id: "case-observability", n: "03", tint: "#1F4B3E", depth: "Full case study",
+    real: "Real product screens. Organization names and IDs are sample data.",
+    kicker: "Case study 03 · Knit · Data Syncs · 2026", crumb: "03 · Knit · Data Syncs redesign",
+    title: "From the system's view to the customer's <em>question</em>",
+    lede: "Knit moves data between its customers' products and hundreds of HR, CRM and accounting apps on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later I redesigned them around the one question customers kept asking: which record broke, and where?",
+    cover: { main: "syncsNewRun", float: "syncsNewRecord", url: "app.getknit.dev/syncs/sj_…/sr_…" },
+    tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
+    chapters: [
+      { name: "Context & problem", head: "The first version was mine, and it answered the wrong question.",
+        body: ["A sync job copies data on a schedule, say employees from BambooHR into a customer's Salesforce. Each run moves hundreds or thousands of records, and every record makes two hops: from the source app into Knit, then from Knit to wherever the customer wants it.", "I designed v1 of these screens for the 2024 web app launch, and I modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
+        custom: ["tpl-sy-old"] },
+      { name: "Research & insight", head: "Two years of calls, one question.",
+        lede: "Before touching Figma I went back through customer and prospect calls, and through Heap and Clarity for how the old screens were actually used. The same question kept coming back in different words.",
+        custom: ["tpl-sy-quotes"],
+        insights: [
+          ["Customers think in hops, not events", "They described a failure as a place: in the sync from the app, or in the export to their webhook. The screens described it as event counts."],
+          ["Reconciliation was happening on calls", "In one December 2025 call, a Knit teammate tallied records date by date while the customer watched. Every question the screens couldn't answer turned into the team's time."],
+          ["The old flow stopped one level short", "In the ten weeks before launch, fewer than 3 in 10 customer sessions that opened a sync job went on to a run. And a run was as deep as anyone could go."]
+        ] },
+      { name: "Product opportunity", head: "One question per level, answered on that level.",
+        lede: "The shape of the drill-down was fine. The job was to make every level answer the customer's question at that depth, and to add the level that was missing: the single record.",
+        custom: ["tpl-sy-levels"] },
+      { name: "Design exploration", head: "Two directions I tried and dropped.",
+        lede: "Neither survives in Figma, so these are rebuilt as rough wireframes from my notes. They're labelled that way on the image.",
+        explore: [
+          { screen: "syncsExAll", title: "One table of every run, with filters", why: "Too much at once. Everything depended on setting the right filters first, runs lost their context (whose sync, which app), and it isn't how people think about their syncs." },
+          { screen: "syncsExPanel", title: "Record steps in a side panel", why: "We had no side panels anywhere else in the product, so it would have arrived out of nowhere. And the steps and data models were cramped at that width." },
+          { screen: "syncsNewRecord", title: "Drill down to a full record page", why: "Every click from a sync job to a record is deliberate, so each one earns a full page, with room for the steps, its own link and a breadcrumb back up.", chosen: true }
+        ] },
+      { name: "Decisions & trade-offs", head: "Three calls, and one of them wasn't mine.",
+        decisions: [
+          { q: "What can a record page show if Knit never stores customer data?", considered: "My first record page showed the actual payload at every step, so you could watch a field travel from BambooHR to Salesforce.", chose: "The data models subscribed for that record, each with a tick for processed or not. Structure, not values.", why: "Engineering stopped the payload view: Knit doesn't store customer data, by design. The customer still learns where it broke and what was affected, and the privacy promise stays intact.", tag: "Engineering pushback" },
+          { q: "Should the sync jobs list show a status?", considered: "A status column on every job, the way most monitoring tables do it.", chose: "Status on runs only.", why: "A sync job is a recurring schedule. Status only makes sense for each of its runs.", cost: "A failing job doesn't show itself on the list. It's the first thing in my reflection." },
+          { q: "When is a run actually done?", considered: "v1's single “All Consumed” status, in Knit's own event vocabulary.", chose: "Two states: All Events Processed in amber, All Events Consumed in green, with a tooltip that spells out the difference.", why: "Processed means Knit has handled every event, failures included, but the customer's side hasn't confirmed them all. Consumed means every event was signed for. Packed and out for delivery, versus signed for at the door.", cost: "One more state for people to learn, so the tooltip has to do real work." }
+        ],
+        custom: ["tpl-sy-cut"] },
+      { name: "Solution", head: "Four levels, each one a step closer to the answer.",
+        lede: "The drill-down kept its shape and gained a fourth level. Each page answers one question, and the next click only appears once that question is answered.",
+        custom: ["tpl-sy-scrolly", "tpl-sy-ba", "tpl-sy-hot"] },
+      { name: "Validation & outcome", head: "Customers used to stop at the run. Now they go one level further.",
+        lede: "The whole Knit team ran the new flow internally against real syncs before it went live for everyone on 11 March 2026. Then I compared ten weeks of customer sessions on either side of the launch in Heap.",
+        impact: [["39.9%", "of sessions on a sync job went on to open a run, up from 28.7%"], ["1 in 4", "sessions on a run now open a single record (22.8%, 49 sessions). v1 had no record level at all."], ["−14%", "visits to the sync list, while more sessions reached a run (215, up from 185)"]],
+        after: ["tpl-sy-funnel", "tpl-sy-read"] },
+      { name: "AI workflow", head: "Where AI helped, and where it didn't.",
+        ai: { steps: [["RESEARCH", "Behaviour and quotes side by side", "I used AI to read Heap funnels and Clarity sessions alongside what customers said on calls, instead of keeping them in separate tabs."], ["EXPLORE", "Rough directions in hours", "Lo-fi wireframes and alternatives came together quickly, which is how the all-runs table and the side panel could both be tried and dropped inside a two-week design window."], ["QA", "Built screens against Figma", "Before release I used it to audit the built screens against the designs, catching drift from the build."]], human: "What each level should answer, and what to cut, was decided with the founders and engineering. I also used AI to help set up the before-and-after Heap funnel; the choices about what to count were mine." } },
+      { name: "Reflection", head: "What I'd do differently.",
+        reflect: { quote: "Ship the whole module, not half of it.", body: "Customers got a much clearer way to see their syncs, but to change one they still had to come to us. Create and edit belonged in the same release as sync history. To a customer, it's one job.", unsolved: ["Each job's latest run status on the jobs list, so a failing job shows itself without a click.", "Logs and Syncs still speak slightly different languages. The Logs changes should have gone live the same day.", "Edit Syncs is designed and waiting for development, with alerts and data validation after it.", "A hard number for the drop in sync tickets."] } }
+    ]
+  },
+  {
+    id: "case-kfin", n: "04", tint: "#4A3A6B", depth: "Short case study",
+    kicker: "Project 04 · KFin Technologies", crumb: "04 · KFin Technologies · DIGIX",
+    title: "Statutory reporting, made <em>self-serve</em>",
+    lede: "DIGIX is the analytics and reporting platform India's asset management companies use to schedule, generate and share statutory and daily business reports. I led UX on it and turned a compliance-heavy workflow into a self-serve product.",
+    cover: { main: "digix", url: "digix · report scheduler" },
+    tldr: { role: "Project lead, UX → Deputy manager, product", industry: "Fintech · asset management", problem: "Statutory and daily reporting was a compliance-heavy workflow for AMC teams.", result: "46% less project onboarding time, measured in Heap" },
+    chapters: [
+      { name: "Problem", head: "Reports that regulators need, on time, every time.", body: ["Asset management companies have to produce statutory reports on fixed schedules, alongside daily business reports for their own teams. DIGIX had to make that self-serve, on a secure, no-code cloud pipeline."] },
+      { name: "Research & insight", draft: ["Who you talked to (compliance teams, fund accounting) and what you found."] },
+      { name: "Design & solution", head: "Scheduling without a ticket.", screen: "digix",
+        body: ["I led UX across four products: DIGIX, KBOSS (internal task scheduling), InstaPay and a data management tool, owning UI, prototypes and the research behind them."] },
+      { name: "Outcome", impact: [["46%", "less average project onboarding time after an automated cross-team workflow I designed", 46, "%"], ["4", "fintech products where I led UX, from research to shipped UI", 4]] }
+    ]
+  },
+  {
+    id: "case-superbeings", n: "05", tint: "#6B2E45", depth: "Short case study",
+    kicker: "Project 05 · SuperBeings", crumb: "05 · SuperBeings · Performance management",
+    title: "The hardest module in an <em>HR platform</em>",
+    lede: "Design lead in a two-person team. Performance management was the platform's most complex surface, with review cycles, feedback and manager workflows in one place. I redesigned it end to end.",
+    cover: { main: "review", url: "superbeings · review cycles" },
+    tldr: { role: "Product designer, design lead", team: "2 designers", timeline: "Until December 2022", industry: "HR tech · SaaS", problem: "Performance reviews were the platform's most complex surface." },
+    chapters: [
+      { name: "Problem", head: "Four stages, three roles, one deadline.", body: ["A review cycle runs through self review, manager review, calibration and sharing results, with employees, managers and HR each seeing different things at different times."], draft: ["What was broken before your redesign."] },
+      { name: "Research & insight", draft: ["What you learned from HR admins, managers or employees."] },
+      { name: "Design & solution", screen: "review",
+        body: ["Beyond performance management, I rebuilt Custom Pulse (the configurable employee survey engine) for faster setup, reworked the Goals and OKRs module, and owned first-run onboarding for new companies and employees."] },
+      { name: "Outcome", draft: ["Any signal of impact: adoption, setup time, customer feedback."] }
+    ]
+  }
+];
+
+const esc = s => s;
+function renderCases() {
+  const host = $("#caseScroll"), D = !!CONFIG.draft;
+  const draftBox = list => D && list && list.length ? `<div class="draft-box"><span class="mono">TO ADD</span><ul>${list.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
+  const field = (k, v, cls = "") => v ? `<div class="${cls}"><dt>${k}</dt><dd>${v}</dd></div>` : (D ? `<div class="${cls}"><dt>${k}</dt><dd class="miss">Add</dd></div>` : "");
+  CASES.forEach((c, ci) => {
+    let num = 0;
+    const chapters = c.chapters.map(ch => {
+      const has = ch.after || ch.lede || ch.explore || ch.body || ch.insights || ch.decisions || ch.impact || ch.ai || ch.reflect || ch.custom || ch.shots || ch.screen;
+      if (!has && !D) return "";
+      num++;
+      const n = String(num).padStart(2, "0");
+      let h = `<section class="ch" data-ch="${ch.name}" data-n="${n}"><div class="ch-head"><span class="ch-num" aria-hidden="true">${n}</span><div><span class="eyebrow">${ch.name}</span>${ch.head ? `<h2>${ch.head}</h2>` : (D ? `<h2 class="miss">Headline to come</h2>` : "")}${ch.lede ? `<p class="ch-lede">${ch.lede}</p>` : ""}</div></div>`;
+      if (ch.body) h += `<div class="ch-body">${ch.body.map(p => `<p>${p}</p>`).join("")}</div>`;
+      if (ch.insights) h += `<div class="insights vis">${ch.insights.map((x, i) => `<div class="insight rv"><span class="n">${i + 1}</span><div><b>${x[0]}</b><p>${x[1]}</p></div></div>`).join("")}</div>`;
+      if (ch.name === "Design exploration" && D && !ch.explore) h += `<div class="explore vis">${["Direction A", "Direction B", "Direction C"].map((t, i) => `<div class="ex-card"><span class="stamp ${i === 2 ? "chosen" : ""}">${i === 2 ? "Chosen" : "Rejected"}</span><div class="ex-ph">Drop a sketch or frame</div><b>${t}</b><p>Why it ${i === 2 ? "won" : "lost"}, in one line.</p></div>`).join("")}</div>`;
+      if (ch.explore) h += `<div class="explore vis">${ch.explore.map(x => `<div class="ex-card"><span class="stamp ${x.chosen ? "chosen" : ""}">${x.chosen ? "Chosen" : "Rejected"}</span><div class="frame bare"><div class="sw" data-screen="${x.screen}"></div></div><b>${x.title}</b><p>${x.why}</p></div>`).join("")}</div>`;
+      if (ch.decisions) h += `<div class="decs vis">${ch.decisions.map((d, i) => `<div class="dec rv"><div class="dec-q"><span class="mono">D${i + 1}</span><b>${d.q}</b>${d.tag ? `<span class="dec-tag">${d.tag}</span>` : ""}</div><div class="dec-g"><div><span class="mono">Considered</span><p>${d.considered}</p></div><div><span class="mono">Chose</span><p>${d.chose}</p></div></div><p class="dec-w"><b>Why:</b> ${d.why}${d.cost ? ` <b>Cost:</b> ${d.cost}` : ""}</p></div>`).join("")}</div>`;
+      if (ch.custom) ch.custom.forEach(id => { const t = document.getElementById(id); if (t) h += t.innerHTML; });
+      if (ch.screen) h += `<div class="vis"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${c.cover.url}</span></div><div class="sw" data-screen="${ch.screen}"></div></div></div>`;
+      if (ch.shots) h += `<div class="gallery vis">${ch.shots.map(s => `<div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${SCREEN_NAMES[s] || s}</span></div><div class="sw" data-screen="${s}"></div></div>`).join("")}</div>`;
+      if (ch.impact) h += `<div class="impact vis">${ch.impact.map(x => `<div class="imp rv"><b${x[2] != null ? ` data-count="${x[2]}" data-suffix="${x[3] || ""}"` : ""}>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`;
+      if (ch.after) ch.after.forEach(id => { const t = document.getElementById(id); if (t) h += t.innerHTML; });
+      if (ch.ai) h += `<div class="cs-grid vis"><div class="human"><span class="mono">WHAT STAYED HUMAN</span>${ch.ai.human}</div><div class="ai">${ch.ai.steps.map(s => `<div class="ai-step"><span class="mono">${s[0]}</span><div><b>${s[1]}</b><p>${s[2]}</p></div></div>`).join("")}</div></div>`;
+      if (ch.reflect) { const r = ch.reflect; h += `<div class="vis indent"><blockquote>“${r.quote}”</blockquote>${r.body ? `<p class="ch-lede">${r.body}</p>` : ""}${r.unsolved ? `<div class="unsolved"><span class="eyebrow">Still open</span>${r.unsolved.map(u => `<div class="uns"><span class="mono">○ OPEN</span>${u}</div>`).join("")}</div>` : ""}</div>`; }
+      h += draftBox(ch.draft);
+      return h + `</section>`;
+    }).join("");
+    const prev = CASES[(ci - 1 + CASES.length) % CASES.length], next = CASES[(ci + 1) % CASES.length];
+    const t = c.tldr;
+    const art = document.createElement("article");
+    art.className = "case"; art.dataset.route = c.id; art.dataset.crumb = c.crumb; art.hidden = true;
+    art.innerHTML = `
+      <header class="case-hero"><div class="ch-grid">
+        <div><span class="eyebrow">${c.kicker}</span><h1>${c.title}</h1><p class="lede">${c.lede}</p><div class="hero-meta"><span>${c.depth}</span><span class="rt"></span><span>${num} chapters</span></div></div>
+        <aside class="tldr-card" aria-label="Summary" data-lens-title="Satisficing" data-lens="Most reviewers decide within a minute. This card gives them enough to decide well without reading another word."><span class="mono tl-k">THE 15-SECOND VERSION</span><dl>
+          ${field("Role", t.role)}${field("Team", t.team)}${field("Timeline", t.timeline)}${field("Industry", t.industry)}${field("Problem", t.problem, "full")}</dl>
+          <div class="tl-result"><span class="mono">HEADLINE RESULT</span>${t.result ? `<b>${t.result}</b>` : (D ? `<b class="miss">Add your headline result</b>` : "")}</div></aside>
+      </div></header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:${c.tint}"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${c.cover.url}</span></div><div class="sw" data-screen="${c.cover.main}"></div></div>${c.cover.float ? `<div class="cover-float"><div class="frame bare"><div class="sw" data-screen="${c.cover.float}"></div></div></div>` : ""}</div>${D && !c.real ? `<p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p>` : (c.real ? `<p class="swap-note">${c.real}</p>` : "")}</div>
+      <div class="cbody">${chapters}
+        <nav class="pn" aria-label="More projects">
+          <a href="#${prev.id}" class="prev"><div><span class="mono">PREVIOUS · ${prev.n}</span><b>${prev.title.replace(/<[^>]+>/g, "")}</b></div><div class="frame bare"><div class="sw" data-screen="${prev.cover.main}"></div></div></a>
+          <a href="#${next.id}" class="next"><div><span class="mono">NEXT · ${next.n}</span><b>${next.title.replace(/<[^>]+>/g, "")}</b></div><div class="frame bare"><div class="sw" data-screen="${next.cover.main}"></div></div></a>
+        </nav>
+      </div>`;
+    host.append(art);
+    const words = art.textContent.trim().split(/\s+/).length, mins = Math.max(2, Math.round(words / 220) + 1);
+    $(".rt", art).textContent = mins + " min read";
+    const card = $(`.scard a.cover[href="#${c.id}"]`);
+    if (card) { const idx = $(".idx", card.closest(".scard")); if (idx) idx.textContent += " · " + mins + " min read"; }
+  });
+}
+renderCases();
+
 $$("[data-screen]").forEach(mountScreen);
 document.fonts && document.fonts.ready.then(() => $$("[data-screen]").forEach(fit));
 
@@ -1468,6 +1847,7 @@ function watch(rootEl) {
     if (!en.isIntersecting) return; const el = en.target;
     if (el.classList.contains("rv")) el.classList.remove("pre");
     if (el.dataset.count && !el.dataset.done) { el.dataset.done = 1; countUp(el); }
+    if (el.classList.contains("ch")) el.classList.add("seen");
     io.unobserve(el);
   }), { root: rootEl, threshold: .15 });
   return io;
@@ -1523,38 +1903,54 @@ function showCase(route) {
   $$("[data-screen]", art).forEach(fit);
   $$("[data-flow] .path", art).forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength()) + "px"));
   if (caseIO) caseIO.disconnect(); caseIO = watch(scroller);
+  $$(".ch", art).forEach(el => { el.classList.remove("seen"); caseIO.observe(el); });
+  $$("[data-fn]", art).forEach(f => { f.classList.remove("go"); const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { f.classList.add("go"); o.disconnect(); } }), { root: scroller, threshold: .3 }); o.observe(f); });
   $$(".rv,[data-count]", art).forEach(el => { if (el.classList.contains("rv") && !reduce) el.classList.add("pre"); el.dataset.done = ""; caseIO.observe(el); });
+  const rail = $("#chRail"); rail.innerHTML = "";
+  $$(".ch", art).forEach(ch => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = `${ch.dataset.n}<i></i><span>${ch.dataset.ch}</span>`; b.addEventListener("click", () => scroller.scrollTo({ top: scroller.scrollTop + ch.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 20, behavior: reduce ? "auto" : "smooth" })); rail.append(b); });
   caseScroll();
   if (kbUser) setTimeout(() => $("#caseClose").focus({ preventScroll: true }), 60);
 }
+let vtSource = null;
+$$(".scard a.cover").forEach(a => a.addEventListener("click", () => { vtSource = a.closest(".scard").querySelector(".scard-art"); }));
 function openCase(route) {
   if (reduce) return showCase(route);
+  if (document.startViewTransition) {
+    const src = vtSource; vtSource = null;
+    if (src) src.style.viewTransitionName = "case-art";
+    const tr = document.startViewTransition(() => {
+      if (src) src.style.viewTransitionName = "";
+      showCase(route);
+      const cover = $(`.case[data-route="${route}"] .cover-stage`);
+      if (cover && src) cover.style.viewTransitionName = "case-art";
+    });
+    tr.finished.finally(() => $$(".cover-stage").forEach(c => c.style.viewTransitionName = ""));
+    return;
+  }
   wipe.style.setProperty("--cx", lastClick.x + "px"); wipe.style.setProperty("--cy", lastClick.y + "px");
   wipe.classList.remove("go"); void wipe.offsetWidth; wipe.classList.add("go");
   setTimeout(() => showCase(route), 380);
 }
-function closeCase() { layer.hidden = true; document.body.classList.remove("case-open"); }
-function currentCase() { const a = cases.find(x => !x.hidden); return layer.hidden || !a ? "" : a.dataset.route; }
-function route() { const h = location.hash.slice(1); if (h.startsWith("case-")) { if (currentCase() !== h) openCase(h); } else if (!layer.hidden) closeCase(); }
+function closeCase() { const go = () => { layer.hidden = true; document.body.classList.remove("case-open"); }; if (document.startViewTransition && !reduce && !layer.hidden) document.startViewTransition(go); else go(); }
+/* Routing: links are handled in script, so the site works in previews and embedded frames
+   where jump-link navigation is blocked. The address bar is updated when the host allows it. */
+function curHash() { try { return location.hash.slice(1); } catch (e) { return ""; } }
+function handleRoute(h) {
+  if (h.startsWith("case-")) { if (layer.hidden || !$(`.case[data-route="${h}"]:not([hidden])`)) openCase(h); return; }
+  if (!layer.hidden) closeCase();
+  const el = h && document.getElementById(h);
+  if (el) setTimeout(() => el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }), layer.hidden ? 0 : 60);
+}
+function navTo(h) { try { history.pushState(null, "", "#" + h); } catch (e) {} handleRoute(h); }
+function route() { handleRoute(curHash()); }
 addEventListener("hashchange", route);
 addEventListener("popstate", route);
-/* Open cases on click directly, so it works even when the URL already has that hash, or the page is shown inside a preview frame */
 document.addEventListener("click", e => {
-  const a = e.target.closest('a[href^="#"]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
-  const r = a.getAttribute("href").slice(1);
-  if (r.startsWith("case-")) {
-    e.preventDefault();
-    if (currentCase() !== r) openCase(r);
-  } else {
-    const t = r ? document.getElementById(r) : null; if (!t) return;
-    e.preventDefault();
-    if (!layer.hidden) closeCase();
-    t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
-  }
-  try { if (location.hash !== "#" + r) history.pushState(null, "", "#" + r); } catch (err) {}
+  const a = e.target.closest('a[href^="#"]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+  const h = a.getAttribute("href").slice(1); if (!h) return;
+  e.preventDefault(); navTo(h);
 });
-if (location.hash.startsWith("#case-")) showCase(location.hash.slice(1));
-$("#caseClose").addEventListener("click", () => { closeCase(); location.hash = "work"; });
+$("#caseClose").addEventListener("click", () => navTo("work"));
 
 /* case scroll: progress, scrolly, flow, before/after */
 function caseScroll() {
@@ -1569,11 +1965,14 @@ function caseScroll() {
     $(".sc-progress i", sec).style.width = (p * 100) + "%";
   });
   $$("[data-flow]", art).forEach(f => { const r = f.getBoundingClientRect(); f.style.setProperty("--p", clamp((sh + st0 - r.top) / (sh * .8), 0, 1).toFixed(3)); });
+  const chs = $$(".ch", art); let cur = -1; chs.forEach((c, i) => { if (c.getBoundingClientRect().top - st0 < sh * .4) cur = i; });
+  $$("#chRail button").forEach((b, i) => b.classList.toggle("on", i === cur));
+  $("#chRail").classList.toggle("show", scroller.scrollTop > sh * .6);
 }
 scroller.addEventListener("scroll", () => requestAnimationFrame(caseScroll), { passive: true });
 $$("[data-scrolly]").forEach(sec => $$(".step", sec).forEach((s, i) => s.addEventListener("click", () => {
   if (innerWidth <= 1020) { $$(".step", sec).forEach((x, j) => x.classList.toggle("on", j === i)); $$(".sc-screens > .sw", sec).forEach((x, j) => x.classList.toggle("on", j === i)); return; }
-  const total = sec.offsetHeight - scroller.clientHeight; scroller.scrollTo({ top: sec.offsetTop + total * (i + .5) / $$(".step", sec).length, behavior: reduce ? "auto" : "smooth" });
+  const total = sec.offsetHeight - scroller.clientHeight, top0 = scroller.scrollTop + sec.getBoundingClientRect().top - scroller.getBoundingClientRect().top; scroller.scrollTo({ top: top0 + total * (i + .5) / $$(".step", sec).length, behavior: reduce ? "auto" : "smooth" });
 })));
 $$("[data-flow] .path").forEach(p => p.style.setProperty("--len", "900px"));
 if (reduce) $$("[data-flow]").forEach(f => f.style.setProperty("--p", 1));
@@ -1586,7 +1985,7 @@ $$(".ba").forEach(ba => {
   ba.tabIndex = 0; ba.setAttribute("role", "slider"); ba.setAttribute("aria-label", "Before and after comparison"); ba.setAttribute("aria-valuemin", 0); ba.setAttribute("aria-valuemax", 100);
   ba.addEventListener("keydown", e => { const cur = parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50; if (e.key === "ArrowLeft") ba.style.setProperty("--pos", clamp(cur - 5, 2, 98) + "%"); if (e.key === "ArrowRight") ba.style.setProperty("--pos", clamp(cur + 5, 2, 98) + "%"); });
 });
-const HS = { hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
+const HS = { hsSy: [["A real address", "Its own link to share with support, and a breadcrumb back up."], ["The result, in plain terms", "404 Not Found, in the language developers already debug in."], ["One row per hop", "Method, direction and result for every executed step."], ["Data models, not data", "What was subscribed and processed. No field values."]], hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
 $$(".hot").forEach(h => {
   const data = HS[h.id]; const note = document.createElement("div"); note.className = "hs-note"; h.append(note);
   const list = $(`[data-hs-list="${h.id}"]`);
@@ -1595,6 +1994,19 @@ $$(".hot").forEach(h => {
   $$(".hs", h).forEach(p => { p.addEventListener("mouseenter", () => show(+p.dataset.k)); p.addEventListener("focus", () => show(+p.dataset.k)); p.addEventListener("mouseleave", hide); p.addEventListener("blur", hide); p.addEventListener("click", () => show(+p.dataset.k)); });
   list && $$(".hs-item", list).forEach(i => { i.addEventListener("mouseenter", () => show(+i.dataset.k)); i.addEventListener("mouseleave", hide); });
 });
+
+
+const RUNGS = [
+  { t: "Unified API", d: "The schema is pre-built. Connect BambooHR or Workday and you get the same Employee object back. Zero configuration, instant, and zero flexibility.", v: [92, 15, 95] },
+  { t: "MCP tools", d: "Every raw endpoint of every app, exposed as a tool an AI model can call. Nothing to map, but the model has to understand each vendor's API.", v: [80, 55, 60] },
+  { t: "Workflows", d: "The AI Integrations Agent builds a bespoke integration: any mapping, conflict rules, a schedule and generated code. Total flexibility, slowest to set up.", v: [35, 98, 25] }
+];
+function showRung(i) {
+  $$("#rungs .rung").forEach(r => r.classList.toggle("on", +r.dataset.r === i));
+  const r = RUNGS[i];
+  $("#rungDetail").innerHTML = `<span class="eyebrow">Rung L${i + 1}</span><h3>${r.t}</h3><p>${r.d}</p><div class="bars"><div>SPEED<i style="--v:${r.v[0]}%"></i></div><div>FLEXIBILITY<i style="--v:${r.v[1]}%"></i></div><div>ZERO CONFIG<i style="--v:${r.v[2]}%"></i></div></div>`;
+}
+if ($("#rungs")) { $$("#rungs .rung").forEach(r => r.addEventListener("click", () => showRung(+r.dataset.r))); showRung(0); }
 
 let merged = false;
 $("#mergeBtn").addEventListener("click", () => {
@@ -1614,11 +2026,11 @@ $("#wlPowered").addEventListener("change", e => $("#embFoot").hidden = !e.target
 
 /* ======= Palette ======= */
 const CMDS = [
-  { g: "01", l: "Read: Three products, one spine", k: "case", run: () => location.hash = "case-merger" },
-  { g: "02", l: "Read: A docs folder to a live product", k: "case", run: () => location.hash = "case-unified-api" },
-  { g: "03", l: "Open: Making silent sync failures loud", k: "case", run: () => location.hash = "case-observability" },
-  { g: "04", l: "Open: KFin, statutory reporting", k: "case", run: () => location.hash = "case-kfin" },
-  { g: "05", l: "Open: SuperBeings, performance", k: "case", run: () => location.hash = "case-superbeings" },
+  { g: "01", l: "Read: Three products, one spine", k: "case", run: () => navTo("case-merger") },
+  { g: "02", l: "Read: A docs folder to a live product", k: "case", run: () => navTo("case-unified-api") },
+  { g: "03", l: "Open: Data Syncs, from the system's view to the customer's question", k: "case", run: () => navTo("case-observability") },
+  { g: "04", l: "Open: KFin, statutory reporting", k: "case", run: () => navTo("case-kfin") },
+  { g: "05", l: "Open: SuperBeings, performance", k: "case", run: () => navTo("case-superbeings") },
   { g: "@", l: "Copy email address", k: "contact", run: copyEmail },
   { g: "◆", l: "Toggle thinking mode", k: "L", run: toggleLens },
   { g: "◐", l: "Switch light / dark theme", k: "theme", run: toggleTheme },
@@ -1629,7 +2041,7 @@ const CMDS = [
 ];
 if (CONFIG.linkedin) CMDS.splice(6, 0, { g: "in", l: "Open LinkedIn", k: "link", run: () => window.open(CONFIG.linkedin, "_blank", "noopener") });
 if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open résumé", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
-function goSection(id) { if (!layer.hidden) closeCase(); location.hash = id; document.getElementById(id).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+function goSection(id) { navTo(id); }
 const pal = $("#palette"), pin = $("#palInput"), plist = $("#palList"); let palItems = [], palIdx = 0, lastFocus = null;
 function renderPal() {
   const q = pin.value.trim().toLowerCase(); palItems = CMDS.filter(c => !q || c.l.toLowerCase().includes(q) || c.k.includes(q)); palIdx = Math.min(palIdx, Math.max(0, palItems.length - 1));
@@ -1651,7 +2063,7 @@ addEventListener("keydown", e => {
   if (e.key === "Escape") {
     if (!pal.hidden) return closePal();
     if ($(".lens-tag.pinned")) return $$(".lens-tag.pinned").forEach(t => t.classList.remove("pinned"));
-    if (!layer.hidden) { closeCase(); location.hash = "work"; return; }
+    if (!layer.hidden) { navTo("work"); return; }
     if (document.body.classList.contains("lens-on")) setLens(false); return;
   }
   if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -1659,7 +2071,7 @@ addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => { if (!e.target.closest(".lens-tag")) $$(".lens-tag.pinned").forEach(t => t.classList.remove("pinned")); });
 
-if (location.hash.startsWith("#case-")) showCase(location.hash.slice(1));
+if (curHash().startsWith("case-")) showCase(curHash());
 
 /* ===== v3: wayfinding + light touch ===== */
 (() => {
@@ -1681,8 +2093,8 @@ if (location.hash.startsWith("#case-")) showCase(location.hash.slice(1));
   });
 
   if (!reduce && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target._h.classList.remove("mask"); io.unobserve(e.target); } }), { threshold: .1 });
-    $$(".sec-head h2,.writing-top h2,.contact h2").forEach(h => { if (h.getBoundingClientRect().top > innerHeight) { h.classList.add("mask"); const t = h.parentElement; t._h = h; io.observe(t); } });
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove("mask"); io.unobserve(e.target); } }), { threshold: .3 });
+    $$(".sec-head h2,.writing-top h2,.contact h2").forEach(h => { if (h.getBoundingClientRect().top > innerHeight) { h.classList.add("mask"); io.observe(h); } });
   }
 
   const tip = $("#tip"); if (!isMac) $("#tipK").textContent = "Ctrl K";
