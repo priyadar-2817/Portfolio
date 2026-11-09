@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priyadarshi, Product Designer</title>
+<meta name="description" content="Priyadarshi is a product designer who designs for how people actually decide. Sole designer at Knit, writer of Decision Design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: work-first. A drifting wall of screens, stacked project cards, scroll-driven case walkthroughs, plus a thinking layer that annotates the page's own decisions */
+  --bg:#F3EEE6;
+  --surface:#FBF8F3;
+  --surface-2:#EBE3D7;
+  --ink:#211A14;
+  --muted:#6C6052;
+  --line:#DCD1C1;
+  --accent:#A3462A;
+  --accent-ink:#FFF7F1;
+  --lens:#0B87EA;
+  --ok:#2C7F52;
+  --warn:#A9690A;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --maxw:1240px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15100C;--surface:#1F1813;--surface-2:#2A2119;--ink:#F2EBE1;--muted:#A69782;--line:#3A2E24;
+    --accent:#E3916D;--accent-ink:#1A130E;--lens:#3BA7FF;--ok:#5DBE8B;--warn:#E2A84B;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15100C;--surface:#1F1813;--surface-2:#2A2119;--ink:#F2EBE1;--muted:#A69782;--line:#3A2E24;
+  --accent:#E3916D;--accent-ink:#1A130E;--lens:#3BA7FF;--ok:#5DBE8B;--warn:#E2A84B;color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.case-open{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{text-wrap:balance;font-weight:400;margin:0}
+p{margin:0}
+em{font-family:var(--display);font-style:italic;font-weight:400}
+.wrap{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-size:12.5px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- cursor ---------- */
+.cursor{position:fixed;left:0;top:0;z-index:300;pointer-events:none;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--accent);transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s;display:grid;place-items:center;color:var(--accent-ink);font-family:var(--mono);font-size:11px;letter-spacing:.04em;opacity:0}
+.cursor.on{opacity:1}
+.cursor span{opacity:0;transition:opacity .2s;white-space:nowrap}
+.cursor.big{width:92px;height:92px;margin:-46px 0 0 -46px}
+.cursor.big span{opacity:1}
+.cursor.hide{width:0;height:0;margin:0}
+@media (pointer:coarse){.cursor{display:none}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;width:min(var(--maxw),calc(100% - 24px));display:flex;align-items:center;gap:14px;padding:8px 8px 8px 18px;border-radius:99px;border:1px solid transparent;transition:background .4s,border-color .4s,box-shadow .4s,transform .5s var(--ease)}
+.nav.solid{background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line);box-shadow:0 20px 40px -30px rgba(30,20,10,.5)}
+.nav.away{transform:translate(-50%,-140%)}
+.brand{display:flex;flex-direction:column;line-height:1.05;text-decoration:none;margin-right:auto}
+.brand b{font-family:var(--display);font-weight:400;font-size:24px}
+.brand span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.navlinks{display:flex;gap:2px;position:relative}
+.navlinks a{text-decoration:none;font-size:14.5px;padding:8px 13px;border-radius:99px;color:var(--muted);transition:color .2s,background .2s}
+.navlinks a:hover{color:var(--ink);background:var(--surface-2)}
+.navtools{display:flex;align-items:center;gap:6px}
+.pill{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);font-size:13.5px;cursor:pointer;white-space:nowrap;transition:border-color .2s}
+.pill:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--line))}
+.clock{cursor:default;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:ping 2.4s infinite}
+.dot.asleep{background:var(--muted);animation:none}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 55%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+kbd{font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:6px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted)}
+.switch{width:30px;height:18px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);position:relative;transition:background .25s}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .25s,background .25s}
+body.lens-on .lens-btn .switch{background:var(--lens);border-color:var(--lens)}
+body.lens-on .lens-btn .switch::after{transform:translateX(12px);background:#fff}
+.icon-btn{width:38px;padding:0;justify-content:center}
+.icon-btn svg{width:16px;height:16px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(900px,100svh);display:grid;align-items:center;overflow:hidden;padding:120px 0 60px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.hero-copy{position:relative;z-index:3}
+.hero h1{font-family:var(--display);font-size:clamp(52px,7.2vw,112px);line-height:.92;letter-spacing:-.025em;margin:18px 0 26px}
+.hero h1 em{color:var(--accent)}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line > span{display:inline-block;animation:rise 1s var(--ease) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.fade-up{animation:fadeUp .9s var(--ease) both;animation-delay:var(--d,.5s)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.lede{font-size:clamp(17px,1.4vw,19px);color:var(--muted);max-width:50ch}
+.lede strong{color:var(--ink);font-weight:500}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:99px;border:1px solid var(--line);background:var(--surface);text-decoration:none;font-size:15.5px;font-weight:500;cursor:pointer;transition:background .25s,border-color .25s,color .25s;will-change:transform}
+.btn:hover{border-color:color-mix(in srgb,var(--ink) 40%,var(--line))}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.hint{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font-size:14px;color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.hint kbd{font-size:13px;padding:3px 9px;color:var(--lens);border-color:color-mix(in srgb,var(--lens) 45%,transparent);background:color-mix(in srgb,var(--lens) 8%,transparent)}
+.hint:hover{color:var(--ink)}
+
+/* wall */
+.wall-zone{position:absolute;inset:0;left:47%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 18%,#000 82%,transparent);}
+.wall{position:absolute;left:6%;top:-22%;width:104%;height:144%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;transform:perspective(3200px) rotateX(var(--rx,12deg)) rotateY(var(--ry,-8deg)) rotateZ(-12deg);transform-origin:50% 50%;transition:transform 1.2s var(--ease);pointer-events:auto}
+.col{display:flex;flex-direction:column;gap:22px;animation:drift var(--t,60s) linear infinite;will-change:transform}
+.col.rev{animation-direction:reverse}
+.wall:hover .col{animation-play-state:paused}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.tile{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 30px 50px -30px rgba(20,12,6,.55);transition:transform .5s var(--ease)}
+.tile:hover{transform:scale(1.04)}
+.tile .cap{position:absolute;left:10px;bottom:10px;z-index:3;font-family:var(--mono);font-size:10.5px;padding:4px 8px;border-radius:6px;background:rgba(10,10,14,.78);color:#fff;opacity:0;transform:translateY(6px);transition:.3s var(--ease)}
+.tile:hover .cap{opacity:1;transform:none}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;position:relative;z-index:2;background:var(--bg)}
+.marquee-track{display:inline-flex;gap:48px;padding:20px 0;animation:mq 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--display);font-size:clamp(26px,3vw,40px);line-height:1;display:inline-flex;align-items:center;gap:48px}
+.marquee-track span::after{content:"✳";font-family:var(--body);font-size:.5em;color:var(--accent)}
+.marquee-track small{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:12px;letter-spacing:.04em}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.stat{padding:30px 22px 32px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(40px,4.4vw,62px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat b small{font-size:.5em;color:var(--muted)}
+.stat b.sm{font-size:clamp(30px,3.3vw,46px);padding-top:.2em}
+.stat span{display:block;margin-top:10px;font-size:14px;color:var(--muted);max-width:24ch}
+
+/* sections */
+section{position:relative}
+.sec{padding:clamp(80px,11vw,140px) 0 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--display);font-size:clamp(46px,6vw,84px);line-height:.95;letter-spacing:-.02em}
+.sec-head p{color:var(--muted);max-width:44ch;font-size:16px}
+.rv{transition:transform 1s var(--ease)}
+.rv.pre{transform:translateY(40px)}
+
+/* ---------- stacked work cards ---------- */
+.stack{display:grid;gap:7vh;padding-bottom:6vh}
+.scard{position:sticky;top:calc(88px + var(--i) * 14px);height:min(78vh,700px);min-height:520px}
+.scard-in{position:relative;height:100%;border-radius:28px;background:var(--surface);border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);transform-origin:50% 0;will-change:transform;box-shadow:0 -20px 50px -40px rgba(30,20,10,.5)}
+.scard-in::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim,0);pointer-events:none;z-index:6;transition:opacity .1s}
+.scard a.cover{position:absolute;inset:0;z-index:5;border-radius:28px}
+.scard-copy{position:relative;z-index:2;padding:clamp(26px,3.2vw,46px);display:flex;flex-direction:column;gap:16px}
+.scard-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.idx{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;padding:5px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted);background:var(--bg)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.badge.live::before{background:var(--ok);animation:ping 2.4s infinite}
+.scard h3{font-family:var(--display);font-size:clamp(36px,4vw,60px);line-height:.98;letter-spacing:-.015em}
+.scard .co{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.04em}
+.scard p{color:var(--muted);font-size:16px;max-width:44ch}
+.outcomes{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.outcomes span{font-size:13px;padding:6px 11px;border-radius:99px;background:var(--bg);border:1px solid var(--line)}
+.outcomes span b{font-weight:600}
+.tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:11px;color:var(--muted);padding:4px 8px;border-radius:6px;background:var(--surface-2)}
+.viewcase{display:inline-flex;align-items:center;gap:10px;font-weight:500;margin-top:14px}
+.viewcase i{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-style:normal;transition:transform .4s var(--ease)}
+.scard:hover .viewcase i{transform:rotate(-45deg)}
+.scard-art{position:relative;background:var(--tint,var(--surface-2));overflow:hidden}
+.scard-art .layer{position:absolute;will-change:transform;transition:transform .9s var(--ease)}
+.art-note{position:absolute;left:16px;bottom:14px;z-index:4;font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,.75);letter-spacing:.03em}
+
+/* ---------- screen system ---------- */
+.frame{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 40px 70px -40px rgba(10,6,2,.6),0 0 0 1px rgba(0,0,0,.06)}
+.frame-bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 11px;background:#F1F1F3;border-bottom:1px solid #E4E4E8}
+.frame-bar i{width:9px;height:9px;border-radius:50%;background:#D9D9DE}
+.frame-bar i:nth-child(1){background:#FF6159}.frame-bar i:nth-child(2){background:#FFBD2E}.frame-bar i:nth-child(3){background:#28C941}
+.frame-bar span{margin:0 auto;font-family:var(--mono);font-size:10px;color:#8A8A94;background:#fff;padding:2px 14px;border-radius:6px;border:1px solid #E4E4E8}
+.frame.bare .frame-bar{display:none}
+.sw{position:relative;aspect-ratio:16/10;overflow:hidden;background:#F6F6F8}
+.sw.tall{aspect-ratio:auto}
+.sw > .screen,.sw > img{position:absolute;left:0;top:0;transform-origin:0 0}
+.sw > img{width:100%;height:auto}
+.shot-label{position:absolute;right:8px;top:8px;z-index:3;font-family:var(--mono);font-size:9.5px;padding:3px 7px;border-radius:5px;background:rgba(15,15,20,.6);color:#fff;letter-spacing:.03em}
+
+/* product UI (stand-in screens) */
+.screen{width:1280px;height:800px;display:grid;grid-template-columns:232px 1fr;background:#F6F6F8;color:#16161D;font-family:var(--body);font-size:14px;line-height:1.4;text-align:left}
+.screen.solo{display:block}
+.s-side{background:#fff;border-right:1px solid #E7E7EC;padding:18px 14px;display:flex;flex-direction:column;gap:3px}
+.s-logo{display:flex;align-items:center;gap:9px;font-weight:650;font-size:16px;padding:4px 8px 18px}
+.s-logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#4B5CF0,#7C4DFF);display:block}
+.s-grp{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#9A9AA6;padding:14px 10px 6px}
+.s-nav{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#55555F;font-size:13.5px}
+.s-nav::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid currentColor;opacity:.55}
+.s-nav.on{background:#EEF0FF;color:#3443D6;font-weight:550}
+.s-nav.on::before{opacity:1}
+.s-nav .n{margin-left:auto;font-size:11px;background:#FCE8E6;color:#C4382B;border-radius:99px;padding:1px 7px}
+.s-foot{margin-top:auto;padding:12px 10px;border-top:1px solid #EFEFF3;font-size:12px;color:#77777F;display:flex;align-items:center;gap:8px}
+.s-foot i{width:26px;height:26px;border-radius:50%;background:#E6D3C6;display:block}
+.s-main{padding:26px 30px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+.s-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.s-head h4{font-size:22px;font-weight:650;letter-spacing:-.01em}
+.s-head p{font-size:13px;color:#77777F}
+.s-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:9px;background:#3E4FE0;color:#fff;font-size:13px;font-weight:550}
+.s-btn.ghost{background:#fff;color:#2A2A33;border:1px solid #E1E1E7}
+.s-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.s-kpi{background:#fff;border:1px solid #E7E7EC;border-radius:12px;padding:14px 16px}
+.s-kpi small{display:block;font-size:12px;color:#77777F}
+.s-kpi b{display:block;font-size:26px;font-weight:650;letter-spacing:-.02em;margin-top:4px}
+.s-kpi em{font-family:var(--body);font-style:normal;font-size:12px;color:#18925A}
+.s-kpi em.bad{color:#C4382B}
+.s-card{background:#fff;border:1px solid #E7E7EC;border-radius:12px;overflow:hidden}
+.s-card-h{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EFEFF3;font-weight:600;font-size:14px}
+.s-card-h span{font-weight:400;font-size:12px;color:#8A8A94}
+.s-table{width:100%;border-collapse:collapse;font-size:13px}
+.s-table th{text-align:left;font-weight:500;color:#8A8A94;font-size:11.5px;padding:9px 16px;border-bottom:1px solid #EFEFF3;background:#FAFAFB}
+.s-table td{padding:11px 16px;border-bottom:1px solid #F2F2F5;white-space:nowrap}
+.s-app{display:inline-flex;align-items:center;gap:8px}
+.s-app i{width:22px;height:22px;border-radius:6px;display:inline-grid;place-items:center;font-style:normal;color:#fff;font-size:10px;font-weight:700}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:3px 9px;border-radius:99px;font-weight:500}
+.st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.st.ok{background:#E7F6EE;color:#13804D}.st.bad{background:#FCE8E6;color:#C4382B}.st.run{background:#EEF0FF;color:#3443D6}.st.wait{background:#FFF3DF;color:#A3620A}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:5px;border:1px solid #E1E1E7;color:#55555F;background:#FAFAFB}
+.chip.api{border-color:#C9CEFF;color:#3443D6;background:#F3F4FF}.chip.mcp{border-color:#BFE8D3;color:#13804D;background:#F0FAF5}.chip.wf{border-color:#FFD9B0;color:#A3620A;background:#FFF8EF}
+.s-chart{height:180px;padding:12px 16px 8px;position:relative}
+.s-chart svg{width:100%;height:100%}
+.s-two{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.s-list{display:flex;flex-direction:column}
+.s-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #F2F2F5;font-size:13px}
+.s-row .r{margin-left:auto;color:#8A8A94;font-size:12px}
+.code{background:#14141B;color:#E6E6F0;border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:12.5px;line-height:1.75;white-space:pre}
+.code .k{color:#9EA7FF}.code .s{color:#8BE0B4}.code .c{color:#6E6E80}
+.s-steps{display:flex;flex-direction:column;gap:10px}
+.s-step{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E7E7EC;border-radius:12px;padding:13px 16px}
+.s-step i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;border:1.5px solid #D5D5DD;color:#8A8A94}
+.s-step.done i{background:#18925A;border-color:#18925A;color:#fff}
+.s-step.cur{border-color:#3E4FE0;box-shadow:0 0 0 3px #EEF0FF}
+.s-step.cur i{border-color:#3E4FE0;color:#3E4FE0}
+.s-step b{font-weight:550}
+.s-step span{margin-left:auto;font-size:12px;color:#8A8A94}
+.pick-wrap{height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 0,#EEF0FF,#F6F6F8 60%)}
+.pick{width:900px;text-align:center}
+.pick h4{font-size:34px;font-weight:650;letter-spacing:-.02em}
+.pick p{color:#77777F;margin:8px 0 30px;font-size:15px}
+.pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.pick-card{background:#fff;border:1px solid #E1E1E7;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:220px}
+.pick-card.on{border-color:#3E4FE0;box-shadow:0 0 0 4px #E4E7FF}
+.pick-card .g{width:42px;height:42px;border-radius:11px;background:#F1F2FF;color:#3443D6;display:grid;place-items:center;font-family:var(--mono);font-size:15px;font-weight:600}
+.pick-card b{font-size:17px;font-weight:600}
+.pick-card span{font-size:13.5px;color:#77777F}
+.pick-card small{margin-top:auto;font-family:var(--mono);font-size:11px;color:#9A9AA6}
+.regions{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto;gap:14px}
+.region{background:#fff;border:1px solid #E7E7EC;border-radius:12px;padding:14px 16px;position:relative}
+.region .rl{position:absolute;right:12px;top:12px;font-family:var(--mono);font-size:10px;color:#9A9AA6}
+.region h5{margin:0 0 10px;font-size:14px;font-weight:600}
+.upsell{background:linear-gradient(135deg,#F3F4FF,#FFF8EF);border-style:dashed}
+.issue-group{background:#FFF7F6}
+.ov{position:absolute;inset:0;background:rgba(18,18,26,.38);backdrop-filter:blur(2px);display:grid;place-items:center}
+.modal{width:440px;background:#fff;border-radius:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);overflow:hidden}
+.modal-h{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid #EFEFF3;font-weight:600}
+.modal-h i{width:28px;height:28px;border-radius:8px;background:#0E9F6E;display:grid;place-items:center;color:#fff;font-style:normal;font-size:13px}
+.modal-b{padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.modal-b h6{margin:0;font-size:19px;font-weight:650}
+.modal-b p{font-size:13px;color:#77777F}
+.m-search{height:38px;border:1px solid #E1E1E7;border-radius:10px;display:flex;align-items:center;padding:0 12px;color:#9A9AA6;font-size:13px}
+.m-app{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #EDEDF1;border-radius:10px;font-size:14px}
+.m-app.on{border-color:#0E9F6E;background:#F0FAF5}
+.m-go{height:42px;border-radius:10px;background:#0E9F6E;color:#fff;display:grid;place-items:center;font-weight:600}
+.form-row{display:grid;grid-template-columns:160px 1fr;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid #F2F2F5;font-size:13px}
+.form-row label{color:#77777F}
+.fld{height:34px;border:1px solid #E1E1E7;border-radius:8px;display:flex;align-items:center;padding:0 10px;background:#fff}
+.seg-s{display:inline-flex;border:1px solid #E1E1E7;border-radius:8px;overflow:hidden}
+.seg-s span{padding:6px 12px;font-size:12.5px;border-right:1px solid #E1E1E7}
+.seg-s span:last-child{border-right:0}
+.seg-s span.on{background:#16161D;color:#fff}
+.avatar{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;font-size:11px;font-weight:600;color:#fff}
+
+/* ---------- craft playground ---------- */
+.craft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cbox{border:1px solid var(--line);border-radius:22px;background:var(--surface);padding:22px;display:flex;flex-direction:column;gap:14px;min-height:250px}
+.cbox .eyebrow{display:flex;justify-content:space-between}
+.cbox h4{font-family:var(--display);font-size:28px;line-height:1.05}
+.cbox p{font-size:14.5px;color:var(--muted)}
+.cstage{margin-top:auto;border-radius:16px;background:var(--bg);border:1px dashed var(--line);min-height:110px;display:grid;place-items:center;padding:16px}
+.cbtn{height:44px;min-width:170px;padding:0 20px;border-radius:12px;border:0;background:#3E4FE0;color:#fff;font-weight:600;font-size:14.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:background .3s,min-width .4s var(--ease),transform .15s}
+.cbtn:active{transform:scale(.97)}
+.cbtn.loading{background:#6B78E8}
+.cbtn.done{background:#18925A}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.syncrow{width:100%;display:flex;align-items:center;gap:12px;background:#fff;color:#16161D;border-radius:12px;padding:12px 14px;border:1px solid #E7E7EC;cursor:pointer;font-size:14px;text-align:left}
+.syncrow .bar{flex:1;height:6px;border-radius:3px;background:#EEF0F4;overflow:hidden}
+.syncrow .bar i{display:block;height:100%;width:var(--w,0%);background:#3E4FE0;border-radius:3px;transition:width .5s var(--ease),background .3s}
+.skel{width:100%;display:grid;gap:8px}
+.skel-row{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #E7E7EC;border-radius:10px;padding:10px 12px;color:#16161D;font-size:13.5px}
+.skel-row .b{height:10px;border-radius:5px;background:linear-gradient(90deg,#EEE 0,#F7F7F7 40%,#EEE 80%);background-size:200% 100%;animation:shim 1.2s linear infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.toggle-demo{display:flex;align-items:center;gap:14px;background:#fff;color:#16161D;padding:12px 16px;border-radius:12px;border:1px solid #E7E7EC;cursor:pointer;font-size:14px}
+.tg{width:44px;height:26px;border-radius:99px;background:#D5D5DD;position:relative;transition:background .3s}
+.tg::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .35s var(--ease)}
+.toggle-demo.on .tg{background:#18925A}
+.toggle-demo.on .tg::after{transform:translateX(18px)}
+.inline-toast{position:absolute;bottom:10px;left:50%;transform:translate(-50%,140%);background:#16161D;color:#fff;font-size:12.5px;padding:7px 12px;border-radius:99px;white-space:nowrap;transition:transform .4s var(--ease)}
+.inline-toast.show{transform:translate(-50%,0)}
+.input-demo{width:100%;display:grid;gap:6px}
+.input-demo input{height:42px;border-radius:10px;border:1.5px solid #E1E1E7;padding:0 12px;font:inherit;font-size:14px;color:#16161D;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.input-demo input:focus{border-color:#3E4FE0;box-shadow:0 0 0 4px #E4E7FF}
+.input-demo.err input{border-color:#C4382B;box-shadow:0 0 0 4px #FCE8E6}
+.input-demo.ok input{border-color:#18925A}
+.input-demo small{font-size:12.5px;color:var(--muted);min-height:1.4em}
+.input-demo.err small{color:#C4382B}
+.input-demo.ok small{color:#18925A}
+.empty{text-align:center;color:#16161D;background:#fff;border-radius:12px;padding:16px;border:1px solid #E7E7EC;width:100%}
+.empty svg{width:56px;height:56px;margin:0 auto 6px;display:block}
+.empty b{display:block;font-size:14px}
+.empty span{font-size:12.5px;color:#77777F}
+
+/* ---------- writing ---------- */
+.writing-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:end;margin-bottom:40px}
+.writing-top h2{font-family:var(--display);font-size:clamp(46px,6vw,84px);line-height:.95}
+.writing-top p{color:var(--muted)}
+.cal{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.cat{font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:99px;border:1px solid var(--line);display:inline-flex;align-items:center;gap:6px}
+.cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.fan{position:relative;height:360px;display:flex;justify-content:center;align-items:flex-end}
+.pcard{position:absolute;bottom:0;left:50%;width:250px;height:320px;margin-left:-125px;perspective:1200px;background:none;border:0;padding:0;cursor:pointer;text-align:left;transform:translateX(calc(var(--x) * var(--spread,0) * 1px)) rotate(calc(var(--r) * var(--spread,0) * 1deg));transition:transform .9s var(--ease),z-index 0s}
+.pcard:hover{z-index:10}
+.pcard:hover .pcard-in{transform:translateY(-18px)}
+.pcard.flip:hover .pcard-in,.pcard.flip .pcard-in{transform:translateY(-18px) rotateY(180deg)}
+.pcard-in{position:relative;height:100%;transition:transform .7s var(--ease);transform-style:preserve-3d}
+.pface{position:absolute;inset:0;border-radius:20px;padding:22px;display:flex;flex-direction:column;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);box-shadow:0 30px 50px -35px rgba(20,12,6,.6)}
+.pfront{background:var(--surface)}
+.pfront .blob{width:64px;height:64px;border-radius:50%;background:var(--c);margin-top:8px}
+.pfront h3{font-family:var(--display);font-size:36px;line-height:1;margin-top:auto}
+.pfront .mono{color:var(--muted);font-size:11px}
+.pfront .turn{font-size:12.5px;color:var(--muted);margin-top:10px}
+.pback{background:var(--ink);color:var(--bg);transform:rotateY(180deg);gap:10px}
+.pback .mono{opacity:.65;font-size:11px}
+.pback p{font-size:15px;line-height:1.5}
+.pback .src{margin-top:auto;font-size:12px;opacity:.7}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px)}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:24px;background:linear-gradient(160deg,var(--surface-2),color-mix(in srgb,var(--accent) 24%,var(--surface-2)));display:grid;place-items:center}
+.portrait img{width:100%;height:100%;object-fit:cover;border-radius:24px}
+.portrait .mono-mark{font-family:var(--display);font-size:clamp(120px,16vw,210px);line-height:1;color:color-mix(in srgb,var(--accent) 70%,var(--ink));font-style:italic}
+.sel{position:absolute;inset:-8px;border:1px solid var(--lens);border-radius:4px;pointer-events:none}
+.sel i{position:absolute;width:9px;height:9px;background:#fff;border:1px solid var(--lens)}
+.sel i:nth-child(1){left:-5px;top:-5px}.sel i:nth-child(2){right:-5px;top:-5px}.sel i:nth-child(3){left:-5px;bottom:-5px}.sel i:nth-child(4){right:-5px;bottom:-5px}
+.sel-size{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;background:var(--lens);color:#fff;padding:2px 7px;border-radius:4px;white-space:nowrap}
+.about-copy h2{font-family:var(--display);font-size:clamp(38px,4.6vw,60px);line-height:1;margin:10px 0 22px}
+.about-copy > p{color:var(--muted);margin-bottom:16px;max-width:62ch}
+.about-copy > p strong{color:var(--ink);font-weight:500}
+.xp{margin-top:30px;border-top:1px solid var(--line)}
+.xp details{border-bottom:1px solid var(--line)}
+.xp summary{list-style:none;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;padding:16px 0;cursor:pointer}
+.xp summary::-webkit-details-marker{display:none}
+.xp summary b{font-weight:500}
+.xp summary span{color:var(--muted);font-size:14px;margin-right:auto}
+.xp summary .when{font-family:var(--mono);font-size:12px;margin-right:0}
+.xp summary::after{content:"+";font-family:var(--mono);color:var(--muted);transition:transform .3s}
+.xp details[open] summary::after{transform:rotate(45deg)}
+.xp ul{margin:0 0 18px;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:6px}
+.looking{margin-top:28px;padding:20px 22px;border-radius:18px;border:1px solid var(--line);background:var(--surface);display:grid;gap:6px}
+.looking b{font-weight:500}
+.looking span{color:var(--muted);font-size:15px}
+
+/* ---------- contact ---------- */
+.contact{padding:clamp(100px,14vw,180px) 0 40px;overflow:hidden}
+.contact h2{font-family:var(--display);font-size:clamp(72px,15vw,230px);line-height:.85;letter-spacing:-.035em}
+.contact h2 em{color:var(--accent)}
+.contact-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px;align-items:center}
+.email-line{font-family:var(--mono);font-size:14px;color:var(--muted);margin-top:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 40px;margin-top:90px;font-size:14px;color:var(--muted)}
+.peak{max-width:52ch}
+
+/* ---------- case layer ---------- */
+.case-layer{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;flex-direction:column}
+.case-layer[hidden]{display:none}
+.wipe{position:fixed;inset:0;z-index:90;background:var(--accent);pointer-events:none;clip-path:circle(0 at var(--cx,50%) var(--cy,50%))}
+.wipe.go{animation:wipe .9s var(--ease) forwards}
+@keyframes wipe{0%{clip-path:circle(0 at var(--cx) var(--cy))}45%{clip-path:circle(150% at var(--cx) var(--cy))}55%{clip-path:circle(150% at var(--cx) var(--cy));opacity:1}100%{clip-path:circle(150% at var(--cx) var(--cy));opacity:0}}
+.case-progress{height:3px;background:var(--line)}
+#caseProgress{display:block;height:100%;width:0;background:var(--accent)}
+.case-bar{display:flex;align-items:center;gap:12px;height:60px;padding:0 clamp(16px,3vw,32px);border-bottom:1px solid var(--line)}
+.case-bar .crumb{font-family:var(--mono);font-size:12px;color:var(--muted);margin-right:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.case{padding-bottom:80px}
+.case-hero{max-width:var(--maxw);margin:0 auto;padding:clamp(40px,6vw,80px) clamp(16px,4vw,40px) 0}
+.case-hero h1{font-family:var(--display);font-size:clamp(50px,7.6vw,118px);line-height:.92;letter-spacing:-.025em;margin:16px 0 24px;max-width:15ch}
+.case-hero h1 em{color:var(--accent)}
+.case-hero .lede{max-width:60ch}
+.case-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:36px 0 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.case-meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.case-meta dd{margin:4px 0 0;font-size:15px;line-height:1.4}
+.case-cover{max-width:1400px;margin:48px auto 0;padding:0 clamp(16px,3vw,32px)}
+.cover-stage{position:relative;border-radius:28px;overflow:hidden;background:var(--tint,#2B2F6B);padding:clamp(24px,5vw,72px) clamp(20px,6vw,90px) 0}
+.cover-stage .frame{border-radius:14px 14px 0 0}
+.cover-float{position:absolute;width:30%;right:4%;bottom:8%;z-index:3;animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.cbody{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.cs{padding-top:clamp(64px,8vw,110px)}
+.cs-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,64px);align-items:start}
+.cs h2{font-family:var(--display);font-size:clamp(34px,3.8vw,54px);line-height:1;margin-bottom:16px}
+.cs .eyebrow{display:block;margin-bottom:12px}
+.cs p{max-width:62ch;margin-bottom:14px;color:color-mix(in srgb,var(--ink) 84%,var(--muted))}
+.tldr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tl-item{border-top:2px solid var(--accent);padding-top:14px}
+.tl-item .mono{color:var(--accent);font-size:11.5px}
+.tl-item p{font-size:15.5px;margin-top:6px}
+.big-num{font-family:var(--display);font-size:clamp(46px,5vw,72px);line-height:1;font-variant-numeric:tabular-nums}
+
+/* scrolly */
+.scrolly{position:relative;height:calc(var(--steps) * 80vh)}
+.scrolly-in{position:sticky;top:0;height:calc(100vh - 63px);display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(20px,4vw,56px);align-items:center;max-width:1400px;margin:0 auto;padding:0 clamp(16px,3vw,32px)}
+.steps{display:grid;gap:6px}
+.step{padding:14px 16px;border-radius:14px;border-left:2px solid var(--line);transition:background .4s,border-color .4s,opacity .4s;opacity:.45;cursor:pointer}
+.step b{display:block;font-weight:500;font-size:17px}
+.step span{display:block;font-size:14.5px;color:var(--muted);margin-top:4px;max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.step.on{opacity:1;border-color:var(--accent);background:var(--surface)}
+.step.on span{max-height:120px}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.sc-stage{position:relative}
+.sc-stage .frame{position:relative}
+.sc-screens{position:relative;aspect-ratio:16/10}
+.sc-screens > .sw{position:absolute;inset:0;opacity:0;transform:scale(1.03) translateY(14px);transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.sc-screens > .sw.on{opacity:1;transform:none}
+.sc-progress{position:absolute;left:0;right:0;bottom:-24px;height:3px;border-radius:2px;background:var(--line);overflow:hidden}
+.sc-progress i{display:block;height:100%;width:0;background:var(--accent)}
+
+/* before/after */
+.ba{position:relative;border-radius:18px;overflow:hidden;user-select:none;touch-action:none;cursor:ew-resize;box-shadow:0 40px 70px -40px rgba(10,6,2,.6)}
+.ba .layer-a,.ba .layer-b{position:relative}
+.ba .layer-b{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos,50%))}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:#fff;z-index:4;transform:translateX(-1px)}
+.ba-handle::after{content:"⟷";position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#fff;color:#16161D;display:grid;place-items:center;font-size:18px;box-shadow:0 10px 20px rgba(0,0,0,.25)}
+.ba-tag{position:absolute;top:14px;z-index:3;font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:6px;background:rgba(15,15,20,.75);color:#fff}
+.ba-tag.l{left:14px}.ba-tag.r{right:14px}
+
+/* hotspots */
+.hot{position:relative}
+.hs{position:absolute;left:var(--x);top:var(--y);z-index:4;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:12px;cursor:pointer;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 30%,transparent);animation:hsP 2.2s infinite}
+@keyframes hsP{50%{box-shadow:0 0 0 12px color-mix(in srgb,var(--accent) 0%,transparent)}}
+.hs-note{position:absolute;z-index:5;left:var(--x);top:var(--y);transform:translate(-50%,24px);width:min(280px,70vw);background:#16161D;color:#F3F3F7;font-size:13.5px;line-height:1.5;padding:12px 14px;border-radius:12px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s,transform .35s var(--ease)}
+.hs-note b{display:block;font-weight:600;margin-bottom:3px}
+.hs-note.show{opacity:1;transform:translate(-50%,30px)}
+.hs-list{display:grid;gap:10px;counter-reset:h}
+.hs-item{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:12px;border-radius:12px;cursor:pointer;transition:background .3s}
+.hs-item:hover,.hs-item.on{background:var(--surface)}
+.hs-item i{width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-style:normal;font-family:var(--mono);font-size:12px}
+.hs-item b{display:block;font-weight:500}
+.hs-item span{font-size:14.5px;color:var(--muted)}
+
+/* flow */
+.flow{position:relative;border-radius:24px;background:var(--surface);border:1px solid var(--line);padding:clamp(18px,3vw,36px);overflow-x:auto}
+.flow svg{width:100%;min-width:760px;height:auto;display:block}
+.flow .path{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:var(--len);stroke-dashoffset:calc(var(--len) * (1 - var(--p,0)))}
+.flow .nodebox{fill:var(--bg);stroke:var(--line)}
+.flow .pinch{fill:var(--ink)}
+.flow text{font-family:var(--body);font-size:14px;fill:var(--ink)}
+.flow .pinch-t{fill:var(--bg);font-weight:600}
+.flow .lbl{font-family:var(--mono);font-size:10.5px;fill:var(--muted);letter-spacing:.06em}
+
+/* decisions */
+.decs{display:grid;gap:14px}
+.dec{border:1px solid var(--line);border-radius:22px;background:var(--surface);overflow:hidden}
+.dec-q{padding:20px 24px;display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--line)}
+.dec-q .mono{color:var(--accent)}
+.dec-q b{font-weight:500;font-size:18px}
+.dec-g{display:grid;grid-template-columns:1fr 1fr}
+.dec-g > div{padding:18px 24px}
+.dec-g > div + div{border-left:1px solid var(--line);background:color-mix(in srgb,var(--ok) 6%,transparent)}
+.dec-g .mono{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.dec-g > div + div .mono{color:var(--ok)}
+.dec-g p{font-size:15.5px;margin:0}
+.dec-w{padding:14px 24px 18px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.dec-w b{color:var(--ink);font-weight:500}
+
+/* audit, ladder, misc reused */
+.audit{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.aud{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--surface);transition:border-color .4s,background .4s}
+.aud b{display:block;font-family:var(--display);font-weight:400;font-size:52px;line-height:1;font-variant-numeric:tabular-nums}
+.aud span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:6px}
+.aud.merged{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,var(--surface))}
+.aud.merged b{color:var(--ok)}
+.impact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.imp{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface)}
+.imp b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(38px,4vw,58px);line-height:1}
+.imp span{display:block;margin-top:10px;font-size:14.5px;color:var(--muted)}
+.ai{display:grid;gap:0}
+.ai-step{display:grid;grid-template-columns:130px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.ai-step .mono{color:var(--lens);padding-top:3px}
+.ai-step b{font-weight:500}
+.ai-step p{color:var(--muted);font-size:15.5px;margin:0}
+.human{margin-top:12px;padding:18px 20px;border-radius:16px;background:var(--ink);color:var(--bg)}
+.human .mono{opacity:.65;display:block;margin-bottom:4px}
+blockquote{margin:0;font-family:var(--display);font-size:clamp(30px,3.4vw,46px);line-height:1.1;max-width:24ch}
+.demo{border:1px solid var(--line);border-radius:22px;background:var(--surface);padding:clamp(18px,2.6vw,28px)}
+.demo-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.demo-head .mono{color:var(--muted)}
+.wl{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px;align-items:center}
+.wl-controls{display:grid;gap:16px}
+.lbl2{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:7px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.swt{width:34px;height:34px;border-radius:50%;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--line);cursor:pointer;background:var(--c)}
+.swt.on{box-shadow:0 0 0 2px var(--ink)}
+.swatches input[type=color]{width:34px;height:34px;border:0;padding:0;background:none;cursor:pointer}
+.field{width:100%;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--bg);padding:0 12px;font:inherit;font-size:15px;color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--bg);padding:8px 14px;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.stage{border-radius:18px;padding:clamp(16px,3vw,30px);background:repeating-linear-gradient(45deg,var(--surface-2) 0 10px,transparent 10px 20px),var(--bg);border:1px solid var(--line)}
+.embed{--brand:#0E9F6E;--rad:16px;max-width:380px;margin:0 auto;background:#fff;color:#16161D;border-radius:var(--rad);box-shadow:0 30px 60px -30px rgba(0,0,0,.45);overflow:hidden;transition:border-radius .3s}
+.embed .modal-h i{background:var(--brand);border-radius:calc(var(--rad) * .45);transition:background .3s}
+.embed .m-app.on{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 7%,#fff)}
+.embed .m-go{background:var(--brand);border-radius:calc(var(--rad) * .6);transition:background .3s}
+.embed .m-search,.embed .m-app{border-radius:calc(var(--rad) * .6)}
+.embed-foot{font-size:11px;color:#999;text-align:center;padding:0 0 12px}
+.chk{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--accent)}
+.gallery{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+.gallery .frame:first-child{grid-row:span 2}
+.next-case{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:34px;border-radius:26px;background:var(--ink);color:var(--bg);text-decoration:none;margin-top:90px;transition:transform .4s var(--ease)}
+.next-case:hover{transform:translateY(-4px)}
+.next-case .mono{opacity:.6}
+.next-case b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(32px,4vw,54px);line-height:1;margin-top:6px}
+.next-case .arr{width:60px;height:60px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:22px}
+.swap-note{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* ---------- thinking layer ---------- */
+[data-lens]{position:relative}
+.lens-box,.lens-tag{display:none}
+body.lens-on .lens-box{display:block;position:absolute;inset:-7px;border:1px solid var(--lens);border-radius:3px;pointer-events:none;z-index:20;animation:lensIn .35s ease both}
+body.lens-on .lens-box i{position:absolute;width:8px;height:8px;background:#fff;border:1px solid var(--lens)}
+.lens-box i:nth-child(1){left:-4.5px;top:-4.5px}.lens-box i:nth-child(2){right:-4.5px;top:-4.5px}.lens-box i:nth-child(3){left:-4.5px;bottom:-4.5px}.lens-box i:nth-child(4){right:-4.5px;bottom:-4.5px}
+body.lens-on .lens-tag{display:block;position:absolute;left:-7px;top:-34px;z-index:40;line-height:1;font-size:12px;letter-spacing:0;text-transform:none;font-style:normal;animation:lensIn .35s ease both}
+.lens-tag button{display:inline-flex;align-items:center;gap:6px;background:var(--lens);color:#fff;border:0;border-radius:4px 4px 4px 0;font-family:var(--mono);font-size:11.5px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.lens-tag button::before{content:"◆";font-size:8px;opacity:.85}
+.lens-note{display:none;position:absolute;left:0;top:28px;width:min(320px,80vw);background:#0B1B2B;color:#E8F3FF;font-size:13.5px;line-height:1.5;padding:12px 14px;border-radius:0 10px 10px 10px;box-shadow:0 20px 40px -20px rgba(0,0,0,.5);font-family:var(--body);font-weight:400}
+.lens-note b{display:block;font-family:var(--mono);font-size:11px;color:#7CC4FF;margin-bottom:4px;font-weight:500}
+.lens-tag:hover .lens-note,.lens-tag:focus-within .lens-note,.lens-tag.pinned .lens-note{display:block}
+.nav [data-lens] .lens-tag{top:auto;bottom:-36px}
+.kwrap{display:inline-flex}
+.case-progress .lens-box{inset:0}
+body.lens-on .case-progress .lens-tag{top:10px;left:auto;right:16px}
+body.lens-on .case-progress .lens-note{left:auto;right:0;border-radius:10px 0 10px 10px}
+body.lens-on .wall-zone .lens-tag{top:120px;left:22%}
+.wall-zone[data-lens]{position:absolute}
+.frame.hot{overflow:visible}
+.frame.hot > .sw{border-radius:0 0 12px 12px}
+@keyframes lensIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.lens-banner{position:fixed;left:50%;bottom:18px;transform:translate(-50%,calc(100% + 40px));visibility:hidden;z-index:80;display:flex;align-items:center;gap:12px;background:#0B1B2B;color:#E8F3FF;border-radius:99px;padding:8px 8px 8px 18px;font-size:14px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);transition:transform .45s var(--ease);max-width:calc(100vw - 24px)}
+body.lens-on .lens-banner{transform:translate(-50%,0);visibility:visible}
+.lens-banner b{color:#7CC4FF;font-weight:500}
+.lens-banner button{border:0;background:#1E3A55;color:#fff;border-radius:99px;padding:7px 14px;cursor:pointer;font-size:13px;white-space:nowrap}
+
+/* palette + toast */
+.palette{position:fixed;inset:0;z-index:150;display:grid;place-items:start center;padding-top:14vh;background:color-mix(in srgb,#000 38%,transparent);backdrop-filter:blur(3px)}
+.palette[hidden]{display:none}
+.pal{width:min(600px,calc(100vw - 24px));background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);overflow:hidden;animation:palIn .22s var(--ease)}
+@keyframes palIn{from{transform:scale(.97) translateY(-6px);opacity:0}to{transform:none;opacity:1}}
+.pal input{width:100%;height:58px;border:0;border-bottom:1px solid var(--line);background:transparent;padding:0 20px;font:inherit;font-size:17px;color:var(--ink);outline:none}
+.pal ul{list-style:none;margin:0;padding:8px;max-height:min(420px,56vh);overflow-y:auto}
+.pal li{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;cursor:pointer;font-size:15px}
+.pal li .g{width:28px;height:28px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);flex:none}
+.pal li small{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pal li.on{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.pal li.on .g{background:var(--accent);color:var(--accent-ink)}
+.pal-foot{display:flex;gap:14px;padding:10px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.pal-empty{padding:18px 14px;color:var(--muted);font-size:15px}
+.toast{position:fixed;left:50%;top:20px;visibility:hidden;transform:translate(-50%,-220%);z-index:160;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;transition:transform .35s var(--ease)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+/* ---------- responsive ---------- */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr}
+  .wall-zone,.wall-zone[data-lens]{position:relative;inset:auto;height:420px;margin-top:30px;order:2}
+  .hero{padding-bottom:0}
+  .scard{height:auto;min-height:0;position:relative;top:auto}
+  .scard-in{grid-template-columns:1fr}
+  .scard-art{min-height:300px;order:-1}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .craft{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .writing-top,.about-grid,.cs-grid,.wl{grid-template-columns:1fr}
+  .portrait{max-width:360px}
+  .case-meta,.tldr{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .audit{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .scrolly{height:auto}
+  .scrolly-in{position:relative;height:auto;grid-template-columns:1fr;padding-top:20px;padding-bottom:30px}
+  .navlinks{display:none}
+  .gallery{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .clock,.lens-btn .lbl,.theme-btn,.kwrap .lbl{display:none}
+  .nav{padding-left:14px}
+  .craft,.impact{grid-template-columns:1fr}
+  .dec-g{grid-template-columns:1fr}
+  .dec-g > div + div{border-left:0;border-top:1px solid var(--line)}
+  .audit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ai-step{grid-template-columns:1fr;gap:4px}
+  .stat{padding:22px 12px 22px 0}
+  .stat + .stat{padding-left:12px}
+  .stat:nth-child(3){padding-left:0}
+  .fan{height:auto;flex-direction:column;align-items:center;gap:14px}
+  .pcard{position:relative;left:auto;margin:0;transform:none!important}
+  .tldr{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv.pre{transform:none}
+}
+
+/* ===== v3: wayfinding + light touch ===== */
+.sprog{position:fixed;left:0;top:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--accent);z-index:55;pointer-events:none}
+.sdots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;gap:12px;transition:opacity .4s}
+.sdots a{width:9px;height:9px;border-radius:50%;border:1px solid var(--muted);display:block;position:relative;transition:background .3s,transform .3s,border-color .3s}
+.sdots a.on{background:var(--accent);border-color:var(--accent);transform:scale(1.4)}
+.sdots a::after{content:attr(data-l);position:absolute;right:20px;top:50%;transform:translate(6px,-50%);font-family:var(--mono);font-size:11px;white-space:nowrap;opacity:0;transition:.25s;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:3px 8px;border-radius:99px;pointer-events:none}
+.sdots a:hover::after,.sdots a:focus-visible::after{opacity:1;transform:translate(0,-50%)}
+body.case-open .sdots,body.case-open .sprog,body.case-open .tip{opacity:0;pointer-events:none;visibility:hidden}
+@media (max-width:1100px){.sdots{display:none}}
+.spot{position:relative}
+.spot::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;opacity:0;transition:opacity .35s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--accent) 13%,transparent),transparent 65%)}
+.spot:hover::before{opacity:1}
+.sec-head h2.mask,.writing-top h2.mask,.contact h2.mask{clip-path:inset(0 0 100% 0);transform:translateY(.25em)}
+.sec-head h2,.writing-top h2,.contact h2{transition:clip-path 1.1s var(--ease),transform 1.1s var(--ease)}
+.tip{position:fixed;left:20px;bottom:20px;z-index:70;max-width:330px;padding:14px 40px 14px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(30,20,10,.5);font-size:14px;line-height:1.5;transform:translateY(160%);transition:transform .6s var(--ease)}
+.tip.show{transform:none}
+.tip b{display:block;font-family:var(--display);font-weight:400;font-size:21px;margin-bottom:2px}
+.tip button{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:none;border:0;cursor:pointer;color:var(--muted)}
+.tip button:hover{background:var(--surface-2)}
+@media (prefers-reduced-motion: reduce){.sec-head h2.mask,.writing-top h2.mask,.contact h2.mask{clip-path:none;transform:none}}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorText">View</span></div>
+<a class="sr" href="#work">Skip to work</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Priyadarshi, back to top"><b>Priyadarshi</b><span>Product designer</span></a>
+  <nav class="navlinks" aria-label="Primary" data-lens-title="Hick's law" data-lens="Three links and nothing else. Every extra option adds decision time, so the nav carries only what a reviewer needs.">
+    <a href="#work">Work</a><a href="#craft">Craft</a><a href="#about">About</a>
+  </nav>
+  <div class="navtools">
+    <span class="pill clock" title="My local time in India" data-lens-title="Ambiguity aversion" data-lens="People avoid unknowns. A live clock and a reply hint answer “when will I hear back?” before anyone has to ask."><span class="dot" id="dot"></span><span id="clock">IST</span><span class="ctext" id="clockStatus"></span></span>
+    <span class="kwrap" data-lens-title="Jakob's law" data-lens="Designers and developers live in tools with ⌘K. Reusing the pattern means zero learning for the people reviewing this site."><button class="pill" id="kBtn" aria-label="Open command menu"><kbd id="kKey">⌘K</kbd><span class="lbl">Menu</span></button></span>
+    <button class="pill lens-btn" id="lensBtn" aria-pressed="false" title="Show the design thinking (L)"><span class="switch" aria-hidden="true"></span><span class="lbl">Thinking</span></button>
+    <button class="pill icon-btn theme-btn" id="themeBtn" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" aria-labelledby="h1">
+  <div class="wall-zone" id="wallZone" data-lens-title="Picture superiority effect" data-lens="People remember images far better than words. So you see my screens moving before you read a single sentence about me.">
+    <div class="wall" id="wall"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow fade-up" style="--d:.1s">Product designer · 6 years · B2B SaaS, fintech, AI tools</span>
+      <h1 id="h1" data-lens-title="Processing fluency" data-lens="Short words, one idea. Claims that are easy to read feel more true and stick longer.">
+        <span class="line"><span style="--i:0">I design for</span></span>
+        <span class="line"><span style="--i:1">how people</span></span>
+        <span class="line"><span style="--i:2"><em>actually</em> decide.</span></span>
+      </h1>
+      <p class="lede fade-up" style="--d:.55s">Sole designer at <strong>Knit</strong>, where I took two B2B products from a folder of docs to production. I write <strong>Decision Design</strong>, a newsletter on the psychology behind product choices. Looking for a senior product design role.</p>
+      <div class="cta-row fade-up" style="--d:.7s" data-lens-title="Von Restorff effect" data-lens="One high-contrast action per screen. The thing that looks different is the thing you remember and click.">
+        <a class="btn primary magnetic" href="#work">See the work <span class="arr">→</span></a>
+        <button class="btn magnetic" data-copy-email>Copy email</button>
+        <a class="btn magnetic" data-href="resume" target="_blank" rel="noopener">Résumé ↗</a>
+      </div>
+      <button class="hint fade-up" style="--d:.9s" id="hint"><kbd>L</kbd><span id="hintText">Press L to see the psychology behind every choice on this page</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-label="Where I've worked">
+  <div class="marquee-track" id="mq">
+    <span>Knit<small>B2B integrations · 200+ connectors</small></span>
+    <span>SuperBeings<small>HR &amp; engagement SaaS</small></span>
+    <span>KFin Technologies<small>Fintech infra for AMCs</small></span>
+    <span>ServiceNow<small>Engineering internship</small></span>
+    <span>Decision Design<small>Newsletter · 85 principles</small></span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats" data-lens-title="Anchoring" data-lens="The first concrete numbers you see set the reference point for everything after, so the page leads with outcomes instead of adjectives.">
+    <div class="stat"><b data-count="6">6<small> yrs</small></b><span>designing B2B and fintech products</span></div>
+    <div class="stat"><b data-count="2">2</b><span>products taken from zero to live as the sole designer</span></div>
+    <div class="stat"><b class="sm">hrs → min</b><span>time to first integration on Knit's Unified API</span></div>
+    <div class="stat"><b data-count="46" data-suffix="%">46%</b><span>less project onboarding time at KFin, measured in Heap</span></div>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="sec" id="work" aria-labelledby="workTitle">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="workTitle">Selected <em>work</em></h2>
+      <p>Five projects, strongest first. Scroll and they stack. Open any card for the full story, with trade-offs and the screens.</p>
+    </div>
+    <div class="stack" id="stack" data-lens-title="Serial position effect" data-lens="People remember the first and last items in a list best. The strongest case leads, and a strong one closes.">
+
+      <article class="scard" style="--i:0">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">01 / 05</span><span class="badge">Strategy → prototype</span></div>
+            <span class="co">KNIT · 2026</span>
+            <h3>Three products, one spine</h3>
+            <p>A Unified API, an MCP server and an AI Integrations Agent, each with its own connections, logs and billing. I re-architected them into one product on a shared Connection base.</p>
+            <div class="outcomes"><span><b>4 → 1</b> Connection objects</span><span><b>2 weeks</b> onboarding redesign</span></div>
+            <div class="tags"><span>Information architecture</span><span>Onboarding</span><span>Systems</span><span>AI workflow</span></div>
+            <span class="viewcase">Open case study <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#2E3170">
+            <div class="layer l1" data-depth="-40" style="left:9%;top:12%;width:88%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/activity</span></div><div class="sw" data-screen="activity"></div></div></div>
+            <div class="layer l2" data-depth="40" style="left:-4%;bottom:6%;width:52%"><div class="frame bare"><div class="sw" data-screen="picker"></div></div></div>
+            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+          </div>
+          <a class="cover" href="#case-merger" data-cursor="Read" aria-label="Open case study 01: Three products, one spine"></a>
+        </div>
+      </article>
+
+      <article class="scard" style="--i:1">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">02 / 05</span><span class="badge live">Live in production</span></div>
+            <span class="co">KNIT UNIFIED API · 2024 → NOW</span>
+            <h3>A docs folder to a live product in a month</h3>
+            <p>There was nothing to log into. I designed the whole web app, shipped v1 in about a month with the CEO, CMO and tech lead, then kept iterating through several live versions.</p>
+            <div class="outcomes"><span><b>hrs → min</b> first integration</span><span><b>200+</b> connectors</span><span><b>30+</b> customers</span></div>
+            <div class="tags"><span>0 → 1</span><span>Dashboard</span><span>White-label UI</span><span>Research loop</span></div>
+            <span class="viewcase">Open case study <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#6B3B26">
+            <div class="layer l1" data-depth="-40" style="left:8%;top:10%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div><div class="sw" data-screen="dashboard"></div></div></div>
+            <div class="layer l2" data-depth="50" style="right:4%;bottom:5%;width:40%"><div class="frame bare"><div class="sw" data-screen="connect"></div></div></div>
+            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+          </div>
+          <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 02"></a>
+        </div>
+      </article>
+
+      <article class="scard" style="--i:2">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">03 / 05</span><span class="badge">Shipped at Knit</span></div>
+            <span class="co">KNIT · LOGS, SYNCS &amp; ALERTS</span>
+            <h3>Making silent sync failures loud</h3>
+            <p>A failed sync stays invisible until someone's data is wrong downstream. I redesigned Logs and Data Syncs monitoring, then designed alert management and data validation on top.</p>
+            <div class="outcomes"><span><b>Fewer</b> sync support tickets</span></div>
+            <div class="tags"><span>Observability</span><span>Data-dense UI</span><span>Alerts</span></div>
+            <span class="viewcase">Open project <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#1F4B3E">
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncs"></div></div></div>
+            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+          </div>
+          <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 03"></a>
+        </div>
+      </article>
+
+      <article class="scard" style="--i:3">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">04 / 05</span><span class="badge live">Shipped</span></div>
+            <span class="co">KFIN TECHNOLOGIES · DIGIX</span>
+            <h3>Statutory reporting, made self-serve</h3>
+            <p>The reporting platform India's asset management companies use to schedule, generate and share statutory reports. I turned a compliance-heavy workflow into a self-serve product.</p>
+            <div class="outcomes"><span><b>46%</b> less onboarding time</span><span><b>4</b> fintech products led</span></div>
+            <div class="tags"><span>Fintech</span><span>Enterprise</span><span>Workflow design</span></div>
+            <span class="viewcase">Open project <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#4A3A6B">
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>digix · report scheduler</span></div><div class="sw" data-screen="digix"></div></div></div>
+            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+          </div>
+          <a class="cover" href="#case-kfin" data-cursor="Open" aria-label="Open project 04"></a>
+        </div>
+      </article>
+
+      <article class="scard" style="--i:4">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">05 / 05</span><span class="badge live">Shipped</span></div>
+            <span class="co">SUPERBEINGS · HR SAAS</span>
+            <h3>The hardest module in an HR platform</h3>
+            <p>Design lead in a two-person team. I redesigned performance management end to end, then rebuilt Custom Pulse surveys, Goals and OKRs, and first-run onboarding.</p>
+            <div class="outcomes"><span><b>4</b> core modules owned</span></div>
+            <div class="tags"><span>HR tech</span><span>Complex forms</span><span>Onboarding</span></div>
+            <span class="viewcase">Open project <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#6B2E45">
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>superbeings · review cycles</span></div><div class="sw" data-screen="review"></div></div></div>
+            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+          </div>
+          <a class="cover" href="#case-superbeings" data-cursor="Open" aria-label="Open project 05"></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section class="sec" id="craft" aria-labelledby="craftTitle">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 id="craftTitle">Details I <em>sweat</em></h2>
+      <p>Big decisions get the case studies. These are the small ones: states, feedback and the half-second in-betweens that make data-heavy B2B products feel calm. Click everything.</p>
+    </div>
+    <div class="craft" data-lens-title="Doherty threshold" data-lens="People stay engaged when a system responds in under about 400ms. Every component here acknowledges a click instantly, even when the real work takes longer.">
+      <div class="cbox rv"><span class="eyebrow"><span>01 · Async action</span><span>click</span></span><h4>Buttons that tell the truth</h4><p>Idle, working, done. The label changes with the state so nobody double-submits a sync.</p><div class="cstage"><button class="cbtn" id="cbtn">Run sync now</button></div></div>
+      <div class="cbox rv"><span class="eyebrow"><span>02 · Progress</span><span>click</span></span><h4>Progress you can trust</h4><p>A sync that fails shows where it stopped, in plain words, not a spinner that spins forever.</p><div class="cstage"><button class="syncrow" id="syncrow"><span class="s-app"><i style="background:#73C41D">B</i></span><span id="syncLabel">BambooHR · ready</span><span class="bar"><i id="syncBar"></i></span></button></div></div>
+      <div class="cbox rv"><span class="eyebrow"><span>03 · Loading</span><span>click</span></span><h4>Skeletons, not spinners</h4><p>Skeletons hold the shape of the table, so the page doesn't jump when data lands.</p><div class="cstage"><div class="skel" id="skel"></div></div></div>
+      <div class="cbox rv"><span class="eyebrow"><span>04 · Validation</span><span>type</span></span><h4>Errors that help</h4><p>Inline, specific and kind. Say what's wrong and how to fix it, while the user is still looking.</p><div class="cstage"><div class="input-demo" id="inDemo"><input id="webhook" placeholder="Webhook URL, e.g. https://acme.com/hooks" aria-describedby="whMsg" autocomplete="off"><small id="whMsg">We'll send sync events here.</small></div></div></div>
+      <div class="cbox rv" style="position:relative;overflow:hidden"><span class="eyebrow"><span>05 · Reversible</span><span>click</span></span><h4>Undo beats “Are you sure?”</h4><p>Confirm dialogs get clicked through on autopilot. An undo toast respects intent and fixes mistakes.</p><div class="cstage" style="position:relative;overflow:hidden"><button class="toggle-demo" id="tgDemo" aria-pressed="false"><span class="tg"></span><span id="tgLabel">Alerts for Workday: off</span></button><span class="inline-toast" id="inToast">Alerts on · <u>Undo</u></span></div></div>
+      <div class="cbox rv"><span class="eyebrow"><span>06 · Empty state</span><span>look</span></span><h4>Empty states that teach</h4><p>The first screen a new customer sees is usually empty. Use it to show the next step instead of a sad illustration.</p><div class="cstage"><div class="empty"><svg viewBox="0 0 56 56" fill="none"><rect x="6" y="12" width="44" height="32" rx="6" stroke="#B8B8C4" stroke-width="2"/><path d="M6 22h44" stroke="#B8B8C4" stroke-width="2"/><circle cx="28" cy="34" r="5" fill="#3E4FE0"><animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/></circle></svg><b>No integrations yet</b><span>Connect your first app. It takes about a minute.</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="sec" id="writing" aria-labelledby="writingTitle">
+  <div class="wrap">
+    <div class="writing-top rv">
+      <div><span class="eyebrow">Newsletter · Substack, LinkedIn, X</span><h2 id="writingTitle">Decision <em>Design</em></h2></div>
+      <div>
+        <p>Where the science of how people think meets the craft of how products are designed. I'm working through 85 behavioural principles, three posts a week, through January 2027, and every example gets checked against the research first.</p>
+        <div class="cal"><span class="cat" style="--c:#C8643F">Behavioural</span><span class="cat" style="--c:#8B5CF6">Persuasion</span><span class="cat" style="--c:#2F8F9D">Cognitive</span><span class="cat" style="--c:#C99A2E">Perceptual</span><span class="cat" style="--c:#D9577A">Emotional</span></div>
+      </div>
+    </div>
+    <div class="fan" id="fan" data-lens-title="Curiosity gap" data-lens="A hidden back side is an open loop. Most people can't resist closing it, so the cards get flipped and the ideas get read.">
+      <button class="pcard" style="--c:#C8643F;--x:-420;--r:-14" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">BEHAVIOURAL</span><span class="blob"></span><h3>Endowment effect</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">ENDOWMENT EFFECT</span><p>We value things more once they feel like ours. In the classic mug study, owners asked more than twice what buyers would pay. Free trials run on exactly this.</p><span class="src">Kahneman, Knetsch &amp; Thaler, 1990</span></div></div></button>
+      <button class="pcard" style="--c:#C99A2E;--x:-250;--r:-8" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">PERCEPTUAL</span><span class="blob"></span><h3>Habituation</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">HABITUATION</span><p>Show the same warning often enough and the brain stops seeing it. Banner blindness is the web version, and every “Are you sure?” dialog is heading there.</p><span class="src">Benway &amp; Lane, 1998</span></div></div></button>
+      <button class="pcard" style="--c:#2F8F9D;--x:-84;--r:-3" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">COGNITIVE</span><span class="blob"></span><h3>Zeigarnik effect</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">ZEIGARNIK EFFECT</span><p>Unfinished tasks nag at us more than finished ones. A profile that's “80% complete” keeps pulling people back to finish it.</p><span class="src">Zeigarnik, 1927</span></div></div></button>
+      <button class="pcard" style="--c:#8B5CF6;--x:84;--r:3" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">PERSUASION</span><span class="blob"></span><h3>Decoy effect</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">DECOY EFFECT</span><p>Add an option nobody wants and the one next to it suddenly looks like a deal. Most three-tier pricing pages have one plan doing this job.</p><span class="src">Huber, Payne &amp; Puto, 1982</span></div></div></button>
+      <button class="pcard" style="--c:#C8643F;--x:250;--r:8" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">BEHAVIOURAL</span><span class="blob"></span><h3>Loss aversion</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">LOSS AVERSION</span><p>Losing ₹500 stings more than finding ₹500 feels good. That asymmetry is why “Don't lose your streak” beats “Keep going!”.</p><span class="src">Kahneman &amp; Tversky, 1979</span></div></div></button>
+      <button class="pcard" style="--c:#D9577A;--x:420;--r:14" aria-pressed="false"><div class="pcard-in"><div class="pface pfront"><span class="mono">MOTIVATION</span><span class="blob"></span><h3>Overjustification</h3><span class="turn">Click to flip ↻</span></div><div class="pface pback"><span class="mono">OVERJUSTIFICATION</span><p>Reward people for something they already enjoy and they may start enjoying it less. Points and badges can crowd out the reason someone showed up.</p><span class="src">Lepper, Greene &amp; Nisbett, 1973</span></div></div></button>
+    </div>
+    <div class="cta-row" style="justify-content:center"><a class="btn magnetic" data-href="substack" target="_blank" rel="noopener">Read Decision Design ↗</a></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about" aria-labelledby="aboutTitle">
+  <div class="wrap about-grid">
+    <div class="rv"><div class="portrait" id="portrait"><span class="mono-mark" aria-hidden="true">P</span><span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="sel-size">Priyadarshi · 6 yrs</span></span></div></div>
+    <div class="about-copy">
+      <span class="eyebrow">About</span>
+      <h2 id="aboutTitle">I started out writing code, and got hooked on why people click what they click.</h2>
+      <p>My first real project was an engineering internship at <strong>ServiceNow</strong>, building a sentiment model for Slack channels and incident surveys. That's where I got curious about how people actually behave inside products, which is a different question from how they say they behave.</p>
+      <p>Since then I've designed fintech infrastructure at <strong>KFin Technologies</strong>, HR software at <strong>SuperBeings</strong> and developer tools at <strong>Knit</strong>, where I'm the only designer. I run discovery through customer calls, Microsoft Clarity recordings and Heap funnels, then redesign against what people really do.</p>
+      <div class="xp" data-lens-title="Chunking" data-lens="Five roles, one line each. Smaller chunks are easier to hold in working memory, and you open only what you care about.">
+        <details open><summary><b>Knit</b><span>Product designer · sole designer</span><span class="when">Dec 2022 → now</span></summary><ul><li>Designed the Unified API web app from zero, through several live versions</li><li>Designed the white-labelled embeddable UI that end customers see</li><li>Re-architected three products into one, with a two-week onboarding sprint</li><li>Redesigned Logs and Data Syncs, plus alerts and data validation flows</li></ul></details>
+        <details><summary><b>SuperBeings</b><span>Product designer · design lead</span><span class="when">→ Dec 2022</span></summary><ul><li>Performance management, Custom Pulse surveys, Goals/OKRs and onboarding</li><li>When SuperBeings wound down, the whole team moved to Knit</li></ul></details>
+        <details><summary><b>KFin Technologies</b><span>Project lead, UX</span><span class="when"></span></summary><ul><li>Led UX across DIGIX, KBOSS, InstaPay and a data management tool</li></ul></details>
+        <details><summary><b>KFin Technologies</b><span>Deputy manager, product</span><span class="when"></span></summary><ul><li>Automated cross-team workflow: 46% less project onboarding time (Heap)</li><li>Analytics dashboard prototype and launch roadmap</li></ul></details>
+        <details><summary><b>ServiceNow</b><span>Software engineer intern</span><span class="when"></span></summary><ul><li>Sentiment analysis model for Slack channels and incident surveys, in Keras/TensorFlow</li></ul></details>
+      </div>
+      <div class="looking"><b>What I'm looking for</b><span>A senior product design role where design sits close to product strategy. Remote from anywhere, or on-site across India and abroad.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-labelledby="contactTitle">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h2 id="contactTitle" class="rv">Let's <em>talk.</em></h2>
+    <div class="contact-row">
+      <button class="btn primary magnetic" data-copy-email>Copy email <span class="arr">→</span></button>
+      <a class="btn magnetic" data-href="linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn magnetic" data-href="substack" target="_blank" rel="noopener">Substack ↗</a>
+      <a class="btn magnetic" data-href="resume" target="_blank" rel="noopener">Résumé ↗</a>
+    </div>
+    <p class="email-line" data-email></p>
+    <div class="foot">
+      <p class="peak" data-lens-title="Peak-end rule" data-lens="People judge an experience mostly by its best moment and its ending. So the page ends on a small high instead of a copyright line.">You made it to the bottom. The peak-end rule says this is the part you'll remember, so thank you for reading this far.</p>
+      <span>Designed and built by Priyadarshi · 2026</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ CASES ============ -->
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+<div class="case-layer" id="caseLayer" hidden role="dialog" aria-modal="true" aria-labelledby="caseCrumb">
+  <div class="case-progress" data-lens-title="Goal-gradient effect" data-lens="People speed up as the finish line gets close. The progress bar keeps the finish visible, so more people read to the end."><span id="caseProgress"></span></div>
+  <div class="case-bar">
+    <button class="pill" id="caseClose">← All work</button>
+    <span class="crumb" id="caseCrumb">Case study</span>
+    <button class="pill" data-open-palette><kbd class="kkey">⌘K</kbd></button>
+  </div>
+  <div class="case-scroll" id="caseScroll">
+
+    <!-- CASE 01 -->
+    <article class="case" data-route="case-merger" data-crumb="01 · Knit · Three products, one spine" hidden>
+      <header class="case-hero">
+        <span class="eyebrow">Case study 01 · Knit · 2026</span>
+        <h1>Three products, one <em>spine</em></h1>
+        <p class="lede">Knit had three products built as three separate bets. Customers who needed all of them got three domains, three design systems and three ways to connect the same app. I re-architected them into one product, then redesigned onboarding in a two-week solo sprint.</p>
+        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Worked with</dt><dd>My manager, engineering</dd></div><div><dt>Timeline</dt><dd>Onboarding sprint: 2 weeks, July 2026</dd></div><div><dt>Tools</dt><dd>Figma, FigJam, Claude, Figma MCP</dd></div></dl>
+      </header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:#2E3170">
+        <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/connections/workday-acme</span></div><div class="sw" data-screen="detail"></div></div>
+        <div class="cover-float"><div class="frame bare"><div class="sw" data-screen="picker"></div></div></div>
+      </div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
+
+      <div class="cbody">
+        <section class="cs" data-lens-title="Satisficing" data-lens="Most reviewers decide within a minute. Four numbered lines give them enough to decide well without reading another word.">
+          <span class="eyebrow">The 15-second version</span>
+          <div class="tldr">
+            <div class="tl-item"><span class="mono">01 · PROBLEM</span><p>Three products shared a connector layer and almost nothing else.</p></div>
+            <div class="tl-item"><span class="mono">02 · FINDING</span><p>The same Connection object had been built four separate times.</p></div>
+            <div class="tl-item"><span class="mono">03 · REFRAME</span><p>Three rungs of one ladder on a shared Connection, with pick-your-path onboarding.</p></div>
+            <div class="tl-item"><span class="mono">04 · OUTCOME</span><p>One object model, one IA, one onboarding, handed off as flows and prototypes.</p></div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <div class="cs-grid">
+            <div><span class="eyebrow">Context &amp; problem</span><h2>Every team had solved the same problem, separately.</h2>
+              <p>The products had been built fast, by different people, for different bets. Sales struggled to position them, engineering paid for most things three times, and pricing had grown meters no buyer could hold in their head.</p>
+              <p>Before drawing anything, I inventoried every screen to find out exactly how much was duplicated. Press the button.</p>
+              <button class="btn" id="mergeBtn">Merge them →</button></div>
+            <div class="audit" id="audit" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+              <div class="aud" data-n="4"><b>4</b><span>implementations of the Connection object</span></div>
+              <div class="aud" data-n="5"><b>5</b><span>separate observability views</span></div>
+              <div class="aud" data-n="4"><b>4</b><span>billing meters</span></div>
+              <div class="aud" data-n="3"><b>3</b><span>design systems</span></div>
+              <div class="aud" data-n="3"><b>3</b><span>domains to log into</span></div>
+              <div class="aud" data-n="3"><b>3</b><span>ways to connect the same app</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <span class="eyebrow">Before / after · drag the handle</span>
+          <h2>Three sidebars became one, with a shared base and a shared roof.</h2>
+          <p>The nav is where the merge becomes visible. Your chosen path sits in the middle. Connections sit underneath it, and activity, alerts and settings sit on top, shared by every path.</p>
+          <div class="ba" id="ba1" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Dragging the handle lets you feel the difference instead of reading about it.">
+            <div class="layer-a"><div class="sw" data-screen="before3"></div></div>
+            <div class="layer-b"><div class="sw" data-screen="activity"></div></div>
+            <span class="ba-tag l">Before · three products</span><span class="ba-tag r">After · one product</span>
+            <div class="ba-handle"></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="cs">
+        <div class="cbody"><span class="eyebrow">The journey · scroll to step through</span><h2>An hourglass: wide at the start, one pinch in the middle.</h2></div>
+        <div class="scrolly" style="--steps:5" data-scrolly data-lens-title="Progressive disclosure" data-lens="One step of the journey at a time. The screen changes only when you're ready for the next idea.">
+          <div class="scrolly-in">
+            <div class="steps">
+              <div class="step on"><span class="n">STEP 1</span><b>Pick a path</b><span>Call an API, use tools in your code editor, or build a workflow. The choice is explicit, and it's reversible until you go live.</span></div>
+              <div class="step"><span class="n">STEP 2</span><b>Connect once</b><span>Every path goes through one connection flow. MCP used to ask people to type a phrase into their AI chat. Now it reuses Magic Link.</span></div>
+              <div class="step"><span class="n">STEP 3</span><b>Go live</b><span>The completion screen became a detail page: the path-specific region on top, then connections, activity and the next surface to add.</span></div>
+              <div class="step"><span class="n">STEP 4</span><b>Manage many</b><span>Customers run several APIs, MCP servers and workflows at once, so live objects get an index with one consistent detail page each.</span></div>
+              <div class="step"><span class="n">STEP 5</span><b>One activity stream</b><span>Five observability views became one table with a Surface column. Identical errors collapse into one row with a count.</span></div>
+            </div>
+            <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
+              <div class="sc-screens">
+                <div class="sw on" data-screen="picker"></div>
+                <div class="sw" data-screen="connect"></div>
+                <div class="sw" data-screen="detail"></div>
+                <div class="sw" data-screen="index"></div>
+                <div class="sw" data-screen="activity"></div>
+              </div></div><div class="sc-progress"><i></i></div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="cbody">
+        <section class="cs">
+          <span class="eyebrow">Flow · draws as you scroll</span>
+          <h2>Onboarding forks. The product doesn't.</h2>
+          <div class="flow" data-flow>
+            <svg viewBox="0 0 1000 330" role="img" aria-label="Three entry points converge on one connection, fan out to three surfaces, then converge on one activity stream">
+              <path class="path" d="M150 60 C 260 60, 300 165, 360 165"/><path class="path" d="M150 165 L 360 165"/><path class="path" d="M150 270 C 260 270, 300 165, 360 165"/>
+              <path class="path" d="M460 165 C 520 165, 540 60, 620 60"/><path class="path" d="M460 165 L 620 165"/><path class="path" d="M460 165 C 520 165, 540 270, 620 270"/>
+              <path class="path" d="M760 60 C 820 60, 830 165, 870 165"/><path class="path" d="M760 165 L 870 165"/><path class="path" d="M760 270 C 820 270, 830 165, 870 165"/>
+              <rect class="nodebox" x="20" y="38" width="130" height="44" rx="10"/><text x="85" y="65" text-anchor="middle">Call an API</text>
+              <rect class="nodebox" x="20" y="143" width="130" height="44" rx="10"/><text x="85" y="170" text-anchor="middle">Use tools</text>
+              <rect class="nodebox" x="20" y="248" width="130" height="44" rx="10"/><text x="85" y="275" text-anchor="middle">Build a workflow</text>
+              <rect class="pinch" x="360" y="135" width="100" height="60" rx="12"/><text class="pinch-t" x="410" y="170" text-anchor="middle">Connect</text>
+              <rect class="nodebox" x="620" y="38" width="140" height="44" rx="10"/><text x="690" y="65" text-anchor="middle">Unified API</text>
+              <rect class="nodebox" x="620" y="143" width="140" height="44" rx="10"/><text x="690" y="170" text-anchor="middle">MCP server</text>
+              <rect class="nodebox" x="620" y="248" width="140" height="44" rx="10"/><text x="690" y="275" text-anchor="middle">Workflow</text>
+              <rect class="pinch" x="870" y="135" width="110" height="60" rx="12"/><text class="pinch-t" x="925" y="170" text-anchor="middle">Activity</text>
+              <text class="lbl" x="85" y="20" text-anchor="middle">3 ENTRY POINTS</text><text class="lbl" x="410" y="120" text-anchor="middle">ONE CONNECTION</text><text class="lbl" x="690" y="20" text-anchor="middle">3 SURFACES</text><text class="lbl" x="925" y="120" text-anchor="middle">ONE STREAM</text>
+            </svg>
+          </div>
+        </section>
+
+        <section class="cs">
+          <span class="eyebrow">Key decisions &amp; trade-offs</span>
+          <h2>Three calls that shaped everything after.</h2>
+          <div class="decs">
+            <div class="dec rv"><div class="dec-q"><span class="mono">D1</span><b>How should onboarding route people?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>Let the agent infer intent from the first prompt and route automatically.</p></div><div><span class="mono">Chose</span><p>Explicit self-selection at login, with context carried across if people switch.</p></div></div><p class="dec-w"><b>Why:</b> my manager pushed for explicit choice, and the more I designed it the more I agreed. A visible choice sets expectations from step one. <b>Cost:</b> one extra screen before value, so that screen had to be fast.</p></div>
+            <div class="dec rv"><div class="dec-q"><span class="mono">D2</span><b>Is switching paths the same as adding one?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>One “change path” control that behaves the same before and after go-live.</p></div><div><span class="mono">Chose</span><p>Two affordances: switch while setting up, add a surface once something is live.</p></div></div><p class="dec-w"><b>Why:</b> before go-live a switch is cheap and reversible. After go-live it's an addition that must not disturb what's already running.</p></div>
+            <div class="dec rv"><div class="dec-q"><span class="mono">D3</span><b>What happens when a customer has five things live?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>A single “you're live” screen at the end of onboarding.</p></div><div><span class="mono">Chose</span><p>Index to detail. The completion screen became the detail page for every live object.</p></div></div><p class="dec-w"><b>Why:</b> a single completion screen broke at two live objects. <b>Cost:</b> API keys must become plural and scoped, a proposal engineering still has to accept.</p></div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <span class="eyebrow">Annotated · hover the pins</span>
+          <h2>The activity table, up close.</h2>
+          <div class="cs-grid">
+            <div class="hs-list" data-hs-list="hs1">
+              <div class="hs-item" data-k="0"><i>1</i><div><b>A Surface column</b><span>API, MCP and workflow events in one table. Filter by surface and you get each old product's view back for free.</span></div></div>
+              <div class="hs-item" data-k="1"><i>2</i><div><b>Identical errors, grouped</b><span>The old Issues page repeated the same Zoho Books error hundreds of times. Now it's one row with a count, an owner and a resolve action.</span></div></div>
+              <div class="hs-item" data-k="2"><i>3</i><div><b>Your path, between shared layers</b><span>Two dividers in the sidebar do the whole job: a shared base, your path, a shared roof.</span></div></div>
+            </div>
+            <div class="hot frame" id="hs1"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/activity</span></div>
+              <div class="sw" data-screen="activity"></div>
+              <button class="hs" style="--x:43%;--y:33%" data-k="0" aria-label="Pin 1">1</button>
+              <button class="hs" style="--x:62%;--y:52%" data-k="1" aria-label="Pin 2">2</button>
+              <button class="hs" style="--x:10%;--y:40%" data-k="2" aria-label="Pin 3">3</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <span class="eyebrow">Impact</span>
+          <h2>One model the whole company can point at.</h2>
+          <div class="impact">
+            <div class="imp"><b>4 → 1</b><span>Connection implementations in the target model</span></div>
+            <div class="imp"><b data-count="2" data-suffix=" weeks">2 weeks</b><span>for the full onboarding redesign, solo</span></div>
+            <div class="imp"><b data-count="1">1</b><span>reusable design prompt, so new screens start consistent</span></div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <div class="cs-grid">
+            <div><span class="eyebrow">AI workflow</span><h2>Where AI sped me up, and where it didn't.</h2>
+              <div class="human"><span class="mono">WHAT STAYED HUMAN</span>AI was fast at listing what existed. Deciding what should exist was my job, with my manager.</div></div>
+            <div class="ai">
+              <div class="ai-step"><span class="mono">INVENTORY</span><div><b>Screenshots in, audit out</b><p>I fed every screen of all three products to Claude and worked through the inventory with it. The duplication counts came out of that pass.</p></div></div>
+              <div class="ai-step"><span class="mono">WIREFRAMES</span><div><b>FigJam flows through Figma MCP</b><p>Once the IA was agreed, I generated the first round of wireframes through the Figma MCP integration, then reworked them by hand.</p></div></div>
+              <div class="ai-step"><span class="mono">SYSTEM</span><div><b>A reusable design prompt</b><p>I wrote the decisions into a design prompt so every new screen starts from the same object model and naming.</p></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs">
+          <span class="eyebrow">Reflection</span>
+          <blockquote>“If I did it again, I'd put pricing on the table on day one.”</blockquote>
+          <p style="margin-top:16px">The UI can merge three products. If the meters stay split, buyers still see three.</p>
+        </section>
+        <a class="next-case" href="#case-unified-api"><div><span class="mono">NEXT · 02</span><b>A docs folder to a live product in a month</b></div><span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- CASE 02 -->
+    <article class="case" data-route="case-unified-api" data-crumb="02 · Knit Unified API · Docs folder to live product" hidden>
+      <header class="case-hero">
+        <span class="eyebrow">Case study 02 · Knit Unified API · 2024 → now</span>
+        <h1>A docs folder to a live product in a <em>month</em></h1>
+        <p class="lede">Knit lets SaaS companies connect once and reach 200+ HR, recruiting, CRM and accounting apps through one normalised API. When I started on the web app, it didn't exist. There were API docs and a lot of ideas.</p>
+        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Worked with</dt><dd>CEO, CMO, tech lead, engineers</dd></div><div><dt>Timeline</dt><dd>v1 in about a month, live versions since</dd></div><div><dt>Scale</dt><dd>200+ connectors, 30+ customers</dd></div></dl>
+      </header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:#6B3B26">
+        <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div><div class="sw" data-screen="dashboard"></div></div>
+        <div class="cover-float"><div class="frame bare"><div class="sw" data-screen="connect"></div></div></div>
+      </div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
+
+      <div class="cbody">
+        <section class="cs">
+          <span class="eyebrow">The 15-second version</span>
+          <div class="tldr">
+            <div class="tl-item"><span class="mono">01 · START</span><p>April 2024: no web app. Setup leaned on docs and the team's help.</p></div>
+            <div class="tl-item"><span class="mono">02 · SCOPE</span><p>Dashboard, onboarding, organizations, accounts, syncs, logs, app management.</p></div>
+            <div class="tl-item"><span class="mono">03 · SHIPPED</span><p>v1 live in about a month, then several live versions and a white-label UI.</p></div>
+            <div class="tl-item"><span class="mono">04 · RESULT</span><p>Time to a customer's first integration: hours down to minutes.</p></div>
+          </div>
+        </section>
+        <section class="cs">
+          <div class="cs-grid">
+            <div><span class="eyebrow">Context &amp; problem</span><h2>Two audiences, and one of them never sees Knit.</h2></div>
+            <div><p>Knit's customers are developers at SaaS companies, building integrations for their own customers. So every flow has two people in it: the developer setting things up in Knit, and their end customer, who authorises a connection to their HR or CRM system without knowing Knit exists.</p>
+            <p>The developer needs a working API call fast, then confidence that syncs keep running. The end customer needs a connect flow that feels like part of a product they already trust.</p></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="cs">
+        <div class="cbody"><span class="eyebrow">The product · scroll to step through</span><h2>Built around the customer's customer.</h2></div>
+        <div class="scrolly" style="--steps:4" data-scrolly>
+          <div class="scrolly-in">
+            <div class="steps">
+              <div class="step on"><span class="n">STEP 1</span><b>Quickstart</b><span>A checklist that ends in a real API call, not a tour. This is where “hours” became “minutes”.</span></div>
+              <div class="step"><span class="n">STEP 2</span><b>Your customer connects</b><span>A white-labelled flow inside the customer's own product. Their brand, their colours, no stranger's logo.</span></div>
+              <div class="step"><span class="n">STEP 3</span><b>Organizations first</b><span>Everything roots at Organization, your customer's customer, so “which customer is affected?” always has a one-click answer.</span></div>
+              <div class="step"><span class="n">STEP 4</span><b>Health at a glance</b><span>The dashboard leads with what needs attention, then volume, then everything else.</span></div>
+            </div>
+            <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div>
+              <div class="sc-screens">
+                <div class="sw on" data-screen="quickstart"></div>
+                <div class="sw" data-screen="connect"></div>
+                <div class="sw" data-screen="accounts"></div>
+                <div class="sw" data-screen="dashboard"></div>
+              </div></div><div class="sc-progress"><i></i></div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="cbody">
+        <section class="cs">
+          <span class="eyebrow">Try it · white-label playground</span>
+          <h2>A connect flow that disappears into your product.</h2>
+          <p>Recolour the embedded flow the way a Knit customer would, and notice how quickly it stops looking like someone else's software.</p>
+          <div class="demo" data-lens-title="IKEA effect" data-lens="You customise it yourself, so you value and remember it more than a static screenshot. Effort creates attachment.">
+            <div class="wl">
+              <div class="wl-controls">
+                <div><span class="lbl2">Brand colour</span><div class="swatches" id="swatches">
+                  <button class="swt on" style="--c:#0E9F6E" data-c="#0E9F6E" aria-label="Green"></button>
+                  <button class="swt" style="--c:#4F46E5" data-c="#4F46E5" aria-label="Indigo"></button>
+                  <button class="swt" style="--c:#E0453A" data-c="#E0453A" aria-label="Red"></button>
+                  <button class="swt" style="--c:#111111" data-c="#111111" aria-label="Black"></button>
+                  <input type="color" id="wlColor" value="#0e9f6e" aria-label="Custom brand colour"></div></div>
+                <div><label class="lbl2" for="wlName">Product name</label><input class="field" id="wlName" value="Acme HR" maxlength="22"></div>
+                <div><span class="lbl2">Corners</span><div class="seg" id="wlRad"><button data-r="4px">Sharp</button><button class="on" data-r="16px">Soft</button><button data-r="26px">Round</button></div></div>
+                <label class="chk" for="wlPowered"><input type="checkbox" id="wlPowered"> Show “Powered by Knit”</label>
+              </div>
+              <div class="stage"><div class="embed" id="embed">
+                <div class="modal-h"><i id="embLogo">A</i><span id="embName">Acme HR</span></div>
+                <div class="modal-b"><h6>Connect your HR system</h6><p>Pick the system your company uses. It takes about a minute.</p>
+                  <div class="m-search">Search 60+ HR apps</div>
+                  <div class="m-app on"><span class="s-app"><i style="background:#73C41D">B</i></span>BambooHR</div>
+                  <div class="m-app"><span class="s-app"><i style="background:#F38B00">W</i></span>Workday</div>
+                  <div class="m-app"><span class="s-app"><i style="background:#2D6BFF">D</i></span>Darwinbox</div>
+                  <div class="m-go">Continue</div></div>
+                <div class="embed-foot" id="embFoot" hidden>Powered by Knit</div>
+              </div></div>
+            </div>
+          </div>
+        </section>
+        <section class="cs">
+          <span class="eyebrow">Key decisions &amp; trade-offs</span>
+          <h2>Two calls that set the structure.</h2>
+          <div class="decs">
+            <div class="dec rv"><div class="dec-q"><span class="mono">D1</span><b>What should the app be organised around?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>Organise by app or data category, the way the API docs were written.</p></div><div><span class="mono">Chose</span><p>Root everything at Organization, so each customer's connections, syncs and issues live together.</p></div></div><p class="dec-w"><b>Why:</b> when something breaks, the first question is always “which customer?” The structure answers it before it's asked.</p></div>
+            <div class="dec rv"><div class="dec-q"><span class="mono">D2</span><b>Whose brand does the end customer see?</b></div><div class="dec-g"><div><span class="mono">Considered</span><p>A Knit-branded connect flow: simpler to build, good for Knit's own visibility.</p></div><div><span class="mono">Chose</span><p>A white-labelled embeddable UI that takes on the customer's brand.</p></div></div><p class="dec-w"><b>Why:</b> people hand over access to their HR system more readily when the request comes from a product they already trust.</p></div>
+          </div>
+        </section>
+        <section class="cs">
+          <div class="cs-grid">
+            <div><span class="eyebrow">Discovery loop</span><h2>Designing against behaviour, not assumptions.</h2></div>
+            <div><p>After v1, discovery ran continuously through customer calls, Microsoft Clarity session recordings and Heap funnels. Calls told me what people wanted. Recordings and funnels showed where they stalled in first-time setup, and each redesign round went after those spots.</p></div>
+          </div>
+        </section>
+        <section class="cs">
+          <span class="eyebrow">Impact</span>
+          <h2>Minutes, not hours.</h2>
+          <div class="impact">
+            <div class="imp"><b>hrs → min</b><span>time to a customer's first integration</span></div>
+            <div class="imp"><b data-count="200" data-suffix="+">200+</b><span>connectors reachable through the product I designed</span></div>
+            <div class="imp"><b data-count="30" data-suffix="+">30+</b><span>customers running on it</span></div>
+          </div>
+        </section>
+        <a class="next-case" href="#case-observability"><div><span class="mono">NEXT · 03</span><b>Making silent sync failures loud</b></div><span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- CASE 03 -->
+    <article class="case" data-route="case-observability" data-crumb="03 · Knit · Logs, syncs & alerts" hidden>
+      <header class="case-hero"><span class="eyebrow">Project 03 · Knit · Observability</span><h1>Making silent sync failures <em>loud</em></h1>
+        <p class="lede">In an integrations product, a failed sync stays invisible until someone's data is wrong downstream. I redesigned the Logs screen and the Data Syncs monitoring system, then designed alert management and data validation flows on top of them.</p>
+        <dl class="case-meta"><div><dt>Role</dt><dd>Sole product designer</dd></div><div><dt>Scope</dt><dd>Logs, Syncs, alerts, validation</dd></div><div><dt>Outcome</dt><dd>Fewer sync support tickets</dd></div><div><dt>Status</dt><dd>Shipped at Knit</dd></div></dl></header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:#1F4B3E"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncs"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
+      <div class="cbody">
+        <section class="cs"><div class="gallery"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>logs</span></div><div class="sw" data-screen="activity"></div></div><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>accounts</span></div><div class="sw" data-screen="accounts"></div></div><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>dashboard</span></div><div class="sw" data-screen="dashboard"></div></div></div></section>
+        <section class="cs"><div class="cs-grid"><div><span class="eyebrow">What changed</span><h2>From a wall of logs to things worth fixing.</h2></div><div><p>Sync-related support tickets dropped after the redesign, as reported by the support team. The full walkthrough, with the before and after screens and the alert rules, is one I take people through in interviews.</p></div></div></section>
+        <a class="next-case" href="#case-kfin"><div><span class="mono">NEXT · 04</span><b>Statutory reporting, made self-serve</b></div><span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- CASE 04 -->
+    <article class="case" data-route="case-kfin" data-crumb="04 · KFin Technologies · DIGIX" hidden>
+      <header class="case-hero"><span class="eyebrow">Project 04 · KFin Technologies</span><h1>Statutory reporting, made <em>self-serve</em></h1>
+        <p class="lede">DIGIX is the analytics and reporting platform India's asset management companies use to schedule, generate and share statutory and daily business reports. I led UX on it and turned a compliance-heavy workflow into a self-serve product on a no-code cloud pipeline.</p>
+        <dl class="case-meta"><div><dt>Role</dt><dd>Project lead, UX</dd></div><div><dt>Products</dt><dd>DIGIX, KBOSS, InstaPay, data tool</dd></div><div><dt>Also</dt><dd>Deputy manager, product</dd></div><div><dt>Measured</dt><dd>46% faster onboarding (Heap)</dd></div></dl></header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:#4A3A6B"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>digix · report scheduler</span></div><div class="sw" data-screen="digix"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
+      <div class="cbody">
+        <section class="cs"><div class="impact"><div class="imp"><b data-count="46" data-suffix="%">46%</b><span>less average project onboarding time after an automated cross-team workflow I designed</span></div><div class="imp"><b data-count="4">4</b><span>fintech products where I led UX, from research to shipped UI</span></div><div class="imp"><b>No-code</b><span>report scheduling for compliance teams, on a secure cloud pipeline</span></div></div></section>
+        <a class="next-case" href="#case-superbeings"><div><span class="mono">NEXT · 05</span><b>The hardest module in an HR platform</b></div><span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- CASE 05 -->
+    <article class="case" data-route="case-superbeings" data-crumb="05 · SuperBeings · Performance management" hidden>
+      <header class="case-hero"><span class="eyebrow">Project 05 · SuperBeings</span><h1>The hardest module in an <em>HR platform</em></h1>
+        <p class="lede">Design lead in a two-person team. Performance management was the platform's most complex surface, with review cycles, feedback and manager workflows in one place. I redesigned it end to end, then rebuilt Custom Pulse surveys, Goals and OKRs, and first-run onboarding.</p>
+        <dl class="case-meta"><div><dt>Role</dt><dd>Product designer, design lead</dd></div><div><dt>Team</dt><dd>2 designers</dd></div><div><dt>Modules</dt><dd>Performance, Pulse, OKRs, onboarding</dd></div><div><dt>Then</dt><dd>Team moved to Knit, Dec 2022</dd></div></dl></header>
+      <div class="case-cover"><div class="cover-stage" style="--tint:#6B2E45"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>superbeings · review cycles</span></div><div class="sw" data-screen="review"></div></div></div><p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p></div>
+      <div class="cbody"><a class="next-case" href="#case-merger"><div><span class="mono">BACK TO · 01</span><b>Three products, one spine</b></div><span class="arr">→</span></a></div>
+    </article>
+  </div>
+</div>
+
+<div class="palette" id="palette" hidden>
+  <div class="pal" role="dialog" aria-modal="true" aria-label="Command menu">
+    <input id="palInput" placeholder="Jump to a case, copy my email, flip on thinking mode…" autocomplete="off" aria-controls="palList">
+    <ul id="palList" role="listbox"></ul>
+    <div class="pal-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </div>
+</div>
+<div class="lens-banner" role="status"><span><b>Thinking mode</b> · <span id="lensCount">0</span> design decisions annotated. Hover a blue tag.</span><button id="lensOff">Hide · L</button></div>
+<div class="sprog" id="sprog" aria-hidden="true"></div>
+<nav class="sdots" id="sdots" aria-label="Sections"></nav>
+<div class="tip" id="tip" role="status"><button type="button" aria-label="Dismiss tip">✕</button><b>Two shortcuts</b><kbd id="tipK">⌘K</kbd> jumps anywhere. <kbd>L</kbd> shows the thinking behind each design decision.</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ======= EDIT HERE ======= */
+const CONFIG = {
+  email: "priyadarshi2817@gmail.com",
+  linkedin: "",
+  resume: "",
+  substack: "https://decisiondesign.substack.com",
+  photo: "",
+  /* Real screens: put a file at each path below (16:10, about 1600px wide, WebP).
+     Until a file exists, the coded stand-in shows instead, so you can add screens one at a time. */
+  shots: {
+    dashboard: "assets/dashboard.webp",
+    connect: "assets/connect.webp",
+    accounts: "assets/accounts.webp",
+    quickstart: "assets/quickstart.webp",
+    syncs: "assets/syncs.webp",
+    activity: "assets/activity.webp",
+    before3: "assets/before3.webp",
+    picker: "assets/picker.webp",
+    detail: "assets/detail.webp",
+    index: "assets/index.webp",
+    digix: "assets/digix.webp",
+    review: "assets/review.webp",
+  }
+};
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fine = matchMedia("(pointer: fine)").matches;
+const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+let kbUser = false;
+addEventListener("keydown", e => { if (e.key === "Tab" || e.key === "Enter") kbUser = true; });
+addEventListener("pointerdown", () => kbUser = false);
+
+/* ======= Stand-in product screens ======= */
+const APPS = { BambooHR:["#73C41D","B"], Workday:["#F38B00","W"], Darwinbox:["#2D6BFF","D"], Greenhouse:["#24A47F","G"], Salesforce:["#00A1E0","S"], HubSpot:["#FF7A59","H"], NetSuite:["#1F4E79","N"], "Zoho Books":["#E42527","Z"], Keka:["#6C3CE1","K"], Lever:["#3A3A3A","L"] };
+const app = n => { const a = APPS[n] || ["#888", n[0]]; return `<span class="s-app"><i style="background:${a[0]}">${a[1]}</i>${n}</span>`; };
+const st = (c, t) => `<span class="st ${c}">${t}</span>`;
+function side(active, variant) {
+  const groups = variant === "merged"
+    ? [["", ["Home", "Connections"]], ["YOUR PATH", ["API", "MCP servers", "Workflows"]], ["SHARED", ["Activity", "Alerts", "Settings"]]]
+    : [["", ["Home", "Organizations", "Integrated accounts", "Syncs", "Logs"]], ["CONFIGURE", ["Apps", "Webhooks", "API keys", "Settings"]]];
+  return `<aside class="s-side"><div class="s-logo"><i></i>Knit</div>${groups.map(([g, items]) => (g ? `<div class="s-grp">${g}</div>` : "") + items.map(i => `<div class="s-nav ${i === active ? "on" : ""}">${i}${i === "Activity" || i === "Logs" ? '<span class="n">3</span>' : ""}</div>`).join("")).join("")}<div class="s-foot"><i></i>Acme Corp · Admin</div></aside>`;
+}
+function chart() {
+  const pts = [38,44,40,52,49,61,58,66,63,74,70,82,78,88]; const w = 1000, h = 150;
+  const xs = pts.map((p, i) => [i * (w / (pts.length - 1)), h - p * 1.5]);
+  const d = xs.map((p, i) => (i ? "L" : "M") + p[0] + " " + p[1]).join(" ");
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3E4FE0" stop-opacity=".22"/><stop offset="1" stop-color="#3E4FE0" stop-opacity="0"/></linearGradient></defs>${[30,70,110].map(y => `<line x1="0" x2="${w}" y1="${y}" y2="${y}" stroke="#EFEFF3"/>`).join("")}<path d="${d} L ${w} ${h} L 0 ${h} Z" fill="url(#ga)"/><path d="${d}" fill="none" stroke="#3E4FE0" stroke-width="2.5" vector-effect="non-scaling-stroke"/><circle cx="${xs.at(-1)[0] - 4}" cy="${xs.at(-1)[1]}" r="5" fill="#3E4FE0"/></svg>`;
+}
+const SCREENS = {
+  dashboard: () => `<div class="screen">${side("Home")}<div class="s-main">
+    <div class="s-head"><div><h4>Good morning, Asha</h4><p>Here's how your integrations are doing today.</p></div><span class="s-btn">+ New integration</span></div>
+    <div class="s-kpis"><div class="s-kpi"><small>Integrated accounts</small><b>1,284</b><em>+38 this week</em></div><div class="s-kpi"><small>Syncs today</small><b>18.2k</b><em>99.4% healthy</em></div><div class="s-kpi"><small>API calls (24h)</small><b>412k</b><em>+6.1%</em></div><div class="s-kpi"><small>Needs attention</small><b>3</b><em class="bad">2 auth expired</em></div></div>
+    <div class="s-two"><div class="s-card"><div class="s-card-h">API calls<span>Last 14 days</span></div><div class="s-chart">${chart()}</div></div>
+    <div class="s-card"><div class="s-card-h">Needs attention<span>3 open</span></div><div class="s-list"><div class="s-row">${app("Workday")}${st("bad","Auth expired")}<span class="r">Globex</span></div><div class="s-row">${app("Zoho Books")}${st("bad","Sync failing")}<span class="r">Initech</span></div><div class="s-row">${app("Greenhouse")}${st("wait","Rate limited")}<span class="r">Umbrella</span></div></div></div></div>
+    <div class="s-card"><table class="s-table"><tr><th>Organization</th><th>App</th><th>Last sync</th><th>Records</th><th>Status</th></tr>
+      <tr><td>Acme Corp</td><td>${app("BambooHR")}</td><td>4 min ago</td><td>2,140</td><td>${st("ok","Healthy")}</td></tr>
+      <tr><td>Globex</td><td>${app("Workday")}</td><td>2 h ago</td><td>8,902</td><td>${st("bad","Auth expired")}</td></tr>
+      <tr><td>Stark Ind.</td><td>${app("Darwinbox")}</td><td>Syncing…</td><td>1,377</td><td>${st("run","Running")}</td></tr></table></div></div></div>`,
+  accounts: () => `<div class="screen">${side("Integrated accounts")}<div class="s-main">
+    <div class="s-head"><div><h4>Integrated accounts</h4><p>Every customer connection, grouped by organization.</p></div><span class="s-btn ghost">Export</span></div>
+    <div style="display:flex;gap:8px"><span class="chip">All · 1,284</span><span class="chip">HRIS · 812</span><span class="chip">ATS · 301</span><span class="chip">CRM · 118</span><span class="chip">Accounting · 53</span></div>
+    <div class="s-card"><table class="s-table"><tr><th>Organization</th><th>App</th><th>Category</th><th>Connected</th><th>Last sync</th><th>Status</th></tr>
+    ${[["Acme Corp","BambooHR","HRIS","Mar 2025","4 min ago","ok","Healthy"],["Globex","Workday","HRIS","Jan 2025","2 h ago","bad","Auth expired"],["Initech","Zoho Books","Accounting","Jun 2025","6 h ago","bad","Sync failing"],["Umbrella","Greenhouse","ATS","Aug 2025","12 min ago","wait","Rate limited"],["Stark Ind.","Darwinbox","HRIS","Sep 2025","Syncing…","run","Running"],["Wayne Ent.","Salesforce","CRM","Oct 2025","1 h ago","ok","Healthy"],["Hooli","Keka","HRIS","Oct 2025","22 min ago","ok","Healthy"],["Soylent","Lever","ATS","Nov 2025","9 min ago","ok","Healthy"]].map(r => `<tr><td><b style="font-weight:550">${r[0]}</b></td><td>${app(r[1])}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${st(r[5], r[6])}</td></tr>`).join("")}</table></div></div></div>`,
+  syncs: () => `<div class="screen">${side("Syncs")}<div class="s-main">
+    <div class="s-head"><div><h4>Data syncs</h4><p>Scheduled syncs across all organizations.</p></div><span class="s-btn">Alert rules</span></div>
+    <div class="s-kpis"><div class="s-kpi"><small>Healthy</small><b>1,251</b><em>97.4%</em></div><div class="s-kpi"><small>Running now</small><b>24</b><em>avg 3m 12s</em></div><div class="s-kpi"><small>Failing</small><b>6</b><em class="bad">2 new today</em></div><div class="s-kpi"><small>Validation flags</small><b>11</b><em class="bad">missing fields</em></div></div>
+    <div class="s-card"><div class="s-card-h">Sync health · last 24 hours<span>each bar is one hour</span></div><div style="display:flex;gap:4px;align-items:end;height:120px;padding:14px 16px">${Array.from({length:24},(_,i)=>{const bad=[5,6,15].includes(i);return `<span style="flex:1;height:${55+((i*37)%40)}%;border-radius:4px;background:${bad?"#E8746A":"#7FD1A6"}"></span>`}).join("")}</div></div>
+    <div class="s-card"><table class="s-table"><tr><th>Sync</th><th>Organization</th><th>Schedule</th><th>Last run</th><th>Issue</th><th>Status</th></tr>
+      <tr><td>${app("Zoho Books")}</td><td>Initech</td><td>Every 6 h</td><td>6 h ago</td><td>Invoice records missing tax_id</td><td>${st("bad","Failing")}</td></tr>
+      <tr><td>${app("Workday")}</td><td>Globex</td><td>Daily 02:00</td><td>2 h ago</td><td>Token expired, needs re-auth</td><td>${st("bad","Paused")}</td></tr>
+      <tr><td>${app("BambooHR")}</td><td>Acme Corp</td><td>Hourly</td><td>4 min ago</td><td>None</td><td>${st("ok","Healthy")}</td></tr></table></div></div></div>`,
+  activity: () => `<div class="screen">${side("Activity","merged")}<div class="s-main">
+    <div class="s-head"><div><h4>Activity</h4><p>Every API call, tool call and workflow run, in one stream.</p></div><span class="s-btn ghost">Last 24 hours ▾</span></div>
+    <div style="display:flex;gap:8px;align-items:center"><span class="chip">Surface: all</span><span class="chip api">API</span><span class="chip mcp">MCP</span><span class="chip wf">Workflow</span><span class="chip" style="margin-left:auto">Group identical errors ✓</span></div>
+    <div class="s-card"><table class="s-table"><tr><th>Time</th><th>Connection</th><th>Surface</th><th>Event</th><th>Status</th><th>Duration</th></tr>
+      <tr><td>14:02:11</td><td>${app("Workday")}</td><td><span class="chip api">API</span></td><td>GET /hris/employees</td><td>${st("ok","200")}</td><td>182 ms</td></tr>
+      <tr><td>14:01:57</td><td>${app("BambooHR")}</td><td><span class="chip mcp">MCP</span></td><td>bamboohr__get_employee</td><td>${st("ok","200")}</td><td>240 ms</td></tr>
+      <tr class="issue-group"><td>13:58:40</td><td>${app("Zoho Books")}</td><td><span class="chip wf">Workflow</span></td><td>Sync: processing record <b style="color:#C4382B">×247 identical</b></td><td>${st("bad","500")}</td><td><span class="s-btn ghost" style="height:26px;font-size:12px">Resolve</span></td></tr>
+      <tr><td>13:57:02</td><td>${app("Salesforce")}</td><td><span class="chip wf">Workflow</span></td><td>Opportunities → NetSuite sales orders</td><td>${st("run","Running")}</td><td>3m 08s</td></tr>
+      <tr><td>13:55:19</td><td>${app("Greenhouse")}</td><td><span class="chip api">API</span></td><td>GET /ats/candidates</td><td>${st("wait","429")}</td><td>91 ms</td></tr>
+      <tr><td>13:54:44</td><td>${app("HubSpot")}</td><td><span class="chip mcp">MCP</span></td><td>hubspot__list_deals</td><td>${st("ok","200")}</td><td>310 ms</td></tr></table></div></div></div>`,
+  before3: () => `<div class="screen solo" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#EDEDF1">
+    ${[["Unified API","#4B5CF0",["Dashboard","Organizations","Integrated accounts","Syncs","Logs","Issues","API keys"]],["MCP Server","#18925A",["Servers","Instances","Tools","Clients","Monitor","Usage"]],["AI Integrations Agent","#E07B39",["Workflows","Runs","Activity logs","Alerts","Credits"]]].map(([n,c,items]) => `<div style="border-right:1px solid #DADAE0;background:#fff;padding:20px 16px;display:flex;flex-direction:column;gap:4px"><div class="s-logo" style="padding-bottom:10px"><i style="background:${c}"></i>${n}</div><div style="font-family:var(--mono);font-size:10px;color:#9A9AA6;padding:0 10px 10px">${n === "Unified API" ? "app.getknit.dev" : n === "MCP Server" ? "mcp.getknit.dev" : "agent.getknit.dev"}</div>${items.map((i, k) => `<div class="s-nav ${k === 0 ? "on" : ""}" style="${k === 0 ? `background:${c}18;color:${c}` : ""}">${i}</div>`).join("")}<div style="margin-top:auto;font-size:12px;color:#9A9AA6;padding:10px">Own login · own billing</div></div>`).join("")}</div>`,
+  picker: () => `<div class="screen solo"><div class="pick-wrap"><div class="pick"><h4>What are you here to do?</h4><p>Pick one to start. You can switch any time before you go live.</p>
+    <div class="pick-grid"><div class="pick-card on"><span class="g">{ }</span><b>Call an API</b><span>One schema for every app in a category. Ship an integration once.</span><small>UNIFIED API</small></div><div class="pick-card"><span class="g">&gt;_</span><b>Use tools in my code editor</b><span>An MCP server with tools for 100+ apps, for Claude, Cursor and more.</span><small>MCP SERVER</small></div><div class="pick-card"><span class="g">⇄</span><b>Build a workflow</b><span>Describe what should sync. The agent writes and schedules the integration.</span><small>AI INTEGRATIONS AGENT</small></div></div></div></div></div>`,
+  connect: () => `<div class="screen" style="position:relative">${side("Connections","merged")}<div class="s-main" style="filter:saturate(.7)"><div class="s-head"><div><h4>Connections</h4><p>One connection flow for every path.</p></div></div><div class="s-card"><table class="s-table"><tr><th>App</th><th>Organization</th><th>Status</th></tr><tr><td>${app("Workday")}</td><td>Acme Corp</td><td>${st("ok","Connected")}</td></tr><tr><td>${app("Salesforce")}</td><td>Acme Corp</td><td>${st("ok","Connected")}</td></tr></table></div></div>
+    <div class="ov"><div class="modal"><div class="modal-h"><i>A</i>Acme HR</div><div class="modal-b"><h6>Connect your HR system</h6><p>Pick the system your company uses. It takes about a minute.</p><div class="m-search">Search 60+ HR apps</div><div class="m-app on">${app("BambooHR")}</div><div class="m-app">${app("Workday")}</div><div class="m-app">${app("Darwinbox")}</div><div class="m-go">Continue</div></div></div></div></div>`,
+  detail: () => `<div class="screen">${side("API","merged")}<div class="s-main">
+    <div class="s-head"><div><p>API › Workday · Acme Corp</p><h4>Workday HRIS API ${st("ok","Live")}</h4></div><span class="s-btn ghost">Switch path</span></div>
+    <div class="regions"><div class="region"><span class="rl">REGION 1 · YOUR PATH</span><h5>Call it</h5><div class="code"><span class="k">GET</span> /hris/employees
+Authorization: Bearer <span class="s">knit_live_••••3f9a</span>
+X-Knit-Integration-Id: <span class="s">workday_acme</span></div></div>
+    <div class="region"><span class="rl">REGION 2</span><h5>Connection</h5><div class="s-row" style="padding:6px 0">${app("Workday")}${st("ok","Healthy")}<span class="r">re-auth in 41 days</span></div><div class="s-row" style="padding:6px 0">Scopes<span class="r">hris.read · employees</span></div></div>
+    <div class="region"><span class="rl">REGION 3</span><h5>Recent activity</h5><div class="s-row" style="padding:6px 0">GET /hris/employees ${st("ok","200")}<span class="r">2 min ago</span></div><div class="s-row" style="padding:6px 0">GET /hris/departments ${st("ok","200")}<span class="r">9 min ago</span></div><div class="s-row" style="padding:6px 0">Sync completed · 2,140 records<span class="r">14 min ago</span></div></div>
+    <div class="region upsell"><span class="rl">REGION 4</span><h5>Add another surface</h5><p style="font-size:13px;color:#55555F;margin-bottom:10px">Same Workday connection, no re-auth.</p><div style="display:flex;gap:8px"><span class="s-btn ghost">+ MCP server</span><span class="s-btn ghost">+ Workflow</span></div></div></div></div></div>`,
+  index: () => `<div class="screen">${side("Connections","merged")}<div class="s-main">
+    <div class="s-head"><div><h4>Live for Acme Corp</h4><p>Everything running on your connections.</p></div><span class="s-btn">+ Add</span></div>
+    <div class="s-card"><table class="s-table"><tr><th>Name</th><th>Type</th><th>Connection</th><th>Last activity</th><th>Status</th></tr>
+      <tr><td><b style="font-weight:550">Workday HRIS API</b></td><td><span class="chip api">API</span></td><td>${app("Workday")}</td><td>2 min ago</td><td>${st("ok","Live")}</td></tr>
+      <tr><td><b style="font-weight:550">BambooHR tools in Claude</b></td><td><span class="chip mcp">MCP</span></td><td>${app("BambooHR")}</td><td>6 min ago</td><td>${st("ok","Live")}</td></tr>
+      <tr><td><b style="font-weight:550">Opportunities → Sales orders</b></td><td><span class="chip wf">Workflow</span></td><td>${app("Salesforce")}</td><td>Daily 18:00 UTC</td><td>${st("wait","Scheduled")}</td></tr>
+      <tr><td><b style="font-weight:550">Greenhouse ATS API</b></td><td><span class="chip api">API</span></td><td>${app("Greenhouse")}</td><td>1 h ago</td><td>${st("ok","Live")}</td></tr>
+      <tr><td><b style="font-weight:550">HubSpot deals in Cursor</b></td><td><span class="chip mcp">MCP</span></td><td>${app("HubSpot")}</td><td>3 h ago</td><td>${st("ok","Live")}</td></tr></table></div></div></div>`,
+  quickstart: () => `<div class="screen">${side("Home")}<div class="s-main">
+    <div class="s-head"><div><h4>Get your first integration live</h4><p>Four steps. Most teams finish in a few minutes.</p></div><span class="chip">2 of 4 done</span></div>
+    <div class="s-two"><div class="s-steps"><div class="s-step done"><i>✓</i><b>Create an API key</b><span>Done</span></div><div class="s-step done"><i>✓</i><b>Pick a category: HRIS</b><span>Done</span></div><div class="s-step cur"><i>3</i><b>Connect a test account</b><span>~1 min</span></div><div class="s-step"><i>4</i><b>Make your first API call</b><span>~2 min</span></div></div>
+    <div class="code"><span class="c"># Your first call, same shape for every HRIS</span>
+curl https://api.getknit.dev/v1.0/hris/employees \\
+  -H <span class="s">"Authorization: Bearer knit_test_••••"</span> \\
+  -H <span class="s">"X-Knit-Integration-Id: sandbox_bamboo"</span>
+
+<span class="c"># → 200 OK · 48 employees</span></div></div></div></div>`,
+  digix: () => `<div class="screen" style="grid-template-columns:232px 1fr"><aside class="s-side"><div class="s-logo"><i style="background:linear-gradient(135deg,#6B4BC4,#3E2A88)"></i>DIGIX</div><div class="s-nav">Overview</div><div class="s-nav on">Report scheduler</div><div class="s-nav">Statutory reports</div><div class="s-nav">Daily business</div><div class="s-nav">Distribution lists</div><div class="s-nav">Audit trail</div><div class="s-foot"><i></i>Compliance · AMC</div></aside><div class="s-main">
+    <div class="s-head"><div><h4>Schedule a report</h4><p>Generate and share statutory reports without raising a ticket.</p></div><span class="s-btn">Save schedule</span></div>
+    <div class="s-card"><div class="form-row"><label>Report</label><div class="fld">Monthly AUM disclosure</div></div><div class="form-row"><label>Frequency</label><div class="seg-s"><span>Daily</span><span>Weekly</span><span class="on">Monthly</span><span>Quarterly</span></div></div><div class="form-row"><label>Run on</label><div class="fld">5th working day · 07:00 IST</div></div><div class="form-row"><label>Format</label><div class="seg-s"><span class="on">PDF</span><span>XLSX</span><span>CSV</span></div></div><div class="form-row"><label>Share with</label><div class="fld" style="gap:6px"><span class="chip">Compliance team</span><span class="chip">Fund accounting</span><span class="chip">+ Add</span></div></div></div>
+    <div class="s-card"><div class="s-card-h">Upcoming runs<span>next 3</span></div><div class="s-row">Monthly AUM disclosure ${st("wait","Scheduled")}<span class="r">7 Nov, 07:00</span></div><div class="s-row">Daily NAV summary ${st("ok","Delivered")}<span class="r">Today, 06:30</span></div><div class="s-row">Quarterly portfolio disclosure ${st("run","Generating")}<span class="r">Now</span></div></div></div></div>`,
+  review: () => `<div class="screen"><aside class="s-side"><div class="s-logo"><i style="background:linear-gradient(135deg,#D9577A,#8B2E52)"></i>SuperBeings</div><div class="s-nav">Home</div><div class="s-nav on">Performance</div><div class="s-nav">Goals &amp; OKRs</div><div class="s-nav">Pulse surveys</div><div class="s-nav">Feedback</div><div class="s-nav">People</div><div class="s-foot"><i></i>HR · Admin</div></aside><div class="s-main">
+    <div class="s-head"><div><h4>H2 2022 review cycle</h4><p>Self review → manager review → calibration → sharing.</p></div><span class="s-btn">Launch cycle</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">${["Self review|done|Oct 3 – 14","Manager review|cur|Oct 17 – 28","Calibration|todo|Nov 1 – 4","Share results|todo|Nov 7"].map(s => { const [a,b,c] = s.split("|"); return `<div class="s-step ${b === "done" ? "done" : b === "cur" ? "cur" : ""}" style="flex-direction:column;align-items:flex-start;gap:6px"><i>${b === "done" ? "✓" : ""}</i><b>${a}</b><span style="margin:0">${c}</span></div>`; }).join("")}</div>
+    <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
+      ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
+};
+const SCREEN_NAMES = { dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle" };
+
+const scaleQueue = new Set();
+const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
+function fit(sw) { const s = sw.firstElementChild; if (!s) return; const k = sw.clientWidth / (s.offsetWidth || 1280); s.style.transform = `scale(${k})`; if (sw.classList.contains("tall")) sw.style.height = (s.offsetHeight * k) + "px"; }
+function mountScreen(sw) {
+  const name = sw.dataset.screen, src = CONFIG.shots[name];
+  if (src) { const img = new Image(); img.alt = SCREEN_NAMES[name] || name; img.onload = () => { ro.unobserve(sw); sw.innerHTML = ""; sw.append(img); sw.style.aspectRatio = "auto"; img.style.position = "static"; sw.removeAttribute("role"); sw.removeAttribute("aria-label"); }; img.src = src; }
+  if (!SCREENS[name]) return;
+  sw.innerHTML = SCREENS[name](); fit(sw); ro.observe(sw);
+  sw.setAttribute("role", "img"); sw.setAttribute("aria-label", (SCREEN_NAMES[name] || name) + " (stand-in screen)");
+}
+
+/* ======= Wall ======= */
+(function buildWall() {
+  const wall = $("#wall");
+  const cols = [["dashboard","picker","digix","syncs"],["activity","review","connect","accounts"],["detail","quickstart","index","dashboard"]];
+  const times = [70, 85, 64];
+  cols.forEach((list, ci) => {
+    const col = document.createElement("div"); col.className = "col" + (ci === 1 ? " rev" : ""); col.style.setProperty("--t", times[ci] + "s");
+    [...list, ...list].forEach(n => { const t = document.createElement("div"); t.className = "tile"; t.innerHTML = `<div class="frame bare"><div class="sw" data-screen="${n}"></div></div><span class="cap">${SCREEN_NAMES[n]}</span>`; col.append(t); });
+    wall.append(col);
+  });
+})();
+$$("[data-screen]").forEach(mountScreen);
+document.fonts && document.fonts.ready.then(() => $$("[data-screen]").forEach(fit));
+
+/* ======= links / basics ======= */
+$$("[data-href]").forEach(el => { const v = CONFIG[el.dataset.href]; if (v) el.href = v; else el.hidden = true; });
+$$("[data-email]").forEach(el => el.textContent = CONFIG.email);
+if (CONFIG.photo) { const p = $("#portrait"); const img = new Image(); img.src = CONFIG.photo; img.alt = "Portrait of Priyadarshi"; p.prepend(img); $(".mono-mark", p).remove(); }
+if (!isMac) { $("#kKey").textContent = "Ctrl K"; $$(".kkey").forEach(k => k.textContent = "Ctrl K"); }
+let toastT;
+function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200); }
+async function copyEmail() { try { await navigator.clipboard.writeText(CONFIG.email); toast("Email copied: " + CONFIG.email); } catch (e) { toast(CONFIG.email); } }
+$$("[data-copy-email]").forEach(b => b.addEventListener("click", copyEmail));
+
+const root = document.documentElement;
+try { const s = localStorage.getItem("pd-theme"); if (s) root.dataset.theme = s; } catch (e) {}
+const curTheme = () => root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+function toggleTheme() { const n = curTheme() === "dark" ? "light" : "dark"; root.dataset.theme = n; try { localStorage.setItem("pd-theme", n); } catch (e) {} toast(n === "dark" ? "Espresso mode" : "Cream mode"); }
+$("#themeBtn").addEventListener("click", toggleTheme);
+
+const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", hour12: false });
+function tick() { const t = fmt.format(new Date()), h = parseInt(t, 10), awake = h >= 9; $("#clock").textContent = "IST " + t; $("#clockStatus").textContent = awake ? "· replies today" : "· asleep, replies by morning"; $("#dot").classList.toggle("asleep", !awake); }
+tick(); setInterval(tick, 20000);
+
+/* ======= Thinking layer ======= */
+$$("[data-lens]").forEach(el => {
+  const box = document.createElement("span"); box.className = "lens-box"; box.setAttribute("aria-hidden", "true"); box.innerHTML = "<i></i><i></i><i></i><i></i>";
+  const tag = document.createElement("span"); tag.className = "lens-tag";
+  const btn = document.createElement("button"); btn.type = "button"; btn.textContent = el.dataset.lensTitle;
+  const note = document.createElement("span"); note.className = "lens-note"; note.innerHTML = "<b>WHY IT'S DESIGNED THIS WAY</b>"; note.append(el.dataset.lens);
+  btn.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); $$(".lens-tag.pinned").forEach(t => t !== tag && t.classList.remove("pinned")); tag.classList.toggle("pinned"); });
+  tag.append(btn, note); el.append(box, tag);
+});
+$("#lensCount").textContent = $$("[data-lens]").length;
+function setLens(on) { document.body.classList.toggle("lens-on", on); $("#lensBtn").setAttribute("aria-pressed", on); if (!on) $$(".lens-tag.pinned").forEach(t => t.classList.remove("pinned")); }
+const toggleLens = () => setLens(!document.body.classList.contains("lens-on"));
+$("#lensBtn").addEventListener("click", toggleLens); $("#hint").addEventListener("click", toggleLens); $("#lensOff").addEventListener("click", () => setLens(false));
+if (!fine) $("#hintText").textContent = "Tap here to see the psychology behind every choice on this page";
+
+/* ======= Cursor + magnetic ======= */
+if (fine && !reduce) {
+  const c = $("#cursor"), ct = $("#cursorText"); let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+  addEventListener("pointermove", e => { x = e.clientX; y = e.clientY; c.classList.add("on"); }, { passive: true });
+  document.addEventListener("pointerleave", () => c.classList.remove("on"));
+  (function loop() { cx += (x - cx) * .2; cy += (y - cy) * .2; c.style.transform = `translate3d(${cx}px,${cy}px,0)`; requestAnimationFrame(loop); })();
+  document.addEventListener("pointerover", e => {
+    const t = e.target.closest("[data-cursor]"); if (t) { ct.textContent = t.dataset.cursor; c.classList.add("big"); return; }
+    c.classList.remove("big");
+    c.classList.toggle("hide", !!e.target.closest("a,button,input,label,summary,.ba"));
+  });
+  $$(".magnetic").forEach(m => {
+    m.addEventListener("pointermove", e => { const r = m.getBoundingClientRect(); m.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .35}px)`; });
+    m.addEventListener("pointerleave", () => { m.style.transition = "transform .5s var(--ease)"; m.style.transform = ""; setTimeout(() => m.style.transition = "", 500); });
+  });
+  const wz = $("#wall");
+  $(".hero").addEventListener("pointermove", e => { const px = e.clientX / innerWidth - .5, py = e.clientY / innerHeight - .5; wz.style.setProperty("--ry", (-8 + px * 6) + "deg"); wz.style.setProperty("--rx", (12 - py * 6) + "deg"); });
+}
+
+/* ======= Page scroll effects ======= */
+const nav = $("#nav"), cards = $$(".scard"); let lastY = scrollY;
+function onScroll() {
+  const y = scrollY;
+  nav.classList.toggle("solid", y > 40);
+  nav.classList.toggle("away", y > 600 && y > lastY + 4 && document.body.classList.contains("case-open") === false);
+  if (y < lastY - 4) nav.classList.remove("away");
+  lastY = y;
+  const vh = innerHeight;
+  cards.forEach((card, i) => {
+    const inner = card.firstElementChild, next = cards[i + 1], r = card.getBoundingClientRect();
+    let p = 0;
+    if (next) { const nr = next.getBoundingClientRect(); p = clamp((r.bottom - nr.top) / r.height, 0, 1); }
+    inner.style.transform = `scale(${1 - p * .07})`; inner.style.setProperty("--dim", (p * .35).toFixed(3));
+    const t = clamp((r.top + r.height / 2 - vh / 2) / vh, -1, 1);
+    $$(".layer", card).forEach(l => { l.style.setProperty("--py", (t * +l.dataset.depth) + "px"); if (!card.matches(":hover")) l.style.transform = `translate3d(0,${t * +l.dataset.depth}px,0)`; });
+  });
+  const fan = $("#fan"); if (fan) { const fr = fan.getBoundingClientRect(); fan.style.setProperty("--spread", (clamp(1 - (fr.top - vh * .25) / (vh * .55), 0, 1) * Math.min(1, fan.clientWidth / 1120)).toFixed(3)); }
+}
+if (!reduce) addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true }); else $("#fan").style.setProperty("--spread", Math.min(1, $("#fan").clientWidth / 1120));
+onScroll();
+
+/* reveal + counters */
+function countUp(el) {
+  const to = +el.dataset.count, suf = el.dataset.suffix || "", small = el.querySelector("small"), smallHtml = small ? small.outerHTML : "";
+  if (reduce) return; const t0 = performance.now(), dur = 1100;
+  (function f(now) { const p = Math.min(1, (now - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - p, 3))); el.innerHTML = v + suf + smallHtml; if (p < 1) requestAnimationFrame(f); })(t0);
+}
+function watch(rootEl) {
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return; const el = en.target;
+    if (el.classList.contains("rv")) el.classList.remove("pre");
+    if (el.dataset.count && !el.dataset.done) { el.dataset.done = 1; countUp(el); }
+    io.unobserve(el);
+  }), { root: rootEl, threshold: .15 });
+  return io;
+}
+const pageIO = watch(null);
+if (!reduce) $$("main .rv").forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre"); pageIO.observe(el); } });
+$$("main [data-count]").forEach(el => pageIO && pageIO.observe(el));
+
+/* ======= Craft playground ======= */
+const cbtn = $("#cbtn"); let cbusy = false;
+cbtn.addEventListener("click", () => { if (cbusy) return; cbusy = true; cbtn.className = "cbtn loading"; cbtn.innerHTML = '<span class="spin"></span>Syncing…';
+  setTimeout(() => { cbtn.className = "cbtn done"; cbtn.innerHTML = "✓ Synced 2,140 records"; setTimeout(() => { cbtn.className = "cbtn"; cbtn.textContent = "Run sync now"; cbusy = false; }, 1800); }, 1400); });
+let syncState = 0;
+$("#syncrow").addEventListener("click", () => {
+  const bar = $("#syncBar"), lab = $("#syncLabel");
+  if (syncState === 1) return;
+  if (syncState === 2) { syncState = 0; bar.style.width = "0"; bar.style.background = ""; lab.textContent = "BambooHR · ready"; return; }
+  syncState = 1; lab.textContent = "BambooHR · syncing employees…"; bar.style.background = "";
+  [[30, 300], [62, 900], [64, 1500]].forEach(([w, t]) => setTimeout(() => bar.style.width = w + "%", t));
+  setTimeout(() => { bar.style.background = "#C4382B"; lab.textContent = "Stopped at 64%: token expired. Re-auth"; syncState = 2; }, 2100);
+});
+function skel() {
+  const s = $("#skel"); s.innerHTML = Array.from({ length: 3 }, (_, i) => `<div class="skel-row"><span class="b" style="width:22px;height:22px;border-radius:6px"></span><span class="b" style="width:${40 + i * 12}%"></span><span class="b" style="width:16%;margin-left:auto"></span></div>`).join("");
+  setTimeout(() => { s.innerHTML = [["BambooHR", "ok", "Healthy"], ["Workday", "bad", "Auth expired"], ["Darwinbox", "run", "Running"]].map(r => `<div class="skel-row">${app(r[0])}<span style="margin-left:auto">${st(r[1], r[2])}</span></div>`).join(""); }, 1300);
+}
+skel(); $("#skel").parentElement.addEventListener("click", skel);
+$("#webhook").addEventListener("input", e => {
+  const v = e.target.value.trim(), box = $("#inDemo"), msg = $("#whMsg");
+  box.classList.remove("err", "ok");
+  if (!v) { msg.textContent = "We'll send sync events here."; return; }
+  if (/^http:\/\//i.test(v)) { box.classList.add("err"); msg.textContent = "Use https:// so event data stays encrypted in transit."; }
+  else if (!/^https:\/\/[^\s.]+\.[^\s]{2,}/i.test(v)) { box.classList.add("err"); msg.textContent = "That doesn't look like a full URL yet. Try https://yourdomain.com/hooks"; }
+  else { box.classList.add("ok"); msg.textContent = "Looks good. We'll send a test event when you save."; }
+});
+const tg = $("#tgDemo"); let tgT;
+function setTg(on, quiet) { tg.classList.toggle("on", on); tg.setAttribute("aria-pressed", on); $("#tgLabel").textContent = "Alerts for Workday: " + (on ? "on" : "off");
+  const it = $("#inToast"); if (quiet) { it.classList.remove("show"); return; } it.innerHTML = (on ? "Alerts on" : "Alerts off") + " · <u>Undo</u>"; it.classList.add("show"); clearTimeout(tgT); tgT = setTimeout(() => it.classList.remove("show"), 3000); }
+tg.addEventListener("click", () => setTg(!tg.classList.contains("on")));
+$("#inToast").addEventListener("click", () => setTg(!tg.classList.contains("on"), true));
+$("#inToast").style.cursor = "pointer";
+
+$$(".pcard").forEach(c => c.addEventListener("click", () => { const f = c.classList.toggle("flip"); c.setAttribute("aria-pressed", f); }));
+
+/* ======= Case router ======= */
+const layer = $("#caseLayer"), scroller = $("#caseScroll"), bar = $("#caseProgress"), cases = $$(".case"), wipe = $("#wipe");
+let caseIO = null, lastClick = { x: innerWidth / 2, y: innerHeight / 2 };
+document.addEventListener("pointerdown", e => lastClick = { x: e.clientX, y: e.clientY });
+function showCase(route) {
+  const art = cases.find(a => a.dataset.route === route); if (!art) return;
+  cases.forEach(a => a.hidden = a !== art);
+  layer.hidden = false; document.body.classList.add("case-open");
+  $("#caseCrumb").textContent = art.dataset.crumb; scroller.scrollTop = 0; bar.style.width = "0";
+  $$("[data-screen]", art).forEach(fit);
+  $$("[data-flow] .path", art).forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength()) + "px"));
+  if (caseIO) caseIO.disconnect(); caseIO = watch(scroller);
+  $$(".rv,[data-count]", art).forEach(el => { if (el.classList.contains("rv") && !reduce) el.classList.add("pre"); el.dataset.done = ""; caseIO.observe(el); });
+  caseScroll();
+  if (kbUser) setTimeout(() => $("#caseClose").focus({ preventScroll: true }), 60);
+}
+function openCase(route) {
+  if (reduce) return showCase(route);
+  wipe.style.setProperty("--cx", lastClick.x + "px"); wipe.style.setProperty("--cy", lastClick.y + "px");
+  wipe.classList.remove("go"); void wipe.offsetWidth; wipe.classList.add("go");
+  setTimeout(() => showCase(route), 380);
+}
+function closeCase() { layer.hidden = true; document.body.classList.remove("case-open"); }
+function currentCase() { const a = cases.find(x => !x.hidden); return layer.hidden || !a ? "" : a.dataset.route; }
+function route() { const h = location.hash.slice(1); if (h.startsWith("case-")) { if (currentCase() !== h) openCase(h); } else if (!layer.hidden) closeCase(); }
+addEventListener("hashchange", route);
+addEventListener("popstate", route);
+/* Open cases on click directly, so it works even when the URL already has that hash, or the page is shown inside a preview frame */
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  const r = a.getAttribute("href").slice(1);
+  if (r.startsWith("case-")) {
+    e.preventDefault();
+    if (currentCase() !== r) openCase(r);
+  } else {
+    const t = r ? document.getElementById(r) : null; if (!t) return;
+    e.preventDefault();
+    if (!layer.hidden) closeCase();
+    t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  }
+  try { if (location.hash !== "#" + r) history.pushState(null, "", "#" + r); } catch (err) {}
+});
+if (location.hash.startsWith("#case-")) showCase(location.hash.slice(1));
+$("#caseClose").addEventListener("click", () => { closeCase(); location.hash = "work"; });
+
+/* case scroll: progress, scrolly, flow, before/after */
+function caseScroll() {
+  const max = scroller.scrollHeight - scroller.clientHeight; bar.style.width = (max > 0 ? scroller.scrollTop / max * 100 : 0) + "%";
+  const art = cases.find(a => !a.hidden); if (!art) return;
+  const sh = scroller.clientHeight, st0 = scroller.getBoundingClientRect().top;
+  $$("[data-scrolly]", art).forEach(sec => {
+    if (innerWidth <= 1020) return;
+    const r = sec.getBoundingClientRect(), total = r.height - sh, p = clamp((st0 - r.top) / (total || 1), 0, 1);
+    const steps = $$(".step", sec), screens = $$(".sc-screens > .sw", sec), k = Math.min(steps.length - 1, Math.floor(p * steps.length));
+    steps.forEach((s, i) => s.classList.toggle("on", i === k)); screens.forEach((s, i) => s.classList.toggle("on", i === k));
+    $(".sc-progress i", sec).style.width = (p * 100) + "%";
+  });
+  $$("[data-flow]", art).forEach(f => { const r = f.getBoundingClientRect(); f.style.setProperty("--p", clamp((sh + st0 - r.top) / (sh * .8), 0, 1).toFixed(3)); });
+}
+scroller.addEventListener("scroll", () => requestAnimationFrame(caseScroll), { passive: true });
+$$("[data-scrolly]").forEach(sec => $$(".step", sec).forEach((s, i) => s.addEventListener("click", () => {
+  if (innerWidth <= 1020) { $$(".step", sec).forEach((x, j) => x.classList.toggle("on", j === i)); $$(".sc-screens > .sw", sec).forEach((x, j) => x.classList.toggle("on", j === i)); return; }
+  const total = sec.offsetHeight - scroller.clientHeight; scroller.scrollTo({ top: sec.offsetTop + total * (i + .5) / $$(".step", sec).length, behavior: reduce ? "auto" : "smooth" });
+})));
+$$("[data-flow] .path").forEach(p => p.style.setProperty("--len", "900px"));
+if (reduce) $$("[data-flow]").forEach(f => f.style.setProperty("--p", 1));
+
+$$(".ba").forEach(ba => {
+  let drag = false; const set = x => { const r = ba.getBoundingClientRect(); ba.style.setProperty("--pos", clamp((x - r.left) / r.width * 100, 2, 98) + "%"); };
+  ba.addEventListener("pointerdown", e => { drag = true; ba.setPointerCapture(e.pointerId); set(e.clientX); });
+  ba.addEventListener("pointermove", e => drag && set(e.clientX));
+  ba.addEventListener("pointerup", () => drag = false);
+  ba.tabIndex = 0; ba.setAttribute("role", "slider"); ba.setAttribute("aria-label", "Before and after comparison"); ba.setAttribute("aria-valuemin", 0); ba.setAttribute("aria-valuemax", 100);
+  ba.addEventListener("keydown", e => { const cur = parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50; if (e.key === "ArrowLeft") ba.style.setProperty("--pos", clamp(cur - 5, 2, 98) + "%"); if (e.key === "ArrowRight") ba.style.setProperty("--pos", clamp(cur + 5, 2, 98) + "%"); });
+});
+const HS = { hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
+$$(".hot").forEach(h => {
+  const data = HS[h.id]; const note = document.createElement("div"); note.className = "hs-note"; h.append(note);
+  const list = $(`[data-hs-list="${h.id}"]`);
+  const show = k => { const pin = $(`.hs[data-k="${k}"]`, h); note.style.setProperty("--x", pin.style.getPropertyValue("--x")); note.style.setProperty("--y", pin.style.getPropertyValue("--y")); note.innerHTML = `<b>${data[k][0]}</b>${data[k][1]}`; note.classList.add("show"); list && $$(".hs-item", list).forEach(i => i.classList.toggle("on", +i.dataset.k === k)); };
+  const hide = () => { note.classList.remove("show"); list && $$(".hs-item", list).forEach(i => i.classList.remove("on")); };
+  $$(".hs", h).forEach(p => { p.addEventListener("mouseenter", () => show(+p.dataset.k)); p.addEventListener("focus", () => show(+p.dataset.k)); p.addEventListener("mouseleave", hide); p.addEventListener("blur", hide); p.addEventListener("click", () => show(+p.dataset.k)); });
+  list && $$(".hs-item", list).forEach(i => { i.addEventListener("mouseenter", () => show(+i.dataset.k)); i.addEventListener("mouseleave", hide); });
+});
+
+let merged = false;
+$("#mergeBtn").addEventListener("click", () => {
+  merged = !merged;
+  $$("#audit .aud").forEach((a, i) => { const from = merged ? +a.dataset.n : 1, to = merged ? 1 : +a.dataset.n, b = $("b", a), t0 = performance.now(), dur = reduce ? 0 : 700 + i * 120;
+    (function step(now) { const p = dur ? Math.min(1, (now - t0) / dur) : 1; b.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); else a.classList.toggle("merged", merged); })(t0); });
+  $("#mergeBtn").innerHTML = merged ? "Show the mess again" : 'Merge them <span class="arr">→</span>';
+});
+
+const embed = $("#embed");
+function setBrand(c) { embed.style.setProperty("--brand", c); $$("#swatches .swt").forEach(s => s.classList.toggle("on", s.dataset.c.toLowerCase() === c.toLowerCase())); }
+$$("#swatches .swt").forEach(s => s.addEventListener("click", () => { setBrand(s.dataset.c); $("#wlColor").value = s.dataset.c.toLowerCase(); }));
+$("#wlColor").addEventListener("input", e => setBrand(e.target.value));
+$("#wlName").addEventListener("input", e => { const v = e.target.value.trim() || "Your product"; $("#embName").textContent = v; $("#embLogo").textContent = v[0].toUpperCase(); });
+$$("#wlRad button").forEach(b => b.addEventListener("click", () => { $$("#wlRad button").forEach(x => x.classList.remove("on")); b.classList.add("on"); embed.style.setProperty("--rad", b.dataset.r); }));
+$("#wlPowered").addEventListener("change", e => $("#embFoot").hidden = !e.target.checked);
+
+/* ======= Palette ======= */
+const CMDS = [
+  { g: "01", l: "Read: Three products, one spine", k: "case", run: () => location.hash = "case-merger" },
+  { g: "02", l: "Read: A docs folder to a live product", k: "case", run: () => location.hash = "case-unified-api" },
+  { g: "03", l: "Open: Making silent sync failures loud", k: "case", run: () => location.hash = "case-observability" },
+  { g: "04", l: "Open: KFin, statutory reporting", k: "case", run: () => location.hash = "case-kfin" },
+  { g: "05", l: "Open: SuperBeings, performance", k: "case", run: () => location.hash = "case-superbeings" },
+  { g: "@", l: "Copy email address", k: "contact", run: copyEmail },
+  { g: "◆", l: "Toggle thinking mode", k: "L", run: toggleLens },
+  { g: "◐", l: "Switch light / dark theme", k: "theme", run: toggleTheme },
+  { g: "↗", l: "Read Decision Design on Substack", k: "link", run: () => window.open(CONFIG.substack, "_blank", "noopener") },
+  { g: "#", l: "Go to: Details I sweat", k: "section", run: () => goSection("craft") },
+  { g: "#", l: "Go to: About", k: "section", run: () => goSection("about") },
+  { g: "#", l: "Go to: Contact", k: "section", run: () => goSection("contact") }
+];
+if (CONFIG.linkedin) CMDS.splice(6, 0, { g: "in", l: "Open LinkedIn", k: "link", run: () => window.open(CONFIG.linkedin, "_blank", "noopener") });
+if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open résumé", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
+function goSection(id) { if (!layer.hidden) closeCase(); location.hash = id; document.getElementById(id).scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+const pal = $("#palette"), pin = $("#palInput"), plist = $("#palList"); let palItems = [], palIdx = 0, lastFocus = null;
+function renderPal() {
+  const q = pin.value.trim().toLowerCase(); palItems = CMDS.filter(c => !q || c.l.toLowerCase().includes(q) || c.k.includes(q)); palIdx = Math.min(palIdx, Math.max(0, palItems.length - 1));
+  plist.innerHTML = palItems.length ? palItems.map((c, i) => `<li role="option" id="po${i}" class="${i === palIdx ? "on" : ""}" data-i="${i}" aria-selected="${i === palIdx}"><span class="g">${c.g}</span>${c.l}<small>${c.k}</small></li>`).join("") : `<li class="pal-empty">Nothing matches. Try “case”, “email” or “theme”.</li>`;
+  pin.setAttribute("aria-activedescendant", palItems.length ? "po" + palIdx : ""); const on = $("li.on", plist); if (on) on.scrollIntoView({ block: "nearest" });
+}
+function openPal() { lastFocus = document.activeElement; pal.hidden = false; pin.value = ""; palIdx = 0; renderPal(); setTimeout(() => pin.focus(), 10); }
+function closePal() { pal.hidden = true; if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
+function runPal(i) { const c = palItems[i]; if (!c) return; closePal(); setTimeout(c.run, 30); }
+pin.addEventListener("input", () => { palIdx = 0; renderPal(); });
+pin.addEventListener("keydown", e => { const n = Math.max(1, palItems.length); if (e.key === "ArrowDown") { e.preventDefault(); palIdx = (palIdx + 1) % n; renderPal(); } else if (e.key === "ArrowUp") { e.preventDefault(); palIdx = (palIdx - 1 + n) % n; renderPal(); } else if (e.key === "Enter") { e.preventDefault(); runPal(palIdx); } });
+plist.addEventListener("click", e => { const li = e.target.closest("li[data-i]"); if (li) runPal(+li.dataset.i); });
+pal.addEventListener("click", e => { if (e.target === pal) closePal(); });
+$("#kBtn").addEventListener("click", openPal); $$("[data-open-palette]").forEach(b => b.addEventListener("click", openPal));
+
+addEventListener("keydown", e => {
+  const typing = /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable;
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); pal.hidden ? openPal() : closePal(); return; }
+  if (e.key === "Escape") {
+    if (!pal.hidden) return closePal();
+    if ($(".lens-tag.pinned")) return $$(".lens-tag.pinned").forEach(t => t.classList.remove("pinned"));
+    if (!layer.hidden) { closeCase(); location.hash = "work"; return; }
+    if (document.body.classList.contains("lens-on")) setLens(false); return;
+  }
+  if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key.toLowerCase() === "l") toggleLens();
+});
+document.addEventListener("click", e => { if (!e.target.closest(".lens-tag")) $$(".lens-tag.pinned").forEach(t => t.classList.remove("pinned")); });
+
+if (location.hash.startsWith("#case-")) showCase(location.hash.slice(1));
+
+/* ===== v3: wayfinding + light touch ===== */
+(() => {
+  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  const sprog = $("#sprog"), dots = $("#sdots");
+  const SECS = [["top", "Intro"], ["work", "Work"], ["craft", "Craft"], ["writing", "Writing"], ["about", "About"], ["contact", "Contact"]];
+  SECS.forEach(([id, l]) => { const a = document.createElement("a"); a.href = "#" + id; a.dataset.l = l; a.setAttribute("aria-label", "Go to " + l); dots.append(a); });
+  function wayfind() {
+    const h = document.documentElement, p = h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1);
+    sprog.style.transform = `scaleX(${p})`;
+    let cur = 0; SECS.forEach(([id], i) => { if (i && document.getElementById(id).getBoundingClientRect().top < innerHeight * .45) cur = i; });
+    [...dots.children].forEach((d, i) => d.classList.toggle("on", i === cur));
+  }
+  addEventListener("scroll", () => requestAnimationFrame(wayfind), { passive: true }); wayfind();
+
+  if (fine) $$(".scard-in,.stat,.cbox,.imp,.dec").forEach(el => {
+    el.classList.add("spot");
+    el.addEventListener("pointermove", e => { const r = el.getBoundingClientRect(); el.style.setProperty("--mx", (e.clientX - r.left) + "px"); el.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+  });
+
+  if (!reduce && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target._h.classList.remove("mask"); io.unobserve(e.target); } }), { threshold: .1 });
+    $$(".sec-head h2,.writing-top h2,.contact h2").forEach(h => { if (h.getBoundingClientRect().top > innerHeight) { h.classList.add("mask"); const t = h.parentElement; t._h = h; io.observe(t); } });
+  }
+
+  const tip = $("#tip"); if (!isMac) $("#tipK").textContent = "Ctrl K";
+  let used = !!store.get("pd-tip");
+  const markUsed = () => { used = true; store.set("pd-tip", 1); tip.classList.remove("show"); };
+  addEventListener("keydown", e => { if (e.key.toLowerCase() === "l" || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) markUsed(); });
+  $("#lensBtn").addEventListener("click", markUsed); $("#kBtn").addEventListener("click", markUsed); $("#hint").addEventListener("click", markUsed);
+  $("button", tip).addEventListener("click", markUsed);
+  if (fine && !used) setTimeout(() => { if (!used && !document.body.classList.contains("case-open")) { tip.classList.add("show"); setTimeout(() => tip.classList.remove("show"), 10000); } }, 7000);
+})();
+</script>
+</body>
+</html>
