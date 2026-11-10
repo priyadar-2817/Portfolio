@@ -1365,7 +1365,6 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <template id="tpl-sy-read">
   <div class="ch-body vis" style="padding-left:0">
     <p>People also checked the list less often. Visits to it fell 14%, yet more sessions reached a run (215, up from 185), so when they did look, they got further. Support saw a clear drop in sync tickets too. I don't have the count yet, so there's no number here.</p>
-    <p>One thing I wouldn't claim: median time on the run page went up, from 11 to 38 seconds. That could be people using the new filters and search, or a busier page. Heap can't tell which.</p>
   </div>
 </template>
 <template id="tpl-ladder">
@@ -1792,8 +1791,8 @@ const CASES = [
     cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
     tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
     chapters: [
-      { name: "Context & problem", head: "The first version was mine, and it answered the wrong question.",
-        body: ["A sync job copies data on a schedule, for example employees from BambooHR to a customer's webhook. Each run moves hundreds or thousands of records, and every record makes two hops: into Knit, then out to the webhook.", "I designed v1 of these screens for the 2024 web app launch, and I modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
+      { name: "Context & problem", head: "Our first version answered the wrong question.",
+        body: ["A sync job copies data on a schedule, for example employees from BambooHR to a customer's webhook. Each run moves hundreds or thousands of records, and every record makes two hops: into Knit, then out to the webhook.", "We built v1 of these screens for the 2024 web app launch, and I designed them. As a team, we modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "Then our client base grew, and so did sync questions. Every question the screens couldn't answer turned into a ticket or a support call, and more and more of the team's time went into debugging customers' syncs for them. That's when redesigning it became necessary.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
         custom: ["tpl-sy-path", "tpl-sy-old"] },
       { name: "Research & insight", head: "What customers kept asking",
         lede: "Before touching Figma I went back through customer and prospect calls, and through Heap and Clarity for how the old screens were actually used. The same question kept coming back in different words.",
