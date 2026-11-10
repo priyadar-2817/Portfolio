@@ -693,7 +693,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 .dec-tag{margin-left:auto;font-family:var(--mono);font-size:12px;padding:4px 8px;border-radius:99px;background:color-mix(in srgb,var(--lens) 12%,transparent);color:var(--lens);white-space:nowrap;align-self:center}
 .unsolved{margin-top:24px;display:grid;gap:8px}
 .uns{display:flex;gap:16px;align-items:baseline;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:15px}
-.uns .mono{color:var(--warn);font-size:12px;white-space:nowrap}
+.uns .mono{color:var(--accent);font-size:12px;white-space:nowrap}
 .draft-box{margin-top:24px;border:1.5px dashed color-mix(in srgb,var(--lens) 55%,transparent);border-radius:16px;padding:16px 20px;background:color-mix(in srgb,var(--lens) 5%,transparent)}
 .draft-box .mono{color:var(--lens);font-size:12px;letter-spacing:.08em}
 .draft-box ul{margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--muted);display:grid;gap:4px}
@@ -926,6 +926,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 .case-bar .icon-btn{flex:0 0 38px}
 @media (max-width:640px){.case-bar [data-open-palette]{display:none}}
 [hidden]{display:none!important}
+.ba-tag{font-size:13px;line-height:1.3;padding:6px 10px;border-radius:8px;box-shadow:0 6px 16px -6px rgba(0,0,0,.45)}.ba-tag b{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;opacity:.85;margin-bottom:2px}.ba .ba-tag.l,.ba.real .ba-tag.l{background:#35548F}.ba .ba-tag.r,.ba.real .ba-tag.r{background:#8E3B22}
+
 </style>
 </head>
 <body>
@@ -1326,11 +1328,11 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-sy-ba">
   <div class="vis">
-    <div class="vis-cap"><span>The records table, v1 against v2</span><span>Drag the handle</span></div>
+    <div class="vis-cap"><span>The records table, v1 against v2</span><span>Drag · v1 left, v2 right</span></div>
     <div class="ba real tables" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Same job, same records: blanks on one side, a status and a reason on the other.">
       <div class="layer-a"><div class="sw" data-screen="syncsBaOld"></div></div>
       <div class="layer-b"><div class="sw" data-screen="syncsBaNew"></div></div>
-      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · a status and a reason</span>
+      <span class="ba-tag l"><b>V1 · BEFORE</b>Ticks and blanks</span><span class="ba-tag r"><b>V2 · AFTER</b>A status and a reason</span>
       <div class="ba-handle"></div>
     </div>
   </div>
@@ -1437,11 +1439,11 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-lg-ba">
   <div class="vis">
-    <div class="vis-cap"><span>The same page, v1 against v2</span><span>Drag the handle</span></div>
+    <div class="vis-cap"><span>The same page, v1 against v2</span><span>Drag · v1 left, v2 right</span></div>
     <div class="ba real" data-lens-title="Contrast effect" data-lens="Side by side, the change is easy to judge: two tables and a page per log on one side, one table and errors that open in place on the other.">
       <div class="layer-a"><div class="sw" data-screen="logsV1"></div></div>
       <div class="layer-b"><div class="sw" data-screen="logsV2"></div></div>
-      <span class="ba-tag l">v1 · two tables, a page per log</span><span class="ba-tag r">v2 · one table, errors open in place</span>
+      <span class="ba-tag l"><b>V1 · BEFORE</b>Two tables, a page per log</span><span class="ba-tag r"><b>V2 · AFTER</b>One table, errors open in place</span>
       <div class="ba-handle"></div>
     </div>
   </div>
@@ -1533,7 +1535,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <div class="ba" id="ba1" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Dragging the handle lets you feel the difference instead of reading about it.">
       <div class="layer-a"><div class="sw" data-screen="before3"></div></div>
       <div class="layer-b"><div class="sw" data-screen="activity"></div></div>
-      <span class="ba-tag l">Before · three products</span><span class="ba-tag r">After · one product</span>
+      <span class="ba-tag l"><b>BEFORE</b>Three products</span><span class="ba-tag r"><b>AFTER</b>One product</span>
       <div class="ba-handle"></div>
     </div>
   </div>
@@ -1883,7 +1885,7 @@ const CASES = [
       { name: "AI workflow", head: "Where AI sped me up, and where it didn't.",
         ai: { steps: [["INVENTORY", "Screenshots in, audit out", "I fed every screen of all three products to Claude and worked through the inventory with it. The duplication counts came out of that pass."], ["WIREFRAMES", "FigJam flows through Figma MCP", "Once the IA was agreed, I generated the first round of wireframes through the Figma MCP integration, then reworked them by hand."], ["SYSTEM", "A reusable design prompt", "I wrote the decisions into a design prompt so every new screen starts from the same object model and naming."]], human: "AI was fast at listing what existed. Deciding what should exist was my job, with my manager." } },
       { name: "Reflection", head: "What I'd do differently.",
-        reflect: { quote: "If I did it again, I'd put pricing on the table on day one.", body: "The UI can merge three products. If the meters stay split, buyers still see three.", unsolved: ["API keys need to become plural and scoped. It's a proposal engineering still has to accept."] },
+        reflect: { quote: "If I did it again, I'd put pricing on the table on day one.", body: "The UI can merge three products. If the meters stay split, buyers still see three.", unsolved: ["Make API keys plural and scoped. I've proposed it to engineering."] },
         draft: ["Anything else that's still unsolved."] }
     ]
   },
@@ -1965,7 +1967,7 @@ const CASES = [
       { name: "AI workflow", head: "How I used AI",
         ai: { steps: [["RESEARCH", "Behaviour and quotes side by side", "I used AI to read Heap funnels and Clarity sessions next to what customers said on calls, instead of keeping them in separate tabs."], ["DESIGN", "Quick directions, then a check on the build", "It helped me get rough wireframes and alternatives together fast, which is how the all-runs table and the side panel could both be tried and dropped in a two-week design window. Before release, I used it to compare the built screens with the Figma files."]], human: "What each level should answer, and what to cut, was decided with the founders and engineering. I also used AI to help set up the before-and-after Heap funnel; the choices about what to count were mine." } },
       { name: "Reflection", head: "What I'd do differently.",
-        reflect: { quote: "Ship the whole module, not half of it.", body: "Customers got a much clearer way to see their syncs, but to change one they still had to come to us. Create and edit belonged in the same release as sync history. To a customer, it's one job.", unsolved: ["Each job's latest run status on the jobs list, so a failing job shows itself without a click.", "Logs and Syncs still speak slightly different languages. The Logs changes should have gone live the same day.", "Edit Syncs is designed and waiting for development, with alerts and data validation after it.", "A hard number for the drop in sync tickets."] } }
+        reflect: { quote: "Ship the whole module, not half of it.", body: "Customers got a much clearer way to see their syncs, but to change one they still had to come to us. Create and edit belonged in the same release as sync history. To a customer, it's one job.", unsolved: ["Show each job's latest run status on the jobs list, so a failing job shows itself without a click.", "Ship the Logs changes together with Syncs next time, so both pages speak one language from launch day.", "Ship Edit Syncs, which is designed and ready, then alerts and data validation.", "Measure the drop in sync tickets with support's counts."] } }
     ]
   },
   {
@@ -2008,7 +2010,7 @@ const CASES = [
       { name: "AI workflow", head: "How I used AI",
         ai: { steps: [["RESEARCH", "Usage and conversations side by side", "I used AI to read Heap and Clarity data next to what customers said on calls. That's where the round trips and the dead clicks showed up."], ["DESIGN", "Quick layouts and clearer error copy", "It helped me try table layouts and wireframes fast, and draft and test the plain-language error messages in the modal."], ["QA", "Checking the build", "Before release, I used it to compare the built screens with the Figma files."]], human: "One table instead of two, details only where something broke, and what to leave out were decided with the founder and engineering." } },
       { name: "Reflection", head: "What I'd do differently.",
-        reflect: { quote: "People treat cards as buttons.", body: "I designed the error counts on the summary cards as display-only numbers. Clarity showed people clicking them anyway. A card looks like it should open something, and habit wins. Next time, any card that shows a problem gets a way into it.", unsolved: ["“Errors in the last hour” and the error chips should filter the table to those errors.", "Measure from day one. The new interactions were only tracked in Heap weeks after launch, and clicks on log rows still aren't, so I can show fewer page loads but not faster fixes.", "Put the design in front of a few customers before launch, not after.", "Ask AI is designed and waiting for development."] } }
+        reflect: { quote: "People treat cards as buttons.", body: "I designed the error counts on the summary cards as display-only numbers. Clarity showed people clicking them anyway. A card looks like it should open something, and habit wins. Next time, any card that shows a problem gets a way into it.", unsolved: ["Make “Errors in the last hour” and the error chips filter the table to those errors.", "Track every new interaction from launch day, including clicks on log rows, so the next version can show time saved as well as page loads.", "Test the next version with a few customers before launch.", "Ship Ask AI, which is designed and ready for development."] } }
     ]
   },
   {
@@ -2067,7 +2069,7 @@ function renderCases() {
       if (ch.impact) h += `<div class="impact vis">${ch.impact.map(x => `<div class="imp rv"><b${x[2] != null ? ` data-count="${x[2]}" data-suffix="${x[3] || ""}"` : ""}>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`;
       if (ch.after) ch.after.forEach(id => { const t = document.getElementById(id); if (t) h += t.innerHTML; });
       if (ch.ai) h += `<div class="cs-grid vis"><div class="human"><span class="mono">WHAT STAYED HUMAN</span>${ch.ai.human}</div><div class="ai">${ch.ai.steps.map(s => `<div class="ai-step"><span class="mono">${s[0]}</span><div><b>${s[1]}</b><p>${s[2]}</p></div></div>`).join("")}</div></div>`;
-      if (ch.reflect) { const r = ch.reflect; h += `<div class="vis indent"><blockquote>“${r.quote}”</blockquote>${r.body ? `<p class="ch-lede">${r.body}</p>` : ""}${r.unsolved ? `<div class="unsolved"><span class="eyebrow">Still open</span>${r.unsolved.map(u => `<div class="uns"><span class="mono">○ OPEN</span>${u}</div>`).join("")}</div>` : ""}</div>`; }
+      if (ch.reflect) { const r = ch.reflect; h += `<div class="vis indent"><blockquote>“${r.quote}”</blockquote>${r.body ? `<p class="ch-lede">${r.body}</p>` : ""}${r.unsolved ? `<div class="unsolved"><span class="eyebrow">What I'd do next</span>${r.unsolved.map(u => `<div class="uns"><span class="mono">→ NEXT</span>${u}</div>`).join("")}</div>` : ""}</div>`; }
       h += draftBox(ch.draft);
       return h + `</section>`;
     }).join("");
