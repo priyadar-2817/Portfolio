@@ -921,6 +921,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 @media (max-width:1020px){.hot-stack .hs-list{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.hot-stack .hs-list{grid-template-columns:1fr}.cover-flag{white-space:normal;width:60%}}
 @media (prefers-reduced-motion:reduce){.mini-dp *{animation:none!important}.mini-dp .md{transform:translateX(450px)}.mini-dp .md circle{fill:#FF8A75}.mini-dp .ml.a{stroke-dashoffset:0}.mini-dp .ml.b{stroke-dashoffset:135}.mini-dp .mb{opacity:1}.cover-ring{animation:none}}
+.ch .insights:has(> :nth-child(2):last-child),.impact:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1020px){.ch .insights:has(> :nth-child(2):last-child),.impact:has(> :nth-child(2):last-child){grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1042,7 +1044,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <h3>From the system's view to the customer's question</h3>
             <p>I designed Knit's first Syncs screens around how engineering saw the system. A year later I redesigned them around the question customers kept asking: which record broke, and where?</p>
             <div class="outcomes"><span><b>28.7 → 39.9%</b> job → run</span><span><b>1 in 4</b> runs → record</span></div>
-            <div class="tags"><span>Data-dense UI</span><span>Drill-down</span><span>Research to launch</span></div>
+            <div class="tags"><span>Data-dense UI</span><span>Research to launch</span></div>
             <span class="viewcase">Open project <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#1F4B3E">
@@ -1267,7 +1269,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <div class="levels">
       <div class="lv-row rv"><span class="mono">LIST</span><q>Which syncs do I have, and where does the data go?</q><span>A Direction column: source app → Knit → destination.</span></div>
       <div class="lv-row rv"><span class="mono">JOB</span><q>Did its recent runs work?</q><span>One state per run: Ongoing, All Events Processed, All Events Consumed, Failed.</span></div>
-      <div class="lv-row rv"><span class="mono">RUN</span><q>Which records failed, and why?</q><span>HTTP status, a Remarks column for the error, processed data models as chips.</span></div>
+      <div class="lv-row rv"><span class="mono">RUN</span><q>Which records failed, and why?</q><span>An HTTP status and the error message, right in the row.</span></div>
       <div class="lv-row rv new"><span class="mono">RECORD</span><q>Which step broke?</q><span>Every executed step, with its direction and result.</span></div>
     </div>
   </div>
@@ -1275,13 +1277,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-sy-cut">
   <div class="vis">
-    <div class="vis-cap"><span>What we left out of v2</span><span>Cut or deferred</span></div>
-    <div class="cut">
-      <div><span class="mono">CUT</span><b>The per-step payload view</b><p>Knit doesn't store customer data, so it couldn't ship. See D1.</p></div>
-      <div><span class="mono">DEFERRED</span><b>Create and edit syncs</b><p>Designed separately, not yet picked up for development.</p></div>
-      <div><span class="mono">DEFERRED</span><b>Matching changes to Logs</b><p>So for now, Syncs and Logs speak slightly different languages.</p></div>
-    </div>
-    <p class="cut-why">The read-only path went first, so customers could find where a sync broke from day one. Two of these three are in my reflection.</p>
+    <div class="vis-cap"><span>What didn't make v2</span><span>Cut or deferred</span></div>
+    <div class="ch-body" style="padding-left:0"><p>The per-step payload view was gone for good, for the reason above. Create and edit syncs, which I designed separately, is still waiting for development, and so are the matching changes to the Logs pages. We shipped the read-only path first so customers could find where a sync broke from day one. Both deferred pieces come back in my reflection.</p></div>
   </div>
 </template>
 
@@ -1310,7 +1307,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <div class="ba real tables" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Same job, same records: blanks on one side, a status and a reason on the other.">
       <div class="layer-a"><div class="sw" data-screen="syncsBaOld"></div></div>
       <div class="layer-b"><div class="sw" data-screen="syncsBaNew"></div></div>
-      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · status, reason, data models</span>
+      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · a status and a reason</span>
       <div class="ba-handle"></div>
     </div>
   </div>
@@ -1328,10 +1325,10 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
         <button class="hs" style="--x:68%;--y:66%" data-k="3" aria-label="Pin 4">4</button>
       </div>
       <div class="hs-list" data-hs-list="hsSy">
-        <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>Syncs › Job › Run › Record. A full page gets its own link to share with support and a breadcrumb back up.</span></div></div>
+        <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>A full page gets a link you can paste to support, and a breadcrumb back up.</span></div></div>
         <div class="hs-item" data-k="1"><i>2</i><div><b>The result, in plain terms</b><span>404 Not Found, the language developers already debug in.</span></div></div>
         <div class="hs-item" data-k="2"><i>3</i><div><b>One row per hop</b><span>Method, direction and result for every executed step, so the failing hop stands out.</span></div></div>
-        <div class="hs-item" data-k="3"><i>4</i><div><b>Data models, not data</b><span>What was subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
+        <div class="hs-item" data-k="3"><i>4</i><div><b>What was processed</b><span>The data models subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
       </div>
     </div>
   </div>
@@ -1367,7 +1364,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-sy-read">
   <div class="ch-body vis" style="padding-left:0">
-    <p>Read together: people checked the list less often, and when they did, they got further. Support also saw a clear drop in sync-related tickets. I don't have the count yet, so I'm not putting a number on it.</p>
+    <p>People also checked the list less often. Visits to it fell 14%, yet more sessions reached a run (215, up from 185), so when they did look, they got further. Support saw a clear drop in sync tickets too. I don't have the count yet, so there's no number here.</p>
     <p>One thing I wouldn't claim: median time on the run page went up, from 11 to 38 seconds. That could be people using the new filters and search, or a busier page. Heap can't tell which.</p>
   </div>
 </template>
@@ -1791,47 +1788,45 @@ const CASES = [
     real: "Real product screens. Organization names and IDs are sample data.",
     kicker: "Case study 03 · Knit · Data Syncs · 2026", crumb: "03 · Knit · Data Syncs redesign",
     title: "From the system's view to the customer's <em>question</em>",
-    lede: "Knit moves data between its customers' products and hundreds of HR, CRM and accounting apps on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later I redesigned them around the one question customers kept asking: which record broke, and where?",
+    lede: "Knit moves data between its customers' products and hundreds of other apps, on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later I redesigned them around the one question customers kept asking: which record broke, and where?",
     cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
     tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
     chapters: [
       { name: "Context & problem", head: "The first version was mine, and it answered the wrong question.",
-        body: ["A sync job copies data on a schedule, say employees from BambooHR, delivered to the customer's webhook. Each run moves hundreds or thousands of records, and every record makes two hops: from the source app into Knit, then from Knit to the customer's webhook.", "I designed v1 of these screens for the 2024 web app launch, and I modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
+        body: ["A sync job copies data on a schedule, for example employees from BambooHR to a customer's webhook. Each run moves hundreds or thousands of records, and every record makes two hops: into Knit, then out to the webhook.", "I designed v1 of these screens for the 2024 web app launch, and I modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
         custom: ["tpl-sy-path", "tpl-sy-old"] },
-      { name: "Research & insight", head: "Two years of calls, one question.",
+      { name: "Research & insight", head: "What customers kept asking",
         lede: "Before touching Figma I went back through customer and prospect calls, and through Heap and Clarity for how the old screens were actually used. The same question kept coming back in different words.",
         custom: ["tpl-sy-quotes"],
         insights: [
-          ["Customers think in hops, not events", "They described a failure as a place: in the sync from the app, or in the export to their webhook. The screens described it as event counts."],
-          ["Reconciliation was happening on calls", "In one December 2025 call, a Knit teammate tallied records date by date while the customer watched. Every question the screens couldn't answer turned into the team's time."],
-          ["The old flow stopped one level short", "In the ten weeks before launch, fewer than 3 in 10 customer sessions that opened a sync job went on to a run. And a run was as deep as anyone could go."]
+          ["Customers described failures as places", "“In the sync process”, “in the export to us, to webhook”. They talked about where something broke. Our screens talked about event counts."],
+          ["Reconciliation was happening on calls", "In one December 2025 call, a Knit teammate tallied records date by date while the customer watched. Every question the screens couldn't answer turned into the team's time."]
         ] },
-      { name: "Product opportunity", head: "One question per level, answered on that level.",
-        lede: "The shape of the drill-down was fine. The job was to make every level answer the customer's question at that depth, and to add the level that was missing: the single record.",
+      { name: "Product opportunity", head: "Where the opportunity was",
+        lede: "The old flow stopped one level short. In the ten weeks before launch, fewer than 3 in 10 customer sessions that opened a sync job went on to a run, and a run was as deep as anyone could go. The drill-down's shape was fine. What had to change was what each level showed, plus the missing level underneath it: the single record.",
         custom: ["tpl-sy-levels"] },
       { name: "Design exploration", head: "Two directions I tried and dropped.",
         lede: "Neither survives in Figma, so these are rebuilt as rough wireframes from my notes. They're labelled that way on the image.",
         explore: [
-          { screen: "syncsExAll", title: "One table of every run, with filters", why: "Too much at once. Everything depended on setting the right filters first, runs lost their context (whose sync, which app), and it isn't how people think about their syncs." },
+          { screen: "syncsExAll", title: "One table of every run, with filters", why: "Too much at once. You had to set the right filters before the table meant anything, and each run lost its context: whose sync it was, and which app." },
           { screen: "syncsExPanel", title: "Record steps in a side panel", why: "We had no side panels anywhere else in the product, so it would have arrived out of nowhere. And the steps and data models were cramped at that width." },
-          { screen: "syncsNewRecord", title: "Drill down to a full record page", why: "Every click from a sync job to a record is deliberate, so each one earns a full page, with room for the steps, its own link and a breadcrumb back up.", chosen: true }
+          { screen: "syncsNewRecord", title: "Drill down to a full record page", why: "Every click from a job to a record is deliberate, so each one earns a full page, with room for the steps and a link of its own.", chosen: true }
         ] },
-      { name: "Decisions & trade-offs", head: "Three calls, and one of them wasn't mine.",
+      { name: "Decisions & trade-offs", head: "The decisions that shaped it",
         decisions: [
-          { q: "What can a record page show if Knit never stores customer data?", considered: "My first record page showed the actual payload at every step, so you could watch a field travel from BambooHR to the customer's webhook.", chose: "The data models subscribed for that record, each with a tick for processed or not. Structure, not values.", why: "Engineering stopped the payload view: Knit doesn't store customer data, by design. The customer still learns where it broke and what was affected, and the privacy promise stays intact.", tag: "Engineering pushback" },
-          { q: "Should the sync jobs list show a status?", considered: "A status column on every job, the way most monitoring tables do it.", chose: "Status on runs only.", why: "A sync job is a recurring schedule. Status only makes sense for each of its runs.", cost: "A failing job doesn't show itself on the list. It's the first thing in my reflection." },
-          { q: "When is a run actually done?", considered: "v1's single “All Consumed” status, in Knit's own event vocabulary.", chose: "Two states: All Events Processed in amber, All Events Consumed in green, with a tooltip that spells out the difference.", why: "Processed means Knit has handled every event, failures included, but the customer's side hasn't confirmed them all. Consumed means every event was signed for. Packed and out for delivery, versus signed for at the door.", cost: "One more state for people to learn, so the tooltip has to do real work." }
+          { q: "What can a record page show if Knit never stores customer data?", considered: "My first record page showed the actual payload at every step, so you could watch a field travel from BambooHR to the customer's webhook.", chose: "The data models subscribed for that record, each with a tick for processed or not.", why: "Engineering stopped the payload view: Knit doesn't store customer data, by design. The customer still learns where it broke and what was affected, and the privacy promise stays intact.", tag: "Engineering pushback" },
+          { q: "Where should status live, and what should it say?", considered: "A status column on every sync job, the way most monitoring tables do it. And v1's single “All Consumed” state, in Knit's own vocabulary.", chose: "Status on runs only, with two end states: All Events Processed in amber and All Events Consumed in green. A tooltip explains the difference.", why: "A sync job is a recurring schedule, so status only makes sense for each run. And “done” meant two different things. Processed means Knit has handled every event, failures included, but the customer's side hasn't confirmed them all. Consumed means every event was signed for, like a parcel that's out for delivery versus one that's been signed for at the door.", cost: "A failing job doesn't show itself on the list, and people have one more state to learn. The first of those is in my reflection." }
         ],
         custom: ["tpl-sy-cut"] },
-      { name: "Solution", head: "Four levels, each one a step closer to the answer.",
-        lede: "The drill-down kept its shape and gained a fourth level. Each page answers one question, and the next click only appears once that question is answered.",
+      { name: "Solution", head: "What shipped",
+        lede: "We kept the drill-down's shape and added a fourth level. Each page answers one question before it offers the next click.",
         custom: ["tpl-sy-scrolly", "tpl-sy-ba", "tpl-sy-hot"] },
       { name: "Validation & outcome", head: "Customers used to stop at the run. Now they go one level further.",
         lede: "The whole Knit team ran the new flow internally against real syncs before it went live for everyone on 11 March 2026. Then I compared ten weeks of customer sessions on either side of the launch in Heap.",
-        impact: [["39.9%", "of sessions on a sync job went on to open a run, up from 28.7%"], ["1 in 4", "sessions on a run now open a single record (22.8%, 49 sessions). v1 had no record level at all."], ["−14%", "visits to the sync list, while more sessions reached a run (215, up from 185)"]],
+        impact: [["1 in 4", "sessions on a sync run now open a single record (22.8%, 49 sessions). v1 had no record level at all."], ["39.9%", "of sessions on a sync job went on to open a run, up from 28.7%"]],
         after: ["tpl-sy-funnel", "tpl-sy-read"] },
-      { name: "AI workflow", head: "Where AI helped, and where it didn't.",
-        ai: { steps: [["RESEARCH", "Behaviour and quotes side by side", "I used AI to read Heap funnels and Clarity sessions alongside what customers said on calls, instead of keeping them in separate tabs."], ["EXPLORE", "Rough directions in hours", "Lo-fi wireframes and alternatives came together quickly, which is how the all-runs table and the side panel could both be tried and dropped inside a two-week design window."], ["QA", "Built screens against Figma", "Before release I used it to audit the built screens against the designs, catching drift from the build."]], human: "What each level should answer, and what to cut, was decided with the founders and engineering. I also used AI to help set up the before-and-after Heap funnel; the choices about what to count were mine." } },
+      { name: "AI workflow", head: "How I used AI",
+        ai: { steps: [["RESEARCH", "Behaviour and quotes side by side", "I used AI to read Heap funnels and Clarity sessions next to what customers said on calls, instead of keeping them in separate tabs."], ["DESIGN", "Quick directions, then a check on the build", "It helped me get rough wireframes and alternatives together fast, which is how the all-runs table and the side panel could both be tried and dropped in a two-week design window. Before release, I used it to compare the built screens with the Figma files."]], human: "What each level should answer, and what to cut, was decided with the founders and engineering. I also used AI to help set up the before-and-after Heap funnel; the choices about what to count were mine." } },
       { name: "Reflection", head: "What I'd do differently.",
         reflect: { quote: "Ship the whole module, not half of it.", body: "Customers got a much clearer way to see their syncs, but to change one they still had to come to us. Create and edit belonged in the same release as sync history. To a customer, it's one job.", unsolved: ["Each job's latest run status on the jobs list, so a failing job shows itself without a click.", "Logs and Syncs still speak slightly different languages. The Logs changes should have gone live the same day.", "Edit Syncs is designed and waiting for development, with alerts and data validation after it.", "A hard number for the drop in sync tickets."] } }
     ]
@@ -2159,7 +2154,7 @@ $$(".ba").forEach(ba => {
   ba.tabIndex = 0; ba.setAttribute("role", "slider"); ba.setAttribute("aria-label", "Before and after comparison"); ba.setAttribute("aria-valuemin", 0); ba.setAttribute("aria-valuemax", 100);
   ba.addEventListener("keydown", e => { const cur = parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50; if (e.key === "ArrowLeft") ba.style.setProperty("--pos", clamp(cur - 5, 2, 98) + "%"); if (e.key === "ArrowRight") ba.style.setProperty("--pos", clamp(cur + 5, 2, 98) + "%"); });
 });
-const HS = { hsSy: [["A real address", "Its own link to share with support, and a breadcrumb back up."], ["The result, in plain terms", "404 Not Found, in the language developers already debug in."], ["One row per hop", "Method, direction and result for every executed step."], ["Data models, not data", "What was subscribed and processed. No field values."]], hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
+const HS = { hsSy: [["A real address", "A link you can paste to support, and a breadcrumb back up."], ["The result, in plain terms", "404 Not Found, in the language developers already debug in."], ["One row per hop", "Method, direction and result for every executed step."], ["What was processed", "The data models for this record. No field values, because Knit doesn't keep them."]], hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
 $$(".hot").forEach(h => {
   const data = HS[h.id]; const note = document.createElement("div"); note.className = "hs-note"; h.append(note);
   const list = $(`[data-hs-list="${h.id}"]`);
