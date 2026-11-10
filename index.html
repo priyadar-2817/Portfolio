@@ -1294,7 +1294,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
           <div class="step on"><span class="n">LEVEL 1 · LIST</span><b>Where the data goes</b><span>Organization first, then Direction: source app → Knit → destination. No status column, on purpose: a sync job is a schedule.</span></div>
           <div class="step"><span class="n">LEVEL 2 · JOB</span><b>How its runs went</b><span>Summary cards on top, then every run with one of four states. Amber means processed, green means the customer's side confirmed it.</span></div>
           <div class="step"><span class="n">LEVEL 3 · RUN</span><b>Which records failed</b><span>Each record with an HTTP status, a Remarks column for the error and the data models it processed. Filter and search for the one that broke.</span></div>
-          <div class="step"><span class="n">LEVEL 4 · RECORD · NEW</span><b>Which step broke</b><span>Every step the record went through. GET from the source app: 200 OK. POST onward: 404 Not Found. That's the hop.</span></div>
+          <div class="step"><span class="n">LEVEL 4 · RECORD · NEW</span><b>Which step broke</b><span>Every step the record went through. GET from BambooHR: 200 OK. POST to the customer's webhook: 404 Not Found. That's the hop.</span></div>
         </div>
         <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div>
           <div class="sc-screens wide"><div class="sw on" data-screen="syncsNewList"></div><div class="sw" data-screen="syncsNewJob"></div><div class="sw" data-screen="syncsNewRun"></div><div class="sw" data-screen="syncsNewRecord"></div></div>
