@@ -806,6 +806,86 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 .fn-note{margin-top:14px;font-size:13.5px;color:var(--muted);line-height:1.55}
 @media (max-width:1020px){.sy-old,.quotes,.cut{grid-template-columns:1fr}.lv-row{grid-template-columns:1fr;gap:6px}.fn-row,.fn-axis{grid-template-columns:1fr;gap:8px}.fn-axis div:first-child{display:none}}
 @media (prefers-reduced-motion:reduce){.fn-bar i{transition:none}}
+
+/* ===== Syncs visuals v2 ===== */
+.sp-list{display:grid;gap:18px}
+.sp{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:clamp(16px,2.4vw,32px);align-items:center;padding:clamp(14px,2vw,22px);border:1px solid var(--line);border-radius:22px;background:var(--surface)}
+.sp-meta .mono{display:block;color:var(--accent);font-size:11px;letter-spacing:.08em;margin:14px 0 6px}
+.sp-meta b{display:block;font-weight:500;font-size:18px;line-height:1.25}
+.sp-meta p{margin:6px 0 0;font-size:14.5px;color:var(--muted);line-height:1.5}
+.sp-thumb{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.sp-thumb .sw{aspect-ratio:auto}
+.sp-hl{position:absolute;border:2px solid var(--accent);border-radius:4px;box-shadow:0 0 0 999px rgba(20,14,10,.38);pointer-events:none}
+.sp-crop{position:relative;border-radius:14px;overflow:visible;background:#fff;box-shadow:0 30px 60px -36px rgba(10,6,2,.55),0 0 0 1px rgba(0,0,0,.06)}
+.sp-crop .sw{border-radius:14px;aspect-ratio:auto;background:#fff}
+.ring{position:absolute;border:2px dashed #C2412D;border-radius:8px;background:rgba(194,65,45,.07);pointer-events:none}
+.sp.in .ring{animation:ringIn .6s var(--ease) both}
+.sp.in .ring:nth-of-type(2){animation-delay:.15s}
+@keyframes ringIn{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:none}}
+.flag{position:absolute;z-index:2;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;line-height:1.35;color:#fff;background:#C2412D;padding:6px 9px;border-radius:7px;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+.flag.up{transform:translateY(-100%)}
+.ba.tables{aspect-ratio:1104/452;background:#fff}
+.ba.tables .sw{aspect-ratio:1104/452;background:#fff}
+.ba.tables .ba-tag{top:auto;bottom:12px}
+.dp{--red:#C2412D;border:1px solid var(--line);border-radius:24px;background:var(--surface);padding:clamp(16px,2.6vw,30px)}
+[data-theme="dark"] .dp{--red:#F07A63}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dp{--red:#F07A63}}
+.dp-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.dp-top h4{margin:0;font-weight:500;font-size:17px}
+.dp-replay{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.dp-replay:hover{color:var(--ink);border-color:var(--ink)}
+.dp svg{display:block;width:100%;height:auto;overflow:visible}
+.dp .node rect{fill:var(--bg);stroke:var(--line);stroke-width:2}
+.dp .node.knit rect{stroke:var(--ink);stroke-width:2.5}
+.dp .node text{fill:var(--ink);font-family:var(--sans,Geist),system-ui,sans-serif;font-size:26px;font-weight:500;text-anchor:middle}
+.dp .node .cap{fill:var(--muted);font-family:var(--mono);font-size:15px;font-weight:400;letter-spacing:.08em}
+.dp .wire{stroke:var(--line);stroke-width:3;stroke-dasharray:2 10;stroke-linecap:round;fill:none}
+.dp .lit{stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400}
+.dp .lit.h1{stroke:var(--ok)}.dp .lit.h2{stroke:var(--red)}
+.dp .hop{fill:var(--muted);font-family:var(--mono);font-size:15px;letter-spacing:.06em;text-anchor:middle}
+.dp .badge{opacity:0}
+.dp .badge rect{rx:10}
+.dp .badge.ok rect{fill:color-mix(in srgb,var(--ok) 16%,var(--surface));stroke:var(--ok);stroke-width:1.5}
+.dp .badge.bad rect{fill:color-mix(in srgb,var(--red) 14%,var(--surface));stroke:var(--red);stroke-width:1.5}
+.dp .badge text{font-family:var(--mono);font-size:17px;text-anchor:middle}
+.dp .badge.ok text{fill:var(--ok)}.dp .badge.bad text{fill:var(--red)}
+.dp .rec{transform:translateX(0)}
+.dp .rec circle{fill:var(--accent)}
+.dp .rec text{fill:var(--muted);font-family:var(--mono);font-size:14px;text-anchor:middle}
+.dp.play .rec{animation:dpRec 3.4s var(--ease) forwards}
+.dp.play .rec circle{animation:dpRed 3.4s linear forwards}
+.dp.play .lit.h1{animation:dpLit .9s .25s var(--ease) forwards}
+.dp.play .lit.h2{animation:dpLit2 1s 1.9s var(--ease) forwards}
+.dp.play .badge.ok{animation:dpIn .4s 1.15s forwards}
+.dp.play .badge.bad{animation:dpIn .4s 2.9s forwards}
+.dp.play .dest{animation:dpDim .5s 2.9s forwards}
+.dp.play .ans{animation:dpUp .6s 3.3s var(--ease) both}
+.dp.play .ans + .ans{animation-delay:3.55s}
+@keyframes dpRec{0%{transform:translateX(0)}38%{transform:translateX(300px)}55%{transform:translateX(300px)}85%,100%{transform:translateX(520px)}}
+@keyframes dpRed{0%,84%{fill:var(--accent)}86%,100%{fill:var(--red)}}
+@keyframes dpLit{to{stroke-dashoffset:0}}
+@keyframes dpLit2{to{stroke-dashoffset:255}}
+@keyframes dpIn{to{opacity:1}}
+@keyframes dpDim{to{opacity:.38}}
+@keyframes dpUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dp.final .rec{transform:translateX(520px)}.dp.final .rec circle{fill:var(--red)}
+.dp.final .lit.h1{stroke-dashoffset:0}.dp.final .lit.h2{stroke-dashoffset:255}
+.dp.final .badge{opacity:1}.dp.final .dest{opacity:.38}
+.dp-ans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.ans{padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.ans .mono{display:block;font-size:11px;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.ans.v2{border-color:var(--accent)}.ans.v2 .mono{color:var(--accent)}
+.ans p{margin:10px 0 0;font-size:14.5px;color:var(--muted);line-height:1.5}
+.mini-row{display:grid;grid-template-columns:1.6fr repeat(4,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-family:var(--mono);font-size:11.5px}
+.mini-row span{padding:8px 6px;text-align:center;border-left:1px solid var(--line);color:var(--ok)}
+.mini-row.head{border-radius:8px 8px 0 0;border-bottom:0}.mini-row.head + .mini-row{border-radius:0 0 8px 8px}.mini-row.head span{color:var(--muted);font-size:10px;letter-spacing:.06em;padding:6px 4px}
+.mini-row span:first-child{border-left:0;color:var(--muted);text-align:left}
+.mini-row span.blank{background:repeating-linear-gradient(135deg,transparent 0 6px,color-mix(in srgb,var(--red,#C2412D) 12%,transparent) 6px 8px);outline:2px dashed var(--red,#C2412D);outline-offset:-3px}
+.step-line{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-family:var(--mono);font-size:12.5px}
+.step-line b{font-weight:500;color:var(--ink)}
+.step-line .err{color:var(--red);border:1px solid var(--red);border-radius:6px;padding:2px 7px}
+@media (max-width:1020px){.sp{grid-template-columns:1fr}.sp-thumb{display:none}.sp-meta .mono{margin-top:0}.dp-ans{grid-template-columns:1fr}.flag{font-size:10.5px;white-space:normal;max-width:60%}}
+@media (prefers-reduced-motion:reduce){.dp.play .rec,.dp.play .rec circle,.dp.play .lit,.dp.play .badge,.dp.play .dest,.dp.play .ans{animation-duration:.01s!important;animation-delay:0s!important}}
 </style>
 </head>
 <body>
@@ -1078,14 +1158,53 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <template id="tpl-sy-old">
   <div class="vis">
     <div class="vis-cap"><span>What a customer saw in v1</span><span>Real screens, sample data</span></div>
-    <div class="sy-old">
-      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs</span></div><div class="sw" data-screen="syncsOldList"></div></div><figcaption><span class="mono">LEVEL 1 · LIST</span><b>64 syncs, and no sign of health</b>Organization, app, IDs and a schedule. Nothing said whether any sync had worked, or where its data was going.</figcaption></figure>
-      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Sync Job</span></div><div class="sw" data-screen="syncsOldJob"></div></div><figcaption><span class="mono">LEVEL 2 · JOB</span><b>Runs, counted the way the system counts</b>Events triggered, events consumed, records processed. Accurate, and written in Knit's vocabulary rather than the customer's.</figcaption></figure>
-      <figure><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Sync Run</span></div><div class="sw" data-screen="syncsOldRun"></div></div><figcaption><span class="mono">LEVEL 3 · RUN</span><b>The flat table with checkboxes</b>A blank cell could mean failed, skipped or not supported. No error, no reason, and no way to tell which hop broke.</figcaption></figure>
+    <div class="sp-list">
+      <div class="sp" data-sp>
+        <div class="sp-meta"><div class="sp-thumb"><div class="sw" data-screen="syncsOldList"></div><i class="sp-hl" style="left:19.03%;top:36.32%;width:71.39%;height:25.0%"></i></div>
+          <span class="mono">LEVEL 1 · LIST</span><b>64 syncs, and no sign of health</b><p>Organization, app, IDs and a schedule. Nothing said whether a sync had worked, or where its data was going.</p></div>
+        <div class="sp-crop"><div class="sw" data-screen="syncsCropList"></div><i class="ring" style="left:0%;top:0%;width:100%;height:17.5%"></i><span class="flag up" style="left:62%;top:0%">No status · no direction</span></div>
+      </div>
+      <div class="sp" data-sp>
+        <div class="sp-meta"><div class="sp-thumb"><div class="sw" data-screen="syncsOldJob"></div><i class="sp-hl" style="left:19.03%;top:44.47%;width:71.39%;height:20.0%"></i></div>
+          <span class="mono">LEVEL 2 · JOB</span><b>Runs, counted the way the system counts</b><p>Events triggered, events consumed, records processed. Accurate, and written in Knit's vocabulary rather than the customer's.</p></div>
+        <div class="sp-crop"><div class="sw" data-screen="syncsCropJob"></div><i class="ring" style="left:40.6%;top:1%;width:57.6%;height:98%"></i><span class="flag up" style="left:40.6%;top:0%">Knit's counters, not the customer's question</span></div>
+      </div>
+      <div class="sp" data-sp>
+        <div class="sp-meta"><div class="sp-thumb"><div class="sw" data-screen="syncsOldRun"></div><i class="sp-hl" style="left:19.03%;top:44.47%;width:71.39%;height:29.47%"></i></div>
+          <span class="mono">LEVEL 3 · RUN</span><b>The flat table with checkboxes</b><p>A blank cell could mean failed, skipped or not supported. No error, no reason, and no way to tell which hop broke.</p></div>
+        <div class="sp-crop"><div class="sw" data-screen="syncsCropRun"></div><i class="ring" style="left:45.5%;top:42.9%;width:13.5%;height:28.1%"></i><i class="ring" style="left:31.9%;top:71.4%;width:13.5%;height:28.2%"></i><span class="flag " style="left:60.5%;top:47%">Blank = failed? skipped? not supported?</span></div>
+      </div>
     </div>
   </div>
 </template>
 
+<template id="tpl-sy-path">
+  <div class="vis">
+    <div class="vis-cap"><span>Anatomy of one failed record</span><span>Plays when it scrolls into view</span></div>
+    <div class="dp" data-dp>
+      <div class="dp-top"><h4>Every record makes two hops. v1 couldn't say which one broke.</h4><button class="dp-replay" type="button">↻ REPLAY</button></div>
+      <svg viewBox="0 0 1000 300" role="img" aria-label="A record travels from BambooHR to Knit with 200 OK, then fails on the way from Knit to Salesforce with 404 Not Found.">
+        <path class="wire" d="M215 170 H425"/><path class="wire" d="M575 170 H785"/>
+        <path class="lit h1" d="M215 170 H425"/><path class="lit h2" d="M575 170 H785"/>
+        <g class="rec"><circle cx="200" cy="170" r="13"/><text x="200" y="210">record 101</text></g>
+        <text class="hop" x="320" y="128">HOP 1 · GET</text><text class="hop" x="680" y="128">HOP 2 · POST</text>
+        <g class="node"><rect x="25" y="120" width="190" height="100" rx="18"/><text x="120" y="178">BambooHR</text><text class="cap" x="120" y="252">SOURCE APP</text></g>
+        <g class="node knit"><rect x="425" y="120" width="150" height="100" rx="18"/><text x="500" y="178">Knit</text><text class="cap" x="500" y="252">KNIT</text></g>
+        <g class="node dest"><rect x="785" y="120" width="190" height="100" rx="18"/><text x="880" y="178">Salesforce</text><text class="cap" x="880" y="252">DESTINATION</text></g>
+        <g class="badge ok"><rect x="255" y="40" width="130" height="40"/><text x="320" y="66">✓ 200 OK</text></g>
+        <g class="badge bad"><rect x="600" y="40" width="200" height="40"/><text x="700" y="66">✕ 404 Not Found</text></g>
+      </svg>
+      <div class="dp-ans">
+        <div class="ans v1"><span class="mono">WHAT V1 TOLD YOU</span>
+          <div class="mini-row head"><span>ID</span><span>PROFILE</span><span>ORG</span><span>SALARY</span><span>LOCATION</span></div><div class="mini-row"><span>record 101</span><span>✓</span><span>✓</span><span class="blank" aria-label="blank cell"></span><span>✓</span></div>
+          <p>A blank cell under Salary. Failed, skipped, or not supported? No way to tell, so the customer asked us.</p></div>
+        <div class="ans v2"><span class="mono">WHAT V2 TELLS YOU</span>
+          <div class="step-line"><b>Record 101</b><span>Step 2 · POST Push record</span><span>Knit → Salesforce</span><span class="err">404 Not Found</span></div>
+          <p>The hop, the call and the result, one click below the run. The customer can see it's on the Salesforce side.</p></div>
+      </div>
+    </div>
+  </div>
+</template>
 <template id="tpl-sy-quotes">
   <div class="vis">
     <div class="vis-cap"><span>In their words</span><span>Call transcripts, Jul 2024 – Dec 2025</span></div>
@@ -1144,11 +1263,11 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-sy-ba">
   <div class="vis">
-    <div class="vis-cap"><span>The run page, v1 against v2</span><span>Drag the handle</span></div>
-    <div class="ba real" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. The blank checkbox cells on the left are the whole problem; the Remarks column on the right is the answer.">
-      <div class="layer-a"><div class="sw" data-screen="syncsOldRun"></div></div>
-      <div class="layer-b"><div class="sw" data-screen="syncsNewRun"></div></div>
-      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · status, reason, models</span>
+    <div class="vis-cap"><span>The records table, v1 against v2</span><span>Drag the handle</span></div>
+    <div class="ba real tables" data-lens-title="Contrast effect" data-lens="Change is easiest to judge side by side. Same job, same records: blanks on one side, a status and a reason on the other.">
+      <div class="layer-a"><div class="sw" data-screen="syncsBaOld"></div></div>
+      <div class="layer-b"><div class="sw" data-screen="syncsBaNew"></div></div>
+      <span class="ba-tag l">v1 · ticks and blanks</span><span class="ba-tag r">v2 · status, reason, data models</span>
       <div class="ba-handle"></div>
     </div>
   </div>
@@ -1398,6 +1517,11 @@ const CONFIG = {
     syncsNewRecord: "assets/syncs-new-record.webp",
     syncsExAll: "assets/syncs-explored-all-runs.webp",
     syncsExPanel: "assets/syncs-explored-side-panel.webp",
+    syncsCropList: "assets/syncs-crop-list.webp",
+    syncsCropJob: "assets/syncs-crop-job.webp",
+    syncsCropRun: "assets/syncs-crop-run.webp",
+    syncsBaOld: "assets/syncs-ba-old.webp",
+    syncsBaNew: "assets/syncs-ba-new.webp",
     /* Other projects: placeholders until you upload a real screen with the same file name */
     dashboard: "assets/dashboard.webp",
     connect: "assets/connect.webp",
@@ -1514,7 +1638,7 @@ curl https://api.getknit.dev/v1.0/hris/employees \\
     <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
       ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
 };
-const SCREEN_NAMES = { dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel" };
+const SCREEN_NAMES = { dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
 
 const scaleQueue = new Set();
 const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
@@ -1630,7 +1754,7 @@ const CASES = [
     chapters: [
       { name: "Context & problem", head: "The first version was mine, and it answered the wrong question.",
         body: ["A sync job copies data on a schedule, say employees from BambooHR into a customer's Salesforce. Each run moves hundreds or thousands of records, and every record makes two hops: from the source app into Knit, then from Knit to wherever the customer wants it.", "I designed v1 of these screens for the 2024 web app launch, and I modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
-        custom: ["tpl-sy-old"] },
+        custom: ["tpl-sy-path", "tpl-sy-old"] },
       { name: "Research & insight", head: "Two years of calls, one question.",
         lede: "Before touching Figma I went back through customer and prospect calls, and through Heap and Clarity for how the old screens were actually used. The same question kept coming back in different words.",
         custom: ["tpl-sy-quotes"],
@@ -1904,6 +2028,13 @@ function showCase(route) {
   $$("[data-flow] .path", art).forEach(p => p.style.setProperty("--len", Math.ceil(p.getTotalLength()) + "px"));
   if (caseIO) caseIO.disconnect(); caseIO = watch(scroller);
   $$(".ch", art).forEach(el => { el.classList.remove("seen"); caseIO.observe(el); });
+  $$("[data-dp]", art).forEach(d => {
+    const play = () => { d.classList.remove("play", "final"); void d.offsetWidth; d.classList.add(reduce ? "final" : "play"); };
+    d.classList.remove("play", "final");
+    const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { play(); o.disconnect(); } }), { root: scroller, threshold: .45 }); o.observe(d);
+    const b = $(".dp-replay", d); if (b) b.onclick = play;
+  });
+  $$("[data-sp]", art).forEach(c => { c.classList.remove("in"); const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { c.classList.add("in"); o.disconnect(); } }), { root: scroller, threshold: .5 }); o.observe(c); });
   $$("[data-fn]", art).forEach(f => { f.classList.remove("go"); const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { f.classList.add("go"); o.disconnect(); } }), { root: scroller, threshold: .3 }); o.observe(f); });
   $$(".rv,[data-count]", art).forEach(el => { if (el.classList.contains("rv") && !reduce) el.classList.add("pre"); el.dataset.done = ""; caseIO.observe(el); });
   const rail = $("#chRail"); rail.innerHTML = "";
