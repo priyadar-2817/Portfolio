@@ -1278,7 +1278,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <template id="tpl-sy-cut">
   <div class="vis">
     <div class="vis-cap"><span>What didn't make v2</span><span>Cut or deferred</span></div>
-    <div class="ch-body" style="padding-left:0"><p>The per-step payload view was gone for good, for the reason above. Create and edit syncs, which I designed separately, is still waiting for development, and so are the matching changes to the Logs pages. We shipped the read-only path first so customers could find where a sync broke from day one. Both deferred pieces come back in my reflection.</p></div>
+    <div class="ch-body" style="padding-left:0"><p>The payload view, and the transient-data compromise after it, were gone for good, for the reason above. Create and edit syncs, which I designed separately, is still waiting for development, and so are the matching changes to the Logs pages. We shipped the read-only path first so customers could find where a sync broke from day one. Both deferred pieces come back in my reflection.</p></div>
   </div>
 </template>
 
@@ -1328,7 +1328,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
         <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>A full page gets a link you can paste to support, and a breadcrumb back up.</span></div></div>
         <div class="hs-item" data-k="1"><i>2</i><div><b>The result, in plain terms</b><span>404 Not Found, the language developers already debug in.</span></div></div>
         <div class="hs-item" data-k="2"><i>3</i><div><b>One row per hop</b><span>Method, direction and result for every executed step, so the failing hop stands out.</span></div></div>
-        <div class="hs-item" data-k="3"><i>4</i><div><b>What was processed</b><span>The data models subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
+        <div class="hs-item" data-k="3"><i>4</i><div><b>What was processed</b><span>Processed or not, as true or false. Never the values themselves, because Knit doesn't keep them.</span></div></div>
       </div>
     </div>
   </div>
@@ -1814,7 +1814,7 @@ const CASES = [
         ] },
       { name: "Decisions & trade-offs", head: "The decisions that shaped it",
         decisions: [
-          { q: "What can a record page show if Knit never stores customer data?", considered: "My first record page showed the actual payload at every step, so you could watch a field travel from BambooHR to the customer's webhook.", chose: "The data models subscribed for that record, each with a tick for processed or not.", why: "Engineering stopped the payload view: Knit doesn't store customer data, by design. The customer still learns where it broke and what was affected, and the privacy promise stays intact.", tag: "Engineering pushback" },
+          { q: "How do you help someone debug a record you've promised not to keep?", considered: "My first record page showed the actual payload at every step. When engineering pointed out that Knit doesn't store customer data, our first answer was a compromise: keep some transient data, only for runs still in progress or from roughly the last week.", chose: "No values at all. The page shows what got processed as true or false. For an employee record, first name and last name might say processed and country might not, but you never see the name or the country itself.", why: "Knit sits between our clients and their own customers, and not storing that data is a product commitment. Even a week of transient data would have broken it, so we dropped the idea. True or false is still enough to show where a record got stuck and what it affected.", tag: "Product commitment" },
           { q: "Where should status live, and what should it say?", considered: "A status column on every sync job, the way most monitoring tables do it. And v1's single “All Consumed” state, in Knit's own vocabulary.", chose: "Status on runs only, with two end states: All Events Processed in amber and All Events Consumed in green. A tooltip explains the difference.", why: "A sync job is a recurring schedule, so status only makes sense for each run. And “done” meant two different things. Processed means Knit has handled every event, failures included, but the customer's side hasn't confirmed them all. Consumed means every event was signed for, like a parcel that's out for delivery versus one that's been signed for at the door.", cost: "A failing job doesn't show itself on the list, and people have one more state to learn. The first of those is in my reflection." }
         ],
         custom: ["tpl-sy-cut"] },
@@ -2154,7 +2154,7 @@ $$(".ba").forEach(ba => {
   ba.tabIndex = 0; ba.setAttribute("role", "slider"); ba.setAttribute("aria-label", "Before and after comparison"); ba.setAttribute("aria-valuemin", 0); ba.setAttribute("aria-valuemax", 100);
   ba.addEventListener("keydown", e => { const cur = parseFloat(getComputedStyle(ba).getPropertyValue("--pos")) || 50; if (e.key === "ArrowLeft") ba.style.setProperty("--pos", clamp(cur - 5, 2, 98) + "%"); if (e.key === "ArrowRight") ba.style.setProperty("--pos", clamp(cur + 5, 2, 98) + "%"); });
 });
-const HS = { hsSy: [["A real address", "A link you can paste to support, and a breadcrumb back up."], ["The result, in plain terms", "404 Not Found, in the language developers already debug in."], ["One row per hop", "Method, direction and result for every executed step."], ["What was processed", "The data models for this record. No field values, because Knit doesn't keep them."]], hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
+const HS = { hsSy: [["A real address", "A link you can paste to support, and a breadcrumb back up."], ["The result, in plain terms", "404 Not Found, in the language developers already debug in."], ["One row per hop", "Method, direction and result for every executed step."], ["What was processed", "Processed or not, as true or false. Never the values themselves."]], hs1: [["A Surface column", "API, MCP and workflow events share one table, filterable by surface."], ["Grouped errors", "One row, a count, and a Resolve action instead of hundreds of duplicates."], ["Shared base, your path, shared roof", "Two dividers in the sidebar carry the whole merge."]] };
 $$(".hot").forEach(h => {
   const data = HS[h.id]; const note = document.createElement("div"); note.className = "hs-note"; h.append(note);
   const list = $(`[data-hs-list="${h.id}"]`);
