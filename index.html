@@ -886,6 +886,41 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 .step-line .err{color:var(--red);border:1px solid var(--red);border-radius:6px;padding:2px 7px}
 @media (max-width:1020px){.sp{grid-template-columns:1fr}.sp-thumb{display:none}.sp-meta .mono{margin-top:0}.dp-ans{grid-template-columns:1fr}.flag{font-size:10.5px;white-space:normal;max-width:60%}}
 @media (prefers-reduced-motion:reduce){.dp.play .rec,.dp.play .rec circle,.dp.play .lit,.dp.play .badge,.dp.play .dest,.dp.play .ans{animation-duration:.01s!important;animation-delay:0s!important}}
+
+/* ===== Syncs visuals v3 ===== */
+.hot-stack .hot{width:100%}
+.hot-stack .hs-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.hot-stack .hs-item{grid-template-columns:28px 1fr;align-items:start;border:1px solid var(--line);background:var(--surface)}
+.hot-stack .hs-item.on,.hot-stack .hs-item:hover{border-color:var(--accent)}
+.sw-wrap{position:relative}
+.cover-ring{position:absolute;z-index:3;border:2.5px solid #C2412D;border-radius:8px;box-shadow:0 0 0 6px rgba(194,65,45,.18);pointer-events:none;animation:coverRing 2.6s ease-in-out infinite}
+@keyframes coverRing{0%,100%{box-shadow:0 0 0 4px rgba(194,65,45,.14)}50%{box-shadow:0 0 0 10px rgba(194,65,45,.22)}}
+.cover-flag{position:absolute;z-index:4;transform:translate(-100%,-100%);margin:-12px 0 0 0;background:#16161D;color:#F3F3F7;font-family:var(--mono);font-size:clamp(10px,1vw,13px);letter-spacing:.02em;padding:9px 12px;border-radius:9px;white-space:nowrap;box-shadow:0 18px 36px -18px rgba(0,0,0,.6)}
+.cover-flag b{color:#FF8A75;font-weight:500}
+.mini-dp{position:absolute;inset:0;display:grid;place-items:center;padding:4% 3%}
+.mini-dp svg{width:100%;height:auto;overflow:visible}
+.mini-dp .mn rect{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.35);stroke-width:2}
+.mini-dp .mn.k rect{stroke:#F3EEE6}
+.mini-dp .mn text{fill:#F3EEE6;font-family:var(--sans,Geist),system-ui,sans-serif;font-size:30px;font-weight:500;text-anchor:middle}
+.mini-dp .mw{stroke:rgba(255,255,255,.28);stroke-width:3;stroke-dasharray:2 10;stroke-linecap:round}
+.mini-dp .ml{stroke-width:4;stroke-linecap:round;stroke-dasharray:210;stroke-dashoffset:210}
+.mini-dp .ml.a{stroke:#6FD3A0;animation:mnA 5s infinite}
+.mini-dp .ml.b{stroke:#FF8A75;animation:mnB 5s infinite}
+.mini-dp .md{animation:mnDot 5s var(--ease) infinite}
+.mini-dp .md circle{r:15px;fill:#F3EEE6;animation:mnRed 5s linear infinite}
+.mini-dp .mb{opacity:0}
+.mini-dp .mb text{font-family:var(--mono);font-size:24px;text-anchor:middle}
+.mini-dp .mb.ok text{fill:#6FD3A0}.mini-dp .mb.bad text{fill:#FF8A75}
+.mini-dp .mb.ok{animation:mnOk 5s infinite}.mini-dp .mb.bad{animation:mnBad 5s infinite}
+@keyframes mnDot{0%{transform:translateX(0);opacity:0}5%{opacity:1}28%,40%{transform:translateX(300px)}62%,92%{transform:translateX(450px);opacity:1}100%{transform:translateX(450px);opacity:0}}
+@keyframes mnRed{0%,61%{fill:#F3EEE6}63%,100%{fill:#FF8A75}}
+@keyframes mnA{0%,4%{stroke-dashoffset:210;opacity:1}28%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes mnB{0%,40%{stroke-dashoffset:210;opacity:1}62%,92%{stroke-dashoffset:135;opacity:1}100%{stroke-dashoffset:135;opacity:0}}
+@keyframes mnOk{0%,28%{opacity:0}32%,92%{opacity:1}100%{opacity:0}}
+@keyframes mnBad{0%,62%{opacity:0}66%,92%{opacity:1}100%{opacity:0}}
+@media (max-width:1020px){.hot-stack .hs-list{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.hot-stack .hs-list{grid-template-columns:1fr}.cover-flag{white-space:normal;width:60%}}
+@media (prefers-reduced-motion:reduce){.mini-dp *{animation:none!important}.mini-dp .md{transform:translateX(450px)}.mini-dp .md circle{fill:#FF8A75}.mini-dp .ml.a{stroke-dashoffset:0}.mini-dp .ml.b{stroke-dashoffset:135}.mini-dp .mb{opacity:1}.cover-ring{animation:none}}
 </style>
 </head>
 <body>
@@ -1011,8 +1046,16 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <span class="viewcase">Open project <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#1F4B3E">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncsNewRun"></div></div></div>
-            <span class="art-note">Real product screens · sample data</span>
+            <div class="mini-dp" aria-hidden="true"><svg viewBox="0 0 1000 260">
+              <path class="mw" d="M215 140 H425"/><path class="mw" d="M575 140 H785"/>
+              <path class="ml a" d="M215 140 H425"/><path class="ml b" d="M575 140 H785"/>
+              <g class="md"><circle cx="200" cy="140" r="13"/></g>
+              <g class="mn"><rect x="25" y="90" width="190" height="100" rx="18"/><text x="120" y="148">BambooHR</text></g>
+              <g class="mn k"><rect x="425" y="90" width="150" height="100" rx="18"/><text x="500" y="148">Knit</text></g>
+              <g class="mn"><rect x="785" y="90" width="190" height="100" rx="18"/><text x="880" y="148">Salesforce</text></g>
+              <g class="mb ok"><text x="320" y="70">✓ 200 OK</text></g><g class="mb bad"><text x="680" y="70">✕ 404 Not Found</text></g>
+            </svg></div>
+            <span class="art-note">Every record makes two hops</span>
           </div>
           <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 03"></a>
         </div>
@@ -1275,20 +1318,20 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 <template id="tpl-sy-hot">
   <div class="vis">
-    <div class="vis-cap"><span>The new record page, up close</span><span>Hover the pins</span></div>
-    <div class="cs-grid">
-      <div class="hs-list" data-hs-list="hsSy">
-        <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>Syncs › Job › Run › Record. A full page gets its own link to share with support and a breadcrumb back up.</span></div></div>
-        <div class="hs-item" data-k="1"><i>2</i><div><b>The result, in plain terms</b><span>404 Not Found, the language developers already debug in.</span></div></div>
-        <div class="hs-item" data-k="2"><i>3</i><div><b>One row per hop</b><span>Method, direction and result for every executed step, so the failing hop stands out.</span></div></div>
-        <div class="hs-item" data-k="3"><i>4</i><div><b>Data models, not data</b><span>What was subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
-      </div>
-      <div class="hot frame" id="hsSy"><div class="frame-bar"><i></i><i></i><i></i><span>Syncs › Job › Run › Record 101</span></div>
+    <div class="vis-cap"><span>The new record page, up close</span><span>Hover the pins or the notes</span></div>
+    <div class="hot-stack">
+      <div class="hot frame" id="hsSy"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs/sj_…/sr_…/101</span></div>
         <div class="sw" data-screen="syncsNewRecord"></div>
         <button class="hs" style="--x:36%;--y:11%" data-k="0" aria-label="Pin 1">1</button>
         <button class="hs" style="--x:86%;--y:28%" data-k="1" aria-label="Pin 2">2</button>
         <button class="hs" style="--x:30%;--y:47%" data-k="2" aria-label="Pin 3">3</button>
         <button class="hs" style="--x:68%;--y:66%" data-k="3" aria-label="Pin 4">4</button>
+      </div>
+      <div class="hs-list" data-hs-list="hsSy">
+        <div class="hs-item" data-k="0"><i>1</i><div><b>A real address</b><span>Syncs › Job › Run › Record. A full page gets its own link to share with support and a breadcrumb back up.</span></div></div>
+        <div class="hs-item" data-k="1"><i>2</i><div><b>The result, in plain terms</b><span>404 Not Found, the language developers already debug in.</span></div></div>
+        <div class="hs-item" data-k="2"><i>3</i><div><b>One row per hop</b><span>Method, direction and result for every executed step, so the failing hop stands out.</span></div></div>
+        <div class="hs-item" data-k="3"><i>4</i><div><b>Data models, not data</b><span>What was subscribed and processed for this record. No field values, because Knit doesn't keep them.</span></div></div>
       </div>
     </div>
   </div>
@@ -1749,7 +1792,7 @@ const CASES = [
     kicker: "Case study 03 · Knit · Data Syncs · 2026", crumb: "03 · Knit · Data Syncs redesign",
     title: "From the system's view to the customer's <em>question</em>",
     lede: "Knit moves data between its customers' products and hundreds of HR, CRM and accounting apps on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later I redesigned them around the one question customers kept asking: which record broke, and where?",
-    cover: { main: "syncsNewRun", float: "syncsNewRecord", url: "app.getknit.dev/syncs/sj_…/sr_…" },
+    cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
     tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
     chapters: [
       { name: "Context & problem", head: "The first version was mine, and it answered the wrong question.",
@@ -1864,7 +1907,7 @@ function renderCases() {
           ${field("Role", t.role)}${field("Team", t.team)}${field("Timeline", t.timeline)}${field("Industry", t.industry)}${field("Problem", t.problem, "full")}</dl>
           <div class="tl-result"><span class="mono">HEADLINE RESULT</span>${t.result ? `<b>${t.result}</b>` : (D ? `<b class="miss">Add your headline result</b>` : "")}</div></aside>
       </div></header>
-      <div class="case-cover"><div class="cover-stage" style="--tint:${c.tint}"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${c.cover.url}</span></div><div class="sw" data-screen="${c.cover.main}"></div></div>${c.cover.float ? `<div class="cover-float"><div class="frame bare"><div class="sw" data-screen="${c.cover.float}"></div></div></div>` : ""}</div>${D && !c.real ? `<p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p>` : (c.real ? `<p class="swap-note">${c.real}</p>` : "")}</div>
+      <div class="case-cover"><div class="cover-stage" style="--tint:${c.tint}"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${c.cover.url}</span></div><div class="sw-wrap"><div class="sw" data-screen="${c.cover.main}"></div>${c.cover.ring ? `<i class="cover-ring" style="left:${c.cover.ring[0]}%;top:${c.cover.ring[1]}%;width:${c.cover.ring[2]}%;height:${c.cover.ring[3]}%"></i><span class="cover-flag" style="left:${c.cover.ring[0] + c.cover.ring[2]}%;top:${c.cover.ring[1]}%">${c.cover.flag}</span>` : ""}</div></div>${c.cover.float ? `<div class="cover-float"><div class="frame bare"><div class="sw" data-screen="${c.cover.float}"></div></div></div>` : ""}</div>${D && !c.real ? `<p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p>` : (c.real ? `<p class="swap-note">${c.real}</p>` : "")}</div>
       <div class="cbody">${chapters}
         <nav class="pn" aria-label="More projects">
           <a href="#${prev.id}" class="prev"><div><span class="mono">PREVIOUS · ${prev.n}</span><b>${prev.title.replace(/<[^>]+>/g, "")}</b></div><div class="frame bare"><div class="sw" data-screen="${prev.cover.main}"></div></div></a>
