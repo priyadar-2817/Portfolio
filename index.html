@@ -97,9 +97,10 @@ body.lens-on .lens-btn .switch::after{transform:translateX(12px);background:#fff
 .hero-copy{position:relative;z-index:3}
 .hero h1{font-family:var(--display);font-size:clamp(52px,7.2vw,112px);line-height:.92;letter-spacing:-.025em;margin:20px 0 28px}
 .hero h1 em{color:var(--accent)}
-.line{display:block;overflow:hidden;padding-bottom:.06em}
-.line > span{display:inline-block;animation:rise 1s var(--ease) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
+.line{display:block;overflow:hidden;padding-bottom:.28em;margin-bottom:-.22em}
+.line > span{display:inline-block;animation:riseLine 1s var(--ease) both;animation-delay:calc(var(--i) * 90ms + 120ms)}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes riseLine{from{transform:translateY(140%)}to{transform:none}}
 .fade-up{animation:fadeUp .9s var(--ease) both;animation-delay:var(--d,.5s)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .lede{font-size:clamp(17px,1.4vw,19px);color:var(--muted);max-width:50ch}
