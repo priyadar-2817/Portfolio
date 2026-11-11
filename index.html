@@ -1564,15 +1564,16 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <template id="tpl-au-edge">
   <div class="vis">
     <div class="vis-cap"><span>Beyond the happy path</span><span>Scroll to step through</span></div>
-    <div class="scrolly" style="--steps:3" data-scrolly data-lens-title="Visibility of system status" data-lens="Every tile says where that connection stands, so people coming back don't have to remember.">
+    <div class="scrolly" style="--steps:4" data-scrolly data-lens-title="Visibility of system status" data-lens="Every tile says where that connection stands, so people coming back don't have to remember.">
       <div class="scrolly-in">
         <div class="steps">
           <div class="step on"><span class="n">STATUS</span><b>Where every app stands</b><span>Connected in green, still validating in amber (some apps take a while to check credentials), failed in red.</span></div>
           <div class="step"><span class="n">CUSTOM FIELDS</span><b>Map what's unique to them</b><span>Only for apps with custom fields: match each field to its target. A counter shows progress, and the button waits until everything's mapped.</span></div>
           <div class="step"><span class="n">ALL MAPPED</span><b>A clear finish</b><span>The counter turns into “All Mapped”, and the button turns on.</span></div>
+          <div class="step"><span class="n">FAILED</span><b>A way back</b><span>If the credentials don't work, the error says so with its code, and Try Again goes straight back to the form.</span></div>
         </div>
         <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div>
-          <div class="sc-screens"><div class="sw on" data-screen="auStatus"></div><div class="sw" data-screen="auMapEmpty"></div><div class="sw" data-screen="auMapDone"></div></div>
+          <div class="sc-screens"><div class="sw on" data-screen="auStatus"></div><div class="sw" data-screen="auMapEmpty"></div><div class="sw" data-screen="auMapDone"></div><div class="sw" data-screen="auFailed"></div></div>
         </div><div class="sc-progress"><i></i></div></div>
       </div>
     </div>
@@ -1582,8 +1583,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <template id="tpl-au-quote">
   <div class="vis">
     <div class="vis-cap"><span>What a prospect said</span><span>From a sales call</span></div>
-    <div class="quotes"><blockquote class="qb rv"><p>Comparing it with Merge.dev's component, he liked ours “a lot better”, because his customers get an extra layer of control over the data they share.</p><footer><b>Prospect</b> · paraphrased from a call transcript</footer></blockquote></div>
-    <p class="q-note">Name and company left out. Only “a lot better” is word for word.</p>
+    <div class="quotes"><blockquote class="qb rv"><p>“A lot better.”</p><footer><b>Prospect</b> · comparing Knit's component with Merge.dev's, on the extra control his customers get over what they share</footer></blockquote></div>
+    <p class="q-note">Name and company left out.</p>
   </div>
 </template>
 <template id="tpl-ladder">
@@ -1800,6 +1801,7 @@ const CONFIG = {
     auMapDone: "assets/au-map-done.webp",
     auStatus: "assets/au-status.webp",
     auSuccess: "assets/au-success.webp",
+    auFailed: "assets/au-failed.webp",
     auPersonalize: "assets/au-personalize.webp",
     auPersonalizeCode: "assets/au-personalize-code.webp",
     /* Other projects: placeholders until you upload a real screen with the same file name */
@@ -1918,7 +1920,7 @@ curl https://api.getknit.dev/v1.0/hris/employees \\
     <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
       ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
 };
-const SCREEN_NAMES = { auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
+const SCREEN_NAMES = { auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auFailed:"Auth UI · connection failed", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
 
 const scaleQueue = new Set();
 const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
@@ -2142,8 +2144,8 @@ const CASES = [
         lede: "Not every connection is instant, and not every app is the same.",
         custom: ["tpl-au-edge"] },
       { name: "Outcome", head: "Measured by reach, for now",
-        lede: "The component runs inside clients' products, outside Knit's analytics, so there's no funnel to show here. The evidence is who uses it and what prospects say about it.",
-        impact: [["30+", "SaaS products embed the component, each with their own branding depending on plan"], ["Before", "End users now choose what to share before they connect, not after"]],
+        lede: "The component runs inside clients' products, outside Knit's analytics, so there's no funnel to show here. The evidence is who uses it, how Knit sells it, and what prospects say about it.",
+        impact: [["30+", "SaaS products embed the component, each with their own branding depending on plan"], ["1 of 2", "advantages Knit publicly claims over Merge.dev is this customisable auth UI"]],
         after: ["tpl-au-quote"] },
       { name: "AI workflow", head: "How I used AI",
         ai: { steps: [["RESEARCH", "Competitors side by side", "I used AI to compare Knit's embedded flow with competitors' components, step by step."], ["DESIGN", "Early explorations, fast", "It helped me rough out layouts and alternatives quickly, which mattered in a one-week design window."]], human: "Moving scope before connecting, what the trust screen says and what clients can change were decided with the founder and engineering. The plan tiers were a business call." } },
