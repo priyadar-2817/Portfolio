@@ -1049,17 +1049,15 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
         <div class="scard-in">
           <div class="scard-copy">
             <div class="scard-top"><span class="idx">02 / 07</span><span class="badge live">Live in production</span></div>
-            <span class="co">KNIT UNIFIED API · 2024 → NOW</span>
-            <h3>A docs folder to a live product in a month</h3>
-            <p>There was nothing to log into. I designed the whole web app, shipped v1 in about a month with the CEO, CMO and tech lead, then kept iterating through several live versions.</p>
-            <div class="outcomes"><span><b>hrs → min</b> first integration</span><span><b>200+</b> connectors</span><span><b>30+</b> customers</span></div>
-            <div class="tags"><span>0 → 1</span><span>Dashboard</span><span>White-label UI</span><span>Research loop</span></div>
+            <span class="co">KNIT · UNIFIED API ONBOARDING</span>
+            <h3>Onboarding that stopped needing an engineer</h3>
+            <p>Step 2 of Knit's onboarding was a required webhook, and most people needed an engineer to get past it. I put a working API call first and made the webhook optional.</p>
+            <div class="outcomes"><span><b>2×</b> past setup on day one</span><span><b>~6 min</b> to a first API call</span></div>
+            <div class="tags"><span>Onboarding</span><span>Activation</span><span>Developer tools</span></div>
             <span class="viewcase">Open case study <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#6B3B26">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:10%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev</span></div><div class="sw" data-screen="dashboard"></div></div></div>
-            <div class="layer l2" data-depth="50" style="right:4%;bottom:5%;width:40%"><div class="frame bare"><div class="sw" data-screen="connect"></div></div></div>
-            <span class="art-note">Stand-in screens · swap with Figma exports</span>
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obNewTest"></div></div></div>
           </div>
           <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 02"></a>
         </div>
@@ -1462,6 +1460,95 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <p>People also checked the list less often. Visits to it fell 14%, yet more sessions reached a run (215, up from 185), so when they did look, they got further. Support also saw a clear drop in sync tickets.</p>
   </div>
 </template>
+<template id="tpl-ob-before">
+  <div class="vis">
+    <div class="vis-cap"><span>Step 2 of the old onboarding</span><span>Before</span></div>
+    <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obOldSa1"></div></div>
+  </div>
+  <div class="vis">
+    <div class="vis-cap"><span>What "Setup Sync" opened: four more steps before you could carry on</span><span>Before</span></div>
+    <div class="frame bare"><div class="sw" data-screen="obOldSync"></div></div>
+  </div>
+</template>
+
+<template id="tpl-ob-quote">
+  <div class="vis">
+    <div class="vis-cap"><span>On our own calls</span><span>Knit team, onboarding calls, 2025</span></div>
+    <div class="quotes"><blockquote class="qb rv"><p>“If you don't have a readily available webhook, we could create temporary one.”</p><footer><b>Knit team</b> · onboarding call · Apr 2025</footer></blockquote></div>
+    <p class="q-note">Our team was handing out temporary webhook URLs just to get people past step two.</p>
+  </div>
+</template>
+
+<template id="tpl-ob-scrolly">
+  <div class="vis">
+    <div class="vis-cap"><span>The shipped onboarding</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:5" data-scrolly data-lens-title="Goal gradient" data-lens="A working API call comes within the first few minutes, so the first reward arrives before the effort of webhooks and embedding.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">SELECT APIS</span><b>Pick what you need</b><span>APIs grouped by data model, so you tick Applications or Employees instead of reading a list of endpoints.</span></div>
+          <div class="step"><span class="n">SETUP &amp; TEST</span><b>One required step: test a read API</b><span>The only thing standing between a new user and the product. Syncs sit underneath, off by default.</span></div>
+          <div class="step"><span class="n">FIRST CALL</span><b>A real response, right here</b><span>Pick an app, send the call and see 200 OK with data. This is where onboarding counts as done, and the left nav unlocks.</span></div>
+          <div class="step"><span class="n">SUMMARY</span><b>What you tested, what's left</b><span>Tested APIs get a tick. Syncs show as a toggle you can come back to.</span></div>
+          <div class="step"><span class="n">EMBED</span><b>Put Knit UI in your product</b><span>Code for the auth session and the component. It can wait: a magic link from Integrated Accounts works in the meantime.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div>
+          <div class="sc-screens" style="aspect-ratio:1920/940"><div class="sw on" data-screen="obNewApis"></div><div class="sw" data-screen="obNewTest"></div><div class="sw" data-screen="obNewTested"></div><div class="sw" data-screen="obNewSummary"></div><div class="sw" data-screen="obNewEmbed"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-ob-ba">
+  <div class="vis">
+    <div class="vis-cap"><span>The same sync setup, before and after</span><span>Drag · before left, after right</span></div>
+    <div class="ba real" data-lens-title="Default effect" data-lens="Nothing about syncs got harder to reach. What changed is the default: off until you choose it, instead of a gate everyone had to pass.">
+      <div class="layer-a"><div class="sw" data-screen="obOldSync"></div></div>
+      <div class="layer-b"><div class="sw" data-screen="obNewSync"></div></div>
+      <span class="ba-tag l"><b>BEFORE</b>Required before you could continue</span><span class="ba-tag r"><b>AFTER</b>Optional, after your first call</span>
+      <div class="ba-handle"></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-ob-data">
+  <div class="vis">
+    <div class="vis-cap"><span>Heap and Clarity · before vs after launch</span><span>Hover a bar</span></div>
+    <div class="fn" data-fn>
+      <div class="fn-top"><h4>What changed in onboarding</h4>
+        <div class="fn-legend"><span><i style="background:var(--cb)"></i>Before · 15 Feb – 18 Apr</span><span><i style="background:var(--ca)"></i>After · 26 Apr – 6 Nov</span></div></div>
+      <div class="fn-row"><div><b>Got past the required step</b><span>on day one, of new users who reached Getting Started</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:16%"></i><em>16%</em><span class="tt">Before: 8 of 50 registered a webhook within a day</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:32.1%"></i><em>32%</em><span class="tt">After: 43 of 134 sent a test API call within a day</span></div></div></div>
+      <div class="fn-row"><div><b>Left before getting past it</b><span>Heap revisit rate at that step</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:50%"></i><em>50%</em><span class="tt">Before: half left the product before registering a webhook</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:35%"></i><em>35%</em><span class="tt">After: about a third left before sending a test call</span></div></div></div>
+      <div class="fn-row"><div><b>Quick backs</b><span>sessions with a page opened and closed straight away</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:46%"></i><em>46%</em><span class="tt">Before: Clarity, sessions that included Getting Started</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:30%"></i><em>30%</em><span class="tt">After: same measure, after launch</span></div></div></div>
+      <div class="fn-row"><div><b>Left to find the API key</b><span>sessions that also opened API Keys</span></div><div class="fn-bars">
+        <div class="fn-bar b" tabindex="0"><i style="--w:24%"></i><em>24%</em><span class="tt">Before: people went to another page for their key</span></div>
+        <div class="fn-bar a" tabindex="0"><i style="--w:13%"></i><em>13%</em><span class="tt">After: the test runs inside onboarding</span></div></div></div>
+      <details><summary>VIEW AS TABLE</summary><table>
+        <tr><th>Measure</th><th>Before</th><th>After</th></tr>
+        <tr><td>New users past the required step within a day (Heap)</td><td>16% (8 of 50)</td><td>32% (43 of 134)</td></tr>
+        <tr><td>Median engaged time, Getting Started to that step</td><td>6m 53s</td><td>5m 51s</td></tr>
+        <tr><td>Left before getting past it</td><td>50%</td><td>35%</td></tr>
+        <tr><td>Quick backs (Clarity)</td><td>46%</td><td>30%</td></tr>
+        <tr><td>Pages per session, same ~5 min active time</td><td>9.9</td><td>7.3</td></tr>
+        <tr><td>Sessions that also opened API Keys</td><td>24%</td><td>13%</td></tr>
+      </table></details>
+      <p class="fn-note">Same Heap funnel in both periods (first signup page view, then Getting Started, then the required step, within a day); only the required step changes, from Register Webhook to Send. Clicks, not confirmed successes. Knit's own team excluded. Small numbers, so the counts sit next to every figure.</p>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-ob-read">
+  <div class="ch-body vis" style="padding-left:0">
+    <p>Twice as many new users now get past the required step on their first day, and they do it faster. The test call also turned out to be the step that carries people through: 88% of those who send one go on to finish every step (52 of 59). Signups reaching Getting Started dropped over the same period, but that happens before onboarding starts, so I measure from there.</p>
+  </div>
+</template>
+
 <template id="tpl-lg-v1">
   <div class="vis">
     <div class="vis-cap"><span>What a customer saw in v1</span><span>Hover the pins or the notes</span></div>
@@ -1831,6 +1918,15 @@ const CONFIG = {
     syncsExB: "assets/syncs-ex-b.webp",
     syncsExC: "assets/syncs-ex-c.webp",
     logsEx1: "assets/logs-ex-1.webp",
+    obOldSc: "assets/ob-old-sc.webp",
+    obOldSa1: "assets/ob-old-sa1.webp",
+    obOldSync: "assets/ob-old-sync-steps.webp",
+    obNewApis: "assets/ob-new-apis.webp",
+    obNewTest: "assets/ob-new-test.webp",
+    obNewTested: "assets/ob-new-tested.webp",
+    obNewSync: "assets/ob-new-sync-steps.webp",
+    obNewSummary: "assets/ob-new-summary.webp",
+    obNewEmbed: "assets/ob-new-embed.webp",
     logsEx2: "assets/logs-ex-2.webp",
     logsEx3: "assets/logs-ex-3.webp",
     syncsCropList: "assets/syncs-crop-list.webp",
@@ -1977,7 +2073,7 @@ curl https://api.getknit.dev/v1.0/hris/employees \\
     <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
       ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
 };
-const SCREEN_NAMES = { logsEx1:"Logs exploration 01 · table first", logsEx2:"Logs exploration 02 · filter and inspect", logsEx3:"Logs exploration 03 · organization groups", syncsExA:"Syncs exploration A · table-first", syncsExB:"Syncs exploration B · split view", syncsExC:"Syncs exploration C · record page", auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auFailed:"Auth UI · connection failed", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
+const SCREEN_NAMES = { obOldSc:"Old onboarding · categories", obOldSa1:"Old onboarding · sync required", obOldSync:"Old onboarding · sync setup steps", obNewApis:"New onboarding · select APIs", obNewTest:"New onboarding · setup and test", obNewTested:"New onboarding · first test call", obNewSync:"New onboarding · optional sync setup", obNewSummary:"New onboarding · summary", obNewEmbed:"New onboarding · embed", logsEx1:"Logs exploration 01 · table first", logsEx2:"Logs exploration 02 · filter and inspect", logsEx3:"Logs exploration 03 · organization groups", syncsExA:"Syncs exploration A · table-first", syncsExB:"Syncs exploration B · split view", syncsExC:"Syncs exploration C · record page", auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auFailed:"Auth UI · connection failed", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
 
 const scaleQueue = new Set();
 const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
@@ -2051,35 +2147,41 @@ const CASES = [
   },
   {
     id: "case-unified-api", n: "02", tint: "#6B3B26", depth: "Full case study",
-    kicker: "Case study 02 · Knit Unified API · 2024 → now", crumb: "02 · Knit Unified API · Docs folder to live product",
-    title: "A docs folder to a live product in a <em>month</em>",
-    lede: "Knit lets SaaS companies connect once and reach 200+ HR, recruiting, CRM and accounting apps through one normalised API. When I started on the web app, it didn't exist. There were API docs and a lot of ideas.",
-    cover: { main: "dashboard", float: "connect", url: "app.getknit.dev" },
-    tldr: { role: "Sole product designer", team: "CEO, CMO, tech lead, engineers", timeline: "v1 in about a month, from April 2024", industry: "B2B SaaS · developer tools", problem: "No web app: setting up an integration meant reading docs and asking the team.", result: "Time to first integration: hours → minutes" },
+    real: "Real product screens. Names, URLs and the code sample are sample data.",
+    kicker: "Case study 02 · Knit · Unified API onboarding · 2026", crumb: "02 · Knit · Unified API onboarding",
+    title: "Onboarding that stopped needing an <em>engineer</em>",
+    lede: "Knit's Unified API is its flagship product. Its onboarding asked every new user to set up a webhook before they had seen a single API call work. Most couldn't, so they raised a ticket and waited for one of our engineers. The redesign puts a working API call first and makes the webhook optional.",
+    cover: { main: "obNewTest", url: "app.getknit.dev/getting-started" },
+    tldr: { role: "Sole product designer", team: "1 founder, 1 front-end engineer, with regular CTO reviews", timeline: "About 2–3 weeks design, about a month build. Live late April 2026", industry: "B2B SaaS · developer tools", problem: "Step 2 of onboarding was a required webhook. Most people stalled there and needed an engineer to get set up.", result: "Twice as many new users get past setup on day one (16% → 32%), with a first API call in about 6 minutes" },
     chapters: [
-      { name: "Context & problem", head: "Two audiences, and one of them never sees Knit.",
-        body: ["Knit's customers are developers at SaaS companies, building integrations for their own customers. So every flow has two people in it: the developer setting things up in Knit, and their end customer, who authorises a connection to their HR or CRM system without knowing Knit exists.", "I was the only designer, with about a month to v1, working directly with the CEO, CMO, tech lead and engineers. There was no design system to inherit, so I built one as I went."] },
-      { name: "Research & insight", head: "Designing against behaviour, not assumptions.",
-        body: ["After v1, discovery ran continuously through customer calls, Microsoft Clarity session recordings and Heap funnels. Calls told me what people wanted. Recordings and funnels showed where they stalled in first-time setup, and each redesign round went after those spots."],
-        draft: ["One or two specific things Clarity or Heap showed you, and what you changed because of it."] },
-      { name: "Product opportunity", head: "Make the API self-serve, for both audiences.",
-        lede: "Developers should reach a working first call without the Knit team's help, and their end customers should connect inside a product they already trust.",
-        draft: ["Anything sharper you'd say about the opportunity, for example what sales or the CEO expected the web app to unlock."] },
-      { name: "Design exploration", head: "Directions before v1.",
-        draft: ["Early structures you considered (by app, by category, by organization) with a sketch of each.", "Why Organization won."] },
-      { name: "Decisions & trade-offs", head: "Two calls that set the structure.",
-        decisions: [
-          { q: "What should the app be organised around?", considered: "Organise by app or by data category, the way the API docs were written.", chose: "Root everything at Organization, so each customer's connections, syncs and issues live together.", why: "When something breaks, the first question is always “which customer?” The structure answers it before it's asked." },
-          { q: "Whose brand does the end customer see?", considered: "A Knit-branded connect flow: simpler to build, good for Knit's own visibility.", chose: "A white-labelled embeddable UI that takes on the customer's brand.", why: "People hand over access to their HR system more readily when the request comes from a product they already trust." }
+      { name: "Context & problem", head: "A webhook before anything worked",
+        body: ["Knit's customers are developers at SaaS companies. They pick a category like HRIS or ATS, choose the APIs they need, and connect their own customers' apps through Knit.", "The old onboarding was designed from the engineering side. Step 2 sorted your chosen APIs by how they run, and anything that ran on a schedule needed a sync. That meant registering a webhook, choosing events, a sync frequency and a trigger, all before you could move on.", "Many people didn't know how to set up a webhook, even with docs and links. It was where most of them dropped off. They raised support tickets, and our on-call engineers onboarded them by hand."],
+        custom: ["tpl-ob-before"] },
+      { name: "Research & insight", head: "Where people stopped",
+        lede: "I didn't have ticket counts, so I went to usage data and our own call recordings.",
+        insights: [
+          ["The webhook was the wall", "In Heap, only 16% of new users who reached Getting Started registered a webhook on their first day (8 of 50). Half left the product before getting past it."],
+          ["Our team was working around it", "On onboarding calls, our team offered temporary webhook URLs and pointed people to webhook.site, just to get them past step two."],
+          ["People went looking for the API key", "In Clarity, almost a quarter of onboarding sessions also opened the API Keys page. Setup sent people to other pages to finish it."]
         ],
-        draft: ["What engineering pushed back on in v1, and how it was resolved."] },
-      { name: "Solution", head: "Built around the customer's customer.", custom: ["tpl-scrolly2", "tpl-wl"] },
-      { name: "Validation & outcome", head: "Minutes, not hours.",
-        impact: [["hrs → min", "time to a customer's first integration"], ["200+", "connectors reachable through the product I designed", 200, "+"], ["30+", "customers running on it", 30, "+"]],
-        body: ["Onboarding got quicker with each round of fixes from the research loop, and first-time setup stopped being the part customers needed hand-holding for."],
-        draft: ["What changed after testing or launch.", "A customer quote, or a signal from sales or support."] },
-      { name: "AI workflow", draft: ["Where AI fit into this project, if it did. If it didn't, cut this chapter."] },
-      { name: "Reflection", draft: ["What you'd do differently with v1.", "What's still unsolved in the product today."] }
+        custom: ["tpl-ob-quote"] },
+      { name: "Decisions & trade-offs", head: "Three calls that shaped it",
+        decisions: [
+          { q: "What should be the one required step?", considered: "Keeping the webhook required and making it easier: clearer copy, a temporary URL generated for you.", chose: "A test API call. Test at least one read API inside onboarding; the webhook moves into an optional sync setup.", why: "Knit was becoming API-first. A working call shows what the product does in minutes, and it needs nothing on the customer's servers. A webhook only matters once you've decided to use syncs.", tag: "API-first" },
+          { q: "When is onboarding done?", considered: "Done only after embedding Knit UI, the last step, as the old flow treated it.", chose: "Done at the first successful test call. That's when the left nav unlocks, and embedding can wait.", why: "Embedding needs front-end work that rarely happens in a first session. Until then, a magic link from Integrated Accounts gives customers the same component as a shareable URL.", cost: "The last steps can't be tracked as precisely, because embedding often happens later, outside onboarding." },
+          { q: "How do syncs fit when someone does want them?", considered: "A separate sync page after onboarding.", chose: "An optional “Setup Automated Data Sync” section under the tests, with its own steps and a frequency for each data model.", why: "People choosing read APIs are the ones who'll want syncs, so the option sits right where they are, off by default.", cost: "APIs work with fields and syncs with data models, so engineering had to match the two. That took several rounds of discussion with the CTO." }
+        ] },
+      { name: "Solution", head: "A working call first, everything else after",
+        lede: "Five steps, one of them required. The test runs inside onboarding, against a real app, and the response comes back on the same screen.",
+        custom: ["tpl-ob-scrolly", "tpl-ob-ba"] },
+      { name: "Validation & outcome", head: "Twice as many past setup on day one",
+        lede: "The new onboarding went live in the last week of April 2026. I ran the same Heap funnel on new users before and after, changing only the required step, and compared Clarity sessions that included Getting Started.",
+        impact: [["2×", "as many new users get past the required step on day one, from 16% to 32%"], ["46% → 30%", "of onboarding sessions with quick backs, the open-a-page-and-leave kind"], ["~6 min", "median time from Getting Started to a first live API call (5m 51s)"]],
+        after: ["tpl-ob-data", "tpl-ob-read"] },
+      { name: "AI workflow", head: "Where AI fit in",
+        ai: { steps: [["EXPLORE", "Early directions in Google Stitch", "I used Stitch to try onboarding structures quickly before settling the flow in Figma."], ["BUILD", "Figma MCP into Claude Code", "This was the first time our front-end engineer built straight from my Figma files through Figma MCP and Claude Code. We got a working first version fast, then refined it together."], ["MEASURE", "Reading the funnel", "After launch, I used AI to pull and compare the Heap and Clarity data, then checked every number myself."]], human: "Making the test call the required step, and the webhook optional, was a product decision with the founder and CTO." } },
+      { name: "Reflection", head: "What I'd change now",
+        reflect: { quote: "Let the agent do the first setup.", body: "Knit now has an AI support agent. Next, I'd let it run the first part of onboarding: you say what you're building and which apps you need, and it picks the APIs and runs the first test for you.", unsolved: ["About half of the people who choose APIs drop off before sending a test call. Make that step easier, starting with the authorization fields.", "Track successful calls, not just sent ones, so the funnel shows who got a working response.", "Add a completion event for embedding, so the last step can be measured."] } }
     ]
   },
   {
@@ -2559,15 +2661,15 @@ $("#mergeBtn").addEventListener("click", () => {
 const embed = $("#embed");
 function setBrand(c) { embed.style.setProperty("--brand", c); $$("#swatches .swt").forEach(s => s.classList.toggle("on", s.dataset.c.toLowerCase() === c.toLowerCase())); }
 $$("#swatches .swt").forEach(s => s.addEventListener("click", () => { setBrand(s.dataset.c); $("#wlColor").value = s.dataset.c.toLowerCase(); }));
-$("#wlColor").addEventListener("input", e => setBrand(e.target.value));
-$("#wlName").addEventListener("input", e => { const v = e.target.value.trim() || "Your product"; $("#embName").textContent = v; $("#embLogo").textContent = v[0].toUpperCase(); });
+$("#wlColor")?.addEventListener("input", e => setBrand(e.target.value));
+$("#wlName")?.addEventListener("input", e => { const v = e.target.value.trim() || "Your product"; $("#embName").textContent = v; $("#embLogo").textContent = v[0].toUpperCase(); });
 $$("#wlRad button").forEach(b => b.addEventListener("click", () => { $$("#wlRad button").forEach(x => x.classList.remove("on")); b.classList.add("on"); embed.style.setProperty("--rad", b.dataset.r); }));
-$("#wlPowered").addEventListener("change", e => $("#embFoot").hidden = !e.target.checked);
+$("#wlPowered")?.addEventListener("change", e => $("#embFoot").hidden = !e.target.checked);
 
 /* ======= Palette ======= */
 const CMDS = [
   { g: "01", l: "Read: Three products, one spine", k: "case", run: () => navTo("case-merger") },
-  { g: "02", l: "Read: A docs folder to a live product", k: "case", run: () => navTo("case-unified-api") },
+  { g: "02", l: "Read: Onboarding that stopped needing an engineer", k: "case", run: () => navTo("case-unified-api") },
   { g: "03", l: "Open: Data Syncs, from the system's view to the customer's question", k: "case", run: () => navTo("case-observability") },
   { g: "04", l: "Open: Logs, built for the moment something breaks", k: "case", run: () => navTo("case-logs") },
   { g: "05", l: "Open: Embedded auth UI, designing for strangers", k: "case", run: () => navTo("case-auth") },
