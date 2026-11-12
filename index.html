@@ -157,7 +157,8 @@ section{position:relative}
 
 /* ---------- stacked work cards ---------- */
 .stack{display:grid;gap:7vh;padding-bottom:6vh}
-.scard{position:sticky;top:calc(88px + var(--i) * 14px);height:min(78vh,700px);min-height:520px}
+.scard{position:sticky;top:calc(88px + var(--i) * 14px);min-height:max(520px,min(78vh,700px))}
+.scard-in{min-height:inherit}
 .scard-in{position:relative;height:100%;border-radius:28px;background:var(--surface);border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);transform-origin:50% 0;will-change:transform;box-shadow:0 -20px 50px -40px rgba(30,20,10,.5)}
 .scard-in::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim,0);pointer-events:none;z-index:6;transition:opacity .1s}
 .scard a.cover{position:absolute;inset:0;z-index:5;border-radius:28px}
@@ -986,7 +987,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
         <span class="line"><span style="--i:1">how people</span></span>
         <span class="line"><span style="--i:2"><em>actually</em> decide.</span></span>
       </h1>
-      <p class="lede fade-up" style="--d:.55s">Sole designer at <strong>Knit</strong>, where I took two B2B products from a folder of docs to production. I write <strong>Decision Design</strong>, a newsletter on the psychology behind product choices. Looking for a senior product design role.</p>
+      <p class="lede fade-up" style="--d:.55s">Sole product designer at <strong>Knit</strong>, an integrations platform for B2B SaaS, designing its Unified API and AI Integrations Agent. Before that, I designed HR software at <strong>SuperBeings</strong> and worked on fintech reporting at <strong>KFin Technologies</strong>. Looking for a senior product design role.</p>
       <div class="cta-row fade-up" style="--d:.7s">
         <a class="btn primary" href="#work">See the work <span class="arr">→</span></a>
         <button class="btn" data-copy-email>Copy email</button>
@@ -1010,9 +1011,9 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <div class="wrap">
   <div class="stats">
     <div class="stat"><b data-count="6">6<small> yrs</small></b><span>designing B2B and fintech products</span></div>
-    <div class="stat"><b data-count="2">2</b><span>products taken from zero to live as the sole designer</span></div>
-    <div class="stat"><b class="sm">hrs → min</b><span>time to first integration on Knit's Unified API</span></div>
-    <div class="stat"><b data-count="46" data-suffix="%">46%</b><span>less project onboarding time at KFin, measured in Heap</span></div>
+    <div class="stat"><b class="sm">2×</b><span>new users getting past onboarding setup on day one at Knit</span></div>
+    <div class="stat"><b data-count="30" data-suffix="%">30%</b><span>fewer page loads to check logs at Knit, after the Logs redesign</span></div>
+    <div class="stat"><b data-count="30" data-suffix="+">30+</b><span>SaaS products embedding the auth UI I designed for Knit</span></div>
   </div>
 </div>
 
@@ -1021,34 +1022,14 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
   <div class="wrap">
     <div class="sec-head rv">
       <h2 id="workTitle">Selected <em>work</em></h2>
-      <p>Seven projects, strongest first. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
+      <p>Four projects, strongest first. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
     </div>
     <div class="stack" id="stack" data-lens-title="Serial position effect" data-lens="People remember the first and last items in a list best. The strongest case leads, and a strong one closes.">
-
-      <article class="scard" style="--i:0">
-        <div class="scard-in">
-          <div class="scard-copy">
-            <div class="scard-top"><span class="idx">01 / 07</span><span class="badge">Strategy → prototype</span></div>
-            <span class="co">KNIT · 2026</span>
-            <h3>Three products, one spine</h3>
-            <p>A Unified API, an MCP server and an AI Integrations Agent, each with its own connections, logs and billing. I re-architected them into one product on a shared Connection base.</p>
-            <div class="outcomes"><span><b>4 → 1</b> Connection objects</span><span><b>2 weeks</b> onboarding redesign</span></div>
-            <div class="tags"><span>Information architecture</span><span>Onboarding</span><span>Systems</span><span>AI workflow</span></div>
-            <span class="viewcase">Open case study <i>→</i></span>
-          </div>
-          <div class="scard-art" style="--tint:#2E3170">
-            <div class="layer l1" data-depth="-40" style="left:9%;top:12%;width:88%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/activity</span></div><div class="sw" data-screen="activity"></div></div></div>
-            <div class="layer l2" data-depth="40" style="left:-4%;bottom:6%;width:52%"><div class="frame bare"><div class="sw" data-screen="picker"></div></div></div>
-            <span class="art-note">Stand-in screens · swap with Figma exports</span>
-          </div>
-          <a class="cover" href="#case-merger" data-cursor="Read" aria-label="Open case study 01: Three products, one spine"></a>
-        </div>
-      </article>
 
       <article class="scard" style="--i:1">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">02 / 07</span><span class="badge live">Live in production</span></div>
+            <div class="scard-top"><span class="idx">01 / 04</span><span class="badge live">Live in production</span></div>
             <span class="co">KNIT · UNIFIED API ONBOARDING</span>
             <h3>Onboarding that stopped needing an engineer</h3>
             <p>Step 2 of Knit's onboarding was a required webhook, and most people needed an engineer to get past it. I put a working API call first and made the webhook optional.</p>
@@ -1059,14 +1040,14 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
           <div class="scard-art" style="--tint:#6B3B26">
             <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obNewTest"></div></div></div>
           </div>
-          <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 02"></a>
+          <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 01"></a>
         </div>
       </article>
 
       <article class="scard" style="--i:2">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">03 / 07</span><span class="badge">Shipped at Knit</span></div>
+            <div class="scard-top"><span class="idx">02 / 04</span><span class="badge">Shipped at Knit</span></div>
             <span class="co">KNIT · DATA SYNCS</span>
             <h3>From the system's view to the customer's question</h3>
             <p>I designed Knit's first Syncs screens around how engineering saw the system. A year later I redesigned them around the question customers kept asking: which record broke, and where?</p>
@@ -1086,14 +1067,14 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             </svg></div>
             <span class="art-note">Every record makes two hops</span>
           </div>
-          <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 03"></a>
+          <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 02"></a>
         </div>
       </article>
 
       <article class="scard" style="--i:3">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">04 / 07</span><span class="badge">Shipped at Knit</span></div>
+            <div class="scard-top"><span class="idx">03 / 04</span><span class="badge">Shipped at Knit</span></div>
             <span class="co">KNIT · LOGS</span>
             <h3>Built for the moment something breaks</h3>
             <p>I designed Knit's first Logs page around an assumption about how people read logs. The redesign is built around when they actually open them: when something has broken.</p>
@@ -1105,14 +1086,14 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <div class="layer l1" data-depth="-40" style="left:6%;top:14%;width:92%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/logs</span></div><div class="sw" data-screen="logsV2"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
-          <a class="cover" href="#case-logs" data-cursor="Open" aria-label="Open project 04"></a>
+          <a class="cover" href="#case-logs" data-cursor="Open" aria-label="Open project 03"></a>
         </div>
       </article>
 
       <article class="scard" style="--i:4">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">05 / 07</span><span class="badge">Shipped at Knit</span></div>
+            <div class="scard-top"><span class="idx">04 / 04</span><span class="badge">Shipped at Knit</span></div>
             <span class="co">KNIT · EMBEDDED AUTH UI</span>
             <h3>Designing for strangers in someone else's product</h3>
             <p>A white-labelled flow that 30+ SaaS products embed so their customers can connect apps. The redesign puts the choice about data before the request for access.</p>
@@ -1124,48 +1105,11 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <div class="layer l1" data-depth="-40" style="left:10%;top:12%;width:84%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div><div class="sw" data-screen="auScopeFields"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
-          <a class="cover" href="#case-auth" data-cursor="Open" aria-label="Open project 05"></a>
+          <a class="cover" href="#case-auth" data-cursor="Open" aria-label="Open project 04"></a>
         </div>
       </article>
 
-      <article class="scard" style="--i:5">
-        <div class="scard-in">
-          <div class="scard-copy">
-            <div class="scard-top"><span class="idx">06 / 07</span><span class="badge live">Shipped</span></div>
-            <span class="co">KFIN TECHNOLOGIES · DIGIX</span>
-            <h3>Statutory reporting, made self-serve</h3>
-            <p>The reporting platform India's asset management companies use to schedule, generate and share statutory reports. I turned a compliance-heavy workflow into a self-serve product.</p>
-            <div class="outcomes"><span><b>46%</b> less onboarding time</span><span><b>4</b> fintech products led</span></div>
-            <div class="tags"><span>Fintech</span><span>Enterprise</span><span>Workflow design</span></div>
-            <span class="viewcase">Open project <i>→</i></span>
-          </div>
-          <div class="scard-art" style="--tint:#4A3A6B">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>digix · report scheduler</span></div><div class="sw" data-screen="digix"></div></div></div>
-            <span class="art-note">Stand-in screens · swap with Figma exports</span>
-          </div>
-          <a class="cover" href="#case-kfin" data-cursor="Open" aria-label="Open project 06"></a>
-        </div>
-      </article>
-
-      <article class="scard" style="--i:6">
-        <div class="scard-in">
-          <div class="scard-copy">
-            <div class="scard-top"><span class="idx">07 / 07</span><span class="badge live">Shipped</span></div>
-            <span class="co">SUPERBEINGS · HR SAAS</span>
-            <h3>The hardest module in an HR platform</h3>
-            <p>Design lead in a two-person team. I redesigned performance management end to end, then rebuilt Custom Pulse surveys, Goals and OKRs, and first-run onboarding.</p>
-            <div class="outcomes"><span><b>4</b> core modules owned</span></div>
-            <div class="tags"><span>HR tech</span><span>Complex forms</span><span>Onboarding</span></div>
-            <span class="viewcase">Open project <i>→</i></span>
-          </div>
-          <div class="scard-art" style="--tint:#6B2E45">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>superbeings · review cycles</span></div><div class="sw" data-screen="review"></div></div></div>
-            <span class="art-note">Stand-in screens · swap with Figma exports</span>
-          </div>
-          <a class="cover" href="#case-superbeings" data-cursor="Open" aria-label="Open project 07"></a>
-        </div>
-      </article>
-    </div>
+      </div>
   </div>
 </section>
 
@@ -1221,7 +1165,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <div class="writing-top rv">
       <div><span class="eyebrow">Newsletter · Substack, LinkedIn, X</span><h2 id="writingTitle">Decision <em>Design</em></h2></div>
       <div>
-        <p>Where the science of how people think meets the craft of how products are designed. I'm working through 85 behavioural principles, three posts a week, through January 2027, and every example gets checked against the research first.</p>
+        <p>Where the science of how people think meets the craft of how products are designed. I'm interested in why people make the choices they do in products, and I write to learn: each post takes one idea from psychology and looks at where it shows up in real interfaces, checked against the research.</p>
         <div class="cal"><span class="cat" style="--c:#C8643F">Behavioural</span><span class="cat" style="--c:#8B5CF6">Persuasion</span><span class="cat" style="--c:#2F8F9D">Cognitive</span><span class="cat" style="--c:#C99A2E">Perceptual</span><span class="cat" style="--c:#D9577A">Emotional</span></div>
       </div>
     </div>
@@ -1240,20 +1184,19 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <!-- ABOUT -->
 <section class="sec" id="about" aria-labelledby="aboutTitle">
   <div class="wrap about-grid">
-    <div class="rv"><div class="portrait" id="portrait"><span class="mono-mark" aria-hidden="true">P</span><span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="sel-size">Priyadarshi · 6 yrs</span></span></div></div>
+    <div class="rv"><div class="portrait" id="portrait"><img src="assets/priyadarshi.jpg" alt="Priyadarshi Shrivastava" style="object-position:50% 30%"><span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="sel-size">Priyadarshi · 6 yrs</span></span></div></div>
     <div class="about-copy">
       <span class="eyebrow">About</span>
-      <h2 id="aboutTitle">I started out writing code, and got hooked on why people click what they click.</h2>
-      <p>My first real project was an engineering internship at <strong>ServiceNow</strong>, building a sentiment model for Slack channels and incident surveys. That's where I got curious about how people actually behave inside products, which is a different question from how they say they behave.</p>
-      <p>Since then I've designed fintech infrastructure at <strong>KFin Technologies</strong>, HR software at <strong>SuperBeings</strong> and developer tools at <strong>Knit</strong>, where I'm the only designer. I run discovery through customer calls, Microsoft Clarity recordings and Heap funnels, then redesign against what people really do.</p>
+      <h2 id="aboutTitle">I make deeply technical products easy to adopt.</h2>
+      <p>I studied engineering at <strong>BITS Pilani</strong> and have spent six years designing B2B SaaS, fintech and AI products. Today I'm the only designer at <strong>Knit</strong>, a Unified API platform: a SaaS company embeds it once, and its customers can connect any of 120 apps themselves.</p>
+      <p>I own design end to end, from research and information architecture to UI components and handoff to engineering. I decide what to fix from Heap funnels, Clarity recordings, support chats and customer calls, and I go back to the data after launch to see what changed.</p>
       <div class="xp">
-        <details open><summary><b>Knit</b><span>Product designer · sole designer</span><span class="when">Apr 2024 → now</span></summary><ul><li>Designed the Unified API web app from zero, through several live versions</li><li>Designed the white-labelled embeddable UI that end customers see</li><li>Re-architected three products into one, with a two-week onboarding sprint</li><li>Redesigned Logs and Data Syncs, plus alerts and data validation flows</li></ul></details>
-        <details><summary><b>SuperBeings</b><span>Product designer · design lead</span><span class="when">Aug 2022 → Apr 2024</span></summary><ul><li>Performance management, Custom Pulse surveys, Goals/OKRs and onboarding</li><li>When SuperBeings wound down in Dec 2022, the same team started building Knit under the same parent company. Knit became its own company in Apr 2024, and I joined it then</li></ul></details>
-        <details><summary><b>KFin Technologies</b><span>Project lead, UX</span><span class="when"></span></summary><ul><li>Led UX across DIGIX, KBOSS, InstaPay and a data management tool</li></ul></details>
-        <details><summary><b>KFin Technologies</b><span>Deputy manager, product</span><span class="when"></span></summary><ul><li>Automated cross-team workflow: 46% less project onboarding time (Heap)</li><li>Analytics dashboard prototype and launch roadmap</li></ul></details>
-        <details><summary><b>ServiceNow</b><span>Software engineer intern</span><span class="when"></span></summary><ul><li>Sentiment analysis model for Slack channels and incident surveys, in Keras/TensorFlow</li></ul></details>
+        <details open><summary><b>Knit</b><span>Product designer · sole designer</span><span class="when">Apr 2024 → now</span></summary><ul><li>Took the web app from product docs to a live product in about a month, with the CEO, CMO and five engineers</li><li>Rebuilt developer onboarding around a first API call (Apr 2026)</li><li>Redesigned Data Syncs and Logs so developers can find failures themselves</li><li>Designed the embeddable auth UI that end customers see inside 30+ SaaS products</li><li>Designed the merger of three products into one platform, a custom connector flow for the AI Integrations Agent, alerts and data validation</li></ul></details>
+        <details><summary><b>SuperBeings</b><span>Product designer</span><span class="when">Aug 2022 → Apr 2024</span></summary><ul><li>Redesigned Performance Management end to end, the platform's most complex module</li><li>Reworked Custom Pulse surveys and Goals/OKRs for clarity and faster setup</li><li>When SuperBeings wound down in Dec 2022, the same team started building Knit under the same parent company. Knit became its own company in Apr 2024, and I joined it then</li></ul></details>
+        <details><summary><b>KFin Technologies</b><span>Project lead</span><span class="when">Jun 2020 → Jul 2022</span></summary><ul><li>Designed DIGIX, the platform asset management companies use to schedule, generate and share statutory and daily reports, turning a compliance-heavy workflow into a self-serve product</li></ul></details>
+        <details><summary><b>BITS Pilani</b><span>BE (Hons) Electrical and Electronics · MSc (Hons) Chemistry</span><span class="when">2015 → 2020</span></summary><ul><li>Hyderabad Campus</li></ul></details>
       </div>
-      <div class="looking"><b>What I'm looking for</b><span>A senior product design role where design sits close to product strategy. Remote from anywhere, or on-site across India and abroad.</span></div>
+      <div class="looking"><b>What I'm looking for</b><span>A senior product design role where design sits close to product strategy. What interests me most is how people make decisions inside complex products, and designing AI tools where the agent does the heavy lifting while people stay in control. Remote from anywhere, or on-site across India and abroad.</span></div>
     </div>
   </div>
 </section>
@@ -2077,7 +2020,7 @@ function mountScreen(sw) {
 /* ======= Wall ======= */
 (function buildWall() {
   const wall = $("#wall");
-  const cols = [["dashboard","picker","digix","syncs"],["activity","review","connect","accounts"],["detail","quickstart","index","dashboard"]];
+  const cols = [["logsV2","obNewTest","auScopeFields","syncsNewRun"],["obNewTested","syncsNewList","auTrust","logsV2Error"],["syncsNewRecord","obNewSummary","logsV3Answer","auApps"]];
   const times = [70, 85, 64];
   cols.forEach((list, ci) => {
     const col = document.createElement("div"); col.className = "col" + (ci === 1 ? " rev" : ""); col.style.setProperty("--t", times[ci] + "s");
@@ -2091,52 +2034,9 @@ function mountScreen(sw) {
    it shows as a dashed box while CONFIG.draft is true, and vanishes when you set it to false. */
 const CASES = [
   {
-    id: "case-merger", n: "01", tint: "#2E3170", depth: "Full case study",
-    kicker: "Case study 01 · Knit · 2026", crumb: "01 · Knit · Three products, one spine",
-    title: "Three products, one <em>spine</em>",
-    lede: "Knit had three products built as three separate bets. Customers who needed all of them got three domains, three design systems and three ways to connect the same app. I re-architected them into one product, then redesigned onboarding in a two-week solo sprint.",
-    cover: { main: "detail", float: "picker", url: "app.getknit.dev/connections/workday-acme" },
-    tldr: { role: "Sole product designer, owning audit, IA, wireframes, prototypes and onboarding", team: "My manager, engineering", timeline: "Onboarding sprint: 2 weeks, July 2026", industry: "B2B SaaS · integrations · AI", problem: "Three products shared a connector layer and almost nothing else.", result: "One object model, one IA and one onboarding for all three products" },
-    chapters: [
-      { name: "Context & problem", head: "Every team had solved the same problem, separately.",
-        body: ["The three products had been built fast, by different people, for different bets. Sales struggled to position them. Engineering paid for most things three times. Pricing had grown meters that no buyer could hold in their head, and the customers who needed all three products suffered most.", "I owned the whole design side, with my manager setting direction. The hard constraint: the Unified API is a contract. Customers have live integrations running on it, so existing routes and endpoints had to keep working.", "Before drawing anything, I inventoried every screen to find out exactly how much was duplicated. Press the button."],
-        custom: ["tpl-audit"] },
-      { name: "Research & insight", head: "They weren't three products. They were three philosophies.",
-        insights: [
-          ["Opposite bets on the same connectors", "The Unified API normalises dozens of HR apps into one schema, so a developer never learns BambooHR's API. The MCP server exposed every raw BambooHR endpoint as a tool, so the model does. The agent built bespoke workflows with generated code. Same connector layer, three incompatible ideas of what an integration is."],
-          ["MCP had no way to connect an app", "To authorise an app, MCP users typed a phrase into their AI chat. One product over, the Unified API already had Magic Link, a proper hosted auth flow. The fix already existed inside the company."],
-          ["The root objects disagreed", "The Unified API roots everything at Organization, your customer's customer. MCP had no organization at all, so a Knit customer couldn't give MCP tools to their own end customers. That gap made MCP feel like a demo."]
-        ] },
-      { name: "Product opportunity", head: "Not three products. One ladder.",
-        lede: "Each product was a different trade between speed and flexibility. Put them on one shared Connection and they stop competing: customers climb only as far as their use case needs, and every rung inherits auth, logs and organizations for free.",
-        custom: ["tpl-ladder"] },
-      { name: "Design exploration", head: "Directions I tried before the ladder.",
-        draft: ["Two or three IA or onboarding directions you sketched and dropped. FigJam frames or rough wireframes are perfect.", "One line on why each one lost."] },
-      { name: "Decisions & trade-offs", head: "Three calls that shaped everything after.",
-        decisions: [
-          { q: "How should onboarding route people?", considered: "Let the agent infer intent from the first prompt and route automatically.", chose: "Explicit self-selection at login, with context carried across if people switch.", why: "My manager pushed for explicit choice, and the more I designed it the more I agreed. A visible choice sets expectations from step one.", cost: "One extra screen before value, so that screen had to be fast.", tag: "Direction from my manager" },
-          { q: "Is switching paths the same as adding one?", considered: "One “change path” control that behaves the same before and after go-live.", chose: "Two affordances: switch while setting up, add a surface once something is live.", why: "Before go-live a switch is cheap and reversible. After go-live it's an addition that must not disturb what's already running." },
-          { q: "What happens when a customer has five things live?", considered: "A single “you're live” screen at the end of onboarding.", chose: "Index to detail. The completion screen became the detail page for every live object.", why: "A single completion screen broke at two live objects.", cost: "API keys must become plural and scoped, a proposal engineering still has to accept." }
-        ],
-        draft: ["What engineering pushed back on, and how it was resolved.", "Anything you pushed back on, and whether you won or lost the argument."] },
-      { name: "Solution", head: "Pick a path, land in the same product.",
-        lede: "Three groups of users arrive with three mental models, so onboarding forks. The product underneath doesn't: everyone lands on the same objects, the same logs and the same Connection.",
-        custom: ["tpl-scrolly1", "tpl-ba", "tpl-flow", "tpl-hot1"] },
-      { name: "Validation & outcome", head: "One model the whole company can point at.",
-        impact: [["4 → 1", "Connection implementations in the target model"], ["2 weeks", "for the full onboarding redesign, solo", 2, " weeks"], ["1", "reusable design prompt, so new screens start consistent", 1]],
-        body: ["Reviewed with my manager as it happened, then handed to engineering as FigJam flows and interactive prototypes."],
-        draft: ["How you validated it: usability checks, engineering or sales feedback, customer reactions.", "What changed after testing."] },
-      { name: "AI workflow", head: "Where AI sped me up, and where it didn't.",
-        ai: { steps: [["INVENTORY", "Screenshots in, audit out", "I fed every screen of all three products to Claude and worked through the inventory with it. The duplication counts came out of that pass."], ["WIREFRAMES", "FigJam flows through Figma MCP", "Once the IA was agreed, I generated the first round of wireframes through the Figma MCP integration, then reworked them by hand."], ["SYSTEM", "A reusable design prompt", "I wrote the decisions into a design prompt so every new screen starts from the same object model and naming."]], human: "AI was fast at listing what existed. Deciding what should exist was my job, with my manager." } },
-      { name: "Reflection", head: "What I'd do differently.",
-        reflect: { quote: "If I did it again, I'd put pricing on the table on day one.", body: "The UI can merge three products. If the meters stay split, buyers still see three.", unsolved: ["Make API keys plural and scoped. I've proposed it to engineering."] },
-        draft: ["Anything else that's still unsolved."] }
-    ]
-  },
-  {
-    id: "case-unified-api", n: "02", tint: "#6B3B26", depth: "Full case study",
+    id: "case-unified-api", n: "01", tint: "#6B3B26", depth: "Full case study",
     real: "Real product screens. Names, URLs and the code sample are sample data.",
-    kicker: "Case study 02 · Knit · Unified API onboarding · 2026", crumb: "02 · Knit · Unified API onboarding",
+    kicker: "Case study 01 · Knit · Unified API onboarding · 2026", crumb: "01 · Knit · Unified API onboarding",
     title: "Onboarding that stopped needing an <em>engineer</em>",
     lede: "Knit's Unified API is its flagship product. Its onboarding asked every new user to set up a webhook before they had seen a single API call work. Most couldn't, so they raised a ticket and waited for one of our engineers. The redesign puts a working API call first and makes the webhook optional.",
     cover: { main: "obNewTest", url: "app.getknit.dev/getting-started" },
@@ -2173,9 +2073,9 @@ const CASES = [
     ]
   },
   {
-    id: "case-observability", n: "03", tint: "#1F4B3E", depth: "Full case study",
+    id: "case-observability", n: "02", tint: "#1F4B3E", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
-    kicker: "Case study 03 · Knit · Data Syncs · 2026", crumb: "03 · Knit · Data Syncs redesign",
+    kicker: "Case study 02 · Knit · Data Syncs · 2026", crumb: "02 · Knit · Data Syncs redesign",
     title: "From the system's view to the customer's <em>question</em>",
     lede: "Knit moves data between its customers' products and hundreds of other apps, on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later, I redesigned them around the one question customers kept asking: which record broke, and where?",
     cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
@@ -2221,9 +2121,9 @@ const CASES = [
     ]
   },
   {
-    id: "case-logs", n: "04", tint: "#24405E", depth: "Full case study",
+    id: "case-logs", n: "03", tint: "#24405E", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
-    kicker: "Case study 04 · Knit · Logs · 2026", crumb: "04 · Knit · Logs redesign",
+    kicker: "Case study 03 · Knit · Logs · 2026", crumb: "03 · Knit · Logs redesign",
     title: "Built for the moment something <em>breaks</em>",
     lede: "Knit's Logs page records every API call and webhook between customers' products and the apps they connect. I designed the first version around an assumption about how people read logs. The redesign is built around when they actually open them: when something has broken.",
     cover: { main: "logsV2", url: "app.getknit.dev/logs", ring: [83.6, 62.2, 12.6, 5.4], flag: "Record 4472324 · <b>404 Not Found</b> · View Error" },
@@ -2271,9 +2171,9 @@ const CASES = [
     ]
   },
   {
-    id: "case-auth", n: "05", tint: "#2B4A4F", depth: "Short case study",
+    id: "case-auth", n: "04", tint: "#2B4A4F", depth: "Short case study",
     real: "Real product screens. The client name and fields are sample data.",
-    kicker: "Case study 05 · Knit · Embedded auth UI · 2026", crumb: "05 · Knit · Embedded auth UI",
+    kicker: "Case study 04 · Knit · Embedded auth UI · 2026", crumb: "04 · Knit · Embedded auth UI",
     title: "Designing for <em>strangers</em> in someone else's product",
     lede: "Knit's auth component lives inside other companies' products. Their customers use it to connect apps like BambooHR or Freshdesk, usually without having heard of Knit. The redesign asks them what to share before it asks for access.",
     cover: { main: "auScopeFields", url: "app.acme.com · Integrate with Knit", ring: [2.5, 27.5, 95, 8.5], flag: "Read tickets · <b>chosen before connecting</b>" },
@@ -2307,36 +2207,6 @@ const CASES = [
         reflect: { quote: "Trust has to come before access.", body: "Every choice here comes back to one moment: a stranger deciding whether to hand over access to their own systems. Moving scope ahead of that moment was the change that mattered most.", unsolved: ["Add a completion event clients can pass back to Knit, so drop-off inside their products becomes visible.", "Explain each field in plain language at the scope step, so people know why the app needs it.", "Make the wait while credentials are validated say what's happening and roughly how long it takes.", "Build a phone-sized version when clients' end users start connecting from mobile apps. Today they're almost all on the web, so it's desktop-first by design."] } }
     ]
   },
-  {
-    id: "case-kfin", n: "06", tint: "#4A3A6B", depth: "Short case study",
-    kicker: "Project 06 · KFin Technologies", crumb: "06 · KFin Technologies · DIGIX",
-    title: "Statutory reporting, made <em>self-serve</em>",
-    lede: "DIGIX is the analytics and reporting platform India's asset management companies use to schedule, generate and share statutory and daily business reports. I led UX on it and turned a compliance-heavy workflow into a self-serve product.",
-    cover: { main: "digix", url: "digix · report scheduler" },
-    tldr: { role: "Project lead, UX → Deputy manager, product", industry: "Fintech · asset management", problem: "Statutory and daily reporting was a compliance-heavy workflow for AMC teams.", result: "46% less project onboarding time, measured in Heap" },
-    chapters: [
-      { name: "Problem", head: "Reports that regulators need, on time, every time.", body: ["Asset management companies have to produce statutory reports on fixed schedules, alongside daily business reports for their own teams. DIGIX had to make that self-serve, on a secure, no-code cloud pipeline."] },
-      { name: "Research & insight", draft: ["Who you talked to (compliance teams, fund accounting) and what you found."] },
-      { name: "Design & solution", head: "Scheduling without a ticket.", screen: "digix",
-        body: ["I led UX across four products: DIGIX, KBOSS (internal task scheduling), InstaPay and a data management tool, owning UI, prototypes and the research behind them."] },
-      { name: "Outcome", impact: [["46%", "less average project onboarding time after an automated cross-team workflow I designed", 46, "%"], ["4", "fintech products where I led UX, from research to shipped UI", 4]] }
-    ]
-  },
-  {
-    id: "case-superbeings", n: "07", tint: "#6B2E45", depth: "Short case study",
-    kicker: "Project 07 · SuperBeings", crumb: "07 · SuperBeings · Performance management",
-    title: "The hardest module in an <em>HR platform</em>",
-    lede: "Design lead in a two-person team. Performance management was the platform's most complex surface, with review cycles, feedback and manager workflows in one place. I redesigned it end to end.",
-    cover: { main: "review", url: "superbeings · review cycles" },
-    tldr: { role: "Product designer, design lead", team: "2 designers", timeline: "Until December 2022", industry: "HR tech · SaaS", problem: "Performance reviews were the platform's most complex surface." },
-    chapters: [
-      { name: "Problem", head: "Four stages, three roles, one deadline.", body: ["A review cycle runs through self review, manager review, calibration and sharing results, with employees, managers and HR each seeing different things at different times."], draft: ["What was broken before your redesign."] },
-      { name: "Research & insight", draft: ["What you learned from HR admins, managers or employees."] },
-      { name: "Design & solution", screen: "review",
-        body: ["Beyond performance management, I rebuilt Custom Pulse (the configurable employee survey engine) for faster setup, reworked the Goals and OKRs module, and owned first-run onboarding for new companies and employees."] },
-      { name: "Outcome", draft: ["Any signal of impact: adoption, setup time, customer feedback."] }
-    ]
-  }
 ];
 
 const esc = s => s;
@@ -2639,7 +2509,7 @@ function showRung(i) {
 if ($("#rungs")) { $$("#rungs .rung").forEach(r => r.addEventListener("click", () => showRung(+r.dataset.r))); showRung(0); }
 
 let merged = false;
-$("#mergeBtn").addEventListener("click", () => {
+$("#mergeBtn")?.addEventListener("click", () => {
   merged = !merged;
   $$("#audit .aud").forEach((a, i) => { const from = merged ? +a.dataset.n : 1, to = merged ? 1 : +a.dataset.n, b = $("b", a), t0 = performance.now(), dur = reduce ? 0 : 700 + i * 120;
     (function step(now) { const p = dur ? Math.min(1, (now - t0) / dur) : 1; b.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); else a.classList.toggle("merged", merged); })(t0); });
@@ -2656,13 +2526,10 @@ $("#wlPowered")?.addEventListener("change", e => $("#embFoot").hidden = !e.targe
 
 /* ======= Palette ======= */
 const CMDS = [
-  { g: "01", l: "Read: Three products, one spine", k: "case", run: () => navTo("case-merger") },
-  { g: "02", l: "Read: Onboarding that stopped needing an engineer", k: "case", run: () => navTo("case-unified-api") },
-  { g: "03", l: "Open: Data Syncs, from the system's view to the customer's question", k: "case", run: () => navTo("case-observability") },
-  { g: "04", l: "Open: Logs, built for the moment something breaks", k: "case", run: () => navTo("case-logs") },
-  { g: "05", l: "Open: Embedded auth UI, designing for strangers", k: "case", run: () => navTo("case-auth") },
-  { g: "06", l: "Open: KFin, statutory reporting", k: "case", run: () => navTo("case-kfin") },
-  { g: "07", l: "Open: SuperBeings, performance", k: "case", run: () => navTo("case-superbeings") },
+  { g: "01", l: "Read: Onboarding that stopped needing an engineer", k: "case", run: () => navTo("case-unified-api") },
+  { g: "02", l: "Open: Data Syncs, from the system's view to the customer's question", k: "case", run: () => navTo("case-observability") },
+  { g: "03", l: "Open: Logs, built for the moment something breaks", k: "case", run: () => navTo("case-logs") },
+  { g: "04", l: "Open: Embedded auth UI, designing for strangers", k: "case", run: () => navTo("case-auth") },
   { g: "@", l: "Copy email address", k: "contact", run: copyEmail },
   { g: "◆", l: "Toggle thinking mode", k: "L", run: toggleLens },
   { g: "◐", l: "Switch light / dark theme", k: "theme", run: toggleTheme },
