@@ -1499,18 +1499,6 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
   </div>
 </template>
 
-<template id="tpl-ob-ba">
-  <div class="vis">
-    <div class="vis-cap"><span>The same sync setup, before and after</span><span>Drag · before left, after right</span></div>
-    <div class="ba real" data-lens-title="Default effect" data-lens="Nothing about syncs got harder to reach. What changed is the default: off until you choose it, instead of a gate everyone had to pass.">
-      <div class="layer-a"><div class="sw" data-screen="obOldSync"></div></div>
-      <div class="layer-b"><div class="sw" data-screen="obNewSync"></div></div>
-      <span class="ba-tag l"><b>BEFORE</b>Required before you could continue</span><span class="ba-tag r"><b>AFTER</b>Optional, after your first call</span>
-      <div class="ba-handle"></div>
-    </div>
-  </div>
-</template>
-
 <template id="tpl-ob-data">
   <div class="vis">
     <div class="vis-cap"><span>Heap and Clarity · before vs after launch</span><span>Hover a bar</span></div>
@@ -2173,7 +2161,7 @@ const CASES = [
         ] },
       { name: "Solution", head: "A working call first, everything else after",
         lede: "Five steps, one of them required. The test runs inside onboarding, against a real app, and the response comes back on the same screen.",
-        custom: ["tpl-ob-scrolly", "tpl-ob-ba"] },
+        custom: ["tpl-ob-scrolly"] },
       { name: "Validation & outcome", head: "Twice as many past setup on day one",
         lede: "The new onboarding went live in the last week of April 2026. I ran the same Heap funnel on new users before and after, changing only the required step, and compared Clarity sessions that included Getting Started.",
         impact: [["2×", "as many new users get past the required step on day one, from 16% to 32%"], ["46% → 30%", "of onboarding sessions with quick backs, the open-a-page-and-leave kind"], ["~6 min", "median time from Getting Started to a first live API call (5m 51s)"]],
