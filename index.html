@@ -991,7 +991,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
       <div class="cta-row fade-up" style="--d:.7s">
         <a class="btn primary" href="#work">See the work <span class="arr">→</span></a>
         <button class="btn" data-copy-email>Copy email</button>
-        <a class="btn" data-href="resume" target="_blank" rel="noopener">Résumé ↗</a>
+        <a class="btn" data-href="resume" target="_blank" rel="noopener">Resume ↗</a>
       </div>
       <button class="hint fade-up" style="--d:.9s" id="hint"><kbd>L</kbd><span id="hintText">Press L to see the psychology behind a few of these choices</span></button>
     </div>
@@ -1210,7 +1210,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
       <button class="btn primary" data-copy-email>Copy email <span class="arr">→</span></button>
       <a class="btn" data-href="linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn" data-href="substack" target="_blank" rel="noopener">Substack ↗</a>
-      <a class="btn" data-href="resume" target="_blank" rel="noopener">Résumé ↗</a>
+      <a class="btn" data-href="resume" target="_blank" rel="noopener">Resume ↗</a>
     </div>
     <p class="email-line" data-email></p>
     <div class="foot">
@@ -2539,7 +2539,7 @@ const CMDS = [
   { g: "#", l: "Go to: Contact", k: "section", run: () => goSection("contact") }
 ];
 if (CONFIG.linkedin) CMDS.splice(6, 0, { g: "in", l: "Open LinkedIn", k: "link", run: () => window.open(CONFIG.linkedin, "_blank", "noopener") });
-if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open résumé", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
+if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open resume", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
 function goSection(id) { navTo(id); }
 const pal = $("#palette"), pin = $("#palInput"), plist = $("#palList"); let palItems = [], palIdx = 0, lastFocus = null;
 function renderPal() {
