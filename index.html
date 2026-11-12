@@ -1462,11 +1462,11 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 </template>
 <template id="tpl-ob-before">
   <div class="vis">
-    <div class="vis-cap"><span>Step 2 of the old onboarding</span><span>Before</span></div>
+    <div class="vis-cap"><span>The old onboarding, step 2 of 4</span><span>Before</span></div>
     <div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obOldSa1"></div></div>
   </div>
   <div class="vis">
-    <div class="vis-cap"><span>What "Setup Sync" opened: four more steps before you could carry on</span><span>Before</span></div>
+    <div class="vis-cap"><span>Step 2 in full: three sub-steps before you could move on</span><span>Before</span></div>
     <div class="frame bare"><div class="sw" data-screen="obOldSync"></div></div>
   </div>
 </template>
@@ -2155,7 +2155,7 @@ const CASES = [
     tldr: { role: "Sole product designer", team: "1 founder, 1 front-end engineer, with regular CTO reviews", timeline: "About 2–3 weeks design, about a month build. Live late April 2026", industry: "B2B SaaS · developer tools", problem: "Step 2 of onboarding was a required webhook. Most people stalled there and needed an engineer to get set up.", result: "Twice as many new users get past setup on day one (16% → 32%), with a first API call in about 6 minutes" },
     chapters: [
       { name: "Context & problem", head: "A webhook before anything worked",
-        body: ["Knit's customers are developers at SaaS companies. They pick a category like HRIS or ATS, choose the APIs they need, and connect their own customers' apps through Knit.", "The old onboarding was designed from the engineering side. Step 2 sorted your chosen APIs by how they run, and anything that ran on a schedule needed a sync. That meant registering a webhook, choosing events, a sync frequency and a trigger, all before you could move on.", "Many people didn't know how to set up a webhook, even with docs and links. It was where most of them dropped off. They raised support tickets, and our on-call engineers onboarded them by hand."],
+        body: ["Knit's customers are developers at SaaS companies. They pick a category like HRIS or ATS, choose the APIs they need, and connect their own customers' apps through Knit.", "The old onboarding had four steps, designed from the engineering side: Select Category, Register Webhook, Setup Knit UI, then Fetch data. Step 2 asked you to host a webhook on your own servers, register it, test every event on it one by one and pick a sync frequency, all before you had seen a single API call work.", "Many people didn't know how to set up a webhook, even with docs and links. It was where most of them dropped off. They raised support tickets, and our on-call engineers onboarded them by hand."],
         custom: ["tpl-ob-before"] },
       { name: "Research & insight", head: "Where people stopped",
         lede: "I didn't have ticket counts, so I went to usage data and our own call recordings.",
