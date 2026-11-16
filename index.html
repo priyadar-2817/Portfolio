@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="notebook" data-accent="green">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -954,7 +954,174 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 .ba-tag{font-size:13px;line-height:1.3;padding:6px 10px;border-radius:8px;box-shadow:0 6px 16px -6px rgba(0,0,0,.45)}.ba-tag b{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;opacity:.85;margin-bottom:2px}.ba .ba-tag.l,.ba.real .ba-tag.l{background:#35548F}.ba .ba-tag.r,.ba.real .ba-tag.r{background:#8E3B22}
 
+
+/* ===== style preview themes ===== */
+html[data-style] .grain{display:none}
+html[data-style] .eyebrow,html[data-style] .mono,html[data-style] .idx,html[data-style] .scard .co,html[data-style] .badge,html[data-style] .tags span,html[data-style] .brand span,html[data-style] .marquee-track small,html[data-style] .clock,html[data-style] .tile .cap,html[data-style] .shot-label,html[data-style] .art-note{font-family:var(--body);letter-spacing:0;text-transform:none}
+html[data-style] h1,html[data-style] h2,html[data-style] h3{letter-spacing:-.025em}
+html[data-style] .hero h1{font-size:clamp(44px,5.2vw,76px);line-height:1.02;margin:16px 0 22px}
+html[data-style] .sec{padding:clamp(64px,8vw,104px) 0 0}
+html[data-style] .sec-head h2,html[data-style] .writing-top h2{font-size:clamp(32px,3.4vw,48px);line-height:1.06}
+html[data-style] .scard h3{font-size:clamp(28px,2.6vw,38px);line-height:1.08}
+html[data-style] .stat b{font-size:clamp(34px,3.4vw,50px)}
+html[data-style] .case-hero h1{font-size:clamp(36px,4.4vw,60px);line-height:1.04}
+html[data-style] .ch h2,html[data-style] .cs h2{font-size:clamp(28px,2.8vw,40px);line-height:1.1}
+html[data-style] .ch-num{font-size:clamp(28px,3vw,40px);-webkit-text-stroke:0;color:var(--accent)}
+html[data-style] blockquote{font-size:clamp(22px,2.2vw,30px);line-height:1.3}
+html[data-style] .about-copy h2{font-size:clamp(30px,3.2vw,44px);line-height:1.08}
+html[data-style] .contact{padding:clamp(72px,9vw,120px) 0 40px}
+html[data-style] .contact h2{font-size:clamp(48px,7vw,96px);line-height:1}
+html[data-style] .marquee-track span{font-size:clamp(20px,2vw,28px)}
+html[data-style] .marquee-track span::after{color:var(--accent)}
+html[data-style] .scard .co{color:var(--lab)}
+html[data-style] .scard-art{--tint:var(--panel)!important}
+html[data-style] .btn.primary{background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+html[data-style] .stat b{color:var(--statn)}
+html[data-style] em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
+html[data-style] .hero h1,html[data-style] .sec-head h2,html[data-style] .scard h3,html[data-style] .stat b,html[data-style] .case-hero h1,html[data-style] .ch h2,html[data-style] .contact h2,html[data-style] .about-copy h2,html[data-style] .writing-top h2,html[data-style] .marquee-track span,html[data-style] .brand b,html[data-style] blockquote{font-family:var(--display);font-weight:var(--hw)}
+
+html[data-style="notebook"][data-theme="dark"]{--bg:#1B1916;--surface:#24211D;--surface-2:#2C2924;--ink:#F1EBE0;--muted:#A89F92;--line:#3A352E;--accent:#8FB0E0;--accent-ink:#1B1916;--panel:#2C3440;--hl:rgba(232,190,80,.38);--btn:#F1EBE0;--btn-ink:#1B1916;--lab:#8FB0E0;--statn:#F1EBE0;color-scheme:dark}
+html[data-style="notebook"][data-theme="dark"] body{background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px)}
+
+html[data-style="quiet"][data-theme="dark"],html[data-style="mix"][data-theme="dark"]{--bg:#181715;--surface:#211F1C;--surface-2:#2A2824;--ink:#F0ECE5;--muted:#A49D93;--line:#34312C;--panel:#2A2824;--btn:#F0ECE5;--btn-ink:#181715;--statn:#F0ECE5;color-scheme:dark}
+html[data-style="quiet"][data-theme="dark"]{--accent:#F07A55;--lab:#F07A55}
+html[data-style="mix"][data-theme="dark"]{--accent:#8FB0E0;--lab:#8FB0E0}
+html[data-style="cobalt"][data-theme="dark"]{--bg:#10121C;--surface:#181B28;--surface-2:#202436;--ink:#ECEEF6;--muted:#9AA0B4;--line:#2A2F44;--accent:#8C9BFF;--lab:#8C9BFF;--panel:#1E2550;--btn:#8C9BFF;--btn-ink:#10121C;--statn:#8C9BFF;color-scheme:dark}
+html[data-style="cobalt"][data-theme="dark"] .hero h1 em{color:#8C9BFF}
+html[data-style][data-theme="dark"] body{background-image:none}
+html[data-style="quiet"][data-theme="dark"] body,html[data-style="mix"][data-theme="dark"] body{background-image:linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:120px 100%;background-attachment:fixed}
+html[data-style="notebook"][data-theme="dark"] body{background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:32px 32px}
+html[data-style][data-theme="dark"] .hero h1 em,html[data-style][data-theme="dark"] .sec-head h2 em,html[data-style][data-theme="dark"] .case-hero h1 em{background:none;color:#F5CF5C;text-decoration:underline;text-decoration-thickness:.06em;text-underline-offset:.12em;text-decoration-color:rgba(245,207,92,.5)}
+html[data-style="cobalt"][data-theme="dark"] .hero h1 em{color:#8C9BFF;text-decoration:none}
+
+/* ---- Notebook refinements ---- */
+.nb-note{display:none}
+html[data-style="notebook"] .nb-note{display:block;font-family:"Caveat",cursive;font-weight:700;color:var(--accent);line-height:1.05;pointer-events:none}
+html[data-style="notebook"] .nb-hero-note{font-size:25px;margin-top:18px;transform:rotate(-2.5deg);max-width:360px}
+html[data-style="notebook"] .sec-head{position:relative}
+html[data-style="notebook"] .nb-sec-note{position:absolute;left:0;top:-30px;font-size:24px;color:#E2552E;transform:rotate(-2deg)}
+html[data-style="notebook"] .nb-tag{position:absolute;z-index:5;right:22px;top:18px;background:#FFF7D6;color:#1D1A17;font-size:22px;padding:4px 12px 6px;transform:rotate(3deg);box-shadow:0 3px 8px rgba(0,0,0,.12)}
+html[data-style="notebook"] .nb-tag::before{content:"";position:absolute;left:50%;top:-9px;width:54px;height:16px;margin-left:-27px;background:rgba(245,207,92,.85);transform:rotate(-4deg)}
+html[data-style="notebook"] .scard-art{position:relative}
+html[data-style="notebook"] body.lens-on .lens-tag,html[data-style="notebook"] .lens-tag{font-family:"Caveat",cursive;font-size:20px}
+/* hero wall: calmer */
+html[data-style="notebook"] .wall{transform:perspective(3200px) rotateX(4deg) rotateY(-3deg) rotateZ(-5deg)}
+html[data-style="notebook"] .col{animation-duration:calc(var(--t,60s)*2.6)}
+html[data-style="notebook"] .tile{border-radius:8px;box-shadow:0 18px 34px -22px rgba(40,30,20,.45);overflow:visible}
+html[data-style="notebook"] .tile img{border-radius:8px}
+/* marquee: quieter */
+html[data-style="notebook"] .marquee-track span{font-family:"DM Sans",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.01em}
+html[data-style="notebook"] .marquee-track span::after{content:"·";color:var(--muted)}
+html[data-style="notebook"] .marquee-track small{font-family:"Caveat",cursive;font-size:20px;color:var(--accent)}
+/* stats: dark band */
+html[data-style="notebook"] .stats{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;margin:32px 0 0;overflow:hidden}
+html[data-style="notebook"] .stat b{font-size:clamp(46px,4.6vw,68px);color:var(--ink);background:linear-gradient(transparent 60%,rgba(245,207,92,.75) 60%,rgba(245,207,92,.75) 90%,transparent 90%);display:inline-block;padding:0 .06em}
+html[data-style="notebook"][data-theme="dark"] .stat b{background:none;color:#F5CF5C}
+/* calmer titles: DM Sans bold for cards, chapters, quotes */
+html[data-style="notebook"] .scard h3,html[data-style="notebook"] .ch h2,html[data-style="notebook"] .cs h2,html[data-style="notebook"] blockquote,html[data-style="notebook"] .about-copy h2{font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:-.025em}
+html[data-style="notebook"] .scard h3{font-size:clamp(26px,2.4vw,34px)}
+html[data-style="notebook"][data-theme="dark"] .nb-tag{background:#2F2B25;color:#F1EBE0}
+html[data-style="notebook"][data-theme="dark"] .nb-sec-note{color:#F07A55}
+html[data-style="notebook"] .cursor{background:rgba(29,26,23,.18);width:10px;height:10px;margin:-5px 0 0 -5px}
+html[data-style="notebook"] .cursor.big{background:rgba(47,93,154,.16);width:72px;height:72px;margin:-36px 0 0 -36px;color:var(--ink)}
+html[data-style="notebook"][data-theme="dark"] .cursor{background:rgba(241,235,224,.2)}
+.nb-extra{display:none}
+html[data-style="notebook"] .nb-extra{display:block;position:absolute;left:30%;top:47%;width:66%;z-index:3}
+html[data-style="notebook"] .scard-art .l1{left:5%!important;top:9%!important;width:74%!important}
+html[data-style="notebook"] .cursor{background:rgba(29,26,23,.1)}
+html[data-style="notebook"] .cursor.big{background:rgba(47,93,154,.07)}
+html[data-style="notebook"]{--mono:"DM Sans",system-ui,sans-serif}
+html[data-style="notebook"] .code,html[data-style="notebook"] pre,html[data-style="notebook"] code,html[data-style="notebook"] kbd{font-family:"Geist Mono",ui-monospace,Menlo,monospace}
+html[data-style="notebook"] .tldr-card{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);box-shadow:0 24px 50px -36px rgba(40,30,20,.35);position:relative}
+html[data-style="notebook"] .tldr-card::before{content:"";position:absolute;top:-11px;left:50%;width:90px;height:22px;margin-left:-45px;background:rgba(245,207,92,.85);transform:rotate(-3deg)}
+html[data-style="notebook"] .tl-k,html[data-style="notebook"] .tldr-card dt,html[data-style="notebook"] .tl-result .mono{letter-spacing:.02em;text-transform:none;font-weight:600;opacity:.6}
+html[data-style="notebook"] .tl-result{border-top-color:var(--line)}
+html[data-style="notebook"] .tl-result b{font-family:"DM Sans",sans-serif;font-weight:700;font-size:clamp(22px,2vw,28px);line-height:1.2;letter-spacing:-.02em}
+html[data-style="notebook"] .cover-stage{--tint:var(--panel)!important}
+html[data-style="notebook"] .case .eyebrow,html[data-style="notebook"] .hero-meta span,html[data-style="notebook"] .crumb,html[data-style="notebook"] .case-bar{font-family:var(--body);letter-spacing:0;text-transform:none}
+html[data-style="notebook"] .nb-extra .sw img{transform:none!important}
+html[data-style="notebook"] .stat{padding:26px 28px!important}
+html[data-style="notebook"] .spot::before{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(29,26,23,.03),transparent 65%)}
+html[data-style="notebook"] .ch-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:center}
+html[data-style="notebook"] .tldr-card{padding:20px 22px}
+html[data-style="notebook"] .tldr-card dd{font-size:14px}
+html[data-style="notebook"] .tl-result b{font-size:clamp(18px,1.5vw,21px);line-height:1.3}
+html[data-style="notebook"] .qb p,html[data-style="notebook"] blockquote{font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.005em;line-height:1.35}
+html[data-style="notebook"] .qb p{font-size:clamp(20px,1.8vw,25px)}
+html[data-style="notebook"] .qb footer{font-family:var(--body);letter-spacing:0}
+html[data-style="notebook"] .pn a.next{background:#E6DED1;color:var(--ink);border-color:var(--line)}
+html[data-style="notebook"][data-theme="dark"] .pn a.next{background:#2C2924;color:var(--ink)}
+html[data-style="notebook"][data-accent="blue"]{--panel:#4B6283;--accent:#2F5D9A;--lab:#2F5D9A}
+html[data-style="notebook"][data-accent="green"]{--panel:#3E5C4A;--accent:#3E5C4A;--lab:#3E5C4A}
+html[data-style="notebook"][data-accent="teal"]{--panel:#2F5F63;--accent:#2F5F63;--lab:#2F5F63}
+html[data-style="notebook"][data-accent="plum"]{--panel:#5A3D55;--accent:#5A3D55;--lab:#5A3D55}
+html[data-style="notebook"][data-accent="char"]{--panel:#3A3632;--accent:#3A3632;--lab:#3A3632}
+#accbar{position:fixed;left:50%;bottom:66px;transform:translateX(-50%);z-index:9999;display:flex;gap:6px;padding:6px;border-radius:99px;background:rgba(20,20,20,.9);font:600 12px system-ui,sans-serif}#accbar button{display:flex;align-items:center;gap:6px;border:0;border-radius:99px;padding:7px 12px 7px 8px;background:transparent;color:#ddd;cursor:pointer;white-space:nowrap}#accbar button i{width:14px;height:14px;border-radius:50%;display:inline-block}#accbar button.on{background:#fff;color:#111}html:not([data-style="notebook"]) #accbar{display:none}
+html[data-style="notebook"][data-accent="green"]{--btn:#C8603A}
+html[data-style="notebook"][data-accent="green"] .nbx,html[data-style="notebook"][data-accent="green"] .nb-sec-note{color:#C8603A}
+html[data-style="notebook"][data-accent="green"][data-theme="dark"]{--accent:#8FB89D;--lab:#8FB89D;--panel:#2F4538;--btn:#D9774F}
+.nb-only{display:none}
+html[data-style="notebook"] .nb-only{display:block}
+html[data-style="notebook"] .mini-dp{display:none}
+html[data-style="notebook"] .nb-only .sw img{transform:none!important}
+html[data-style="notebook"] .writing-top{align-items:start;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px}
+html[data-style="notebook"] .writing-top h2{margin-top:6px}
+html[data-style="notebook"][data-theme="dark"] .hero h1 em,html[data-style="notebook"][data-theme="dark"] .sec-head h2 em,html[data-style="notebook"][data-theme="dark"] .case-hero h1 em{color:inherit;text-decoration:none;background:linear-gradient(transparent 56%,rgba(232,190,80,.34) 56%,rgba(232,190,80,.34) 92%,transparent 92%)}
+html[data-style="notebook"][data-theme="dark"] .stat b{color:var(--ink);background:linear-gradient(transparent 60%,rgba(232,190,80,.34) 60%,rgba(232,190,80,.34) 90%,transparent 90%)}
+html[data-style="notebook"][data-theme="dark"] .tldr-card::before{background:rgba(232,190,80,.5)}
+html[data-style="notebook"][data-theme="dark"] .nb-tag::before{background:rgba(232,190,80,.55)}
+html[data-style="notebook"] .ch-grid{align-items:stretch}
+html[data-style="notebook"] .ch-grid > div:first-child{display:flex;flex-direction:column;justify-content:center}
+html[data-style="notebook"] .tldr-card dl{gap:12px 18px;margin-top:12px}
+html[data-style="notebook"] .tldr-card dd{font-size:13.5px;line-height:1.38}
+html[data-style="notebook"] .tl-result{margin-top:12px;padding-top:12px}
+html[data-style="notebook"] .tl-result b{font-size:clamp(17px,1.35vw,19px)}
+html[data-style="notebook"] .human,html[data-style="notebook"] .next-case,html[data-style="notebook"] .base{background:var(--panel);color:#F6F1E7}
+html[data-style="notebook"] .pback{background:var(--panel);color:#F6F1E7}
+html[data-style="notebook"] .human .mono{color:rgba(246,241,231,.7)}
+html[data-style="notebook"][data-theme="dark"] .human,html[data-style="notebook"][data-theme="dark"] .next-case,html[data-style="notebook"][data-theme="dark"] .base,html[data-style="notebook"][data-theme="dark"] .pback{background:#2F4538;color:var(--ink)}
+html[data-style="notebook"] .viewcase{color:var(--ink)!important}
+html[data-style="notebook"] .viewcase i{background:var(--panel)!important;color:#fff!important}
+.nb-avail{display:none}
+html[data-style="notebook"] .nb-avail{display:inline-block;margin:10px 0 0;font-size:14px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:5px 12px;border-radius:99px}
+html[data-style="notebook"][data-theme="dark"] .sw img,html[data-style="notebook"][data-theme="dark"] .tile img{filter:brightness(.88)}
+.kw-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.kw{margin:0;padding:28px 30px;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:22px;position:relative}
+.kw blockquote{margin:0;max-width:none;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.4;text-transform:none;letter-spacing:0}
+.kw figcaption{display:flex;flex-direction:column;gap:2px;font-size:14px}
+.kw figcaption b{font-weight:700;color:var(--ink)}
+.kw figcaption span{color:var(--muted)}
+html[data-style="notebook"] .kw::before{content:"";position:absolute;top:-10px;left:36px;width:70px;height:20px;background:rgba(245,207,92,.8);transform:rotate(-4deg)}
+html[data-style="notebook"][data-theme="dark"] .kw::before{background:rgba(232,190,80,.5)}
+@media (max-width:760px){.kw-grid{grid-template-columns:1fr}}
+html[data-style="notebook"] .ch-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;align-items:center!important;gap:clamp(28px,4vw,56px)}
+html[data-style="notebook"] .tldr-card{padding:18px 22px!important}
+html[data-style="notebook"] .tldr-card dl{grid-template-columns:1fr 1fr 1fr;gap:10px 18px;margin-top:10px}
+html[data-style="notebook"] .tldr-card .full{grid-column:1/-1}
+html[data-style="notebook"] .tldr-card dd{font-size:13.5px;line-height:1.35;margin-top:2px}
+html[data-style="notebook"] .tl-result{margin-top:10px;padding-top:10px}
+html[data-style="notebook"] .tl-result b{font-size:17px!important;line-height:1.3;margin-top:4px}
+html[data-style="notebook"] .tldr-card .ind{grid-column:span 2;white-space:nowrap}
+#stylebar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9999;display:flex;gap:6px;padding:6px;border-radius:99px;background:rgba(20,20,20,.9);box-shadow:0 10px 30px rgba(0,0,0,.3);font:600 13px system-ui,sans-serif}
+#stylebar button{white-space:nowrap;border:0;border-radius:99px;padding:9px 14px;background:transparent;color:#ddd;cursor:pointer}
+#stylebar button.on{background:#fff;color:#111}
+
+html[data-style="quiet"]{--bg:#F2EFEA;--surface:#FFFFFF;--surface-2:#E8E3DA;--ink:#151413;--muted:#615C55;--line:#DCD6CC;--accent:#E2552E;--accent-ink:#FFFFFF;--display:"Archivo",system-ui,sans-serif;--body:"Archivo",system-ui,sans-serif;--maxw:1160px;--panel:#E6DFD3;--hl:transparent;--hw:800;--btn:#151413;--btn-ink:#FFFFFF;--lab:#E2552E;--statn:#151413;color-scheme:light}
+html[data-style="quiet"] body{background-image:linear-gradient(90deg,#DCD6CC66 1px,transparent 1px);background-size:120px 100%;background-attachment:fixed}
+html[data-style="quiet"] .hero h1{font-weight:300}html[data-style="quiet"] .hero h1 em{font-weight:800}
+html[data-style="mix"]{--bg:#F2EFEA;--surface:#FFFFFF;--surface-2:#E8E3DA;--ink:#151413;--muted:#615C55;--line:#DCD6CC;--accent:#2F5D9A;--accent-ink:#FFFFFF;--display:"Archivo",system-ui,sans-serif;--body:"Archivo",system-ui,sans-serif;--maxw:1160px;--panel:#E6DFD3;--hl:#F5CF5C;--hw:800;--btn:#151413;--btn-ink:#FFFFFF;--lab:#2F5D9A;--statn:#151413;color-scheme:light}
+html[data-style="mix"] body{background-image:linear-gradient(90deg,#DCD6CC66 1px,transparent 1px);background-size:120px 100%;background-attachment:fixed}
+html[data-style="mix"] .hero h1 em,html[data-style="mix"] .sec-head h2 em,html[data-style="mix"] .case-hero h1 em{background:linear-gradient(transparent 56%,var(--hl) 56%,var(--hl) 92%,transparent 92%);padding:0 .05em}
+html[data-style="mix"] .hero h1{font-weight:300}html[data-style="mix"] .hero h1 em{font-weight:800}
+html[data-style="notebook"]{--bg:#F6F1E7;--surface:#FFFDF8;--surface-2:#ECE4D6;--ink:#1D1A17;--muted:#5F574D;--line:#E3DACB;--accent:#2F5D9A;--accent-ink:#FFFFFF;--display:"Bebas Neue",system-ui,sans-serif;--body:"DM Sans",system-ui,sans-serif;--maxw:1160px;--panel:#4B6283;--hl:#F5CF5C;--hw:400;--btn:#E2552E;--btn-ink:#FFFFFF;--lab:#2F5D9A;--statn:#1D1A17;color-scheme:light}
+html[data-style="notebook"] body{background-image:linear-gradient(#E3DACB4D 1px,transparent 1px),linear-gradient(90deg,#E3DACB4D 1px,transparent 1px);background-size:32px 32px}
+html[data-style="notebook"] .hero h1 em,html[data-style="notebook"] .sec-head h2 em,html[data-style="notebook"] .case-hero h1 em{background:linear-gradient(transparent 56%,var(--hl) 56%,var(--hl) 92%,transparent 92%);padding:0 .05em}
+html[data-style="cobalt"]{--bg:#F7F6F2;--surface:#FFFFFF;--surface-2:#ECEBE5;--ink:#0F1222;--muted:#555A6B;--line:#E2E1DA;--accent:#2741D6;--accent-ink:#FFFFFF;--display:"Instrument Sans",system-ui,sans-serif;--body:"Instrument Sans",system-ui,sans-serif;--maxw:1160px;--panel:#2741D6;--hl:transparent;--hw:700;--btn:#2741D6;--btn-ink:#FFFFFF;--lab:#2741D6;--statn:#2741D6;color-scheme:light}
+html[data-style="cobalt"] .hero h1 em{color:#2741D6}
+html[data-style="ink"]{--bg:#141414;--surface:#1E1E1D;--surface-2:#262624;--ink:#F1EEE7;--muted:#A39E95;--line:#2E2D2B;--accent:#F5CF5C;--accent-ink:#141414;--display:"Familjen Grotesk",system-ui,sans-serif;--body:"Familjen Grotesk",system-ui,sans-serif;--maxw:1160px;--panel:#2A2A28;--hl:transparent;--hw:700;--btn:#F5CF5C;--btn-ink:#141414;--lab:#F5CF5C;--statn:#F5CF5C;color-scheme:dark}
+html[data-style="ink"] .hero h1 em{color:#F5CF5C}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;800&family=Bebas+Neue&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&family=Instrument+Sans:wght@400;500;600;700&family=Familjen+Grotesk:wght@400;500;600;700&display=swap">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -981,16 +1148,15 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
   </div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow fade-up" style="--d:.1s">Product designer · 6 years · B2B SaaS, fintech, AI tools</span>
+      <span class="eyebrow fade-up" style="--d:.1s">Product designer · 6 years · B2B SaaS, Fintech, AI tools</span>
       <h1 id="h1">
         <span class="line"><span style="--i:0">I design for</span></span>
         <span class="line"><span style="--i:1">how people</span></span>
         <span class="line"><span style="--i:2"><em>actually</em> decide.</span></span>
       </h1>
-      <p class="lede fade-up" style="--d:.55s">Sole product designer at <strong>Knit</strong>, an integrations platform for B2B SaaS, designing its Unified API and AI Integrations Agent. Before that, I designed HR software at <strong>SuperBeings</strong> and worked on fintech reporting at <strong>KFin Technologies</strong>. Looking for a senior product design role.</p>
+      <p class="lede fade-up" style="--d:.55s">Sole product designer at <strong>Knit</strong>, an integrations platform for B2B SaaS, designing its Unified API and AI Integrations Agent. Before that, I designed HR software at <strong>SuperBeings</strong> and worked on fintech reporting at <strong>KFin Technologies</strong>.</p>
       <div class="cta-row fade-up" style="--d:.7s">
         <a class="btn primary" href="#work">See the work <span class="arr">→</span></a>
-        <button class="btn" data-copy-email>Copy email</button>
         <a class="btn" data-href="resume" target="_blank" rel="noopener">Resume ↗</a>
       </div>
       <button class="hint fade-up" style="--d:.9s" id="hint"><kbd>L</kbd><span id="hintText">Press L to see the psychology behind a few of these choices</span></button>
@@ -1002,9 +1168,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
   <div class="marquee-track" id="mq">
     <span>Knit<small>B2B integrations · 200+ connectors</small></span>
     <span>SuperBeings<small>HR &amp; engagement SaaS</small></span>
-    <span>KFin Technologies<small>Fintech infra for AMCs</small></span>
+    <span>KFin Technologies<small>Mutual funds registrar</small></span>
     <span>ServiceNow<small>Engineering internship</small></span>
-    <span>Decision Design<small>Newsletter · 85 principles</small></span>
   </div>
 </div>
 
@@ -1022,9 +1187,9 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
   <div class="wrap">
     <div class="sec-head rv">
       <h2 id="workTitle">Selected <em>work</em></h2>
-      <p>Four projects, strongest first. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
+      <p>Four projects. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
     </div>
-    <div class="stack" id="stack" data-lens-title="Serial position effect" data-lens="People remember the first and last items in a list best. The strongest case leads, and a strong one closes.">
+    <div class="stack" id="stack" data-lens-title="Serial position effect" data-lens="People remember the first and last items in a list best. The flagship case leads, and a strong one closes.">
 
       <article class="scard" style="--i:1">
         <div class="scard-in">
@@ -1038,7 +1203,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <span class="viewcase">Open case study <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#6B3B26">
-            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obNewTest"></div></div></div>
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obOldSa1"></div></div></div>
+            <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obNewTest"></div></div></div>
           </div>
           <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 01"></a>
         </div>
@@ -1056,7 +1222,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
             <span class="viewcase">Open project <i>→</i></span>
           </div>
           <div class="scard-art" style="--tint:#1F4B3E">
-            <div class="mini-dp" aria-hidden="true"><svg viewBox="0 0 1000 260">
+            <div class="layer l1 nb-only" data-depth="-40"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncsNewRun"></div></div></div><div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/syncs</span></div><div class="sw" data-screen="syncsNewRecord"></div></div></div><div class="mini-dp" aria-hidden="true"><svg viewBox="0 0 1000 260">
               <path class="mw" d="M215 140 H425"/><path class="mw" d="M575 140 H785"/>
               <path class="ml a" d="M215 140 H425"/><path class="ml b" d="M575 140 H785"/>
               <g class="md"><circle cx="200" cy="140" r="13"/></g>
@@ -1084,6 +1250,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
           </div>
           <div class="scard-art" style="--tint:#24405E">
             <div class="layer l1" data-depth="-40" style="left:6%;top:14%;width:92%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/logs</span></div><div class="sw" data-screen="logsV2"></div></div></div>
+            <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/logs</span></div><div class="sw" data-screen="logsV3Answer"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
           <a class="cover" href="#case-logs" data-cursor="Open" aria-label="Open project 03"></a>
@@ -1103,6 +1270,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
           </div>
           <div class="scard-art" style="--tint:#2B4A4F">
             <div class="layer l1" data-depth="-40" style="left:10%;top:12%;width:84%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div><div class="sw" data-screen="auScopeFields"></div></div></div>
+            <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div><div class="sw" data-screen="auSuccess"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
           <a class="cover" href="#case-auth" data-cursor="Open" aria-label="Open project 04"></a>
@@ -1163,7 +1331,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 <section class="sec" id="writing" aria-labelledby="writingTitle">
   <div class="wrap">
     <div class="writing-top rv">
-      <div><span class="eyebrow">Newsletter · Substack, LinkedIn, X</span><h2 id="writingTitle">Decision <em>Design</em></h2></div>
+      <div><span class="eyebrow">Newsletter · Substack, LinkedIn</span><h2 id="writingTitle">Decision <em>Design</em></h2></div>
       <div>
         <p>Where the science of how people think meets the craft of how products are designed. I'm interested in why people make the choices they do in products, and I write to learn: each post takes one idea from psychology and looks at where it shows up in real interfaces, checked against the research.</p>
         <div class="cal"><span class="cat" style="--c:#C8643F">Behavioural</span><span class="cat" style="--c:#8B5CF6">Persuasion</span><span class="cat" style="--c:#2F8F9D">Cognitive</span><span class="cat" style="--c:#C99A2E">Perceptual</span><span class="cat" style="--c:#D9577A">Emotional</span></div>
@@ -1182,16 +1350,28 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 </section>
 
 <!-- ABOUT -->
+<section class="sec" id="kind-words" aria-labelledby="kwTitle">
+  <div class="wrap">
+    <div class="sec-head rv"><h2 id="kwTitle">Kind <em>words</em></h2><p>Recommendations from people I've worked with at Knit, from LinkedIn.</p></div>
+    <div class="kw-grid">
+      <figure class="kw rv"><blockquote>“He has a strong sense of the user's perspective and is very good at making a complex, technical product feel simple and intuitive. He works closely with engineering and product, takes real ownership of his work, and consistently delivers thoughtful, high-quality design.”</blockquote>
+        <figcaption><b>Kunal Mishra</b><span>Founder at Knit</span></figcaption></figure>
+      <figure class="kw rv"><blockquote>“He's thoughtful, dependable, and brings a great eye for design to everything he does. Beyond his skills, he's been a genuinely great person to work with: always collaborative, sincere, and willing to go the extra mile.”</blockquote>
+        <figcaption><b>Yasharth Mishra</b><span>Founder at Knit</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="about" aria-labelledby="aboutTitle">
   <div class="wrap about-grid">
     <div class="rv"><div class="portrait" id="portrait"><img src="assets/priyadarshi.jpg" alt="Priyadarshi Shrivastava" style="object-position:50% 30%"><span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="sel-size">Priyadarshi · 6 yrs</span></span></div></div>
     <div class="about-copy">
       <span class="eyebrow">About</span>
-      <h2 id="aboutTitle">I make deeply technical products easy to adopt.</h2>
-      <p>I studied engineering at <strong>BITS Pilani</strong> and have spent six years designing B2B SaaS, fintech and AI products. Today I'm the only designer at <strong>Knit</strong>, a Unified API platform: a SaaS company embeds it once, and its customers can connect any of 120 apps themselves.</p>
-      <p>I own design end to end, from research and information architecture to UI components and handoff to engineering. I decide what to fix from Heap funnels, Clarity recordings, support chats and customer calls, and I go back to the data after launch to see what changed.</p>
+      <h2 id="aboutTitle">I like making technical products feel less intimidating.</h2>
+      <p>I studied engineering at <strong>BITS Pilani</strong> and drifted into design, and I've been designing B2B SaaS, fintech and AI products for about six years now. These days I'm the only designer at <strong>Knit</strong>. It's a Unified API: a SaaS company plugs it in once, and its customers can connect any of 120 or so apps on their own.</p>
+      <p>Being the only designer means I do a bit of everything: talking to customers, sorting out how things are organised, drawing the screens, and sitting with engineers until they ship. I find most problems in Heap funnels, Clarity recordings and support chats, and I check the numbers again after launch, because our first guess is often wrong.</p>
       <div class="xp">
-        <details open><summary><b>Knit</b><span>Product designer · sole designer</span><span class="when">Apr 2024 → now</span></summary><ul><li>Took the web app from product docs to a live product in about a month, with the CEO, CMO and five engineers</li><li>Rebuilt developer onboarding around a first API call (Apr 2026)</li><li>Redesigned Data Syncs and Logs so developers can find failures themselves</li><li>Designed the embeddable auth UI that end customers see inside 30+ SaaS products</li><li>Designed the merger of three products into one platform, a custom connector flow for the AI Integrations Agent, alerts and data validation</li></ul></details>
+        <details open><summary><b>Knit</b><span>Product designer · sole designer</span><span class="when">Apr 2024 → now</span></summary><ul><li>Helped turn the web app from product docs into a live product in about a month, alongside the founders and the engineering team</li><li>Reworked developer onboarding so people make a working API call first (Apr 2026)</li><li>Redesigned Data Syncs and Logs so developers can see what broke without asking us</li><li>Designed the auth screens that end customers see inside 30+ SaaS products</li><li>Worked on bringing three products together into one, plus a custom connector flow for the AI Integrations Agent, alerts and data validation</li></ul></details>
         <details><summary><b>SuperBeings</b><span>Product designer</span><span class="when">Aug 2022 → Apr 2024</span></summary><ul><li>Redesigned Performance Management end to end, the platform's most complex module</li><li>Reworked Custom Pulse surveys and Goals/OKRs for clarity and faster setup</li><li>When SuperBeings wound down in Dec 2022, the same team started building Knit under the same parent company. Knit became its own company in Apr 2024, and I joined it then</li></ul></details>
         <details><summary><b>KFin Technologies</b><span>Project lead</span><span class="when">Jun 2020 → Jul 2022</span></summary><ul><li>Designed DIGIX, the platform asset management companies use to schedule, generate and share statutory and daily reports, turning a compliance-heavy workflow into a self-serve product</li></ul></details>
         <details><summary><b>BITS Pilani</b><span>BE (Hons) Electrical and Electronics · MSc (Hons) Chemistry</span><span class="when">2015 → 2020</span></summary><ul><li>Hyderabad Campus</li></ul></details>
@@ -1209,8 +1389,8 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
     <div class="contact-row">
       <button class="btn primary" data-copy-email>Copy email <span class="arr">→</span></button>
       <a class="btn" data-href="linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn" data-href="substack" target="_blank" rel="noopener">Substack ↗</a>
       <a class="btn" data-href="resume" target="_blank" rel="noopener">Resume ↗</a>
+      <a class="btn" data-href="substack" target="_blank" rel="noopener">Substack ↗</a>
     </div>
     <p class="email-line" data-email></p>
     <div class="foot">
@@ -1831,11 +2011,10 @@ const CONFIG = {
   resume: "assets/Priyadarshi-Shrivastava-Resume.pdf",
   substack: "https://decisiondesign.substack.com",
   photo: "",
-  draft: false,  /* true: dashed boxes show what each case study still needs. Keep false on the live site. */
+  draft: true,   /* true: dashed boxes show what each case study still needs. Set to false before sharing. */
   /* Real screens: export frames from Figma at 1280×800 (or any 16:10) and map them here.
      Any screen with a file listed replaces the coded stand-in everywhere it appears. */
   shots: {
-    /* Data Syncs case study: real screens */
     syncsOldList: "assets/syncs-old-list.webp",
     syncsOldJob: "assets/syncs-old-job.webp",
     syncsOldRun: "assets/syncs-old-run.webp",
@@ -1898,19 +2077,9 @@ const CONFIG = {
     auFailed: "assets/au-failed.webp",
     auPersonalize: "assets/au-personalize.webp",
     auPersonalizeCode: "assets/au-personalize-code.webp",
-    /* Other projects: placeholders until you upload a real screen with the same file name */
-    dashboard: "assets/dashboard.webp",
-    connect: "assets/connect.webp",
-    accounts: "assets/accounts.webp",
-    quickstart: "assets/quickstart.webp",
-    syncs: "assets/syncs.webp",
-    activity: "assets/activity.webp",
-    before3: "assets/before3.webp",
-    picker: "assets/picker.webp",
-    detail: "assets/detail.webp",
-    index: "assets/index.webp",
-    digix: "assets/digix.webp",
-    review: "assets/review.webp",
+    // dashboard: "assets/dashboard.webp",
+    // accounts: "assets/accounts.webp",
+    // activity: "assets/activity.webp",
   }
 };
 
@@ -2050,7 +2219,7 @@ const CASES = [
     title: "Onboarding that stopped needing an <em>engineer</em>",
     lede: "Knit's Unified API is its flagship product. Its onboarding asked every new user to set up a webhook before they had seen a single API call work. Most couldn't, so they raised a ticket and waited for one of our engineers. The redesign puts a working API call first and makes the webhook optional.",
     cover: { main: "obNewTest", url: "app.getknit.dev/getting-started" },
-    tldr: { role: "Sole product designer", team: "1 founder, 1 front-end engineer, with regular CTO reviews", timeline: "About 2–3 weeks design, about a month build. Live late April 2026", industry: "B2B SaaS · developer tools", problem: "Step 2 of onboarding was a required webhook. Most people stalled there and needed an engineer to get set up.", result: "Twice as many new users get past setup on day one (16% → 32%), with a first API call in about 6 minutes" },
+    tldr: { role: "Sole product designer", team: "1 founder, 1 front-end engineer, with regular CTO reviews", timeline: "About 2–3 weeks design, about a month build. Live late April 2026", industry: "B2B SaaS · Developer Tools", problem: "Step 2 of onboarding was a required webhook. Most people stalled there and needed an engineer to get set up.", result: "Twice as many new users get past setup on day one (16% → 32%), with a first API call in about 6 minutes" },
     chapters: [
       { name: "Context & problem", head: "A webhook before anything worked",
         body: ["Knit's customers are developers at SaaS companies. They pick a category like HRIS or ATS, choose the APIs they need, and connect their own customers' apps through Knit.", "The old onboarding had four steps, designed from the engineering side: Select Category, Register Webhook, Setup Knit UI, then Fetch data. Step 2 asked you to host a webhook on your own servers, register it, test every event on it one by one and pick a sync frequency, all before you had seen a single API call work.", "Many people didn't know how to set up a webhook, even with docs and links. It was where most of them dropped off. They raised support tickets, and our on-call engineers onboarded them by hand."],
@@ -2089,7 +2258,7 @@ const CASES = [
     title: "From the system's view to the customer's <em>question</em>",
     lede: "Knit moves data between its customers' products and hundreds of other apps, on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later, I redesigned them around the one question customers kept asking: which record broke, and where?",
     cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
-    tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
+    tldr: { role: "Sole product designer. I designed v1 as well.", team: "2 founders, 2 engineers", timeline: "8 weeks: 2 weeks design, 6 weeks build. Live 11 Mar 2026", industry: "B2B SaaS · Integrations", problem: "Customers could see that a sync ran, but not which record failed or which hop broke.", result: "About 1 in 4 sessions on a sync run now open the failing record, a level that didn't exist before" },
     chapters: [
       { name: "Context & problem", head: "Our first version answered the wrong question.",
         body: ["A sync job copies data on a schedule, for example employees from BambooHR to a customer's webhook. Each run moves hundreds or thousands of records, and every record makes two hops: into Knit, then out to the webhook.", "I designed v1 of these screens a few months after the web app launched. As a team, we modelled them on how engineering described the system: jobs, runs, events triggered and events consumed. It was accurate. It just wasn't what customers needed once they started relying on it to debug.", "Then Knit's client base grew, and so did the questions about syncs. Every question the screens couldn't answer turned into a ticket or a support call, and more and more of the team's time went into debugging customers' syncs for them. That's when a redesign became necessary.", "The drill-down from list to job to run already existed. The trouble was what each level showed."],
@@ -2137,7 +2306,7 @@ const CASES = [
     title: "Built for the moment something <em>breaks</em>",
     lede: "Knit's Logs page records every API call and webhook between customers' products and the apps they connect. I designed the first version around an assumption about how people read logs. The redesign is built around when they actually open them: when something has broken.",
     cover: { main: "logsV2", url: "app.getknit.dev/logs", ring: [83.6, 62.2, 12.6, 5.4], flag: "Record 4472324 · <b>404 Not Found</b> · View Error" },
-    tldr: { role: "Sole product designer. I designed v1 too.", team: "1 founder, 2 engineers", timeline: "About 2–3 weeks design, about a month build. Live 11 Oct 2026", industry: "B2B SaaS · integrations", problem: "API calls and webhooks lived in two tables, and the reason a call failed sat on a separate page.", result: "About 30% fewer page loads for customers checking their logs, with the same number of people using it" },
+    tldr: { role: "Sole product designer. I designed v1 too.", team: "1 founder, 2 engineers", timeline: "About 2–3 weeks design, about a month build. Live 11 Oct 2026", industry: "B2B SaaS · Integrations", problem: "API calls and webhooks lived in two tables, and the reason a call failed sat on a separate page.", result: "About 30% fewer page loads for customers checking their logs, with the same number of people using it" },
     chapters: [
       { name: "Context & problem", head: "Two tables, and a page for every log",
         body: ["Every call that goes through Knit shows up in Logs: requests to apps like BambooHR, calls customers make to Knit's API, and the webhooks Knit sends back to them. Developers open it to find out why an integration misbehaved.", "I designed the first version of Logs. It split API calls and webhooks into two tables behind a toggle, because that's how we expected people to think about them. They didn't. Under the hood, a webhook is an API call too, and people kept checking the wrong table for the call they wanted.", "Finding out why something failed was slow as well. A failed call did show up in red, but the reason lived on a separate page. You clicked the URL, waited for that page, read it, came back and found your place in the list again. Customers who couldn't find a failing call raised a ticket or asked for a call instead."],
@@ -2187,7 +2356,7 @@ const CASES = [
     title: "Designing for <em>strangers</em> in someone else's product",
     lede: "Knit's auth component lives inside other companies' products. Their customers use it to connect apps like BambooHR or Freshdesk, usually without having heard of Knit. The redesign asks them what to share before it asks for access.",
     cover: { main: "auScopeFields", url: "app.acme.com · Integrate with Knit", ring: [2.5, 27.5, 95, 8.5], flag: "Read tickets · <b>chosen before connecting</b>" },
-    tldr: { role: "Sole product designer", team: "1 founder, 1 engineer", timeline: "About 1 week design, 3 weeks build. Live July 2026", industry: "B2B SaaS · embedded UI", problem: "End users met an unfamiliar brand inside someone else's product and were asked for access before choosing what to share.", result: "Embedded in 30+ SaaS products. End users now choose what to share before they connect" },
+    tldr: { role: "Sole product designer", team: "1 founder, 1 engineer", timeline: "About 1 week design, 3 weeks build. Live July 2026", industry: "B2B SaaS · Embedded UI", problem: "End users met an unfamiliar brand inside someone else's product and were asked for access before choosing what to share.", result: "Embedded in 30+ SaaS products. End users now choose what to share before they connect" },
     chapters: [
       { name: "Context & problem", head: "A flow that lives in other people's products",
         body: ["Knit's customers are SaaS companies. They embed a small Knit component in their own product, behind a button like “Integrate with Knit”, so their customers can connect apps like BambooHR, Salesforce or Freshdesk. More than 30 SaaS products do this today.", "That puts the people using it two steps away from Knit. They've usually never heard of it, they meet it in the middle of someone else's product, and they're about to hand over access to their HR or support system. That's a lot of trust to ask of a stranger.", "The first version had been there since Knit began, and it asked for access first and permissions after. Clients wanted their customers to feel more in control, and we agreed: people should know what they're sharing, and that it's safe, before they connect anything."],
@@ -2255,7 +2424,7 @@ function renderCases() {
       <header class="case-hero"><div class="ch-grid">
         <div><span class="eyebrow">${c.kicker}</span><h1>${c.title}</h1><p class="lede">${c.lede}</p><div class="hero-meta"><span>${c.depth}</span><span class="rt"></span><span>${num} chapters</span></div></div>
         <aside class="tldr-card" aria-label="Summary" data-lens-title="Satisficing" data-lens="Most reviewers decide within a minute. This card gives them enough to decide well without reading another word."><span class="mono tl-k">THE 15-SECOND VERSION</span><dl>
-          ${field("Role", t.role)}${field("Team", t.team)}${field("Timeline", t.timeline)}${field("Industry", t.industry)}${field("Problem", t.problem, "full")}</dl>
+          ${field("Role", t.role)}${field("Team", t.team)}${field("Timeline", t.timeline)}${field("Industry", t.industry, "ind")}${field("Problem", t.problem, "full")}</dl>
           <div class="tl-result"><span class="mono">HEADLINE RESULT</span>${t.result ? `<b>${t.result}</b>` : (D ? `<b class="miss">Add your headline result</b>` : "")}</div></aside>
       </div></header>
       <div class="case-cover"><div class="cover-stage" style="--tint:${c.tint}"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>${c.cover.url}</span></div><div class="sw-wrap"><div class="sw" data-screen="${c.cover.main}"></div>${c.cover.ring ? `<i class="cover-ring" style="left:${c.cover.ring[0]}%;top:${c.cover.ring[1]}%;width:${c.cover.ring[2]}%;height:${c.cover.ring[3]}%"></i><span class="cover-flag" style="left:${c.cover.ring[0] + c.cover.ring[2]}%;top:${c.cover.ring[1]}%">${c.cover.flag}</span>` : ""}</div></div>${c.cover.float ? `<div class="cover-float"><div class="frame bare"><div class="sw" data-screen="${c.cover.float}"></div></div></div>` : ""}</div>${D && !c.real ? `<p class="swap-note">Stand-in screens built in code. Replace with Figma exports before sharing.</p>` : (c.real ? `<p class="swap-note">${c.real}</p>` : "")}</div>
@@ -2288,7 +2457,7 @@ async function copyEmail() { try { await navigator.clipboard.writeText(CONFIG.em
 $$("[data-copy-email]").forEach(b => b.addEventListener("click", copyEmail));
 
 const root = document.documentElement;
-try { const s = localStorage.getItem("pd-theme"); if (s) root.dataset.theme = s; } catch (e) {}
+try { const s = localStorage.getItem("pd-theme"); root.dataset.theme = s || "light"; } catch (e) { root.dataset.theme = "light"; }
 const curTheme = () => root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 const ICON_MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 const ICON_SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
@@ -2549,7 +2718,7 @@ const CMDS = [
   { g: "#", l: "Go to: Contact", k: "section", run: () => goSection("contact") }
 ];
 if (CONFIG.linkedin) CMDS.splice(6, 0, { g: "in", l: "Open LinkedIn", k: "link", run: () => window.open(CONFIG.linkedin, "_blank", "noopener") });
-if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open resume", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
+if (CONFIG.resume) CMDS.splice(6, 0, { g: "CV", l: "Open résumé", k: "link", run: () => window.open(CONFIG.resume, "_blank", "noopener") });
 function goSection(id) { navTo(id); }
 const pal = $("#palette"), pin = $("#palInput"), plist = $("#palList"); let palItems = [], palIdx = 0, lastFocus = null;
 function renderPal() {
@@ -2615,5 +2784,12 @@ if (curHash().startsWith("case-")) showCase(curHash());
   if (fine && !used) setTimeout(() => { if (!used && !document.body.classList.contains("case-open")) { tip.classList.add("show"); setTimeout(() => tip.classList.remove("show"), 10000); } }, 7000);
 })();
 </script>
+<script>(function(){function el(t,c,h){var e=document.createElement(t);e.className=c;e.innerHTML=h;return e}
+var cta=document.querySelector('.hero .cta-row');
+var notes={craftTitle:'small ones, but you can try them ↓'};
+for(var id in notes){var h=document.getElementById(id);if(h&&h.parentElement)h.parentElement.prepend(el('div','nb-note nb-sec-note',notes[id]))}
+var w=document.getElementById('writingTitle')||document.querySelector('.writing-top h2');if(w)w.parentElement.style.position='relative';
+var tags=['the webhook was the wall','which record broke?','built for the bad moment','ask about data first'];
+document.querySelectorAll('.scard-art').forEach(function(a,i){if(tags[i])a.appendChild(el('span','nb-note nb-tag',tags[i]))});})();</script>
 </body>
 </html>
