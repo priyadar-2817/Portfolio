@@ -956,7 +956,7 @@ h2.miss{opacity:.4;display:block;width:max-content;max-width:100%}
 
 
 /* ===== Restyle preview: one sans typeface, neutral palette, single blue accent, tighter spacing ===== */
-:root{--bg:#EEF0F3;--surface:#FFFFFF;--surface-2:#E4E8EE;--ink:#121418;--muted:#555C67;--line:#D9DEE5;--hl:#FBE29A;--accent:#3E6FA8;--accent-ink:#FFFFFF;
+:root{--bg:#F4EFE7;--surface:#FFFCF7;--surface-2:#EAE3D8;--ink:#1A1714;--muted:#5F574D;--line:#E0D7C9;--hl:#F9D976;--accent:#3E6FA8;--accent-ink:#FFFFFF;
  --display:"Inter",ui-sans-serif,system-ui,sans-serif;--body:"Inter",ui-sans-serif,system-ui,sans-serif;--maxw:1120px}
 :root[data-theme="dark"]{--bg:#111214;--surface:#18191C;--surface-2:#202226;--ink:#EDEEF0;--muted:#9A9FA8;--line:#2A2C31;--accent:#7FA6DB;--accent-ink:#0E1116;--hl:rgba(242,190,60,.35)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111214;--surface:#18191C;--surface-2:#202226;--ink:#EDEEF0;--muted:#9A9FA8;--line:#2A2C31;--accent:#7FA6DB;--accent-ink:#0E1116;--hl:rgba(242,190,60,.35)}}
@@ -965,6 +965,11 @@ h1,h2,h3,h4{font-weight:600;letter-spacing:-.02em}
 em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
 .hero h1 em,.sec-head h2 em,.case-hero h1 em{color:inherit;background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,transparent 92%);padding:0 .06em}
 .stat b{color:var(--ink)}
+.stat b{background:linear-gradient(transparent 62%,var(--hl) 62%,var(--hl) 90%,transparent 90%);display:inline-block;padding:0 .08em}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:color-mix(in srgb,var(--accent) 85%,#000);border-color:transparent}
+.eyebrow{color:var(--accent)}
+.sec-head h2::after{content:"";display:block;width:48px;height:4px;border-radius:2px;background:var(--hl);margin-top:14px}
 .grain{display:none}
 .eyebrow{font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted)}
 .hero h1{font-size:clamp(40px,4.6vw,60px);line-height:1.06;letter-spacing:-.03em;margin:16px 0 20px}
@@ -1062,7 +1067,7 @@ em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
             <div class="tags"><span>Onboarding</span><span>Activation</span><span>Developer tools</span></div>
             <span class="viewcase">Open case study <i>→</i></span>
           </div>
-          <div class="scard-art" style="--tint:#DCE2EA">
+          <div class="scard-art" style="--tint:#E6DED1">
             <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/getting-started</span></div><div class="sw" data-screen="obNewTest"></div></div></div>
           </div>
           <a class="cover" href="#case-unified-api" data-cursor="Read" aria-label="Open case study 01"></a>
@@ -1080,7 +1085,7 @@ em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
             <div class="tags"><span>Data-dense UI</span><span>Research to launch</span></div>
             <span class="viewcase">Open project <i>→</i></span>
           </div>
-          <div class="scard-art" style="--tint:#DCE2EA">
+          <div class="scard-art" style="--tint:#E6DED1">
             <div class="mini-dp" aria-hidden="true"><svg viewBox="0 0 1000 260">
               <path class="mw" d="M215 140 H425"/><path class="mw" d="M575 140 H785"/>
               <path class="ml a" d="M215 140 H425"/><path class="ml b" d="M575 140 H785"/>
@@ -1107,7 +1112,7 @@ em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
             <div class="tags"><span>Data-dense UI</span><span>Error states</span></div>
             <span class="viewcase">Open project <i>→</i></span>
           </div>
-          <div class="scard-art" style="--tint:#DCE2EA">
+          <div class="scard-art" style="--tint:#E6DED1">
             <div class="layer l1" data-depth="-40" style="left:6%;top:14%;width:92%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/logs</span></div><div class="sw" data-screen="logsV2"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
@@ -1126,7 +1131,7 @@ em{font-family:inherit;font-style:normal;font-weight:inherit;color:inherit}
             <div class="tags"><span>Embedded UI</span><span>White-label</span></div>
             <span class="viewcase">Open project <i>→</i></span>
           </div>
-          <div class="scard-art" style="--tint:#DCE2EA">
+          <div class="scard-art" style="--tint:#E6DED1">
             <div class="layer l1" data-depth="-40" style="left:10%;top:12%;width:84%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div><div class="sw" data-screen="auScopeFields"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
@@ -2069,7 +2074,7 @@ function mountScreen(sw) {
    it shows as a dashed box while CONFIG.draft is true, and vanishes when you set it to false. */
 const CASES = [
   {
-    id: "case-unified-api", n: "01", tint: "#DCE2EA", depth: "Full case study",
+    id: "case-unified-api", n: "01", tint: "#E6DED1", depth: "Full case study",
     real: "Real product screens. Names, URLs and the code sample are sample data.",
     kicker: "Case study 01 · Knit · Unified API onboarding · 2026", crumb: "01 · Knit · Unified API onboarding",
     title: "Onboarding that stopped needing an <em>engineer</em>",
@@ -2108,7 +2113,7 @@ const CASES = [
     ]
   },
   {
-    id: "case-observability", n: "02", tint: "#DCE2EA", depth: "Full case study",
+    id: "case-observability", n: "02", tint: "#E6DED1", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
     kicker: "Case study 02 · Knit · Data Syncs · 2026", crumb: "02 · Knit · Data Syncs redesign",
     title: "From the system's view to the customer's <em>question</em>",
@@ -2156,7 +2161,7 @@ const CASES = [
     ]
   },
   {
-    id: "case-logs", n: "03", tint: "#DCE2EA", depth: "Full case study",
+    id: "case-logs", n: "03", tint: "#E6DED1", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
     kicker: "Case study 03 · Knit · Logs · 2026", crumb: "03 · Knit · Logs redesign",
     title: "Built for the moment something <em>breaks</em>",
@@ -2206,7 +2211,7 @@ const CASES = [
     ]
   },
   {
-    id: "case-auth", n: "04", tint: "#DCE2EA", depth: "Short case study",
+    id: "case-auth", n: "04", tint: "#E6DED1", depth: "Short case study",
     real: "Real product screens. The client name and fields are sample data.",
     kicker: "Case study 04 · Knit · Embedded auth UI · 2026", crumb: "04 · Knit · Embedded auth UI",
     title: "Designing for <em>strangers</em> in someone else's product",
