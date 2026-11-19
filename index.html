@@ -1873,6 +1873,66 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
     </div></div>
   </div>
 </template>
+<style>
+.ccmap{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ccmap th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.ccmap td{padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
+.ccmap tr:last-child td{border-bottom:0}
+.ccmap td.m{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.ccw{display:inline-flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}
+.ccw::before{content:"";width:10px;height:10px;border-radius:50%;flex:none}
+.ccw.a::before{background:transparent;border:2px solid var(--muted)}
+.ccw.q::before{background:var(--warn)}
+.ccw.h::before{background:var(--ink)}
+.ccleg{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 14px;color:var(--muted)}
+.ccchain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.ccchain .c{flex:1 1 170px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.ccchain .c b{display:block;font-size:16px;margin:6px 0 6px;color:var(--ink)}
+.ccchain .c span{font-size:14px;color:var(--muted);line-height:1.5}
+.ccchain .c .n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ccchain .c.end{border-style:dashed}
+.ccchain .ar{display:flex;align-items:center;padding:0 10px;color:var(--muted);font-family:var(--mono);font-size:13px}
+@media (max-width:760px){.ccmap td.m{white-space:normal}.ccchain{flex-direction:column}.ccchain .ar{padding:8px 0 8px 18px}}
+</style>
+<template id="tpl-cc-autonomy">
+  <div class="vis">
+    <div class="vis-cap"><span>Who does what, step by step</span><span>Moments from axpatterns.design</span></div>
+    <div class="ccleg"><span class="ccw a">Agent acts</span><span class="ccw q">Agent asks, human confirms</span><span class="ccw h">Human decides or provides</span></div>
+    <div style="overflow-x:auto"><table class="ccmap">
+      <thead><tr><th>Step</th><th>AX moment</th><th>Who</th><th>Why there</th></tr></thead>
+      <tbody>
+        <tr><td>Name the app and category</td><td class="m">Ask</td><td><span class="ccw h">Human</span></td><td>Gives the agent a direction before it does anything.</td></tr>
+        <tr><td>Find the app on the web</td><td class="m">Discover</td><td><span class="ccw a">Agent</span></td><td>Slow, and easy to check afterwards.</td></tr>
+        <tr><td>Is this the right app?</td><td class="m">Trust</td><td><span class="ccw q">Confirm</span></td><td>A wrong app wastes every step after it.</td></tr>
+        <tr><td>Pick APIs and data models</td><td class="m">Refine</td><td><span class="ccw q">Confirm</span></td><td>Pre-selected from what the customer already uses. Changing it is one click.</td></tr>
+        <tr><td>Point to the docs</td><td class="m">Ask</td><td><span class="ccw h">Human</span></td><td>Most developers already have them.</td></tr>
+        <tr><td>Read the docs, find endpoints</td><td class="m">Read</td><td><span class="ccw a">Agent</span></td><td>The slowest part for a person.</td></tr>
+        <tr><td>Check the endpoints</td><td class="m">Trust</td><td><span class="ccw q">Confirm</span></td><td>Everything is built on these.</td></tr>
+        <tr><td>Map fields</td><td class="m">Refine</td><td><span class="ccw q">Confirm</span></td><td>Gaps are flagged, never guessed.</td></tr>
+        <tr><td>Build the connector</td><td class="m">Wait</td><td><span class="ccw a">Agent</span></td><td>Takes minutes. People can leave.</td></tr>
+        <tr><td>Test credentials</td><td class="m">Delegate</td><td><span class="ccw h">Human</span></td><td>A real account, from the developer or a teammate.</td></tr>
+        <tr><td>Test each API</td><td class="m">Wait</td><td><span class="ccw a">Agent</span></td><td>Stops only to ask a specific question.</td></tr>
+        <tr><td>Publish what passed</td><td class="m">Delegate</td><td><span class="ccw a">Agent</span></td><td>Safe to do automatically: it only passed tests.</td></tr>
+        <tr><td>Publish a failed API?</td><td class="m">Trust</td><td><span class="ccw h">Human</span></td><td>Only the developer can judge if a failure matters.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="q-note">Five of thirteen steps run without anyone. The stops sit where a wrong guess would spread through the rest of the build.</p>
+  </div>
+</template>
+<template id="tpl-cc-chain">
+  <div class="vis">
+    <div class="vis-cap"><span>The docs fallback chain</span><span>No silent failures</span></div>
+    <div class="ccchain">
+      <div class="c"><span class="n">Try 1</span><b>The developer's pick</b><span>Web search, a URL or an upload. Whichever they chose first.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c"><span class="n">Try 2</span><b>Offer the other two</b><span>The agent says what went wrong and asks for one of the remaining sources.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c"><span class="n">Try 3</span><b>The last one</b><span>If the URL couldn't be read either, it asks for a file.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c end"><span class="n">Stop</span><b>Say so plainly</b><span>The connector can't be built, because the docs couldn't be found. No half-built connector.</span></div>
+    </div>
+  </div>
+</template>
 <template id="tpl-cc-flow">
   <div class="vis">
     <div class="vis-cap"><span>The happy path, in seven moments, and what comes after</span><span>Scroll to step through</span></div>
@@ -1901,8 +1961,8 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
     <div class="scrolly" style="--steps:3" data-scrolly data-lens-title="Zeigarnik effect" data-lens="Unfinished tasks stay on people's minds. A visible draft gives them a place to come back to instead of starting over.">
       <div class="scrolly-in">
         <div class="steps">
-          <div class="step on"><span class="n">CREDENTIALS</span><b>Testing needs a real account</b><span>Knit's auth component opens for the API key. If the developer doesn't have it, the share icon sends the form to a teammate who does.</span></div>
-          <div class="step"><span class="n">TESTING</span><b>Come back later</b><span>Each API and data model shows its own status. Data models are tested with a dummy webhook that the agent sets up.</span></div>
+          <div class="step on"><span class="n">CREDENTIALS</span><b>Testing needs a real account</b><span>Knit's auth component opens for the API key. If the developer doesn't have it, the share icon sends the form to a teammate who does. The agent hands this one step to another person, not just back to the user.</span></div>
+          <div class="step"><span class="n">TESTING</span><b>Come back later</b><span>Each API and data model shows its own status, and data models are tested with a dummy webhook. When it's done, an email says so. Reopening the agent shows the last step: the connector is ready and live.</span></div>
           <div class="step"><span class="n">DRAFT</span><b>Saved where they'd look</b><span>Close the tab and the connector waits in App Management with a Drafts tag. Opening it picks up at the same step.</span></div>
         </div>
         <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps</span></div>
@@ -2494,7 +2554,8 @@ const CASES = [
         body: ["Knit gives SaaS companies one API for many apps in a category: HR, CRM, ticketing and so on. Each category has a list of supported apps. When a customer needed one that wasn't on the list, say BlackLine, a Knit engineer built the connector by hand. That took roughly a week, and then it was switched on for that customer.", "Those requests kept coming, and each one pulled an engineer off other work. By 2026, agents were good enough to read API docs and write integration code. So the founders asked a simple question: could customers have an agent build the connector themselves?", "The people using this are developers at Knit's customers. They know their app, they usually have its docs open already, and they'll notice quickly if something looks wrong. That shaped most of what follows."] },
       { name: "The bet", head: "Agentic, but not autonomous",
         lede: "The easy version is a chat box: type “build me a BlackLine connector” and wait. We didn't build that, for one reason. A published connector goes straight to the customer's own users, so a confident mistake ends up in someone else's product.",
-        body: ["So the agent does the slow parts: finding the app, reading the docs, matching fields, writing and testing the connector. The developer confirms at a handful of moments where they know more than the agent, and where getting it wrong would waste everything after. Everywhere else, the agent just keeps going."] },
+        body: ["So the agent does the slow parts: finding the app, reading the docs, matching fields, writing and testing the connector. The developer confirms at a handful of moments where they know more than the agent, and where getting it wrong would waste everything after. Everywhere else, the agent just keeps going.", "In the terms Chris Noessel uses, this is agentic rather than agentive. An agentive tool does one job when you ask it to. An agentic one plans and acts across many steps on its own, so the design question becomes where it should stop and check with someone."],
+        custom: ["tpl-cc-autonomy"] },
       { name: "The flow", head: "Seven moments, each with a pattern",
         lede: "Each moment is labelled with the agentic UX pattern it uses. The conversation runs down the middle, with structured cards inline, so the developer always sees what the agent found before it acts on it.",
         custom: ["tpl-cc-flow", "tpl-cc-wait"] },
@@ -2508,11 +2569,14 @@ const CASES = [
         ] },
       { name: "When the agent fails", head: "Every way it can get stuck",
         lede: "Most of the design time went into what happens when things go wrong. Agents fail in ways people don't expect, so each failure screen says what broke, keeps what worked and offers a next step. If an API fails to build, the agent shows the error and leaves that API out, and the rest still builds.",
-        custom: ["tpl-cc-fail"] },
+        custom: ["tpl-cc-chain", "tpl-cc-fail"] },
+      { name: "Building trust", head: "How the agent shows its work",
+        lede: "People trust an agent when they can check it. None of these are extra screens. They're small details on the screens already there.",
+        insights: [["Where it came from", "The app card says “Found via web search”, and the endpoints step shows the base URL and auth method the agent read. Every answer has a source."], ["How complete it is", "Each API in the mapping shows “4/4 fields found”, or 3/4 in amber. The developer sees the gap without opening anything."], ["A way to check", "Every API description links to its page in Knit's docs, so a developer can compare the agent's choice with the source in one click."], ["Where it stands", "While it works, every API carries its own status: testing, paused, tested, failed, published. Nobody has to wonder if it's stuck."], ["A hand-off to a teammate", "If the developer doesn't have the credentials, they share the form. The agent waits for that person and carries on."], ["An easy way out", "A connector is just a set of API calls. In App Management it can be switched off, and its APIs and data models edited, at any time."]] },
       { name: "What stayed human", head: "Where the developer has the final say",
         insights: [["The app", "The agent can find the wrong BlackLine. The developer confirms it's the right one before anything is built."], ["The scope", "Which APIs and data models to build. They're pre-selected from what the customer already uses, but the developer decides."], ["The endpoints", "The developer checks what the agent read from the docs, because everything after depends on it."], ["The mapping", "Which Knit field goes where. Unmapped fields are flagged and never quietly guessed."], ["Credentials", "Test credentials come from a person, or from a teammate through the share link."], ["What to publish", "When a test fails, the developer chooses. The agent never publishes a failed API on its own."]] },
       { name: "Reflection", head: "What I'd watch once it ships",
-        reflect: { quote: "Ask where a wrong guess spreads, not at every step.", body: "The hard part wasn't the happy path. It was deciding where the agent should stop and ask, and making every failure end in a clear choice instead of a dead end. The backend is being built now, so none of this has met real users yet.", unsolved: ["Measure time from start to a published connector, against the week an engineer used to spend.", "Track which checkpoint people change most often. If nobody ever edits the endpoints, that step could become a quick glance instead of a stop.", "Watch how often all three docs sources fail, and for which apps. That's the list where the agent can't help yet.", "Design the edit flows properly once real connectors exist: adding an API or a passthrough after publishing."] } }
+        reflect: { quote: "Ask where a wrong guess spreads, not at every step.", body: "The hard part wasn't the happy path. It was deciding where the agent should stop and ask, and making every failure end in a clear choice instead of a dead end. I also designed the edit flows: adding or removing APIs and data models after publishing, adding a passthrough API, and switching the connector off. The backend is being built now, so none of this has met real users yet.", unsolved: ["Measure time from start to a published connector, against the week an engineer used to spend.", "Track which checkpoint people change most often. If nobody ever edits the endpoints, that step could become a quick glance instead of a stop.", "Watch how often all three docs sources fail, and for which apps. That's the list where the agent can't help yet.", "Show the agent's activity log in the product. Today it's kept in the backend only, and it would help when a connector misbehaves weeks later."] } }
     ]
   },
 ];
