@@ -1187,14 +1187,14 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
   <div class="wrap">
     <div class="sec-head rv">
       <h2 id="workTitle">Selected <em>work</em></h2>
-      <p>Four projects. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
+      <p>Five projects. Each one opens into the full story: the problem, the trade-offs and the real screens.</p>
     </div>
     <div class="stack" id="stack" data-lens-title="Serial position effect" data-lens="People remember the first and last items in a list best. The flagship case leads, and a strong one closes.">
 
       <article class="scard" style="--i:1">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">01 / 04</span><span class="badge live">Live in production</span></div>
+            <div class="scard-top"><span class="idx">01 / 05</span><span class="badge live">Live in production</span></div>
             <span class="co">KNIT · UNIFIED API ONBOARDING</span>
             <h3>Onboarding that stopped needing an engineer</h3>
             <p>Step 2 of Knit's onboarding was a required webhook, and most people needed an engineer to get past it. I put a working API call first and made the webhook optional.</p>
@@ -1213,7 +1213,27 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
       <article class="scard" style="--i:2">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">02 / 04</span><span class="badge live">Live in production</span></div>
+            <div class="scard-top"><span class="idx">02 / 05</span><span class="badge">In development</span></div>
+            <span class="co">KNIT · AGENT-BUILT CONNECTORS</span>
+            <h3>An agent builds the connector. People sign off where it counts</h3>
+            <p>When a customer needed an app Knit didn't support, an engineer spent about a week building the connector by hand. I designed a flow where an AI agent builds it, and the developer checks its work at a few chosen points.</p>
+            <div class="outcomes"><span><b>~1 week</b> of manual build it replaces</span><span><b>14</b> flows, happy path to failure</span></div>
+            <div class="tags"><span>Agentic UX</span><span>AI</span><span>Developer tools</span></div>
+            <span class="viewcase">Open case study <i>→</i></span>
+          </div>
+          <div class="scard-art" style="--tint:#3D3A5C">
+            <div class="layer l1" data-depth="-40" style="left:8%;top:12%;width:90%"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps/custom-connector</span></div><div class="sw" data-screen="ccFindings"></div></div></div>
+            <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps/custom-connector</span></div><div class="sw" data-screen="ccTestFail"></div></div></div>
+            <span class="art-note">Real screens, sample data</span>
+          </div>
+          <a class="cover" href="#case-connector" data-cursor="Read" aria-label="Open case study 02"></a>
+        </div>
+      </article>
+
+      <article class="scard" style="--i:3">
+        <div class="scard-in">
+          <div class="scard-copy">
+            <div class="scard-top"><span class="idx">03 / 05</span><span class="badge live">Live in production</span></div>
             <span class="co">KNIT · DATA SYNCS</span>
             <h3>From the system's view to the customer's question</h3>
             <p>I designed Knit's first Syncs screens around how engineering saw the system. A year later I redesigned them around the question customers kept asking: which record broke, and where?</p>
@@ -1233,14 +1253,14 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
             </svg></div>
             <span class="art-note">Every record makes two hops</span>
           </div>
-          <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 02"></a>
+          <a class="cover" href="#case-observability" data-cursor="Open" aria-label="Open project 03"></a>
         </div>
       </article>
 
-      <article class="scard" style="--i:3">
+      <article class="scard" style="--i:4">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">03 / 04</span><span class="badge live">Live in production</span></div>
+            <div class="scard-top"><span class="idx">04 / 05</span><span class="badge live">Live in production</span></div>
             <span class="co">KNIT · LOGS</span>
             <h3>Built for the moment something breaks</h3>
             <p>I designed Knit's first Logs page around an assumption about how people read logs. The redesign is built around when they actually open them: when something has broken.</p>
@@ -1253,14 +1273,14 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
             <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/logs</span></div><div class="sw" data-screen="logsV3Answer"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
-          <a class="cover" href="#case-logs" data-cursor="Open" aria-label="Open project 03"></a>
+          <a class="cover" href="#case-logs" data-cursor="Open" aria-label="Open project 04"></a>
         </div>
       </article>
 
-      <article class="scard" style="--i:4">
+      <article class="scard" style="--i:5">
         <div class="scard-in">
           <div class="scard-copy">
-            <div class="scard-top"><span class="idx">04 / 04</span><span class="badge live">Live in production</span></div>
+            <div class="scard-top"><span class="idx">05 / 05</span><span class="badge live">Live in production</span></div>
             <span class="co">KNIT · EMBEDDED AUTH UI</span>
             <h3>Designing for strangers in someone else's product</h3>
             <p>A white-labelled flow that 30+ SaaS products embed so their customers can connect apps. The redesign puts the choice about data before the request for access.</p>
@@ -1273,9 +1293,10 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
             <div class="layer l2 nb-extra" data-depth="-20"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.acme.com · Integrate with Knit</span></div><div class="sw" data-screen="auSuccess"></div></div></div>
             <span class="art-note">Real screens, sample data</span>
           </div>
-          <a class="cover" href="#case-auth" data-cursor="Open" aria-label="Open project 04"></a>
+          <a class="cover" href="#case-auth" data-cursor="Open" aria-label="Open project 05"></a>
         </div>
       </article>
+
 
       </div>
   </div>
@@ -1852,6 +1873,123 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
     </div></div>
   </div>
 </template>
+<style>
+.ccmap{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ccmap th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;font-weight:500;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.ccmap td{padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink)}
+.ccmap tr:last-child td{border-bottom:0}
+.ccmap td.m{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
+.ccw{display:inline-flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}
+.ccw::before{content:"";width:10px;height:10px;border-radius:50%;flex:none}
+.ccw.a::before{background:transparent;border:2px solid var(--muted)}
+.ccw.q::before{background:var(--warn)}
+.ccw.h::before{background:var(--ink)}
+.ccleg{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 14px;color:var(--muted)}
+.ccchain{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.ccchain .c{flex:1 1 170px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.ccchain .c b{display:block;font-size:16px;margin:6px 0 6px;color:var(--ink)}
+.ccchain .c span{font-size:14px;color:var(--muted);line-height:1.5}
+.ccchain .c .n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ccchain .c.end{border-style:dashed}
+.ccchain .ar{display:flex;align-items:center;padding:0 10px;color:var(--muted);font-family:var(--mono);font-size:13px}
+@media (max-width:760px){.ccmap td.m{white-space:normal}.ccchain{flex-direction:column}.ccchain .ar{padding:8px 0 8px 18px}}
+</style>
+<template id="tpl-cc-autonomy">
+  <div class="vis">
+    <div class="vis-cap"><span>Who does what, step by step</span><span>Moments from axpatterns.design</span></div>
+    <div class="ccleg"><span class="ccw a">Agent acts</span><span class="ccw q">Agent asks, human confirms</span><span class="ccw h">Human decides or provides</span></div>
+    <div style="overflow-x:auto"><table class="ccmap">
+      <thead><tr><th>Step</th><th>AX moment</th><th>Who</th><th>Why there</th></tr></thead>
+      <tbody>
+        <tr><td>Name the app and category</td><td class="m">Ask</td><td><span class="ccw h">Human</span></td><td>Gives the agent a direction before it does anything.</td></tr>
+        <tr><td>Find the app on the web</td><td class="m">Discover</td><td><span class="ccw a">Agent</span></td><td>Slow, and easy to check afterwards.</td></tr>
+        <tr><td>Is this the right app?</td><td class="m">Trust</td><td><span class="ccw q">Confirm</span></td><td>A wrong app wastes every step after it.</td></tr>
+        <tr><td>Pick APIs and data models</td><td class="m">Refine</td><td><span class="ccw q">Confirm</span></td><td>Pre-selected from what the customer already uses. Changing it is one click.</td></tr>
+        <tr><td>Point to the docs</td><td class="m">Ask</td><td><span class="ccw h">Human</span></td><td>Most developers already have them.</td></tr>
+        <tr><td>Read the docs, find endpoints</td><td class="m">Read</td><td><span class="ccw a">Agent</span></td><td>The slowest part for a person.</td></tr>
+        <tr><td>Check the endpoints</td><td class="m">Trust</td><td><span class="ccw q">Confirm</span></td><td>Everything is built on these.</td></tr>
+        <tr><td>Map fields</td><td class="m">Refine</td><td><span class="ccw q">Confirm</span></td><td>Gaps are flagged, never guessed.</td></tr>
+        <tr><td>Build the connector</td><td class="m">Wait</td><td><span class="ccw a">Agent</span></td><td>Takes minutes. People can leave.</td></tr>
+        <tr><td>Test credentials</td><td class="m">Delegate</td><td><span class="ccw h">Human</span></td><td>A real account, from the developer or a teammate.</td></tr>
+        <tr><td>Test each API</td><td class="m">Wait</td><td><span class="ccw a">Agent</span></td><td>Stops only to ask a specific question.</td></tr>
+        <tr><td>Publish what passed</td><td class="m">Delegate</td><td><span class="ccw a">Agent</span></td><td>Safe to do automatically: it only passed tests.</td></tr>
+        <tr><td>Publish a failed API?</td><td class="m">Trust</td><td><span class="ccw h">Human</span></td><td>Only the developer can judge if a failure matters.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="q-note">Five of thirteen steps run without anyone. The stops sit where a wrong guess would spread through the rest of the build.</p>
+  </div>
+</template>
+<template id="tpl-cc-chain">
+  <div class="vis">
+    <div class="vis-cap"><span>The docs fallback chain</span><span>No silent failures</span></div>
+    <div class="ccchain">
+      <div class="c"><span class="n">Try 1</span><b>The developer's pick</b><span>Web search, a URL or an upload. Whichever they chose first.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c"><span class="n">Try 2</span><b>Offer the other two</b><span>The agent says what went wrong and asks for one of the remaining sources.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c"><span class="n">Try 3</span><b>The last one</b><span>If the URL couldn't be read either, it asks for a file.</span></div>
+      <div class="ar">fails →</div>
+      <div class="c end"><span class="n">Stop</span><b>Say so plainly</b><span>The connector can't be built, because the docs couldn't be found. No half-built connector.</span></div>
+    </div>
+  </div>
+</template>
+<template id="tpl-cc-flow">
+  <div class="vis">
+    <div class="vis-cap"><span>The happy path, in seven moments, and what comes after</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:8" data-scrolly data-lens-title="Visibility of system status" data-lens="An agent works out of sight. Each moment ends with something the developer can see and check, so they always know what it's about to do.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">1 · ASK · STRUCTURED INTENT</span><b>Start with a short form</b><span>App name and category give the agent a direction. The chat box below stays open the whole way for anything the form doesn't cover.</span></div>
+          <div class="step"><span class="n">2 · CONFIRM · INTENT PREVIEW</span><b>"Is this the app you mean?"</b><span>The agent searches the web and shows what it found. One click to agree, one to correct it, before any real work starts.</span></div>
+          <div class="step"><span class="n">3 · SCOPE · SMART DEFAULTS</span><b>APIs already picked</b><span>The APIs and data models the customer uses for other CRM apps come pre-selected. View all shows the rest. Each one links to its page in Knit's docs.</span></div>
+          <div class="step"><span class="n">4 · DOCS · USER CHOOSES THE INPUT</span><b>Where's the documentation?</b><span>Search the web, paste a URL or upload a file. Nothing is pre-selected, because most developers already have the docs open.</span></div>
+          <div class="step"><span class="n">5 · REVIEW · APPROVAL GATE</span><b>Check the endpoints</b><span>The agent lists the auth method, base URL and endpoints it found. Developers can tell at a glance if these are right, and everything after depends on them.</span></div>
+          <div class="step"><span class="n">6 · MAP · SHOW THE WORK</span><b>Knit fields, matched</b><span>Every mapping is visible, field by field, with a count on each API. The developer confirms, then the build starts.</span></div>
+          <div class="step"><span class="n">7 · SHIP · LONG-RUNNING TASK</span><b>Build, test, publish</b><span>The agent builds, asks for test credentials, tests each API and publishes what passed. It can take a few minutes, so people can leave and come back.</span></div>
+          <div class="step"><span class="n">AFTER · BACK IN APP MANAGEMENT</span><b>Next to every other CRM app</b><span>The published connector sits under CRM with a Custom tag, ready to switch on for customers. Its name and icon can be changed later.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps/custom-connector</span></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="ccStart"></div><div class="sw" data-screen="ccConfirm"></div><div class="sw" data-screen="ccApis"></div><div class="sw" data-screen="ccDocs"></div><div class="sw" data-screen="ccFindings"></div><div class="sw" data-screen="ccMapping"></div><div class="sw" data-screen="ccPublished"></div><div class="sw" data-screen="ccAppsCustom"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="tpl-cc-wait">
+  <div class="vis">
+    <div class="vis-cap"><span>Leaving mid-build is normal</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:3" data-scrolly data-lens-title="Zeigarnik effect" data-lens="Unfinished tasks stay on people's minds. A visible draft gives them a place to come back to instead of starting over.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">CREDENTIALS</span><b>Testing needs a real account</b><span>Knit's auth component opens for the API key. If the developer doesn't have it, the share icon sends the form to a teammate who does. The agent hands this one step to another person, not just back to the user.</span></div>
+          <div class="step"><span class="n">TESTING</span><b>Come back later</b><span>Each API and data model shows its own status, and data models are tested with a dummy webhook. When it's done, an email says so. Reopening the agent shows the last step: the connector is ready and live.</span></div>
+          <div class="step"><span class="n">DRAFT</span><b>Saved where they'd look</b><span>Close the tab and the connector waits in App Management with a Drafts tag. Opening it picks up at the same step.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps</span></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="ccAuth"></div><div class="sw" data-screen="ccTesting"></div><div class="sw" data-screen="ccAppsDraft"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="tpl-cc-fail">
+  <div class="vis">
+    <div class="vis-cap"><span>When the agent gets stuck</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:4" data-scrolly data-lens-title="Escalation, not silence" data-lens="When an agent can't go on, the worst thing it can do is fail quietly. Each screen says what broke and offers the next move.">
+      <div class="scrolly-in">
+        <div class="steps">
+          <div class="step on"><span class="n">DOCS NOT FOUND</span><b>Offer the other two ways</b><span>If web search fails, the agent asks for a URL or a file. If the URL fails too, it asks for a file. If all three fail, it says plainly that it can't build this connector.</span></div>
+          <div class="step"><span class="n">FIELD NOT MAPPED</span><b>Flag it, don't block it</b><span>The API shows 3/4 in amber instead of 4/4. The build can go ahead without that field, or the developer maps it by hand or gives a new docs URL.</span></div>
+          <div class="step"><span class="n">NEEDS INPUT</span><b>One question, then back to work</b><span>Testing pauses only for the API that's missing something. The agent asks one specific question, like whether the id parameter is a string.</span></div>
+          <div class="step"><span class="n">TEST FAILED</span><b>The developer decides</b><span>What passed is published. For the API that failed, the agent gives the reason, and the developer can publish it anyway, test it again or test with different parameters.</span></div>
+        </div>
+        <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps/custom-connector</span></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="ccDocsFail"></div><div class="sw" data-screen="ccUnmapped"></div><div class="sw" data-screen="ccInput"></div><div class="sw" data-screen="ccTestFail"></div></div>
+        </div><div class="sc-progress"><i></i></div></div>
+      </div>
+    </div>
+  </div>
+</template>
 <template id="tpl-audit">
   <div class="demo vis">
     <div class="demo-head"><span class="mono">INTERACTIVE · THE DUPLICATION AUDIT</span><button class="btn" id="mergeBtn">Merge them <span class="arr">→</span></button></div>
@@ -2077,6 +2215,23 @@ const CONFIG = {
     auFailed: "assets/au-failed.webp",
     auPersonalize: "assets/au-personalize.webp",
     auPersonalizeCode: "assets/au-personalize-code.webp",
+    /* Custom connector case study: real screens */
+    ccStart: "assets/cc-start.webp",
+    ccConfirm: "assets/cc-confirm.webp",
+    ccApis: "assets/cc-apis.webp",
+    ccDocs: "assets/cc-docs.webp",
+    ccFindings: "assets/cc-findings.webp",
+    ccMapping: "assets/cc-mapping.webp",
+    ccBuilt: "assets/cc-built.webp",
+    ccAuth: "assets/cc-auth.webp",
+    ccTesting: "assets/cc-testing.webp",
+    ccPublished: "assets/cc-published.webp",
+    ccAppsCustom: "assets/cc-apps-custom.webp",
+    ccAppsDraft: "assets/cc-apps-draft.webp",
+    ccInput: "assets/cc-input.webp",
+    ccDocsFail: "assets/cc-docs-fail.webp",
+    ccUnmapped: "assets/cc-unmapped.webp",
+    ccTestFail: "assets/cc-test-fail.webp",
     // dashboard: "assets/dashboard.webp",
     // accounts: "assets/accounts.webp",
     // activity: "assets/activity.webp",
@@ -2183,7 +2338,7 @@ curl https://api.getknit.dev/v1.0/hris/employees \\
     <div class="s-card"><table class="s-table"><tr><th>Employee</th><th>Manager</th><th>Self review</th><th>Manager review</th><th>Progress</th></tr>
       ${[["Ananya R.","Vikram S.","ok","Submitted","run","In progress",70],["Rohan M.","Vikram S.","ok","Submitted","ok","Submitted",100],["Meera K.","Priya N.","ok","Submitted","wait","Not started",35],["Arjun T.","Priya N.","wait","Due in 2 days","wait","Not started",10]].map(r => `<tr><td><span class="s-app"><span class="avatar" style="background:#C98BA0">${r[0][0]}</span>${r[0]}</span></td><td>${r[1]}</td><td>${st(r[2], r[3])}</td><td>${st(r[4], r[5])}</td><td><div style="width:120px;height:6px;border-radius:3px;background:#EEF0F4"><div style="width:${r[6]}%;height:100%;border-radius:3px;background:#D9577A"></div></div></td></tr>`).join("")}</table></div></div></div>`
 };
-const SCREEN_NAMES = { heroDash:"Dashboard · insights", heroAccounts:"Integrated accounts", heroOrgs:"Organizations · health", heroAlerts:"Alert management", heroAlertLog:"Alerts · activity", heroAlertEdit:"Alert · threshold & recipients", heroValidation:"Data validation · AI rule", heroWelcome:"Workspace setup", heroApps:"App management", heroOauth:"App management · OAuth", obOldSc:"Old onboarding · categories", obOldSa1:"Old onboarding · sync required", obOldSync:"Old onboarding · sync setup steps", obNewApis:"New onboarding · select APIs", obNewTest:"New onboarding · setup and test", obNewTested:"New onboarding · first test call", obNewSync:"New onboarding · optional sync setup", obNewSummary:"New onboarding · summary", obNewEmbed:"New onboarding · embed", logsEx1:"Logs exploration 01 · table first", logsEx2:"Logs exploration 02 · filter and inspect", logsEx3:"Logs exploration 03 · organization groups", syncsExA:"Syncs exploration A · table-first", syncsExB:"Syncs exploration B · split view", syncsExC:"Syncs exploration C · record page", auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auFailed:"Auth UI · connection failed", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table" };
+const SCREEN_NAMES = { heroDash:"Dashboard · insights", heroAccounts:"Integrated accounts", heroOrgs:"Organizations · health", heroAlerts:"Alert management", heroAlertLog:"Alerts · activity", heroAlertEdit:"Alert · threshold & recipients", heroValidation:"Data validation · AI rule", heroWelcome:"Workspace setup", heroApps:"App management", heroOauth:"App management · OAuth", obOldSc:"Old onboarding · categories", obOldSa1:"Old onboarding · sync required", obOldSync:"Old onboarding · sync setup steps", obNewApis:"New onboarding · select APIs", obNewTest:"New onboarding · setup and test", obNewTested:"New onboarding · first test call", obNewSync:"New onboarding · optional sync setup", obNewSummary:"New onboarding · summary", obNewEmbed:"New onboarding · embed", logsEx1:"Logs exploration 01 · table first", logsEx2:"Logs exploration 02 · filter and inspect", logsEx3:"Logs exploration 03 · organization groups", syncsExA:"Syncs exploration A · table-first", syncsExB:"Syncs exploration B · split view", syncsExC:"Syncs exploration C · record page", auTrust:"Auth UI · trust screen", auCategory:"Auth UI · categories", auApps:"Auth UI · apps", auCreds:"Auth UI · credentials", auScopeOff:"Auth UI · scope", auScope:"Auth UI · scope", auScopeFields:"Auth UI · field scope", auMapEmpty:"Auth UI · map fields", auMapDone:"Auth UI · fields mapped", auStatus:"Auth UI · app status", auSuccess:"Auth UI · connected", auFailed:"Auth UI · connection failed", auPersonalize:"Personalize settings", auPersonalizeCode:"Personalize settings · code", logsV1:"Logs v1", logsV2:"Logs v2 · table", logsV2Filter:"Logs v2 · filter", logsV2Error:"Logs v2 · error details", logsV3Ask:"Logs v3 · Ask AI", logsV3Load:"Logs v3 · agent panel", logsV3Answer:"Logs v3 · agent answer", dashboard:"Unified API · Dashboard", accounts:"Integrated accounts", syncs:"Data syncs", activity:"Unified activity", before3:"Before: three products", picker:"Onboarding · pick a path", connect:"White-label connect", detail:"Live object detail", index:"Live objects index", quickstart:"Quickstart", digix:"DIGIX · Scheduler", review:"SuperBeings · Review cycle", syncsOldList:"Syncs v1 · list", syncsOldJob:"Syncs v1 · job", syncsOldRun:"Syncs v1 · run", syncsNewList:"Syncs v2 · list", syncsNewJob:"Syncs v2 · job", syncsNewRun:"Syncs v2 · run", syncsNewRecord:"Syncs v2 · record", syncsExAll:"Explored · all runs table", syncsExPanel:"Explored · side panel", syncsCropList:"Syncs v1 · list detail", syncsCropJob:"Syncs v1 · job detail", syncsCropRun:"Syncs v1 · run detail", syncsBaOld:"Syncs v1 · records table", syncsBaNew:"Syncs v2 · records table", ccStart:"Custom connector · start", ccConfirm:"Custom connector · confirm the app", ccApis:"Custom connector · pick APIs", ccDocs:"Custom connector · docs source", ccFindings:"Custom connector · endpoints found", ccMapping:"Custom connector · field mapping", ccBuilt:"Custom connector · built", ccAuth:"Custom connector · test credentials", ccTesting:"Custom connector · testing", ccPublished:"Custom connector · published", ccAppsCustom:"App management · custom connector", ccAppsDraft:"App management · draft connector", ccInput:"Custom connector · agent needs input", ccDocsFail:"Custom connector · web search failed", ccUnmapped:"Custom connector · unmapped field", ccTestFail:"Custom connector · test failed" };
 
 const scaleQueue = new Set();
 const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
@@ -2252,9 +2407,47 @@ const CASES = [
     ]
   },
   {
-    id: "case-observability", n: "02", tint: "#1F4B3E", depth: "Full case study",
+    id: "case-connector", n: "02", tint: "#3D3A5C", depth: "Full case study",
+    real: "Real product screens from the design file. BlackLine is the sample app; the user and descriptions are sample data.",
+    kicker: "Case study 02 · Knit · Agent-built connectors · 2026", crumb: "02 · Knit · Agent-built connectors",
+    title: "An agent builds the connector. <em>People sign off</em> where it counts",
+    lede: "When a Knit customer needed an app Knit didn't support, an engineer built the connector by hand, which took about a week. This flow hands that work to an AI agent. The developer stays in the loop at the few points where a wrong guess would be expensive.",
+    cover: { main: "ccFindings", url: "app.getknit.dev/apps/custom-connector" },
+    tldr: { role: "Sole designer, with two founders", team: "The product founder and the CTO", timeline: "About 5.5 weeks of design. Backend in development, frontend next", industry: "B2B SaaS · Developer tools · AI agents", problem: "Every unsupported app meant about a week of an engineer's time, and requests kept coming.", result: "In development. 14 flows designed, from the happy path to every way the agent can fail" },
+    chapters: [
+      { name: "Context & problem", head: "A week of engineering per app",
+        body: ["Knit gives SaaS companies one API for many apps in a category: HR, CRM, ticketing and so on. Each category has a list of supported apps. When a customer needed one that wasn't on the list, say BlackLine, a Knit engineer built the connector by hand. That took roughly a week, and then it was switched on for that customer.", "Those requests kept coming, and each one pulled an engineer off other work. By 2026, agents were good enough to read API docs and write integration code. So the founders asked a simple question: could customers have an agent build the connector themselves?", "The people using this are developers at Knit's customers. They know their app, they usually have its docs open already, and they'll notice quickly if something looks wrong. That shaped most of what follows."] },
+      { name: "The bet", head: "Agentic, but not autonomous",
+        lede: "The easy version is a chat box: type “build me a BlackLine connector” and wait. We didn't build that, for one reason. A published connector goes straight to the customer's own users, so a confident mistake ends up in someone else's product.",
+        body: ["So the agent does the slow parts: finding the app, reading the docs, matching fields, writing and testing the connector. The developer confirms at a handful of moments where they know more than the agent, and where getting it wrong would waste everything after. Everywhere else, the agent just keeps going.", "In the terms Chris Noessel uses, this is agentic rather than agentive. An agentive tool does one job when you ask it to. An agentic one plans and acts across many steps on its own, so the design question becomes where it should stop and check with someone."],
+        custom: ["tpl-cc-autonomy"] },
+      { name: "The flow", head: "Seven moments, each with a pattern",
+        lede: "Each moment is labelled with the agentic UX pattern it uses. The conversation runs down the middle, with structured cards inline, so the developer always sees what the agent found before it acts on it.",
+        custom: ["tpl-cc-flow", "tpl-cc-wait"] },
+      { name: "Decisions & trade-offs", head: "What changed along the way",
+        decisions: [
+          { q: "How should the flow start?", considered: "A chat-only flow, where the developer describes what they want in their own words.", chose: "A short form first (app name and category), with the chat box open the whole way for anything extra.", why: "In open chat, people wander off and the agent has to guess what matters. Two fields give it a direction in seconds, and the chat is still there when the form isn't enough.", tag: "Structure first" },
+          { q: "Where should the docs come from by default?", considered: "Web search by default, running automatically once the APIs were confirmed, with no extra input.", chose: "Three equal options (search, URL, upload) with none pre-selected.", why: "We learned most developers already have the docs, often an OpenAPI file. Searching first would waste their time and could find the wrong version.", cost: "One more choice to make, at a point where the developer knows the answer immediately." },
+          { q: "Should the developer review the endpoints?", considered: "Going from the docs straight to field mapping, since the agent had already read them.", chose: "A review step that lists the auth method, base URL and the endpoints found, before any mapping.", why: "The endpoints decide what gets built. If one is wrong, the mapping, build and tests are all wrong too. Developers can check this in a few seconds, so it's a cheap place to catch an expensive mistake.", tag: "Approval gate" },
+          { q: "How far should the agent go on its own?", considered: "End to end: confirm the request once and publish when done.", chose: "Confirmations at the app, the selected APIs, the endpoints and the mapping. Credentials and failed tests also come back to the developer.", why: "A published connector goes live for the customer's own users. Asking at every step would make the agent pointless, and asking at none would make it risky. We put the stops where a wrong guess spreads." },
+          { q: "What happens when a test fails?", considered: "Blocking publish until every API passes.", chose: "Publish what passed. For the failed API, show the reason and let the developer publish it anyway, test again or test with different parameters.", why: "One broken endpoint shouldn't hold back three working ones. And the developer may know why it failed, for example a test account without the right permission.", tag: "Partial success" }
+        ] },
+      { name: "When the agent fails", head: "Every way it can get stuck",
+        lede: "Most of the design time went into what happens when things go wrong. Agents fail in ways people don't expect, so each failure screen says what broke, keeps what worked and offers a next step. If an API fails to build, the agent shows the error and leaves that API out, and the rest still builds.",
+        custom: ["tpl-cc-chain", "tpl-cc-fail"] },
+      { name: "Building trust", head: "How the agent shows its work",
+        lede: "People trust an agent when they can check it. None of these are extra screens. They're small details on the screens already there.",
+        insights: [["Where it came from", "The app card says “Found via web search”, and the endpoints step shows the base URL and auth method the agent read. Every answer has a source."], ["How complete it is", "Each API in the mapping shows “4/4 fields found”, or 3/4 in amber. The developer sees the gap without opening anything."], ["A way to check", "Every API description links to its page in Knit's docs, so a developer can compare the agent's choice with the source in one click."], ["Where it stands", "While it works, every API carries its own status: testing, paused, tested, failed, published. Nobody has to wonder if it's stuck."], ["A hand-off to a teammate", "If the developer doesn't have the credentials, they share the form. The agent waits for that person and carries on."], ["An easy way out", "A connector is just a set of API calls. In App Management it can be switched off, and its APIs and data models edited, at any time."]] },
+      { name: "What stayed human", head: "Where the developer has the final say",
+        insights: [["The app", "The agent can find the wrong BlackLine. The developer confirms it's the right one before anything is built."], ["The scope", "Which APIs and data models to build. They're pre-selected from what the customer already uses, but the developer decides."], ["The endpoints", "The developer checks what the agent read from the docs, because everything after depends on it."], ["The mapping", "Which Knit field goes where. Unmapped fields are flagged and never quietly guessed."], ["Credentials", "Test credentials come from a person, or from a teammate through the share link."], ["What to publish", "When a test fails, the developer chooses. The agent never publishes a failed API on its own."]] },
+      { name: "Reflection", head: "What I'd watch once it ships",
+        reflect: { quote: "Ask where a wrong guess spreads, not at every step.", body: "The hard part wasn't the happy path. It was deciding where the agent should stop and ask, and making every failure end in a clear choice instead of a dead end. I also designed the edit flows: adding or removing APIs and data models after publishing, adding a passthrough API, and switching the connector off. The backend is being built now, so none of this has met real users yet.", unsolved: ["Measure time from start to a published connector, against the week an engineer used to spend.", "Track which checkpoint people change most often. If nobody ever edits the endpoints, that step could become a quick glance instead of a stop.", "Watch how often all three docs sources fail, and for which apps. That's the list where the agent can't help yet.", "Show the agent's activity log in the product. Today it's kept in the backend only, and it would help when a connector misbehaves weeks later."] } }
+    ]
+  },
+  {
+    id: "case-observability", n: "03", tint: "#1F4B3E", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
-    kicker: "Case study 02 · Knit · Data Syncs · 2026", crumb: "02 · Knit · Data Syncs redesign",
+    kicker: "Case study 03 · Knit · Data Syncs · 2026", crumb: "03 · Knit · Data Syncs redesign",
     title: "From the system's view to the customer's <em>question</em>",
     lede: "Knit moves data between its customers' products and hundreds of other apps, on a schedule. I designed the first Syncs screens around how engineering saw that system. A year later, I redesigned them around the one question customers kept asking: which record broke, and where?",
     cover: { main: "syncsNewRun", url: "app.getknit.dev/syncs/sj_…/sr_…", ring: [18.9, 43.6, 76.7, 4.9], flag: "Record 101 · <b>404 Not Found</b> · which step?" },
@@ -2300,9 +2493,9 @@ const CASES = [
     ]
   },
   {
-    id: "case-logs", n: "03", tint: "#24405E", depth: "Full case study",
+    id: "case-logs", n: "04", tint: "#24405E", depth: "Full case study",
     real: "Real product screens. Organization names and IDs are sample data.",
-    kicker: "Case study 03 · Knit · Logs · 2026", crumb: "03 · Knit · Logs redesign",
+    kicker: "Case study 04 · Knit · Logs · 2026", crumb: "04 · Knit · Logs redesign",
     title: "Built for the moment something <em>breaks</em>",
     lede: "Knit's Logs page records every API call and webhook between customers' products and the apps they connect. I designed the first version around an assumption about how people read logs. The redesign is built around when they actually open them: when something has broken.",
     cover: { main: "logsV2", url: "app.getknit.dev/logs", ring: [83.6, 62.2, 12.6, 5.4], flag: "Record 4472324 · <b>404 Not Found</b> · View Error" },
@@ -2350,9 +2543,9 @@ const CASES = [
     ]
   },
   {
-    id: "case-auth", n: "04", tint: "#2B4A4F", depth: "Short case study",
+    id: "case-auth", n: "05", tint: "#2B4A4F", depth: "Short case study",
     real: "Real product screens. The client name and fields are sample data.",
-    kicker: "Case study 04 · Knit · Embedded auth UI · 2026", crumb: "04 · Knit · Embedded auth UI",
+    kicker: "Case study 05 · Knit · Embedded auth UI · 2026", crumb: "05 · Knit · Embedded auth UI",
     title: "Designing for <em>strangers</em> in someone else's product",
     lede: "Knit's auth component lives inside other companies' products. Their customers use it to connect apps like BambooHR or Freshdesk, usually without having heard of Knit. The redesign asks them what to share before it asks for access.",
     cover: { main: "auScopeFields", url: "app.acme.com · Integrate with Knit", ring: [2.5, 27.5, 95, 8.5], flag: "Read tickets · <b>chosen before connecting</b>" },
@@ -2789,7 +2982,7 @@ var cta=document.querySelector('.hero .cta-row');
 var notes={craftTitle:'small ones, but you can try them ↓'};
 for(var id in notes){var h=document.getElementById(id);if(h&&h.parentElement)h.parentElement.prepend(el('div','nb-note nb-sec-note',notes[id]))}
 var w=document.getElementById('writingTitle')||document.querySelector('.writing-top h2');if(w)w.parentElement.style.position='relative';
-var tags=['the webhook was the wall','which record broke?','built for the bad moment','ask about data first'];
+var tags=['the webhook was the wall','user in the loop, only when it counts','which record broke?','built for the bad moment','ask about data first'];
 document.querySelectorAll('.scard-art').forEach(function(a,i){if(tags[i])a.appendChild(el('span','nb-note nb-tag',tags[i]))});})();</script>
 </body>
 </html>
