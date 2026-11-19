@@ -1875,8 +1875,8 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
 </template>
 <template id="tpl-cc-flow">
   <div class="vis">
-    <div class="vis-cap"><span>The happy path, in seven moments</span><span>Scroll to step through</span></div>
-    <div class="scrolly" style="--steps:7" data-scrolly data-lens-title="Visibility of system status" data-lens="An agent works out of sight. Each moment ends with something the developer can see and check, so they always know what it's about to do.">
+    <div class="vis-cap"><span>The happy path, in seven moments, and what comes after</span><span>Scroll to step through</span></div>
+    <div class="scrolly" style="--steps:8" data-scrolly data-lens-title="Visibility of system status" data-lens="An agent works out of sight. Each moment ends with something the developer can see and check, so they always know what it's about to do.">
       <div class="scrolly-in">
         <div class="steps">
           <div class="step on"><span class="n">1 · ASK · STRUCTURED INTENT</span><b>Start with a short form</b><span>App name and category give the agent a direction. The chat box below stays open the whole way for anything the form doesn't cover.</span></div>
@@ -1886,9 +1886,10 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
           <div class="step"><span class="n">5 · REVIEW · APPROVAL GATE</span><b>Check the endpoints</b><span>The agent lists the auth method, base URL and endpoints it found. Developers can tell at a glance if these are right, and everything after depends on them.</span></div>
           <div class="step"><span class="n">6 · MAP · SHOW THE WORK</span><b>Knit fields, matched</b><span>Every mapping is visible, field by field, with a count on each API. The developer confirms, then the build starts.</span></div>
           <div class="step"><span class="n">7 · SHIP · LONG-RUNNING TASK</span><b>Build, test, publish</b><span>The agent builds, asks for test credentials, tests each API and publishes what passed. It can take a few minutes, so people can leave and come back.</span></div>
+          <div class="step"><span class="n">AFTER · BACK IN APP MANAGEMENT</span><b>Next to every other CRM app</b><span>The published connector sits under CRM with a Custom tag, ready to switch on for customers. Its name and icon can be changed later.</span></div>
         </div>
         <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps/custom-connector</span></div>
-          <div class="sc-screens wide"><div class="sw on" data-screen="ccStart"></div><div class="sw" data-screen="ccConfirm"></div><div class="sw" data-screen="ccApis"></div><div class="sw" data-screen="ccDocs"></div><div class="sw" data-screen="ccFindings"></div><div class="sw" data-screen="ccMapping"></div><div class="sw" data-screen="ccPublished"></div></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="ccStart"></div><div class="sw" data-screen="ccConfirm"></div><div class="sw" data-screen="ccApis"></div><div class="sw" data-screen="ccDocs"></div><div class="sw" data-screen="ccFindings"></div><div class="sw" data-screen="ccMapping"></div><div class="sw" data-screen="ccPublished"></div><div class="sw" data-screen="ccAppsCustom"></div></div>
         </div><div class="sc-progress"><i></i></div></div>
       </div>
     </div>
@@ -1897,16 +1898,15 @@ html[data-style="ink"] .hero h1 em{color:#F5CF5C}
 <template id="tpl-cc-wait">
   <div class="vis">
     <div class="vis-cap"><span>Leaving mid-build is normal</span><span>Scroll to step through</span></div>
-    <div class="scrolly" style="--steps:4" data-scrolly data-lens-title="Zeigarnik effect" data-lens="Unfinished tasks stay on people's minds. A visible draft gives them a place to come back to instead of starting over.">
+    <div class="scrolly" style="--steps:3" data-scrolly data-lens-title="Zeigarnik effect" data-lens="Unfinished tasks stay on people's minds. A visible draft gives them a place to come back to instead of starting over.">
       <div class="scrolly-in">
         <div class="steps">
           <div class="step on"><span class="n">CREDENTIALS</span><b>Testing needs a real account</b><span>Knit's auth component opens for the API key. If the developer doesn't have it, the share icon sends the form to a teammate who does.</span></div>
           <div class="step"><span class="n">TESTING</span><b>Come back later</b><span>Each API and data model shows its own status. Data models are tested with a dummy webhook that the agent sets up.</span></div>
           <div class="step"><span class="n">DRAFT</span><b>Saved where they'd look</b><span>Close the tab and the connector waits in App Management with a Drafts tag. Opening it picks up at the same step.</span></div>
-          <div class="step"><span class="n">PUBLISHED</span><b>Next to every other CRM app</b><span>Once published it sits under CRM with a Custom tag. The name and icon can be changed later.</span></div>
         </div>
         <div class="sc-stage"><div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span>app.getknit.dev/apps</span></div>
-          <div class="sc-screens wide"><div class="sw on" data-screen="ccAuth"></div><div class="sw" data-screen="ccTesting"></div><div class="sw" data-screen="ccAppsDraft"></div><div class="sw" data-screen="ccAppsCustom"></div></div>
+          <div class="sc-screens wide"><div class="sw on" data-screen="ccAuth"></div><div class="sw" data-screen="ccTesting"></div><div class="sw" data-screen="ccAppsDraft"></div></div>
         </div><div class="sc-progress"><i></i></div></div>
       </div>
     </div>
